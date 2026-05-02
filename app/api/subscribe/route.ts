@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-real-ip") ??
     "unknown";
   if (rateLimited(ip)) {
-    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    return NextResponse.json(
+      { error: "Slow down — that looks suspiciously like brute force, even from us." },
+      { status: 429 }
+    );
   }
 
   const body = await req.json().catch(() => ({}));
@@ -41,7 +44,10 @@ export async function POST(req: NextRequest) {
     email?: string; name?: string; source?: string;
   };
   if (!email || !emailRe.test(email)) {
-    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    return NextResponse.json(
+      { error: "That email didn't validate. Even our regex has standards." },
+      { status: 400 }
+    );
   }
 
   // 1. Persist to Supabase (source of truth)
@@ -69,5 +75,8 @@ export async function POST(req: NextRequest) {
     }),
   ]);
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    message: "You're on the list. We'll only show up in your inbox when there's something actually worth opening.",
+  });
 }

@@ -379,7 +379,7 @@ export default function ISO27001Framework() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to begin your ISO 27001 journey?</h3>
               <p className="text-green-200">
-                CyberShield helps you assess readiness, plan implementation, and track progress toward certification.
+                ABC of Cyber helps you assess readiness, plan implementation, and track progress toward certification.
               </p>
             </div>
             <div className="flex gap-3">

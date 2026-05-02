@@ -494,7 +494,7 @@ export default function RiskManagementPage() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to assess your risk management capability?</h3>
               <p className="text-slate-300">
-                CyberShield helps organizations assess risk, build frameworks, and continuously monitor their risk posture.
+                ABC of Cyber helps organizations assess risk, build frameworks, and continuously monitor their risk posture.
               </p>
             </div>
             <div className="flex gap-3">

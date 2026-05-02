@@ -315,7 +315,7 @@ export default function CISControlsFramework() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to assess your CIS Controls implementation?</h3>
               <p className="text-slate-300">
-                CyberShield maps your current controls to the CIS framework and identifies the gaps most likely to hurt you.
+                ABC of Cyber maps your current controls to the CIS framework and identifies the gaps most likely to hurt you.
               </p>
             </div>
             <div className="flex gap-3">

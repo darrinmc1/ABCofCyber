@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const contactOptions = [
   {
     title: "Email",
-    detail: "security@cybershield.example",
+    detail: "security@abcofcyber.example",
     note: "For thoughtful questions, urgent questions, and politely alarmed questions.",
     icon: Mail,
   },
@@ -49,8 +49,8 @@ export default function ContactPage() {
             Contact the security people before the security incident contacts you
           </h1>
           <p className="text-lg leading-8 text-slate-600">
-            If you need help with compliance, incident response, or convincing leadership that password reuse is not a
-            personality trait, start here.
+            If you need help with compliance, incident response, or convincing leadership that &ldquo;Summer2024!&rdquo;
+            is not a password strategy, start here.
           </p>
           <Button asChild>
             <Link href="/get-started">Start with a plan</Link>

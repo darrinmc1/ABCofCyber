@@ -87,7 +87,7 @@ export default function FrameworksPage() {
               Serious frameworks, explained like a human wrote them
             </h1>
             <p className="text-lg text-slate-600">
-              CyberShield maps the big-name standards into a workflow your team can actually follow, without requiring
+              ABC of Cyber maps the big-name standards into a workflow your team can actually follow, without requiring
               a shrine to spreadsheet suffering.
             </p>
             <div className="flex flex-wrap gap-3">

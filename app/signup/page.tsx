@@ -24,7 +24,7 @@ export default function SignupPage() {
             <CardTitle className="text-2xl">Create your account</CardTitle>
             <CardDescription>
               Start assessing your security posture, tracking compliance, and actually knowing what is happening in your
-              infrastructure.
+              infrastructure. The good news: your data is encrypted at rest, because we practice what we preach.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -49,7 +49,16 @@ export default function SignupPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="Create a strong password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Long, weird, and not your dog's name"
+                  required
+                  minLength={12}
+                />
+                <p className="text-xs text-slate-500">
+                  Twelve characters minimum. A passphrase beats a clever substitution every time.
+                </p>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="teamSize">Team size</Label>

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,6 +9,27 @@ import { Label } from "@/components/ui/label"
 import { ArrowLeft } from "lucide-react"
 
 export default function LoginPage() {
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle")
+  const [error, setError] = useState("")
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError("")
+    setStatus("loading")
+    const form = e.currentTarget
+    const password = (form.elements.namedItem("password") as HTMLInputElement).value
+    window.setTimeout(() => {
+      // Demo-only: pretend the auth backend disagrees.
+      if (password.toLowerCase() === "password123") {
+        setStatus("error")
+        setError("That's not right. Neither was using \"password123\" — please tell us you were testing us.")
+      } else {
+        setStatus("error")
+        setError("Credentials didn't match. Better than them matching for someone else.")
+      }
+    }, 700)
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-16">
       <div className="w-full max-w-md">
@@ -23,15 +45,17 @@ export default function LoginPage() {
           <CardHeader>
             <CardTitle className="text-2xl">Sign in to your account</CardTitle>
             <CardDescription>
-              Access your security dashboard, track compliance, and manage your team&apos;s risk posture.
+              Access your security dashboard, track compliance, and manage your team&apos;s risk posture. MFA strongly
+              encouraged. Sticky notes strongly discouraged.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <Label htmlFor="email">Work email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="analyst@company.com"
                   required
@@ -44,13 +68,20 @@ export default function LoginPage() {
                     href="/forgot-password"
                     className="text-sm text-blue-600 hover:text-blue-700"
                   >
-                    Forgot password?
+                    Forgot it?
                   </Link>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" name="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full bg-slate-900 hover:bg-slate-800">
-                Sign in
+              {status === "error" && (
+                <p className="text-sm font-medium text-red-600">{error}</p>
+              )}
+              <Button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full bg-slate-900 hover:bg-slate-800 disabled:opacity-70"
+              >
+                {status === "loading" ? "Authenticating..." : "Sign in"}
               </Button>
             </form>
 
@@ -72,7 +103,7 @@ export default function LoginPage() {
           <Link href="/privacy" className="underline hover:text-slate-700">
             Privacy Policy
           </Link>
-          . Your data is handled with the same care we recommend for your security program.
+          . Your data is handled with the same care we recommend for your own.
         </p>
       </div>
     </main>

@@ -23,7 +23,7 @@ const reassurancePoints = [
 
 const testimonials = [
   {
-    quote: "CyberShield turned our security roadmap from a guilt document into an actual plan.",
+    quote: "ABC of Cyber turned our security roadmap from a guilt document into an actual plan.",
     person: "Priya, Head of Ops",
   },
   {
@@ -49,6 +49,10 @@ const faqs = [
     question: "Will you drown us in alerts?",
     answer: "No. The platform is opinionated about noise because nobody improves security by ignoring 400 meaningless warnings.",
   },
+  {
+    question: "Will it nag us about passwords?",
+    answer: "Only if you keep using your dog's name. We are pro-password manager and pro-MFA, in that order.",
+  },
 ]
 
 export default function Home() {
@@ -66,8 +70,8 @@ export default function Home() {
                 Serious protection. Slightly unhinged copy. Very little panic.
               </h1>
               <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
-                CyberShield helps you assess risk, tighten controls, and track compliance without making every meeting
-                feel like a hostage negotiation with a spreadsheet.
+                ABC of Cyber helps you assess risk, tighten controls, and track compliance without making every meeting
+                feel like a hostage negotiation with a spreadsheet. MFA included. Fear not.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">

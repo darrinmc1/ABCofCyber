@@ -103,7 +103,8 @@ export default function PricingPage() {
             Pick the level of protection your budget can emotionally process
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            No hidden fees. No per-seat surprises. No vendor lock-in that makes changing plans feel like a hostage negotiation.
+            No hidden fees. No per-seat surprises. No vendor lock-in that makes leaving feel like a ransomware
+            negotiation, only with worse hold music.
           </p>
         </div>
       </section>

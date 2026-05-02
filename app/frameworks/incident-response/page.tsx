@@ -176,8 +176,9 @@ export default function IncidentResponsePage() {
               Incident Response
             </h1>
             <p className="text-lg text-slate-600 mb-6">
-              When something goes wrong, the difference between a survivable incident and a catastrophic one is often preparation.
-              This guide covers building response capability, handling incidents effectively, and learning afterward.
+              When something goes wrong, the difference between a survivable incident and a catastrophic one is
+              preparation. The runbook should not be written at 3 a.m. while the SIEM is on fire. This guide covers
+              building response capability, handling incidents effectively, and the learning afterward.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>

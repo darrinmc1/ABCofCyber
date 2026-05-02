@@ -43,7 +43,7 @@ export default function GetStartedPage() {
               Start securing things before the interns become folklore
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              CyberShield is built for teams that need a sensible first move, not a 94-step onboarding ritual with a
+              ABC of Cyber is built for teams that need a sensible first move, not a 94-step onboarding ritual with a
               PDF nobody finishes.
             </p>
             <div className="flex flex-wrap gap-3">

@@ -48,7 +48,7 @@ interface EmailCaptureProps {
 
 export function EmailCapture({
   variant = "inline",
-  siteName = "CyberShield",
+  siteName = "ABC of Cyber",
   theme = "cyber",
   heading,
   subheading,
@@ -77,16 +77,16 @@ export function EmailCapture({
 
       if (res.ok) {
         setStatus("success")
-        setMessage(data.message)
+        setMessage(data.message || "You're enlisted. We'll only email when there's something actually worth opening.")
         setEmail("")
         setName("")
       } else {
         setStatus("error")
-        setMessage(data.error || "Something went wrong.")
+        setMessage(data.error || "That didn't work. The packets came back empty-handed.")
       }
     } catch {
       setStatus("error")
-      setMessage("Network error. Please try again.")
+      setMessage("Network handshake failed. Try again, or blame the firewall — we usually do.")
     }
   }
 
@@ -100,7 +100,7 @@ export function EmailCapture({
       >
         <div className="text-5xl mb-4">&#x1F6E1;&#xFE0F;</div>
         <h3 className={`text-2xl font-extrabold ${colors.text} mb-2`}>
-          You're In!
+          Access granted.
         </h3>
         <p className={`${colors.textMuted} text-lg`}>{message}</p>
         <div className="mt-4 inline-flex items-center gap-2 bg-emerald-900/50 rounded-full px-4 py-2 border border-emerald-500/30">
@@ -224,7 +224,7 @@ export function EmailCapture({
             disabled={status === "loading"}
             className={`w-full ${colors.primary} ${colors.primaryHover} text-white font-bold py-3 rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed`}
           >
-            {status === "loading" ? "Enlisting..." : "Claim Your Spot"}
+            {status === "loading" ? "Encrypting..." : "Claim Your Spot"}
           </button>
           {status === "error" && (
             <p className="text-red-400 text-xs font-medium text-center">{message}</p>
@@ -273,7 +273,7 @@ export function EmailCapture({
             disabled={status === "loading"}
             className={`${colors.primary} ${colors.primaryHover} text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-emerald-900/30 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap text-sm`}
           >
-            {status === "loading" ? "Enlisting..." : "Join Free"}
+            {status === "loading" ? "Encrypting..." : "Join Free"}
           </button>
         </form>
       </div>

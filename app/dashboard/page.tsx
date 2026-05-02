@@ -249,7 +249,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-4 py-8 flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading dashboard data...</p>
+          <p className="text-gray-500">Decrypting dashboard. Checking if you&apos;ve been pwned. Mostly the first one.</p>
         </div>
       </div>
     )
@@ -484,7 +484,9 @@ export default function Dashboard() {
                     </Alert>
                   ))
                 ) : (
-                  <div className="text-center py-4 text-gray-500">No active alerts</div>
+                  <div className="text-center py-4 text-gray-500">
+                    Nothing on fire. Enjoy the silence — it usually means the controls are quietly doing their job.
+                  </div>
                 )}
                 <div className="text-center mt-2">
                   <Button variant="link" size="sm" onClick={handleViewAllAlerts}>

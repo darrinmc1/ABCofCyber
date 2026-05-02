@@ -55,9 +55,10 @@ export default function AboutPage() {
             We help teams stop calling luck a security strategy
           </h1>
           <p className="text-lg leading-8 text-slate-600">
-            CyberShield was built by practitioners who got tired of seeing security programs that looked impressive in
-            decks and collapsed in practice. We focus on the controls, assessment, and habits that actually reduce risk
-            without requiring a cult-like devotion to process.
+            ABC of Cyber was built by practitioners who got tired of seeing security programs that looked impressive in
+            decks and collapsed the first time someone clicked a link in a Microsoft 365 lookalike. We focus on the
+            controls, assessment, and habits that actually reduce risk — without requiring a cult-like devotion to
+            process.
           </p>
           <p className="text-lg leading-8 text-slate-600">
             The platform is designed for security leads, compliance teams, and the one exhausted admin who keeps
@@ -93,7 +94,7 @@ export default function AboutPage() {
                   usually in the second category.
                 </p>
                 <p>
-                  CyberShield helps teams move from vague anxiety about risk to structured assessment, practical controls,
+                  ABC of Cyber helps teams move from vague anxiety about risk to structured assessment, practical controls,
                   and reporting that helps decision-makers actually decide.
                 </p>
                 <p>

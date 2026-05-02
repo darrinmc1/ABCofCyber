@@ -143,9 +143,9 @@ export default function ThreatMonitoringPage() {
               Threat Monitoring and Detection
             </h1>
             <p className="text-lg text-slate-600 mb-6">
-              You cannot prevent everything. Good security means detecting threats that bypass preventive controls fast enough to
-              limit damage. This requires visibility across your environment, structured monitoring processes, and the ability to
-              investigate and respond when alerts fire.
+              You cannot prevent everything. Assume breach, watch the logs, and notice the attacker before payroll
+              does. Good monitoring means detecting threats that slipped past preventive controls fast enough to limit
+              the damage — and fast enough to spare you a 2 a.m. phone call.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
@@ -272,7 +272,7 @@ export default function ThreatMonitoringPage() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to improve your threat monitoring?</h3>
               <p className="text-red-200">
-                CyberShield helps you design monitoring coverage, triage alerts, and build detection rules that catch the threats
+                ABC of Cyber helps you design monitoring coverage, triage alerts, and build detection rules that catch the threats
                 that matter.
               </p>
             </div>

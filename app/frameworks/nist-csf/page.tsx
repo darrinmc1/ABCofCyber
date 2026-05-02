@@ -339,7 +339,7 @@ export default function NISTCSFFramework() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to assess your NIST CSF posture?</h3>
               <p className="text-blue-200">
-                CyberShield maps your current controls to the framework and identifies gaps worth addressing first.
+                ABC of Cyber maps your current controls to the framework and identifies gaps worth addressing first.
               </p>
             </div>
             <div className="flex gap-3">
