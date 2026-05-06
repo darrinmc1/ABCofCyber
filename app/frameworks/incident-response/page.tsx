@@ -456,7 +456,7 @@ export default function IncidentResponsePage() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Do you have an incident response plan?</h3>
               <p className="text-red-200">
-                If your answer is "we will figure it out when something happens," that is not a plan. That is optimism.
+                If your answer is &quot;we will figure it out when something happens,&quot; that is not a plan. That is optimism.
               </p>
             </div>
             <div className="flex gap-3">

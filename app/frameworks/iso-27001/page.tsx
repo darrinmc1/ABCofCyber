@@ -225,7 +225,7 @@ export default function ISO27001Framework() {
             <p className="text-lg text-slate-600 mb-6">
               The international standard for managing information security. It provides a systematic approach to managing
               sensitive information through policies, procedures, and technical controls. Organizations get certified by
-              demonstrating their ISMS meets the standard's requirements.
+              demonstrating their ISMS meets the standard&apos;s requirements.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
