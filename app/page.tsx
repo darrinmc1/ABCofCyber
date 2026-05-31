@@ -84,6 +84,14 @@ export default function Home() {
                 size="lg"
                 className="border-blue-200 bg-transparent text-white hover:bg-white/10"
               >
+                <Link href="/learn">Start Learning</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-blue-200 bg-transparent text-white hover:bg-white/10"
+              >
                 <Link href="/frameworks">See the Frameworks</Link>
               </Button>
             </div>
