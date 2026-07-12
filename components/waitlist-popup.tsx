@@ -10,10 +10,8 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { HoneypotField } from "@/components/HoneypotField"
 
-const MAILCHIMP_ACTION_URL =
-    "https://gmail.us19.list-manage.com/subscribe/post?u=b8898b94266e53179fa3bc7ff&id=cc2cbb82cb&f_id=001cf7e3f0"
-const HONEYPOT_FIELD_NAME = "b_b8898b94266e53179fa3bc7ff_cc2cbb82cb"
 const TAG_ID = "4031942"
 const POPUP_STORAGE_KEY = "abcofcyber-waitlist-seen"
 
@@ -23,7 +21,9 @@ const SUPPRESS_DAYS = 30
 export function WaitlistPopup() {
     const [isOpen, setIsOpen] = useState(false)
     const [email, setEmail] = useState("")
+    const [honeypot, setHoneypot] = useState("")
     const [submitted, setSubmitted] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const lastSeen = localStorage.getItem(POPUP_STORAGE_KEY)
@@ -49,8 +49,40 @@ export function WaitlistPopup() {
         markSeen()
     }
 
-    const handleSubmit = () => {
-        markSeen()
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        
+        // Honeypot check — don't submit if filled
+        if (honeypot !== '') {
+            handleClose()
+            return
+        }
+
+        setLoading(true)
+        try {
+            const res = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    email, 
+                    source: 'popup',
+                    website: honeypot 
+                }),
+            })
+
+            if (res.ok) {
+                setSubmitted(true)
+                markSeen()
+            } else {
+                console.error('Subscription failed')
+                handleClose()
+            }
+        } catch (error) {
+            console.error('Error:', error)
+            handleClose()
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -58,7 +90,7 @@ export function WaitlistPopup() {
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-2xl">
-                        🛡️ ABC of Cyber — get the early drop
+                        🛡️ ABC of Cyber – get the early drop
                     </DialogTitle>
                     <DialogDescription className="text-base pt-2">
                         Cyber security without the scare tactics. Drop your email to be notified when new lessons land, plus 50% off founder pricing on any paid tier we launch.
@@ -66,61 +98,46 @@ export function WaitlistPopup() {
                 </DialogHeader>
 
                 {!submitted ? (
-                    <>
-                        <iframe
-                            name="mailchimp-target"
-                            style={{ display: "none" }}
-                            title="Mailchimp submission target"
-                            onLoad={() => {
-                                if (email) setSubmitted(true)
-                            }}
+                    <form
+                        onSubmit={handleSubmit}
+                        className="space-y-4 pt-2"
+                    >
+                        <Input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="you@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full"
                         />
-                        <form
-                            action={MAILCHIMP_ACTION_URL}
-                            method="post"
-                            target="mailchimp-target"
-                            onSubmit={handleSubmit}
-                            className="space-y-4 pt-2"
+
+                        <HoneypotField />
+
+                        <input 
+                            type="hidden" 
+                            name="website" 
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                        />
+
+                        <Button 
+                            type="submit" 
+                            className="w-full"
+                            disabled={loading}
                         >
-                            <Input
-                                type="email"
-                                name="EMAIL"
-                                required
-                                placeholder="you@example.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full"
-                            />
+                            {loading ? 'Signing up...' : 'Keep me posted'}
+                        </Button>
 
-                            <div
-                                style={{ position: "absolute", left: "-5000px" }}
-                                aria-hidden="true"
-                            >
-                                <input
-                                    type="text"
-                                    name={HONEYPOT_FIELD_NAME}
-                                    tabIndex={-1}
-                                    defaultValue=""
-                                />
-                            </div>
-
-                            <input type="hidden" name="tags" value={TAG_ID} />
-
-                            <Button type="submit" className="w-full">
-                                Keep me posted
-                            </Button>
-
-                            <p className="text-xs text-muted-foreground text-center">
-                                We&apos;ll only contact you when the site&apos;s good and ready!
-                            </p>
-                        </form>
-                    </>
+                        <p className="text-xs text-muted-foreground text-center">
+                            We&apos;ll only contact you when the site&apos;s good and ready!
+                        </p>
+                    </form>
                 ) : (
                     <div className="py-4 text-center space-y-3">
                         <p className="text-lg font-semibold">You&apos;re on the list 🌱</p>
                         <p className="text-sm text-muted-foreground">
-                            Check your inbox for a confirmation email — from us, not a
-                            lookalike domain. Click the link to finish signing up.
+                            Check your inbox for a confirmation email.
                         </p>
                         <Button
                             onClick={handleClose}
