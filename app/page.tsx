@@ -67,11 +67,10 @@ export default function Home() {
                 Cyber security for teams allergic to nonsense
               </p>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Serious protection. Slightly unhinged copy. Very little panic.
+                Cybersecurity Training
               </h1>
               <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
-                ABC of Cyber helps you assess risk, tighten controls, and track compliance without making every meeting
-                feel like a hostage negotiation with a spreadsheet. MFA included. Fear not.
+                Serious protection. Slightly unhinged copy. Very little panic.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
