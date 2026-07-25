@@ -78,6 +78,81 @@ const downloads = [
       "Compliance summary with % scores",
     ],
   },
+  {
+    id: "password-policy",
+    title: "Password Policy Template",
+    description:
+      "An enterprise password governance template covering length requirements, complexity rules, expiry cycles, MFA enforcement, account lockout thresholds, shared account rules, and compliance auditing.",
+    filename: "password-policy-template.pdf",
+    icon: "🔐",
+    features: [
+      "Length & complexity requirements",
+      "Expiry & password history rules",
+      "MFA enforcement requirements",
+      "Account lockout threshold policy",
+      "Shared account & compliance controls",
+    ],
+  },
+  {
+    id: "security-awareness-log",
+    title: "Security Awareness Training Log",
+    description:
+      "A training record log to track employee completions across security awareness modules. Records training date, employee name, department, module, score, certificate issuance, and next due date.",
+    filename: "security-awareness-log.pdf",
+    icon: "📋",
+    features: [
+      "Date & employee name tracking",
+      "Module & score recording",
+      "Certificate issuance status",
+      "Next due date scheduling",
+      "Pass rate & compliance summary",
+    ],
+  },
+  {
+    id: "access-control-matrix",
+    title: "Access Control Matrix",
+    description:
+      "A role-based access rights matrix mapping systems and resources to roles with R/W/A/N permissions. Covers HR, payroll, SIEM, firewall, source code, email, CRM, and more with a clear legend.",
+    filename: "access-control-matrix.pdf",
+    icon: "🔑",
+    features: [
+      "Multi-system access mapping",
+      "Role-based permission columns",
+      "R/W/A/N permission legend",
+      "Quarterly review sign-off",
+      "Exception policy reference",
+    ],
+  },
+  {
+    id: "vendor-security-assessment",
+    title: "Vendor Security Assessment",
+    description:
+      "A third-party risk evaluation template capturing vendor name, service provided, data access level, security certifications, risk rating, assessment date, and approval status.",
+    filename: "vendor-security-assessment.pdf",
+    icon: "🤝",
+    features: [
+      "Vendor & service profiling",
+      "Data access level classification",
+      "Certification & risk rating",
+      "Assessment date & approval",
+      "Remediation recommendations",
+    ],
+  },
+  {
+    id: "business-continuity-plan",
+    title: "Business Continuity Plan",
+    description:
+      "An ISO 22301-aligned BCP covering purpose, scope, critical functions, RTOs/RPOs, backup procedures, communication tree, and quarterly review cycles for organisational resilience.",
+    filename: "business-continuity-plan.pdf",
+    icon: "🔄",
+    features: [
+      "Purpose, scope & critical functions",
+      "RTO & RPO targets per function",
+      "Backup frequency & encryption",
+      "Communication tree with contacts",
+      "Quarterly review & drill schedule",
+    ],
+  },
 ]
 
 const fileSizes: Record<string, string> = {
@@ -86,6 +161,11 @@ const fileSizes: Record<string, string> = {
   "incident-response-plan-template.pdf": "4.7 KB",
   "vulnerability-tracker-template.pdf": "3.6 KB",
   "compliance-checklist-template.pdf": "4.0 KB",
+  "password-policy-template.pdf": "3.9 KB",
+  "security-awareness-log.pdf": "3.7 KB",
+  "access-control-matrix.pdf": "2.9 KB",
+  "vendor-security-assessment.pdf": "3.4 KB",
+  "business-continuity-plan.pdf": "5.4 KB",
 }
 
 export default function DownloadsPage() {
