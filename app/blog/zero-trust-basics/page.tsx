@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
 
-export default function BlogPost() {
+export default function BlogPost({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen bg-white">
       <div className="border-b bg-slate-50"><div className="mx-auto max-w-3xl px-4 md:px-6 py-8">
         <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900 mb-4"><ArrowLeft className="h-4 w-4" /> Back to Blog</Link>
         <div className="flex items-center gap-3 text-xs text-slate-500 mb-3"><span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> July 26, 2026</span><span>9 min</span></div>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl mb-3">Zero Trust Security Basics</h1>
-        <p className="text-lg text-slate-600">Trust nothing, verify everything — a practical guide to zero trust.</p>
+        <p className="text-lg text-slate-600">Trust nothing, verify everything - a practical guide to zero trust.</p>
       </div></div>
       <div className="mx-auto max-w-3xl px-4 md:px-6 py-10">
         <p className="text-base text-slate-700 leading-relaxed mb-6">This article is part of our ongoing series for ABC of Cyber. Full content coming soon.</p>
