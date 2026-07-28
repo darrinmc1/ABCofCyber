@@ -65,9 +65,8 @@ export async function POST(request: NextRequest) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: 'free',
-          docName: doc?.name,
+          docName: tool,
           prompt,
-          questions,
           answers,
         }),
       })
@@ -96,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     // Fallback: call Gemini directly
     const geminiResponse = await fetch(
-      `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
+      `${GEMINI_URL}?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
