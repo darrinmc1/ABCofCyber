@@ -17,7 +17,8 @@ const SAFE_PATHS = ["/_next/", "/favicon", "/og-image", "/opengraph", "/icon"]
 
 // Clerk: routes that do NOT require authentication
 const isPublicRoute = createRouteMatcher([
-  "/", "/sign-in(.*)", "/sign-up(.*)",
+  "/", "/sign-in(.*)", "/sign-up(.*)", "/login(.*)", "/signup(.*)",
+  "/sitemap.xml", "/robots.txt",
   "/api/webhooks(.*)", "/api/send-email", "/api/subscribe",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
