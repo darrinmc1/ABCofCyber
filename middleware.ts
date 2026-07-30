@@ -1,3 +1,4 @@
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
@@ -14,18 +15,40 @@ const BLOCKED_BOTS = [
 // Paths that are safe from rate limiting (static assets)
 const SAFE_PATHS = ["/_next/", "/favicon", "/og-image", "/opengraph", "/icon"]
 
+// Clerk: routes that do NOT require authentication
+const isPublicRoute = createRouteMatcher([
+  "/", "/sign-in(.*)", "/sign-up(.*)",
+  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe",
+  "/pricing", "/learn(.*)", "/frameworks(.*)",
+  "/blog(.*)", "/about", "/contact",
+  "/get-started", "/downloads",
+  "/terms", "/privacy", "/cookies",
+])
+
+// Graceful fallback: allow all requests if Clerk isn't configured
+const hasClerkKeys =
+  typeof process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY === "string" &&
+  typeof process.env.CLERK_SECRET_KEY === "string" &&
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.length > 0 &&
+  process.env.CLERK_SECRET_KEY.length > 0
+
 // Simple in-memory rate limiter
 const rateLimit = new Map<string, { count: number; resetAt: number }>()
-const RATE_LIMIT_WINDOW = 60_000 // 1 minute
-const RATE_LIMIT_MAX = 60 // 60 requests per minute per IP
+const RATE_LIMIT_WINDOW = 60_000
+const RATE_LIMIT_MAX = 60
 
-export function middleware(request: NextRequest) {
+export default clerkMiddleware(async (auth, request: NextRequest) => {
   const url = request.nextUrl.pathname
   const userAgent = request.headers.get("user-agent") || ""
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
     || request.headers.get("x-real-ip")
     || "unknown"
   const response = NextResponse.next()
+
+  // === Clerk Auth Protection (skip if not configured — graceful fallback) ===
+  if (hasClerkKeys && !isPublicRoute(request)) {
+    await auth.protect()
+  }
 
   // === 1. Security Headers ===
   response.headers.set("X-Robots-Tag", "noai, noimageai")
@@ -38,11 +61,9 @@ export function middleware(request: NextRequest) {
   const uaLower = userAgent.toLowerCase()
   for (const bot of BLOCKED_BOTS) {
     if (uaLower.includes(bot.toLowerCase())) {
-      // Return 403 for API/admin paths, otherwise pass through with headers
       if (url.startsWith("/api/") || url.startsWith("/admin/")) {
         return new NextResponse("Forbidden", { status: 403 })
       }
-      // For page routes, just block with the headers set
       response.headers.set("X-Robots-Tag", "noindex, nofollow, noai, noimageai")
     }
   }
@@ -51,7 +72,6 @@ export function middleware(request: NextRequest) {
   if (!SAFE_PATHS.some((p) => url.startsWith(p))) {
     const now = Date.now()
     const entry = rateLimit.get(ip)
-
     if (!entry || now > entry.resetAt) {
       rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
     } else {
@@ -63,8 +83,6 @@ export function middleware(request: NextRequest) {
         })
       }
     }
-
-    // Cleanup old entries every 100 requests to prevent memory leaks
     if (rateLimit.size > 10000) {
       const cutoff = now - RATE_LIMIT_WINDOW
       for (const [key, val] of rateLimit) {
@@ -73,22 +91,11 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // === 4. Honeypot protection ===
-  // If someone is POSTing to a form and has the honeypot field filled (common scraper pattern)
-  if (request.method === "POST") {
-    const contentType = request.headers.get("content-type") || ""
-    if (contentType.includes("application/json")) {
-      // Check for common scraper patterns in POST data
-      response.headers.set("X-Content-Type-Options", "nosniff")
-    }
-  }
-
   return response
-}
+})
 
 export const config = {
   matcher: [
-    // Match all routes except _next static files, images, etc.
     "/((?!_next/static|_next/image|images/|favicon.ico).*)",
   ],
 }
