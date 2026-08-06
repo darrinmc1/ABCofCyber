@@ -40,7 +40,7 @@ const lessons = [
     slug: "social-engineering",
     icon: Users,
     summary: "The human side of security. Learn how attackers manipulate people through pretexting, baiting, tailgating, and the fine art of sounding like they belong there.",
-    quip: "The most advanced hacking tool is not a zero-day exploit — it's someone confidently asking for the door code.",
+    quip: "The most advanced hacking tool is not a zero-day exploit - it's someone confidently asking for the door code.",
     difficulty: "Beginner",
     duration: "15 min",
     topics: ["Pretexting", "Baiting", "Tailgating", "Phone-based attacks"],

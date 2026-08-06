@@ -57,7 +57,7 @@ export default function AboutPage() {
           <p className="text-lg leading-8 text-slate-600">
             ABC of Cyber was built by practitioners who got tired of seeing security programs that looked impressive in
             decks and collapsed the first time someone clicked a link in a Microsoft 365 lookalike. We focus on the
-            controls, assessment, and habits that actually reduce risk — without requiring a cult-like devotion to
+            controls, assessment, and habits that actually reduce risk - without requiring a cult-like devotion to
             process.
           </p>
           <p className="text-lg leading-8 text-slate-600">

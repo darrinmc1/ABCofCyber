@@ -189,7 +189,7 @@ export default function Home() {
             variant="hero"
             theme="cyber"
             heading="Join the Defense Force"
-            subheading="Get threat intel updates, security framework guides, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
+            subheading="Get threat intel updates, security framework guides, and early access to new modules. No fluff, no fear-mongering - just useful stuff."
             source="homepage-cta"
             showName
           />

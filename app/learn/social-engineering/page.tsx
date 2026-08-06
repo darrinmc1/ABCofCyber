@@ -28,7 +28,7 @@ export default function SocialEngineeringLesson() {
               Social Engineering Defense
             </h1>
             <p className="text-lg text-slate-600 mb-6">
-              The most dangerous hacking tool is not a zero-day exploit — it&apos;s a confident voice on the phone
+              The most dangerous hacking tool is not a zero-day exploit - it&apos;s a confident voice on the phone
               asking for the door code. Social engineering exploits human psychology, not technical flaws.
               This lesson teaches you to recognize and resist it.
             </p>
@@ -111,7 +111,7 @@ export default function SocialEngineeringLesson() {
                   <p className="text-sm text-slate-600 mb-3">
                     Attackers leave infected USB drives in parking lots, break rooms, or other areas where
                     curious employees might pick them up and plug them in. The drive is labeled with something
-                    enticing like &ldquo;Confidential — Q4 Bonus Data&rdquo; or &ldquo;Employee Salary Records.&rdquo;
+                    enticing like &ldquo;Confidential - Q4 Bonus Data&rdquo; or &ldquo;Employee Salary Records.&rdquo;
                   </p>
                   <div className="bg-red-50 rounded-lg p-3">
                     <p className="text-xs font-medium text-red-500 uppercase tracking-wide mb-1">Prevention</p>
@@ -199,7 +199,7 @@ export default function SocialEngineeringLesson() {
                   <p className="text-sm text-slate-600 mb-3">
                     Attackers offer a service or benefit in exchange for information or access. This might
                     be &ldquo;free&rdquo; tech support, a &ldquo;security assessment,&rdquo; or a fake survey
-                    that rewards participants with a gift card — after collecting personal data.
+                    that rewards participants with a gift card - after collecting personal data.
                   </p>
                 </CardContent>
               </Card>
@@ -293,7 +293,7 @@ export default function SocialEngineeringLesson() {
                 <CardContent>
                   <p className="text-sm text-slate-600">
                     If someone calls claiming to be from IT, your bank, or a vendor, hang up and call them
-                    back using a number you know is legitimate — not one they provide. Independent
+                    back using a number you know is legitimate - not one they provide. Independent
                     verification is your strongest defense.
                   </p>
                 </CardContent>
@@ -308,7 +308,7 @@ export default function SocialEngineeringLesson() {
                 <CardContent>
                   <p className="text-sm text-slate-600">
                     If something feels off, it probably is. Social engineering works because it makes you
-                    feel rude for questioning. Polite skepticism is not rudeness — it&apos;s security.
+                    feel rude for questioning. Polite skepticism is not rudeness - it&apos;s security.
                   </p>
                 </CardContent>
               </Card>
@@ -388,7 +388,7 @@ export default function SocialEngineeringLesson() {
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                Report suspicious contact — you might be the early warning for a bigger attack
+                Report suspicious contact - you might be the early warning for a bigger attack
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />

@@ -22,7 +22,7 @@ export default function LoginPage() {
       // Demo-only: pretend the auth backend disagrees.
       if (password.toLowerCase() === "password123") {
         setStatus("error")
-        setError("That's not right. Neither was using \"password123\" — please tell us you were testing us.")
+        setError("That's not right. Neither was using \"password123\" - please tell us you were testing us.")
       } else {
         setStatus("error")
         setError("Credentials didn't match. Better than them matching for someone else.")

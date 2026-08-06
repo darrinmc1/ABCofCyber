@@ -485,7 +485,7 @@ export default function Dashboard() {
                   ))
                 ) : (
                   <div className="text-center py-4 text-gray-500">
-                    Nothing on fire. Enjoy the silence — it usually means the controls are quietly doing their job.
+                    Nothing on fire. Enjoy the silence - it usually means the controls are quietly doing their job.
                   </div>
                 )}
                 <div className="text-center mt-2">

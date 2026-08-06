@@ -52,7 +52,7 @@ export function FeedbackWidget() {
       }
     } catch {
       setStatus("error")
-      setResponseMessage("Network handshake failed. Try again — the firewall is the usual suspect.")
+      setResponseMessage("Network handshake failed. Try again - the firewall is the usual suspect.")
     }
   }
 

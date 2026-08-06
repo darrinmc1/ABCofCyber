@@ -44,7 +44,7 @@ export default function IncidentResponseBasicsLesson() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">What is Incident Response?</h2>
             <p className="text-slate-600 mb-4">
               Incident Response (IR) is the organized approach to handling security breaches and cyber attacks.
-              It&apos;s not about panicking — it&apos;s about having a clear, practiced plan that reduces damage,
+              It&apos;s not about panicking - it&apos;s about having a clear, practiced plan that reduces damage,
               recovery time, and costs when something goes wrong.
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -87,7 +87,7 @@ export default function IncidentResponseBasicsLesson() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">Preparation</CardTitle>
-                      <CardDescription>Before anything happens — the most important phase</CardDescription>
+                      <CardDescription>Before anything happens - the most important phase</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
@@ -134,7 +134,7 @@ export default function IncidentResponseBasicsLesson() {
                 <CardContent>
                   <p className="text-sm text-slate-600 mb-3">
                     Detection is about identifying anomalies and confirming whether they represent a security
-                    incident. Speed matters — the faster you detect, the less damage an attacker can do.
+                    incident. Speed matters - the faster you detect, the less damage an attacker can do.
                   </p>
                   <div className="grid md:grid-cols-2 gap-3">
                     <div className="bg-slate-50 rounded-lg p-3">
@@ -177,7 +177,7 @@ export default function IncidentResponseBasicsLesson() {
                 <CardContent>
                   <p className="text-sm text-slate-600 mb-3">
                     Once an incident is confirmed, the priority shifts to stopping the damage and restoring
-                    operations. Containment comes before eradication — you stop the spread first, then clean up.
+                    operations. Containment comes before eradication - you stop the spread first, then clean up.
                   </p>
                   <div className="grid md:grid-cols-3 gap-3">
                     <div>
@@ -352,7 +352,7 @@ export default function IncidentResponseBasicsLesson() {
                 <Badge className="bg-green-100 text-green-700 mt-0.5">4</Badge>
                 <div>
                   <p className="font-medium text-slate-900">Eradicate</p>
-                  <p className="text-slate-600">Remove the root cause — malware, backdoors, compromised accounts.</p>
+                  <p className="text-slate-600">Remove the root cause - malware, backdoors, compromised accounts.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-2 rounded bg-white">
@@ -378,7 +378,7 @@ export default function IncidentResponseBasicsLesson() {
             <ul className="space-y-2 text-sm text-slate-700">
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                Preparation is the most important phase — you cannot build a plan during a crisis
+                Preparation is the most important phase - you cannot build a plan during a crisis
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -386,7 +386,7 @@ export default function IncidentResponseBasicsLesson() {
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                Not every alert is a crisis — triage and prioritization are critical skills
+                Not every alert is a crisis - triage and prioritization are critical skills
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -394,7 +394,7 @@ export default function IncidentResponseBasicsLesson() {
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                Post-incident reviews are not blame sessions — they are improvement opportunities
+                Post-incident reviews are not blame sessions - they are improvement opportunities
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />

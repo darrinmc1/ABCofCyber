@@ -86,7 +86,7 @@ export function EmailCapture({
       }
     } catch {
       setStatus("error")
-      setMessage("Network handshake failed. Try again, or blame the firewall — we usually do.")
+      setMessage("Network handshake failed. Try again, or blame the firewall - we usually do.")
     }
   }
 

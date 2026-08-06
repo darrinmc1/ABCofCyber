@@ -61,7 +61,7 @@ export default function ToolsPage() {
             Answer a few questions and get tailored results in seconds.
           </p>
           <Badge variant="secondary" className="mt-4">
-            Free tier: 1 report — Unlimited with Pro
+            Free tier: 1 report - Unlimited with Pro
           </Badge>
         </div>
 

@@ -45,7 +45,7 @@ export default function NetworkSecurityLesson() {
             <p className="text-slate-600 mb-4">
               No single security control is perfect. Defense in depth is the strategy of layering multiple
               security controls so that if one fails, another catches the threat. Think of it as a castle
-              with a moat, walls, gates, guards, and internal checkpoints — not just a locked front door.
+              with a moat, walls, gates, guards, and internal checkpoints - not just a locked front door.
             </p>
             <div className="grid md:grid-cols-4 gap-3">
               <Card className="bg-blue-50 border-blue-200">
@@ -231,10 +231,10 @@ export default function NetworkSecurityLesson() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li>✗ &ldquo;If it&apos;s not broken, don&apos;t fix it&rdquo; — this is how WannaCry happened</li>
+                    <li>✗ &ldquo;If it&apos;s not broken, don&apos;t fix it&rdquo; - this is how WannaCry happened</li>
                     <li>✗ Ignoring end-of-life software that no longer receives updates</li>
                     <li>✗ Patching only servers but ignoring endpoints and IoT devices</li>
-                    <li>✗ Not having an inventory — you can&apos;t patch what you don&apos;t know about</li>
+                    <li>✗ Not having an inventory - you can&apos;t patch what you don&apos;t know about</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -264,7 +264,7 @@ export default function NetworkSecurityLesson() {
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      Disable WPS (Wi-Fi Protected Setup) — it&apos;s a security hole
+                      Disable WPS (Wi-Fi Protected Setup) - it&apos;s a security hole
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -354,11 +354,11 @@ export default function NetworkSecurityLesson() {
               </div>
               <div className="flex items-start gap-3">
                 <input type="checkbox" readOnly className="mt-1 h-4 w-4 rounded border-gray-300" />
-                <span>Network segmentation in place — guest, IoT, and production on separate VLANs</span>
+                <span>Network segmentation in place - guest, IoT, and production on separate VLANs</span>
               </div>
               <div className="flex items-start gap-3">
                 <input type="checkbox" readOnly className="mt-1 h-4 w-4 rounded border-gray-300" />
-                <span>Patch management process documented — critical patches applied within 48 hours</span>
+                <span>Patch management process documented - critical patches applied within 48 hours</span>
               </div>
               <div className="flex items-start gap-3">
                 <input type="checkbox" readOnly className="mt-1 h-4 w-4 rounded border-gray-300" />

@@ -145,7 +145,7 @@ export default function ThreatMonitoringPage() {
             <p className="text-lg text-slate-600 mb-6">
               You cannot prevent everything. Assume breach, watch the logs, and notice the attacker before payroll
               does. Good monitoring means detecting threats that slipped past preventive controls fast enough to limit
-              the damage — and fast enough to spare you a 2 a.m. phone call.
+              the damage - and fast enough to spare you a 2 a.m. phone call.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>

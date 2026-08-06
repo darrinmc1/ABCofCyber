@@ -108,7 +108,7 @@ export default function PhishingAwarenessLesson() {
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      &ldquo;Unauthorized login detected — click here to secure your account&rdquo;
+                      &ldquo;Unauthorized login detected - click here to secure your account&rdquo;
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
@@ -129,7 +129,7 @@ export default function PhishingAwarenessLesson() {
                   <ul className="space-y-2 text-sm text-slate-600">
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      Hover over links before clicking — the visible text may say &ldquo;paypal.com&rdquo; but the actual URL goes somewhere else
+                      Hover over links before clicking - the visible text may say &ldquo;paypal.com&rdquo; but the actual URL goes somewhere else
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
@@ -187,14 +187,14 @@ export default function PhishingAwarenessLesson() {
                     <Badge className="bg-red-100 text-red-700 mt-0.5">2</Badge>
                     <div>
                       <p className="font-medium text-slate-900">Urgent Subject Line</p>
-                      <p className="text-slate-600">&ldquo;Action Required: Your Email Password Will Expire Today&rdquo; — creates panic to bypass critical thinking.</p>
+                      <p className="text-slate-600">&ldquo;Action Required: Your Email Password Will Expire Today&rdquo; - creates panic to bypass critical thinking.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-2 rounded bg-white">
                     <Badge className="bg-red-100 text-red-700 mt-0.5">3</Badge>
                     <div>
                       <p className="font-medium text-slate-900">Generic Greeting</p>
-                      <p className="text-slate-600">&ldquo;Dear Valued User&rdquo; — legitimate companies know your name.</p>
+                      <p className="text-slate-600">&ldquo;Dear Valued User&rdquo; - legitimate companies know your name.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-2 rounded bg-white">
@@ -208,7 +208,7 @@ export default function PhishingAwarenessLesson() {
                     <Badge className="bg-red-100 text-red-700 mt-0.5">5</Badge>
                     <div>
                       <p className="font-medium text-slate-900">Consequences</p>
-                      <p className="text-slate-600">&ldquo;Failure to update within 24 hours will result in account termination.&rdquo; — pure pressure tactic.</p>
+                      <p className="text-slate-600">&ldquo;Failure to update within 24 hours will result in account termination.&rdquo; - pure pressure tactic.</p>
                     </div>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export default function PhishingAwarenessLesson() {
                 <CardContent>
                   <p className="text-sm text-slate-600">
                     If an email claims to be from your bank, IT department, or a vendor, contact them
-                    using a phone number or website you know is legitimate — not the contact info in
+                    using a phone number or website you know is legitimate - not the contact info in
                     the suspicious email.
                   </p>
                 </CardContent>
@@ -359,7 +359,7 @@ export default function PhishingAwarenessLesson() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-bold text-blue-700">5.</span>
-                Does anything feel &ldquo;off&rdquo; — grammar, tone, branding, or request?
+                Does anything feel &ldquo;off&rdquo; - grammar, tone, branding, or request?
               </li>
             </ol>
             <p className="text-sm text-slate-600 mt-4">

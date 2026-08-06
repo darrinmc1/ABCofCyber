@@ -99,10 +99,10 @@ export default function PricingPage() {
       <section className="container mx-auto px-4 py-16 md:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pricing</p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl tabular-nums">
             Pick the level of protection your budget can emotionally process
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 tabular-nums">
             No hidden fees. No per-seat surprises. No vendor lock-in that makes leaving feel like a ransomware
             negotiation, only with worse hold music.
           </p>
@@ -121,12 +121,12 @@ export default function PricingPage() {
               </div>
             )}
             <CardHeader>
-              <CardTitle className="text-2xl">{plan.name}</CardTitle>
+              <CardTitle className="text-2xl tabular-nums">{plan.name}</CardTitle>
               <CardDescription className="mt-2">{plan.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
               <div className="mb-6">
-                <span className="text-4xl font-bold text-slate-900">${plan.price}</span>
+                <span className="text-4xl font-bold text-slate-900 tabular-nums">${plan.price}</span>
                 <span className="text-slate-600">/month</span>
               </div>
               <ul className="space-y-3">
@@ -146,7 +146,7 @@ export default function PricingPage() {
             </CardContent>
             <CardFooter>
               <Button
-                className={`w-full ${plan.popular ? "bg-blue-900 hover:bg-blue-800" : ""}`}
+                className={`w-full ${plan.popular ? "bg-blue-900 active:scale-[0.96] transition-transform hover:bg-blue-800" : ""}`}
                 variant={plan.popular ? "default" : "outline"}
               >
                 {plan.cta}
@@ -158,12 +158,12 @@ export default function PricingPage() {
 
       <section className="bg-slate-50 py-16">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900">Frequently asked questions</h2>
+          <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-slate-900 tabular-nums">Frequently asked questions</h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
             {faqs.map((faq) => (
               <Card key={faq.question}>
                 <CardHeader>
-                  <CardTitle className="text-lg">{faq.question}</CardTitle>
+                  <CardTitle className="text-lg tabular-nums">{faq.question}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-slate-600">{faq.answer}</p>
@@ -178,7 +178,7 @@ export default function PricingPage() {
         <Card className="border-blue-200 bg-blue-50">
           <CardContent className="flex flex-col items-center py-12 text-center md:flex-row md:gap-12">
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-slate-900">Not sure which plan fits?</h3>
+              <h3 className="text-2xl font-bold text-slate-900 tabular-nums">Not sure which plan fits?</h3>
               <p className="mt-2 text-slate-600">
                 Talk to us. We will ask questions about your environment, your team, and your actual risks. No sales
                 theater. No aggressive follow-up sequences.
@@ -186,7 +186,7 @@ export default function PricingPage() {
             </div>
             <div className="mt-6 md:mt-0">
               <Link href="/contact">
-                <Button size="lg" className="bg-blue-900 hover:bg-blue-800">
+                <Button size="lg" className="bg-blue-900 active:scale-[0.96] transition-transform hover:bg-blue-800">
                   Talk to an analyst <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
@@ -199,13 +199,13 @@ export default function PricingPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
             <div>
-              <h3 className="text-xl font-bold">All plans include</h3>
+              <h3 className="text-xl font-bold tabular-nums">All plans include</h3>
               <p className="mt-1 text-slate-300">
                 Secure infrastructure, data encryption, regular backups, and a team that actually responds to support tickets.
               </p>
             </div>
             <Link href="/get-started">
-              <Button className="bg-white text-slate-900 hover:bg-blue-100">
+              <Button className="bg-white text-slate-900 active:scale-[0.96] transition-transform hover:bg-blue-100">
                 Start your free trial
               </Button>
             </Link>

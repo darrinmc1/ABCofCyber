@@ -66,7 +66,7 @@ export default function PricingCards() {
             <CardTitle>{plan.name}</CardTitle>
             <CardDescription>{plan.description}</CardDescription>
             <div className="mt-4">
-              <span className="text-3xl font-bold">{plan.price}</span>
+              <span className="text-3xl font-bold tabular-nums">{plan.price}</span>
               <span className="text-gray-500 ml-2">{plan.period}</span>
             </div>
           </CardHeader>
@@ -81,7 +81,7 @@ export default function PricingCards() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild className={`w-full ${plan.popular ? "bg-blue-500 hover:bg-blue-600" : ""}`}>
+            <Button asChild className={`w-full ${plan.popular ? "bg-blue-500 active:scale-[0.96] transition-transform hover:bg-blue-600" : ""}`}>
               <Link href={plan.name === "Enterprise" ? "/contact" : "/signup"}>{plan.cta}</Link>
             </Button>
           </CardFooter>

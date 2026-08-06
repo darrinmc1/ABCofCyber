@@ -183,7 +183,7 @@ export default function DownloadsPage() {
             </h1>
             <p className="max-w-[680px] text-indigo-200 md:text-lg">
               Professional cybersecurity templates built from real-world frameworks.
-              No fluff, no gatekeeping — just instruments that work.
+              No fluff, no gatekeeping - just instruments that work.
             </p>
           </div>
         </div>

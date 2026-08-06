@@ -52,7 +52,7 @@ export function WaitlistPopup() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         
-        // Honeypot check — don't submit if filled
+        // Honeypot check - don't submit if filled
         if (honeypot !== '') {
             handleClose()
             return

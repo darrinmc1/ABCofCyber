@@ -209,7 +209,7 @@ function SubscribeWall() {
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
             <Lock className="h-8 w-8 text-blue-600" />
           </div>
-          <CardTitle className="text-2xl">Unlock Unlimited Access</CardTitle>
+          <CardTitle className="text-2xl tabular-nums">enable Unlimited Access</CardTitle>
           <CardDescription className="text-base mt-2">
             You&apos;ve used your free AI-generated security document. Upgrade
             to continue.
@@ -376,7 +376,7 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
   if (!config) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <h2 className="text-2xl font-bold text-red-600">Tool Not Found</h2>
+        <h2 className="text-2xl font-bold text-red-600 tabular-nums">Tool Not Found</h2>
         <p className="mt-2 text-muted-foreground">
           The tool you&apos;re looking for doesn&apos;t exist.
         </p>
@@ -409,7 +409,7 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
             <Icon className="h-6 w-6 text-blue-600" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">
+            <h1 className="text-2xl font-bold tracking-tight tabular-nums">
               {config.name}
             </h1>
             <p className="text-sm text-muted-foreground">
@@ -427,7 +427,7 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
         <Card className="border-blue-200">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <Loader2 className="h-12 w-12 animate-spin text-blue-500" />
-            <h2 className="mt-6 text-xl font-semibold">
+            <h2 className="mt-6 text-xl font-semibold tabular-nums">
               Generating Your Document
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -448,7 +448,7 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
               </span>
             </div>
             <Progress value={progress} className="mt-2 h-2" />
-            <CardTitle className="mt-4 text-xl">{question.label}</CardTitle>
+            <CardTitle className="mt-4 text-xl tabular-nums">{question.label}</CardTitle>
           </CardHeader>
           <CardContent>
             {question.type === "textarea" ? (
