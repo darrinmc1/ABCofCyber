@@ -10,16 +10,20 @@ import { createClient } from "@supabase/supabase-js";
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!url || !serviceKey) {
-  // Do not throw at import time — routes will no-op gracefully if envs are missing.
-  // This keeps local dev running before credentials are filled in.
+// Guard against invalid values too, not just missing ones — a malformed
+// NEXT_PUBLIC_SUPABASE_URL (e.g. a placeholder without https://) makes
+// createClient() throw at import time and breaks `next build` during
+// page-data collection. Never throw at import — routes no-op gracefully.
+const urlOk = !!url && /^https?:\/\//i.test(url);
+
+if (!urlOk || !serviceKey) {
   console.warn(
-    "[supabase] NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set — DB writes disabled."
+    "[supabase] NEXT_PUBLIC_SUPABASE_URL invalid/missing or SUPABASE_SERVICE_ROLE_KEY not set — DB writes disabled."
   );
 }
 
 export const supabaseAdmin =
-  url && serviceKey
+  urlOk && serviceKey && url
     ? createClient(url, serviceKey, {
         auth: { persistSession: false, autoRefreshToken: false },
       })
