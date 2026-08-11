@@ -5,6 +5,8 @@ import { EmailCapture } from "@/components/email-capture"
 import FeatureSection from "@/components/feature-section"
 import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import WhatsNew from "@/components/whats-new"
+
 
 const reassurancePoints = [
   {
@@ -101,6 +103,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <WhatsNew />
+
 
       {/* Features Section */}
       <FeatureSection />
