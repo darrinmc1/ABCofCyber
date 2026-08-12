@@ -1,61 +1,20 @@
+import type { ReactNode } from "react"
 import Link from "next/link"
 import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
-const lessons = [
-  {
-    title: "Phishing Awareness",
-    slug: "phishing-awareness",
-    icon: MailWarning,
-    summary: "Learn how to spot phishing emails before they spot your credentials. Covers email red flags, link inspection, and what to do when you suspect a phish.",
-    quip: "If the email says 'URGENT: Your password has been compromised' and asks you to click a link, it's not your IT team. It's a phishing expedition.",
-    difficulty: "Beginner",
-    duration: "15 min",
-    topics: ["Email red flags", "Link inspection", "Reporting phishing"],
-  },
-  {
-    title: "Password Security Basics",
-    slug: "password-security",
-    icon: KeyRound,
-    summary: "Why 'Password123!' is not a password strategy. Learn password managers, passphrases, MFA, and the dark art of not reusing credentials across 47 different sites.",
-    quip: "Your password should not be guessable from your LinkedIn profile, your pet's name, or the word 'password' in leetspeak.",
-    difficulty: "Beginner",
-    duration: "12 min",
-    topics: ["Password managers", "Passphrases", "MFA/2FA", "Credential hygiene"],
-  },
-  {
-    title: "Network Security Fundamentals",
-    slug: "network-security",
-    icon: Network,
-    summary: "The basics of keeping your network from behaving like an open door. Firewalls, segmentation, patching, and why your office printer is probably a security risk.",
-    quip: "A network without segmentation is one angry PDF attachment away from a bad day.",
-    difficulty: "Intermediate",
-    duration: "20 min",
-    topics: ["Firewalls", "Network segmentation", "Patch management", "Wi-Fi security"],
-  },
-  {
-    title: "Social Engineering Defense",
-    slug: "social-engineering",
-    icon: Users,
-    summary: "The human side of security. Learn how attackers manipulate people through pretexting, baiting, tailgating, and the fine art of sounding like they belong there.",
-    quip: "The most advanced hacking tool is not a zero-day exploit — it's someone confidently asking for the door code.",
-    difficulty: "Beginner",
-    duration: "15 min",
-    topics: ["Pretexting", "Baiting", "Tailgating", "Phone-based attacks"],
-  },
-  {
-    title: "Incident Response Basics",
-    slug: "incident-response-basics",
-    icon: LifeBuoy,
-    summary: "What to do when things go sideways. A practical guide to detecting, containing, and recovering from security incidents without adding chaos to the crisis.",
-    quip: "You cannot 'Ctrl+Z' a ransomware attack, but you can have a plan that makes the difference between a bad afternoon and a catastrophic quarter.",
-    difficulty: "Intermediate",
-    duration: "20 min",
-    topics: ["Detection & triage", "Containment", "Recovery", "Post-incident review"],
-  },
-]
+import { lessons } from "@/lib/lessons"
+
+const iconMap: Record<string, ReactNode> = {
+  BookOpen: <BookOpen className="h-8 w-8" />,
+  MailWarning: <MailWarning className="h-8 w-8" />,
+  KeyRound: <KeyRound className="h-8 w-8" />,
+  Network: <Network className="h-8 w-8" />,
+  Users: <Users className="h-8 w-8" />,
+  LifeBuoy: <LifeBuoy className="h-8 w-8" />,
+}
 
 const difficultyColors: Record<string, string> = {
   Beginner: "bg-green-100 text-green-700",
@@ -90,12 +49,12 @@ export default function LearnPage() {
       </section>
 
       <section className="container mx-auto grid gap-6 px-4 py-12 md:px-6 lg:grid-cols-2">
-        {lessons.map(({ title, slug, icon: Icon, summary, quip, difficulty, duration, topics }) => (
+        {lessons.map(({ title, slug, icon, summary, quip, difficulty, duration, topics }) => (
           <Card key={slug} className="border-slate-200 bg-white flex flex-col">
             <CardHeader>
               <div className="flex items-start justify-between mb-2">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                  <Icon className="h-6 w-6 text-blue-700" />
+                  {iconMap[icon] || <BookOpen className="h-6 w-6 text-blue-700" />}
                 </div>
                 <div className="flex gap-2">
                   <Badge className={difficultyColors[difficulty]}>{difficulty}</Badge>
