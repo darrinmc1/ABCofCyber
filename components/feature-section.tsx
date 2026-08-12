@@ -39,7 +39,9 @@ export default function FeatureSection() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Key Features</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Clear priorities. Fewer surprises.
+            </h2>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
               Useful controls, practical workflows, and zero claims about &ldquo;military-grade encryption&rdquo; from a vendor who can&apos;t spell AES.
             </p>
