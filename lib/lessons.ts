@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "Zero Trust Architecture for Small Businesses: What It Is and How to Start",
+    slug: "zero-trust-architecture-for-small-businesses",
+    icon: "Shield",
+    summary: "An introductory guide to Zero Trust Architecture (ZTA) specifically tailored for small businesses, explaining its core principles and providing actionable steps for implementation.",
+    quip: "",
+    difficulty: "Beginner",
+    duration: "15 min",
+    topics: ["zero trust","cybersecurity","small business","information security","access control","mfa"],
+  },
+  {
     title: "Phishing Awareness",
     slug: "phishing-awareness",
     icon: "MailWarning",
