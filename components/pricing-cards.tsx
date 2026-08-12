@@ -17,7 +17,8 @@ export default function PricingCards() {
         "Training people can survive awake",
         "24/7 monitoring",
       ],
-      cta: "Get Started",
+      cta: "Start Basic",
+      href: "/signup",
       popular: false,
     },
     {
@@ -33,7 +34,8 @@ export default function PricingCards() {
         "Risk assessment",
         "Dedicated security advisor",
       ],
-      cta: "Get Started",
+      cta: "Choose Professional",
+      href: "/signup",
       popular: true,
     },
     {
@@ -50,7 +52,8 @@ export default function PricingCards() {
         "Executive reporting",
         "24/7 dedicated support",
       ],
-      cta: "Contact Us",
+      cta: "Contact sales",
+      href: "/contact",
       popular: false,
     },
   ]
@@ -82,7 +85,7 @@ export default function PricingCards() {
           </CardContent>
           <CardFooter>
             <Button asChild className={`w-full ${plan.popular ? "bg-blue-500 hover:bg-blue-600" : ""}`}>
-              <Link href={plan.name === "Enterprise" ? "/contact" : "/signup"}>{plan.cta}</Link>
+              <Link href={plan.href}>{plan.cta}</Link>
             </Button>
           </CardFooter>
         </Card>

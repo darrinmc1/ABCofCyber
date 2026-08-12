@@ -78,14 +78,6 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
-                <Link href="/get-started">Get Started</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-blue-200 bg-transparent text-white hover:bg-white/10"
-              >
                 <Link href="/learn">Start Learning</Link>
               </Button>
               <Button
@@ -94,7 +86,7 @@ export default function Home() {
                 size="lg"
                 className="border-blue-200 bg-transparent text-white hover:bg-white/10"
               >
-                <Link href="/frameworks">See the Frameworks</Link>
+                <Link href="#pricing">See pricing</Link>
               </Button>
             </div>
             <p className="max-w-[680px] text-sm text-blue-200">
@@ -104,11 +96,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <WhatsNew />
 
-
-      {/* Features Section */}
+      {/* Product outcome first — What's New sits below the fold */}
       <FeatureSection />
+      <WhatsNew />
 
       <section className="w-full bg-white py-12 md:py-20">
         <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
@@ -139,6 +130,11 @@ export default function Home() {
               </p>
             </div>
             <PricingCards />
+            <p className="mx-auto max-w-[680px] pt-2 text-sm leading-6 text-slate-500">
+              Platform features (training, assessments, reporting) are product. Continuous monitoring and penetration
+              testing are delivered as managed services scoped with your team — not magic checkboxes that appear the
+              moment you click Start.
+            </p>
           </div>
         </div>
       </section>
@@ -194,7 +190,7 @@ export default function Home() {
             variant="hero"
             theme="cyber"
             heading="Join the Defense Force"
-            subheading="Get threat intel updates, security framework guides, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
+            subheading="Weekly threat intel, framework guides you can actually use, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
             source="homepage-cta"
             showName
           />
