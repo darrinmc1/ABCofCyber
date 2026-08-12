@@ -61,8 +61,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 py-12 text-white md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6 mx-auto">
+      <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden py-12 text-white md:py-24 lg:py-32">
+        <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
+        <div className="relative z-10 container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-3">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
