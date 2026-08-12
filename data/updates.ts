@@ -15,6 +15,14 @@ export interface SiteUpdate {
 }
 
 export const ALL_UPDATES: SiteUpdate[] = [
+  {
+    "id": "zero-trust-architecture-for-small-businesses-new-2026-08-12",
+    "title": "Zero Trust Architecture for Small Businesses: What It Is and How to Start",
+    "description": "New lesson: An introductory guide to Zero Trust Architecture (ZTA) specifically tailored for small businesses, explaining its core principles and providing actionable steps for implementation.",
+    "date": "2026-08-12",
+    "kind": "new",
+    "href": "/learn/zero-trust-architecture-for-small-businesses"
+  },
 ]
 
 export const latestUpdates = ALL_UPDATES.slice(0, 5)
