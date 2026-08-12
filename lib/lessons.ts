@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "Decoding Digital Footprints: Navigating Your Online Presence",
+    slug: "decoding-digital-footprints-navigating-online-presence",
+    icon: "Eye",
+    summary: "Learn to identify, understand, and manage the personal data you leave online, empowering you to protect your digital identity.",
+    quip: "",
+    difficulty: "Beginner",
+    duration: "10 min",
+    topics: ["digital footprint","online privacy","data management","cybersecurity","online identity","privacy settings"],
+  },
+  {
     title: "Zero Trust Architecture for Small Businesses: What It Is and How to Start",
     slug: "zero-trust-architecture-for-small-businesses",
     icon: "Shield",
