@@ -123,6 +123,6 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|images/|favicon.ico).*)",
+    "/((?!_next/static|_next/image|images/|favicon).*)",
   ],
 }
