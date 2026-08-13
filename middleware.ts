@@ -1,6 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import type { NextFetchEvent, NextRequest } from "next/server"
 
 // Known AI crawlers and scrapers that ignore robots.txt
 const BLOCKED_BOTS = [
@@ -39,21 +39,8 @@ const rateLimit = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT_WINDOW = 60_000
 const RATE_LIMIT_MAX = 60
 
-export default clerkMiddleware(async (auth, request: NextRequest) => {
-  const url = request.nextUrl.pathname
-  const userAgent = request.headers.get("user-agent") || ""
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
-    || request.headers.get("x-real-ip")
-    || "unknown"
-  const response = NextResponse.next()
-
-  // === Clerk Auth Protection (skip if not configured — graceful fallback) ===
-  if (hasClerkKeys && !isPublicRoute(request)) {
-    await auth.protect()
-  }
-
-  // === 1. Security Headers ===
-  const aeoPath =
+function isAeoPath(url: string) {
+  return (
     url === "/llm.txt" ||
     url === "/llms.txt" ||
     url === "/pricing.json" ||
@@ -61,6 +48,17 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     url === "/pricing" ||
     url.startsWith("/learn") ||
     url.startsWith("/frameworks")
+  )
+}
+
+function applyEdgeRules(request: NextRequest) {
+  const url = request.nextUrl.pathname
+  const userAgent = request.headers.get("user-agent") || ""
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || request.headers.get("x-real-ip")
+    || "unknown"
+  const response = NextResponse.next()
+  const aeoPath = isAeoPath(url)
 
   if (!aeoPath) {
     response.headers.set("X-Robots-Tag", "noai, noimageai")
@@ -70,18 +68,18 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
 
-  // === 2. Block known AI crawlers / scrapers ===
   const uaLower = userAgent.toLowerCase()
   for (const bot of BLOCKED_BOTS) {
     if (uaLower.includes(bot.toLowerCase())) {
       if (url.startsWith("/api/") || url.startsWith("/admin/")) {
         return new NextResponse("Forbidden", { status: 403 })
       }
-      response.headers.set("X-Robots-Tag", "noindex, nofollow, noai, noimageai")
+      if (!aeoPath) {
+        response.headers.set("X-Robots-Tag", "noindex, nofollow, noai, noimageai")
+      }
     }
   }
 
-  // === 3. Rate limiting (skip static assets) ===
   if (!SAFE_PATHS.some((p) => url.startsWith(p))) {
     const now = Date.now()
     const entry = rateLimit.get(ip)
@@ -105,7 +103,23 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   }
 
   return response
-})
+}
+
+const clerkHandler = hasClerkKeys
+  ? clerkMiddleware(async (auth, request: NextRequest) => {
+      if (!isPublicRoute(request)) {
+        await auth.protect()
+      }
+      return applyEdgeRules(request)
+    })
+  : null
+
+export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  if (clerkHandler) {
+    return clerkHandler(request, event)
+  }
+  return applyEdgeRules(request)
+}
 
 export const config = {
   matcher: [
