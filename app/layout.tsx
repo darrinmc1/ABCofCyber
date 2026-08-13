@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "A cyber-security platform with serious controls, sensible dashboards, and copy that does not read like it was approved by a committee of fax machines.",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: { url: "/favicon.svg", type: "image/svg+xml" },
     apple: { url: "/favicon.svg", type: "image/svg+xml" },
   },
 }
