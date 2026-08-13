@@ -19,10 +19,11 @@ const SAFE_PATHS = ["/_next/", "/favicon", "/og-image", "/opengraph", "/icon"]
 const isPublicRoute = createRouteMatcher([
   "/", "/sign-in(.*)", "/sign-up(.*)", "/login(.*)", "/signup(.*)",
   "/sitemap.xml", "/robots.txt",
-  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe",
+  "/llm.txt", "/llms.txt", "/pricing.json",
+  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/walkthrough",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
-  "/get-started", "/downloads",
+  "/get-started", "/downloads", "/tools(.*)", "/whats-the-play",
   "/terms", "/privacy", "/cookies",
 ])
 
@@ -52,7 +53,18 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   }
 
   // === 1. Security Headers ===
-  response.headers.set("X-Robots-Tag", "noai, noimageai")
+  const aeoPath =
+    url === "/llm.txt" ||
+    url === "/llms.txt" ||
+    url === "/pricing.json" ||
+    url === "/whats-the-play" ||
+    url === "/pricing" ||
+    url.startsWith("/learn") ||
+    url.startsWith("/frameworks")
+
+  if (!aeoPath) {
+    response.headers.set("X-Robots-Tag", "noai, noimageai")
+  }
   response.headers.set("X-Content-Type-Options", "nosniff")
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")

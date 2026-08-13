@@ -1,69 +1,25 @@
 import Link from "next/link"
 import { CheckCircle, ArrowRight } from "lucide-react"
-
-const plans = [
-  {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Get started with courses and basic tools. No credit card needed.",
-    features: [
-      "All courses & lessons",
-      "Basic tools access",
-      "Community access",
-    ],
-    cta: "Get Started Free",
-    href: "/learn",
-    highlighted: false,
-  },
-  {
-    name: "Early Adopter",
-    price: "$5",
-    period: "/month",
-    description: "Lock in early adopter pricing forever — never pay more.",
-    features: [
-      "Everything in Free",
-      "All Pro template packs",
-      "All interactive tools",
-      "30-day refund guarantee",
-      "Price locked forever",
-    ],
-    cta: "Lock in $5/mo",
-    href: "/improvements",
-    highlighted: true,
-  },
-  {
-    name: "Pro",
-    price: "$10",
-    period: "/month",
-    description: "Full access when it launches. More features coming.",
-    features: [
-      "Everything in Early Adopter",
-      "Advanced features & AI tools",
-      "New content priority",
-      "Priority support",
-    ],
-    cta: "Coming Soon",
-    href: "/improvements",
-    highlighted: false,
-  },
-]
+import { JsonLd } from "@/components/json-ld"
+import { PLANS, WHATS_THE_PLAY_OFFER, pricingDocument } from "@/lib/pricing"
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-slate-50">
+      <JsonLd data={pricingDocument()} />
       <section className="border-b bg-white py-16 text-center">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">Pricing</p>
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">Simple pricing. No surprises.</h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Start free. Lock in early adopter pricing. Upgrade when you&apos;re ready.
+            What&apos;s the play is included on paid plans — not a separate brand, not crypto checkout.
           </p>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-4 md:px-6 py-12">
         <div className="grid gap-6 md:grid-cols-3 items-start">
-          {plans.map((plan) => (
+          {PLANS.map((plan) => (
             <div key={plan.name} className={`rounded-xl border p-6 md:p-8 ${
               plan.highlighted
                 ? "border-blue-500 bg-white shadow-lg ring-1 ring-blue-500 scale-105"
@@ -71,13 +27,13 @@ export default function PricingPage() {
             }`}>
               <h3 className="font-bold text-xl mb-2">{plan.name}</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="text-sm text-slate-500">{plan.period}</span>
+                <span className="text-4xl font-bold">{plan.priceDisplay}</span>
+                <span className="text-sm text-slate-500">{plan.periodLabel}</span>
               </div>
               <p className="text-sm text-slate-600 mb-6">{plan.description}</p>
               {plan.name === "Early Adopter" && (
                 <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-4">
-                  🎯 Early Adopter — Lock In Forever
+                  Early Adopter — Lock In Forever
                 </p>
               )}
               <Link
@@ -102,6 +58,19 @@ export default function PricingPage() {
               </ul>
             </div>
           ))}
+        </div>
+        <div className="mt-12 rounded-xl border border-slate-200 bg-white p-6 md:p-8">
+          <h2 className="text-xl font-bold">What&apos;s the play — paid-plan include</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+            {WHATS_THE_PLAY_OFFER.notes} Listed range ${WHATS_THE_PLAY_OFFER.priceRangeUsd.min}–
+            ${WHATS_THE_PLAY_OFFER.priceRangeUsd.max}/mo if we ever sell it as a seat of its own; the
+            published dedicated price is ${WHATS_THE_PLAY_OFFER.priceUsd}/mo.
+          </p>
+          <p className="mt-4 text-xs text-slate-500">
+            Machine-readable: <Link href="/pricing.json" className="text-blue-700 hover:underline">/pricing.json</Link>
+            {" · "}
+            <Link href="/llm.txt" className="text-blue-700 hover:underline">/llm.txt</Link>
+          </p>
         </div>
       </section>
     </div>

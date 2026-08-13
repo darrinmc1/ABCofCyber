@@ -41,6 +41,9 @@ export default function LearnPage() {
                 <Link href="/learn/phishing-awareness">Start Learning</Link>
               </Button>
               <Button asChild variant="outline">
+                <Link href="/whats-the-play">What&apos;s the play</Link>
+              </Button>
+              <Button asChild variant="outline">
                 <Link href="/frameworks">Explore Frameworks</Link>
               </Button>
             </div>

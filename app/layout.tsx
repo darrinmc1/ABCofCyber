@@ -39,7 +39,10 @@ export default function RootLayout({
                 <Link href="/privacy" className="text-gray-600 hover:text-blue-700">Privacy</Link>
                 <Link href="/cookies" className="text-gray-600 hover:text-blue-700">Cookies</Link>
                 <Link href="/about" className="text-gray-600 hover:text-blue-700">About</Link>
+                <Link href="/whats-the-play" className="text-gray-600 hover:text-blue-700">What&apos;s the play</Link>
+                <Link href="/pricing" className="text-gray-600 hover:text-blue-700">Pricing</Link>
                 <Link href="/contact" className="text-gray-600 hover:text-blue-700">Contact</Link>
+                <Link href="/llm.txt" className="text-gray-600 hover:text-blue-700">llm.txt</Link>
               </div>
               <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3 text-xs text-slate-500">
                 <span className="font-semibold text-slate-700 mr-1">Empire-HQ:</span>
