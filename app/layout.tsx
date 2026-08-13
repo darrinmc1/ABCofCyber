@@ -10,6 +10,10 @@ import { WaitlistPopup } from "@/components/waitlist-popup"
 export const metadata: Metadata = {
   title: "ABC of Cyber | Security Without the Scare Tactics",
   description: "A cyber-security platform with serious controls, sensible dashboards, and copy that does not read like it was approved by a committee of fax machines.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: { url: "/favicon.svg", type: "image/svg+xml" },
+  },
 }
 
 const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
