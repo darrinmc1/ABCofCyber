@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "whats-the-play-new-2026-08-13",
+    "title": "What's the play",
+    "description": "New layer on the lesson archive: paste an is-this-phishing scenario, get a plain-English ABC walkthrough with citations. Education only.",
+    "date": "2026-08-13",
+    "kind": "new",
+    "href": "/whats-the-play"
+  },
+  {
     "id": "decoding-digital-footprints-navigating-online-presence-new-2026-08-12",
     "title": "Decoding Digital Footprints: Navigating Your Online Presence",
     "description": "New lesson: Learn to identify, understand, and manage the personal data you leave online, empowering you to protect your digital identity.",

@@ -9,11 +9,23 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, ShieldAlert, Siren, Sparkles } from "lucide-react"
+import { FileText, ShieldAlert, Siren, Sparkles, MessageSquareWarning } from "lucide-react"
 
 const tools = [
   {
+    slug: "whats-the-play",
+    href: "/whats-the-play",
+    name: "What's the play",
+    description:
+      "Paste an “is this phishing?” scenario. Get a plain-English ABC method walkthrough cited from existing lessons. Education only — not a chatbot, not legal advice.",
+    icon: MailWarning,
+    color: "text-slate-800",
+    bgColor: "bg-slate-100",
+    badge: "One job",
+  },
+  {
     slug: "security-policy",
+    href: "/tools/security-policy",
     name: "Security Policy Generator",
     description:
       "Create a comprehensive security policy document tailored to your organization. Answer a few questions and get a professional, ready-to-use policy.",
@@ -24,6 +36,7 @@ const tools = [
   },
   {
     slug: "risk-assessment",
+    href: "/tools/risk-assessment",
     name: "Risk Assessment",
     description:
       "Generate a structured risk evaluation report with asset inventory, threat identification, vulnerability assessment, and risk scoring.",
@@ -34,6 +47,7 @@ const tools = [
   },
   {
     slug: "incident-response",
+    href: "/tools/incident-response",
     name: "Incident Response Plan",
     description:
       "Build a complete incident response plan framework with preparation, detection, containment, recovery, and post-incident phases.",
@@ -57,8 +71,8 @@ export default function ToolsPage() {
             AI Security Tools
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-            Generate professional cybersecurity documents powered by Gemini.
-            Answer a few questions and get tailored results in seconds.
+            Document generators plus What&apos;s the play — a layer on the lesson
+            archive, not a new brand. Paste a scenario or answer a few questions.
           </p>
           <Badge variant="secondary" className="mt-4">
             Free tier: 1 report — Unlimited with Pro
@@ -66,7 +80,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Tools Grid */}
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           {tools.map((tool) => {
             const Icon = tool.icon
             return (
@@ -95,23 +109,42 @@ export default function ToolsPage() {
                     </Badge>
                   )}
                   <ul className="mt-3 space-y-1.5 text-sm text-slate-500">
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                      Quick question-based wizard
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                      Powered by Gemini Flash
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                      Export as markdown
-                    </li>
+                    {tool.slug === "whats-the-play" ? (
+                      <>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Paste a scenario, get a walkthrough
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Cited from live lessons
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Education only — disclaimer included
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Quick question-based wizard
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Powered by Gemini Flash
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          Export as markdown
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href={`/tools/${tool.slug}`}>
+                    <Link href={tool.href}>
                       Get Started
                     </Link>
                   </Button>

@@ -376,6 +376,12 @@ export default function PhishingAwarenessLesson() {
             <h2 className="text-2xl font-bold text-slate-900 mb-6">Next Steps</h2>
             <div className="flex flex-wrap gap-4">
               <Button asChild>
+                <Link href="/whats-the-play">
+                  Paste a scenario: What&apos;s the play
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
                 <Link href="/learn/password-security">
                   Next Lesson: Password Security Basics
                   <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />

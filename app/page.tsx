@@ -55,6 +55,11 @@ const faqs = [
     question: "Will it nag us about passwords?",
     answer: "Only if you keep using your dog's name. We are pro-password manager and pro-MFA, in that order.",
   },
+  {
+    question: "Is What's the play a new product?",
+    answer:
+      "No. It is a layer on this site: paste a suspicious scenario, get a walkthrough cited from existing lessons. Education only — not legal advice, not a chatbot.",
+  },
 ]
 
 export default function Home() {
@@ -99,6 +104,23 @@ export default function Home() {
 
       {/* Product outcome first — What's New sits below the fold */}
       <FeatureSection />
+
+      <section className="w-full border-y bg-slate-50 py-12 md:py-16">
+        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
+          <div className="max-w-2xl space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">One job, not a chatbot</p>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What&apos;s the play</h2>
+            <p className="text-slate-600">
+              Paste an &ldquo;is this phishing?&rdquo; scenario. Get a plain-English walkthrough using the ABC
+              method, cited from the lessons already on this site. Education only. No sirens.
+            </p>
+          </div>
+          <Button asChild size="lg">
+            <Link href="/whats-the-play">Open the walkthrough</Link>
+          </Button>
+        </div>
+      </section>
+
       <WhatsNew />
 
       <section className="w-full bg-white py-12 md:py-20">

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next"
 
+const AEO_ALLOW = ["/llm.txt", "/llms.txt", "/pricing.json", "/whats-the-play", "/pricing", "/learn", "/frameworks"]
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -10,6 +12,27 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
+        allow: AEO_ALLOW,
+        disallow: "/",
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: AEO_ALLOW,
+        disallow: "/",
+      },
+      {
+        userAgent: "ChatGPT-User",
+        allow: AEO_ALLOW,
+        disallow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: AEO_ALLOW,
+        disallow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: AEO_ALLOW,
         disallow: "/",
       },
       {
@@ -18,10 +41,12 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "anthropic-ai",
+        allow: AEO_ALLOW,
         disallow: "/",
       },
       {
         userAgent: "Claude-Web",
+        allow: AEO_ALLOW,
         disallow: "/",
       },
       {
@@ -42,13 +67,10 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "cohere-ai",
-        disallow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
+        allow: AEO_ALLOW,
         disallow: "/",
       },
     ],
-    sitemap: "https://abcsofcyber.com/sitemap.xml",
+    sitemap: "https://abcofcyber.com/sitemap.xml",
   }
 }

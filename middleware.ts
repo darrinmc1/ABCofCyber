@@ -1,6 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import type { NextFetchEvent, NextRequest } from "next/server"
 
 // Known AI crawlers and scrapers that ignore robots.txt
 const BLOCKED_BOTS = [
@@ -19,10 +19,11 @@ const SAFE_PATHS = ["/_next/", "/favicon", "/og-image", "/opengraph", "/icon"]
 const isPublicRoute = createRouteMatcher([
   "/", "/sign-in(.*)", "/sign-up(.*)", "/login(.*)", "/signup(.*)",
   "/sitemap.xml", "/robots.txt",
-  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe",
+  "/llm.txt", "/llms.txt", "/pricing.json",
+  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/walkthrough",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
-  "/get-started", "/downloads",
+  "/get-started", "/downloads", "/tools(.*)", "/whats-the-play",
   "/terms", "/privacy", "/cookies",
 ])
 
@@ -38,38 +39,47 @@ const rateLimit = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT_WINDOW = 60_000
 const RATE_LIMIT_MAX = 60
 
-export default clerkMiddleware(async (auth, request: NextRequest) => {
+function isAeoPath(url: string) {
+  return (
+    url === "/llm.txt" ||
+    url === "/llms.txt" ||
+    url === "/pricing.json" ||
+    url === "/whats-the-play" ||
+    url === "/pricing" ||
+    url.startsWith("/learn") ||
+    url.startsWith("/frameworks")
+  )
+}
+
+function applyEdgeRules(request: NextRequest) {
   const url = request.nextUrl.pathname
   const userAgent = request.headers.get("user-agent") || ""
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
     || request.headers.get("x-real-ip")
     || "unknown"
   const response = NextResponse.next()
+  const aeoPath = isAeoPath(url)
 
-  // === Clerk Auth Protection (skip if not configured — graceful fallback) ===
-  if (hasClerkKeys && !isPublicRoute(request)) {
-    await auth.protect()
+  if (!aeoPath) {
+    response.headers.set("X-Robots-Tag", "noai, noimageai")
   }
-
-  // === 1. Security Headers ===
-  response.headers.set("X-Robots-Tag", "noai, noimageai")
   response.headers.set("X-Content-Type-Options", "nosniff")
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
 
-  // === 2. Block known AI crawlers / scrapers ===
   const uaLower = userAgent.toLowerCase()
   for (const bot of BLOCKED_BOTS) {
     if (uaLower.includes(bot.toLowerCase())) {
       if (url.startsWith("/api/") || url.startsWith("/admin/")) {
         return new NextResponse("Forbidden", { status: 403 })
       }
-      response.headers.set("X-Robots-Tag", "noindex, nofollow, noai, noimageai")
+      if (!aeoPath) {
+        response.headers.set("X-Robots-Tag", "noindex, nofollow, noai, noimageai")
+      }
     }
   }
 
-  // === 3. Rate limiting (skip static assets) ===
   if (!SAFE_PATHS.some((p) => url.startsWith(p))) {
     const now = Date.now()
     const entry = rateLimit.get(ip)
@@ -93,7 +103,23 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   }
 
   return response
-})
+}
+
+const clerkHandler = hasClerkKeys
+  ? clerkMiddleware(async (auth, request: NextRequest) => {
+      if (!isPublicRoute(request)) {
+        await auth.protect()
+      }
+      return applyEdgeRules(request)
+    })
+  : null
+
+export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  if (clerkHandler) {
+    return clerkHandler(request, event)
+  }
+  return applyEdgeRules(request)
+}
 
 export const config = {
   matcher: [
