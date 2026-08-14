@@ -16,6 +16,46 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "cis-nist-30-day-starter-new-2026-08-14",
+    "title": "This Month's CIS/NIST Starter",
+    "description": "New lesson: a 30-day control list — accounts, mail, backups, and a phone tree. Not a framework essay.",
+    "date": "2026-08-14",
+    "kind": "new",
+    "href": "/learn/cis-nist-30-day-starter"
+  },
+  {
+    "id": "email-m365-hygiene-new-2026-08-14",
+    "title": "Email and Microsoft 365 Hygiene for Small Teams",
+    "description": "New lesson: MFA on admins, inbox rules, legacy auth, and sharing links that expire.",
+    "date": "2026-08-14",
+    "kind": "new",
+    "href": "/learn/email-m365-hygiene"
+  },
+  {
+    "id": "ransomware-first-hour-new-2026-08-14",
+    "title": "Ransomware: The First Hour",
+    "description": "New lesson: isolate, tell the right people, preserve evidence. What not to do in hour one.",
+    "date": "2026-08-14",
+    "kind": "new",
+    "href": "/learn/ransomware-first-hour"
+  },
+  {
+    "id": "backups-that-actually-restore-new-2026-08-14",
+    "title": "Backups That Actually Restore",
+    "description": "New lesson: 3-2-1 copies, one off-reach backup, and a restore you have watched succeed.",
+    "date": "2026-08-14",
+    "kind": "new",
+    "href": "/learn/backups-that-actually-restore"
+  },
+  {
+    "id": "mfa-beyond-passwords-new-2026-08-14",
+    "title": "MFA Beyond Passwords",
+    "description": "New lesson: authenticators, number matching, and phishing-resistant passkeys.",
+    "date": "2026-08-14",
+    "kind": "new",
+    "href": "/learn/mfa-beyond-passwords"
+  },
+  {
     "id": "whats-the-play-new-2026-08-13",
     "title": "What's the play",
     "description": "New layer on the lesson archive: paste an is-this-phishing scenario, get a plain-English ABC walkthrough with citations. Education only.",

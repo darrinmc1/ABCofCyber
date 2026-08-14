@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Where do the citations come from?",
     answer:
-      "Live ABC of Cyber lessons and frameworks — phishing awareness, social engineering, passwords, incident response, NIST CSF, CIS Controls, and the 2026 phishing note.",
+      "Live ABC of Cyber lessons and frameworks — phishing, passwords, MFA, backups, ransomware first hour, M365 hygiene, incident response, NIST/CIS, and the 2026 phishing note.",
   },
   {
     question: "What does it cost?",

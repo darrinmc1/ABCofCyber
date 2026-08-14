@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight } from "lucide-react"
+import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight, Smartphone, HardDrive, Siren, Inbox, ClipboardList, Eye, Shield } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -14,6 +14,13 @@ const iconMap: Record<string, ReactNode> = {
   Network: <Network className="h-8 w-8" />,
   Users: <Users className="h-8 w-8" />,
   LifeBuoy: <LifeBuoy className="h-8 w-8" />,
+  Smartphone: <Smartphone className="h-8 w-8" />,
+  HardDrive: <HardDrive className="h-8 w-8" />,
+  Siren: <Siren className="h-8 w-8" />,
+  Inbox: <Inbox className="h-8 w-8" />,
+  ClipboardList: <ClipboardList className="h-8 w-8" />,
+  Eye: <Eye className="h-8 w-8" />,
+  Shield: <Shield className="h-8 w-8" />,
 }
 
 const difficultyColors: Record<string, string> = {
