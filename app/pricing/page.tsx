@@ -10,19 +10,19 @@ export default function PricingPage() {
       <section className="border-b bg-white py-16 text-center">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">Pricing</p>
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">Simple pricing. No surprises.</h1>
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">One training membership.</h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Start free. Lock in early adopter pricing. Upgrade when you&apos;re ready.
-            What&apos;s the play is included on paid plans — not a separate brand, not crypto checkout.
+            $29/month for lessons, assessments, and reporting. Not 24/7 monitoring, not pentesting,
+            not Enterprise custom pricing. Checkout is not live yet.
           </p>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-4 md:px-6 py-12">
-        <div className="grid gap-6 md:grid-cols-3 items-start">
+        <div className="mx-auto grid max-w-md gap-6 items-start">
           {PLANS.map((plan) => (
             <div key={plan.name} className={`rounded-xl border p-6 md:p-8 ${
               plan.highlighted
-                ? "border-blue-500 bg-white shadow-lg ring-1 ring-blue-500 scale-105"
+                ? "border-blue-500 bg-white shadow-lg ring-1 ring-blue-500"
                 : "border-slate-200 bg-white"
             }`}>
               <h3 className="font-bold text-xl mb-2">{plan.name}</h3>
@@ -31,11 +31,6 @@ export default function PricingPage() {
                 <span className="text-sm text-slate-500">{plan.periodLabel}</span>
               </div>
               <p className="text-sm text-slate-600 mb-6">{plan.description}</p>
-              {plan.name === "Early Adopter" && (
-                <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-4">
-                  Early Adopter — Lock In Forever
-                </p>
-              )}
               <Link
                 href={plan.href}
                 className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-colors mb-8 ${
@@ -60,11 +55,9 @@ export default function PricingPage() {
           ))}
         </div>
         <div className="mt-12 rounded-xl border border-slate-200 bg-white p-6 md:p-8">
-          <h2 className="text-xl font-bold">What&apos;s the play — paid-plan include</h2>
+          <h2 className="text-xl font-bold">What&apos;s the play — included</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-            {WHATS_THE_PLAY_OFFER.notes} Listed range ${WHATS_THE_PLAY_OFFER.priceRangeUsd.min}–
-            ${WHATS_THE_PLAY_OFFER.priceRangeUsd.max}/mo if we ever sell it as a seat of its own; the
-            published dedicated price is ${WHATS_THE_PLAY_OFFER.priceUsd}/mo.
+            {WHATS_THE_PLAY_OFFER.notes}
           </p>
           <p className="mt-4 text-xs text-slate-500">
             Machine-readable: <Link href="/pricing.json" className="text-blue-700 hover:underline">/pricing.json</Link>

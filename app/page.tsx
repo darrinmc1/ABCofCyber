@@ -48,8 +48,8 @@ const faqs = [
     answer: "Absolutely. You do not need a twelve-person security department to deserve basic competence and fewer surprises.",
   },
   {
-    question: "Will you drown us in alerts?",
-    answer: "No. The platform is opinionated about noise because nobody improves security by ignoring 400 meaningless warnings.",
+    question: "Is this a 24/7 monitoring or pentest service?",
+    answer: "No. ABC of Cyber is training — lessons, assessments, and reporting. We do not sell monitoring, penetration testing, or a dedicated advisor.",
   },
   {
     question: "Will it nag us about passwords?",
@@ -146,16 +146,15 @@ export default function Home() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Pricing Plans</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Pricing</h2>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Pick the level of protection your budget can emotionally process.
+                One training membership. Lessons, assessments, and reporting — not a managed SOC.
               </p>
             </div>
             <PricingCards />
             <p className="mx-auto max-w-[680px] pt-2 text-sm leading-6 text-slate-500">
-              Platform features (training, assessments, reporting) are product. Continuous monitoring and penetration
-              testing are delivered as managed services scoped with your team — not magic checkboxes that appear the
-              moment you click Start.
+              $29/month for training only. Checkout is not live yet. We do not sell 24/7 monitoring, penetration
+              testing, or a dedicated security advisor.
             </p>
           </div>
         </div>
