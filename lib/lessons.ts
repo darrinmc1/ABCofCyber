@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs",
+    slug: "the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns",
+    icon: "Network",
+    summary: "Explore sophisticated methods for maintaining online anonymity, including multi-hop VPNs, decentralized networks, and privacy-focused operating systems for advanced digital invisibility.",
+    quip: "",
+    difficulty: "Advanced",
+    duration: "15 min",
+    topics: ["anonymity","privacy","vpn","tor","decentralized networks","tails os","qubes os"],
+  },
+  {
     title: "Decoding Digital Footprints: Navigating Your Online Presence",
     slug: "decoding-digital-footprints-navigating-online-presence",
     icon: "Eye",
