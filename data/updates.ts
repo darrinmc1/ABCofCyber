@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns-new-2026-08-17",
+    "title": "The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs",
+    "description": "New lesson: Explore sophisticated methods for maintaining online anonymity, including multi-hop VPNs, decentralized networks, and privacy-focused operating systems for advanced digital invisibility.",
+    "date": "2026-08-17",
+    "kind": "new",
+    "href": "/learn/the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns"
+  },
+  {
     "id": "whats-the-play-new-2026-08-13",
     "title": "What's the play",
     "description": "New layer on the lesson archive: paste an is-this-phishing scenario, get a plain-English ABC walkthrough with citations. Education only.",
