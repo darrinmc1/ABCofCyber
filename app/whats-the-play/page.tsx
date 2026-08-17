@@ -29,12 +29,12 @@ const faqs = [
   {
     question: "Where do the citations come from?",
     answer:
-      "Live ABC of Cyber lessons and frameworks — phishing awareness, social engineering, passwords, incident response, NIST CSF, CIS Controls, and the 2026 phishing note.",
+      "Live ABC of Cyber lessons and frameworks — phishing, passwords, MFA, backups, ransomware first hour, M365 hygiene, incident response, NIST/CIS, and the 2026 phishing note.",
   },
   {
     question: "What does it cost?",
     answer:
-      "One free walkthrough. Unlimited on Early Adopter ($5/mo) and Pro ($10/mo). Dedicated seat listed at $29/mo. Same existing signup pattern. No x402.",
+      "One free walkthrough. Unlimited on the $29/month training membership when checkout is live. Not sold separately. No x402.",
   },
   {
     question: "What if I already clicked?",
@@ -61,9 +61,10 @@ const jsonLd = {
       description: PAGE_DESCRIPTION,
       offers: {
         "@type": "Offer",
-        price: WHATS_THE_PLAY_OFFER.priceUsd,
+        price: "29.00",
         priceCurrency: "USD",
-        url: `${SITE_URL}/pricing.json`,
+        availability: "https://schema.org/PreOrder",
+        url: `${SITE_URL}/pricing`,
         description: WHATS_THE_PLAY_OFFER.notes,
       },
     },

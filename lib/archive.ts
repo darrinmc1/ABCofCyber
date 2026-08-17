@@ -150,6 +150,51 @@ export const ARCHIVE_CITATIONS: ArchiveCitation[] = [
     keywords: ["linkedin", "spear", "personal", "project", "travel", "recon", "osint", "profile"],
   },
   {
+    id: "mfa-beyond-passwords",
+    title: "MFA Beyond Passwords",
+    href: "/learn/mfa-beyond-passwords",
+    kind: "lesson",
+    excerpt:
+      "A password is a secret you can be talked out of. Prefer passkeys or FIDO2 for email and admin. Authenticator apps beat SMS. Never approve a prompt you did not start. Number matching exists because fatigue is a play.",
+    keywords: ["mfa", "2fa", "authenticator", "passkey", "fido", "yubikey", "sms", "approve", "prompt", "otp"],
+  },
+  {
+    id: "backups-that-actually-restore",
+    title: "Backups That Actually Restore",
+    href: "/learn/backups-that-actually-restore",
+    kind: "lesson",
+    excerpt:
+      "A backup you have never restored is a rumor about a backup. Three copies, two media, one the ransomware cannot reach. Cloud sync is not a backup. Test a real file restore on a calendar.",
+    keywords: ["backup", "restore", "3-2-1", "immutable", "offline", "sync", "copy"],
+  },
+  {
+    id: "ransomware-first-hour",
+    title: "Ransomware: The First Hour",
+    href: "/learn/ransomware-first-hour",
+    kind: "lesson",
+    excerpt:
+      "Isolate first. Unplug or drop Wi-Fi, disconnect shares, call the named person on a number you already trust. Do not pay in hour one. Do not delete the ransom files to 'clean up.' Write times.",
+    keywords: ["ransomware", "encrypted", "ransom", "isolate", "unplug", "decrypt", "locked files"],
+  },
+  {
+    id: "email-m365-hygiene",
+    title: "Email and Microsoft 365 Hygiene for Small Teams",
+    href: "/learn/email-m365-hygiene",
+    kind: "lesson",
+    excerpt:
+      "After a phish, attackers add a silent forward. Review mailbox rules, kill legacy auth, MFA on every admin, and stop 'anyone with the link' for the contract folder. Shared mailboxes are not a helpdesk.",
+    keywords: ["forward", "inbox rule", "microsoft 365", "office 365", "m365", "legacy auth", "sharepoint", "mailbox"],
+  },
+  {
+    id: "cis-nist-30-day-starter",
+    title: "This Month's CIS/NIST Starter",
+    href: "/learn/cis-nist-30-day-starter",
+    kind: "lesson",
+    excerpt:
+      "Thirty days: lock accounts, clean mail, test a restore, name who to call. Not a framework essay. CIS and NIST labels are so you can point at a standard if someone asks.",
+    keywords: ["cis", "nist", "30-day", "starter", "checklist", "control list"],
+  },
+  {
     id: "nist-csf",
     title: "NIST CSF",
     href: "/frameworks/nist-csf",
@@ -229,7 +274,7 @@ const PLAYS: PlayTemplate[] = [
       "reset",
       "click here",
     ],
-    citationIds: ["phishing-awareness", "password-security", "zero-trust"],
+    citationIds: ["phishing-awareness", "password-security", "mfa-beyond-passwords", "zero-trust"],
     assess:
       "Someone wants you to open a login page or 'confirm' a password on their timetable. Treat the message as an ask for credentials, not as IT being helpful.",
     breakDown:
@@ -429,7 +474,7 @@ const PLAYS: PlayTemplate[] = [
     id: "already-clicked",
     play: "Something already happened: a click, a password typed, a file opened, or money sent",
     keywords: ["i clicked", "i already", "i entered", "i sent", "i paid", "i downloaded", "opened it", "typed my"],
-    citationIds: ["incident-response-basics", "incident-response-framework", "password-security", "nist-csf"],
+    citationIds: ["incident-response-basics", "ransomware-first-hour", "incident-response-framework", "password-security", "nist-csf"],
     assess:
       "The educational part can wait five minutes. Containment first: what was entered, on what device, and who needs to know.",
     breakDown:

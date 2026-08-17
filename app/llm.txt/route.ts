@@ -44,13 +44,13 @@ Machine-readable copy: ${SITE_URL}/pricing.json
 Human copy: ${SITE_URL}/pricing
 Currency: USD
 x402: false
-Checkout: existing-subscription (Early Adopter / Pro). No crypto rails.
+Checkout: coming-soon. One training membership at $29/month. No card charges, no crypto rails.
 
 ${plans}
 
 What's the play offer:
 - kind: ${WHATS_THE_PLAY_OFFER.kind}
-- priceUsd: ${WHATS_THE_PLAY_OFFER.priceUsd}
+- priceUsd: included in $29/month training membership
 - billing: ${WHATS_THE_PLAY_OFFER.billing}
 - includedIn: ${WHATS_THE_PLAY_OFFER.includedInPlanIds.join(", ")}
 - freeAllowance: ${WHATS_THE_PLAY_OFFER.freeAllowance}
@@ -76,7 +76,7 @@ Q: What if the AI key is missing?
 A: The archive walkthrough still runs from real lessons. No dead error page.
 
 Q: How do I pay?
-A: Paid-plan include on Early Adopter ($5/mo) and Pro ($10/mo), or $29/mo as a dedicated seat when billing is live. Same existing signup pattern. No x402.
+A: Checkout is not live. The published offer is one $29/month training membership. What's the play is included. No x402.
 
 ## Contact
 
