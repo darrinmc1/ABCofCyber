@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, ShieldAlert, Siren, Sparkles, MessageSquareWarning } from "lucide-react"
+import { FileText, ShieldAlert, Siren, Sparkles, MessageSquareWarning, MailWarning } from "lucide-react"
 
 const tools = [
   {

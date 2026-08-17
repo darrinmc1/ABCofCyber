@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import HumorBreak from "@/components/humor-break"
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -84,7 +85,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </ul>
           <p>Document these findings in a formal incident report and update your IRP accordingly. This feedback loop is how incident response matures from reactive scrambling to disciplined, repeatable process.</p>
 
-          <h2 className="text-2xl font-bold mt-10 mb-4">Building Your IRP: Step by Step</h2>
+          <HumorBreak tag="general" />
+
+        <h2 className="text-2xl font-bold mt-10 mb-4">Building Your IRP: Step by Step</h2>
           <p>Ready to build your plan? Here's the high-level process:</p>
           <p><strong>Step 1: Get executive buy-in.</strong> An IRP requires resources — tools, training, and personnel time. You need leadership to understand that incident response is not optional. Frame it in business terms: faster response means less downtime, lower costs, and reduced legal liability.</p>
           <p><strong>Step 2: Assemble your team.</strong> Identify who fills each role on the IRT. Common roles include Incident Response Lead, Communications Lead (internal and external), Legal Counsel, Technical Analysts, and an Executive Sponsor. For each role, identify a primary and a backup.</p>

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import HumorBreak from "@/components/humor-break"
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -29,7 +30,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <h3 className="text-xl font-semibold mt-6 mb-2">Automated Reconnaissance</h3>
           <p>AI agents can now scrape LinkedIn, company websites, press releases, and social media to build detailed profiles of potential targets. An attacker can learn your role, your projects, who you report to, and even where you're traveling — then craft a perfectly timed message referencing that information. This level of personalization dramatically increases the likelihood of a successful attack.</p>
 
-          <h2 className="text-2xl font-bold mt-10 mb-4">Emerging Phishing Vectors in 2026</h2>
+          <HumorBreak tag="general" />
+
+        <h2 className="text-2xl font-bold mt-10 mb-4">Emerging Phishing Vectors in 2026</h2>
           <p>Beyond email, phishers are exploiting new channels:</p>
           <h3 className="text-xl font-semibold mt-6 mb-2">SaaS-to-SaaS Phishing</h3>
           <p>Attackers compromise one SaaS application, then use its legitimate notification system to phish users of connected apps. Imagine receiving what appears to be a Slack notification in your email, prompting you to "review a document" on Google Drive. The attacker compromised a third-party integration, not Slack or Google directly, but the chain of trust makes the message feel legitimate.</p>
