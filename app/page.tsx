@@ -1,187 +1,234 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import FeatureSection from "@/components/feature-section";
+import FrameworksSection from "@/components/frameworks-section";
+import EmailCapture from "@/components/email-capture";
+import HumorBreak from "@/components/humor-break";
+import JsonLd from "@/components/json-ld";
+import {
+  Shield,
+  BookOpen,
+  Zap,
+  Users,
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Quote,
+} from "lucide-react";
 
-export default function Home() {
+const testimonials = [
+  {
+    quote:
+      "ABC of Cyber gave our team a shared language around security risks. We went from zero policy to a working incident response plan in under two weeks.",
+    name: "Sarah Mitchell",
+    role: "Head of IT",
+    company: "Brightline Logistics",
+    rating: 5,
+  },
+  {
+    quote:
+      "Finally, cybersecurity content that doesn't require a PhD to understand. Our non-technical staff actually read it — and retained it.",
+    name: "James Okafor",
+    role: "Operations Director",
+    company: "Verdant Solutions",
+    rating: 5,
+  },
+  {
+    quote:
+      "The frameworks section alone saved us weeks of research. Clear, actionable, and built for real businesses — not just enterprise giants.",
+    name: "Priya Nair",
+    role: "Founder & CEO",
+    company: "Stackwise Labs",
+    rating: 5,
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="container relative pb-20 mt-20 flex flex-col items-center justify-center gap-4 text-center">
-      <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-        Master Your Cyber Defense
-      </h1>
-      <p className="max-w-xl text-lg text-muted-foreground">
-        Empowering you with the knowledge and tools to navigate the complex world of cybersecurity.
-      </p>
-      <div className="flex gap-4">
-        <Link href="/get-started">
-          <Button size="lg">Get Started</Button>
-        </Link>
-        <Link href="/pricing">
-          <Button size="lg" variant="outline">
-            View Pricing
-          </Button>
-        </Link>
-      </div>
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "ABC of Cyber",
+          description:
+            "Cybersecurity education and frameworks for businesses of all sizes",
+          url: "https://abcofcyber.com",
+        }}
+      />
 
-      <section className="mt-20 w-full">
-        <h2 className="text-3xl font-bold mb-8">Our Core Offerings</h2>
-        <Tabs defaultValue="tools" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="tools">Tools</TabsTrigger>
-            <TabsTrigger value="learn">Learn</TabsTrigger>
-            <TabsTrigger value="frameworks">Frameworks</TabsTrigger>
-          </TabsList>
-          <TabsContent value="tools">
-            <Card>
-              <CardHeader>
-                <CardTitle>Cybersecurity Tools</CardTitle>
-                <CardDescription>Explore our suite of tools to enhance your security posture.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="space-y-1">
-                  <Label htmlFor="tools-search">Search Tools</Label>
-                  <Input id="tools-search" placeholder="e.g., Vulnerability Scanner" />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Link href="/tools/whats-the-play">
-                    <Card className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle>What's the Play?</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p>Analyze potential security risks in your digital interactions.</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  {/* Add more tool cards here */}
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/tools">
-                  <Button variant="outline" className="w-full">View All Tools</Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-          <TabsContent value="learn">
-            <Card>
-              <CardHeader>
-                <CardTitle>Learning Resources</CardTitle>
-                <CardDescription>Expand your cybersecurity knowledge with our comprehensive guides.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="space-y-1">
-                  <Label htmlFor="learn-search">Search Topics</Label>
-                  <Input id="learn-search" placeholder="e.g., Phishing Awareness" />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Link href="/learn/phishing-awareness">
-                    <Card className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle>Phishing Awareness</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p>Learn to identify and avoid phishing attacks.</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  <Link href="/learn/zero-trust-architecture-for-small-businesses">
-                    <Card className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle>Zero Trust Architecture</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p>Understand the principles of Zero Trust for small businesses.</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  {/* Add more learning cards here */}
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/learn">
-                  <Button variant="outline" className="w-full">Explore All Learning</Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-          <TabsContent value="frameworks">
-            <Card>
-              <CardHeader>
-                <CardTitle>Cybersecurity Frameworks</CardTitle>
-                <CardDescription>Implement industry-standard frameworks for robust security.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="space-y-1">
-                  <Label htmlFor="frameworks-search">Search Frameworks</Label>
-                  <Input id="frameworks-search" placeholder="e.g., NIST CSF" />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Link href="/frameworks/nist-csf">
-                    <Card className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle>NIST CSF</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p>Enhance your cybersecurity with the NIST Cybersecurity Framework.</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  <Link href="/frameworks/iso-27001">
-                    <Card className="hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <CardTitle>ISO 27001</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p>Achieve international standards for information security management.</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  {/* Add more framework cards here */}
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/frameworks">
-                  <Button variant="outline" className="w-full">Discover Frameworks</Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </section>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <Badge
+              variant="outline"
+              className="mb-6 border-cyan-500/50 bg-cyan-500/10 text-cyan-400"
+            >
+              <Zap className="mr-1.5 h-3 w-3" />
+              Cybersecurity Made Accessible
+            </Badge>
 
-      <section className="mt-20 w-full">
-        <h2 className="text-3xl font-bold mb-8">Why Choose Us?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="text-center">
-            <CardHeader>
-              <CardTitle>Expert Knowledge</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Leverage insights from seasoned cybersecurity professionals.</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardHeader>
-              <CardTitle>Actionable Tools</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Utilize practical tools designed to improve your security posture.</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardHeader>
-              <CardTitle>Continuous Learning</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Stay ahead of evolving threats with our up-to-date resources.</p>
-            </CardContent>
-          </Card>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              Protect Your Business{" "}
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Without the Jargon
+              </span>
+            </h1>
+
+            <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-300 sm:text-xl">
+              Practical cybersecurity frameworks, plain-English guides, and
+              actionable tools — built for teams who need real protection, not
+              just compliance theatre.
+            </p>
+
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="bg-cyan-500 text-slate-900 hover:bg-cyan-400 font-semibold px-8"
+              >
+                <Link href="/get-started">
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-slate-600 text-slate-200 hover:bg-slate-800"
+              >
+                <Link href="/frameworks">Explore Frameworks</Link>
+              </Button>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-slate-400">
+              {[
+                "No credit card required",
+                "Free tier available",
+                "Trusted by 500+ teams",
+              ].map((item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <CheckCircle className="h-4 w-4 text-cyan-500" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Testimonials */}
+          <div className="mx-auto mt-16 max-w-6xl">
+            <p className="mb-8 text-center text-sm font-medium uppercase tracking-widest text-slate-500">
+              Trusted by security-conscious teams
+            </p>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => (
+                <Card
+                  key={t.name}
+                  className="border-slate-700/60 bg-slate-800/50 backdrop-blur-sm"
+                >
+                  <CardContent className="p-6">
+                    <div className="mb-3 flex items-center gap-0.5">
+                      {Array.from({ length: t.rating }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-cyan-400 text-cyan-400"
+                        />
+                      ))}
+                    </div>
+                    <Quote className="mb-3 h-5 w-5 text-slate-600" />
+                    <p className="mb-5 text-sm leading-relaxed text-slate-300">
+                      {t.quote}
+                    </p>
+                    <div className="border-t border-slate-700 pt-4">
+                      <p className="text-sm font-semibold text-white">
+                        {t.name}
+                      </p>
+                      <p className="text-xs text-slate-400">
+                        {t.role},{" "}
+                        <span className="text-cyan-400/80">{t.company}</span>
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* Features Section */}
+      <FeatureSection />
+
+      {/* Frameworks Section */}
+      <FrameworksSection />
+
+      {/* Stats / Social Proof Bar */}
+      <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+            {[
+              { value: "500+", label: "Teams Protected" },
+              { value: "12", label: "Frameworks Covered" },
+              { value: "50+", label: "Free Resources" },
+              { value: "98%", label: "Satisfaction Rate" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <p className="text-3xl font-extrabold text-cyan-600 dark:text-cyan-400">
+                  {stat.value}
+                </p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learn Section CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-700 p-10 text-center text-white shadow-xl">
+          <Users className="mx-auto mb-4 h-10 w-10 opacity-80" />
+          <h2 className="mb-3 text-3xl font-bold">
+            Build a Security-Aware Culture
+          </h2>
+          <p className="mx-auto mb-8 max-w-xl text-cyan-100">
+            From phishing awareness to zero-trust architecture — our learning
+            paths turn your whole team into your first line of defence.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-cyan-700 hover:bg-cyan-50 font-semibold"
+            >
+              <Link href="/learn">
+                <BookOpen className="mr-2 h-4 w-4" />
+                Start Learning
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 text-white hover:bg-white/10"
+            >
+              <Link href="/pricing">View Pricing</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Humor Break */}
+      <HumorBreak />
+
+      {/* Email Capture */}
+      <EmailCapture />
+    </>
   );
 }
