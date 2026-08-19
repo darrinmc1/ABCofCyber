@@ -1,78 +1,66 @@
-import Link from "next/link"
-import { CheckCircle, ArrowRight } from "lucide-react"
-import { JsonLd } from "@/components/json-ld"
-import { PLANS, WHATS_THE_PLAY_OFFER, pricingDocument } from "@/lib/pricing"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
-export default function PricingPage() {
+async function getPricingData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pricing.json`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch pricing data");
+  }
+  return res.json();
+}
+
+export default async function PricingPage() {
+  const pricingData = await getPricingData();
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      <JsonLd data={pricingDocument()} />
-      <section className="border-b bg-white py-16 text-center">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">Pricing</p>
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl mb-4">Simple pricing. No surprises.</h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Start free. Lock in early adopter pricing. Upgrade when you&apos;re ready.
-            What&apos;s the play is included on paid plans — not a separate brand, not crypto checkout.
-          </p>
-        </div>
-      </section>
-      <section className="mx-auto max-w-6xl px-4 md:px-6 py-12">
-        <div className="grid gap-6 md:grid-cols-3 items-start">
-          {PLANS.map((plan) => (
-            <div key={plan.name} className={`rounded-xl border p-6 md:p-8 ${
-              plan.highlighted
-                ? "border-blue-500 bg-white shadow-lg ring-1 ring-blue-500 scale-105"
-                : "border-slate-200 bg-white"
-            }`}>
-              <h3 className="font-bold text-xl mb-2">{plan.name}</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold">{plan.priceDisplay}</span>
-                <span className="text-sm text-slate-500">{plan.periodLabel}</span>
+    <div className="container py-20">
+      <h1 className="text-4xl font-bold tracking-tight text-center mb-12">Flexible Pricing for Every Need</h1>
+      <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16">Choose the plan that best fits your cybersecurity requirements and budget. Start with our free tier or explore advanced features with our Pro and Enterprise options.</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pricingData.tiers.map((tier: any) => (
+          <Card key={tier.name} className="flex flex-col justify-between">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold">{tier.name}</CardTitle>
+              <div className="flex items-baseline gap-1">
+                <span className="text-5xl font-extrabold tracking-tight">{tier.price}</span>
+                {tier.price !== "Custom" && <span className="text-muted-foreground">/month</span>}
               </div>
-              <p className="text-sm text-slate-600 mb-6">{plan.description}</p>
-              {plan.name === "Early Adopter" && (
-                <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-4">
-                  Early Adopter — Lock In Forever
-                </p>
-              )}
-              <Link
-                href={plan.href}
-                className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-colors mb-8 ${
-                  plan.highlighted
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "border border-slate-300 text-slate-700 hover:bg-slate-50"
-                }`}
-              >
-                {plan.cta} <ArrowRight className="h-4 w-4" />
-              </Link>
-              <ul className="space-y-3">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-slate-600">
-                    <CheckCircle className={`h-4 w-4 mt-0.5 shrink-0 ${
-                      plan.highlighted ? "text-blue-500" : "text-slate-400"
-                    }`} />
-                    {f}
+              <CardDescription>{tier.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4 text-left">
+                {tier.features.map((feature: string) => (
+                  <li key={feature} className="flex items-center">
+                    <svg
+                      className="h-5 w-5 text-primary mr-3 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    {feature}
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 rounded-xl border border-slate-200 bg-white p-6 md:p-8">
-          <h2 className="text-xl font-bold">What&apos;s the play — paid-plan include</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-            {WHATS_THE_PLAY_OFFER.notes} Listed range ${WHATS_THE_PLAY_OFFER.priceRangeUsd.min}–
-            ${WHATS_THE_PLAY_OFFER.priceRangeUsd.max}/mo if we ever sell it as a seat of its own; the
-            published dedicated price is ${WHATS_THE_PLAY_OFFER.priceUsd}/mo.
-          </p>
-          <p className="mt-4 text-xs text-slate-500">
-            Machine-readable: <Link href="/pricing.json" className="text-blue-700 hover:underline">/pricing.json</Link>
-            {" · "}
-            <Link href="/llm.txt" className="text-blue-700 hover:underline">/llm.txt</Link>
-          </p>
-        </div>
-      </section>
+            </CardContent>
+            <CardFooter>
+              <Link href={tier.name === "Enterprise" ? "/contact" : "/get-started"} className="w-full">
+                <Button className="w-full">
+                  {tier.cta}
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
