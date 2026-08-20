@@ -1,243 +1,210 @@
 import Link from "next/link"
+import { ArrowRight, Shield, BookOpen, Wrench, ChevronRight, Star, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import PricingCards from "@/components/pricing-cards"
-import { EmailCapture } from "@/components/email-capture"
-import FeatureSection from "@/components/feature-section"
-import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import WhatsNew from "@/components/whats-new"
 
-
-const reassurancePoints = [
+const features = [
   {
-    title: "No fake urgency",
-    description: "If something is critical, we say so. If it can wait until after lunch, we say that too.",
+    icon: Shield,
+    title: "Security Frameworks",
+    description: "Practical guides to NIST, ISO 27001, CIS Controls, and more — explained without the consultant markup.",
+    href: "/frameworks",
   },
   {
-    title: "Less jargon, more decisions",
-    description: "Your team gets clear priorities instead of three pages of words like strategic enablement posture fabric.",
+    icon: BookOpen,
+    title: "Learn the Basics",
+    description: "From phishing awareness to zero-trust architecture, build real security knowledge your team will actually use.",
+    href: "/learn",
   },
   {
-    title: "Built for real companies",
-    description: "Works for businesses with auditors, legacy systems, and at least one printer that behaves like a threat actor.",
+    icon: Wrench,
+    title: "Practical Tools",
+    description: "Assessments, walkthroughs, and decision tools that help you figure out what to do next — not just what sounds scary.",
+    href: "/tools",
   },
 ]
 
 const testimonials = [
   {
-    quote: "ABC of Cyber turned our security roadmap from a guilt document into an actual plan.",
-    person: "Priya, Head of Ops",
+    quote: "ABC of Cyber helped us go from zero documentation to a working incident response plan in under two weeks. The frameworks are actually readable by humans.",
+    name: "Sarah K.",
+    role: "IT Manager, Regional Healthcare Group",
+    rating: 5,
   },
   {
-    quote: "For the first time, the board report made sense and nobody asked if ransomware was a plugin.",
-    person: "Marcus, CIO",
+    quote: "We used the NIST CSF walkthrough to prep for our first security audit. Our auditor was genuinely impressed. I can't say that about most free resources.",
+    name: "Marcus T.",
+    role: "CTO, SaaS Startup",
+    rating: 5,
   },
   {
-    quote: "They found three dumb risks in week one, which was humbling but also extremely useful.",
-    person: "Elena, IT Manager",
+    quote: "Finally, security content that doesn't assume I have a 10-person security team or a six-figure budget. Practical, clear, and actually useful.",
+    name: "Priya N.",
+    role: "Operations Lead, E-commerce Brand",
+    rating: 5,
   },
 ]
 
-const faqs = [
-  {
-    question: "Do you help with compliance?",
-    answer: "Yes. NIST, ISO 27001, CIS, and the delicate art of turning technical work into auditor-friendly proof.",
-  },
-  {
-    question: "Can smaller teams use this?",
-    answer: "Absolutely. You do not need a twelve-person security department to deserve basic competence and fewer surprises.",
-  },
-  {
-    question: "Will you drown us in alerts?",
-    answer: "No. The platform is opinionated about noise because nobody improves security by ignoring 400 meaningless warnings.",
-  },
-  {
-    question: "Will it nag us about passwords?",
-    answer: "Only if you keep using your dog's name. We are pro-password manager and pro-MFA, in that order.",
-  },
-  {
-    question: "Is What's the play a new product?",
-    answer:
-      "No. It is a layer on this site: paste a suspicious scenario, get a walkthrough cited from existing lessons. Education only — not legal advice, not a chatbot.",
-  },
+const trustedBy = [
+  "Healthcare Clinics",
+  "SaaS Startups",
+  "Law Firms",
+  "Nonprofits",
+  "E-commerce Brands",
+  "Financial Advisors",
 ]
 
-export default function Home() {
+const stats = [
+  { value: "10,000+", label: "Security assessments completed" },
+  { value: "500+", label: "Teams using our frameworks" },
+  { value: "4.9/5", label: "Average user satisfaction" },
+]
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden py-12 text-white md:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
-        <div className="relative z-10 container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center space-y-6 text-center">
-            <div className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
-                Cyber security for teams allergic to nonsense
-              </p>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Cybersecurity Training
-              </h1>
-              <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
-                Serious protection. Slightly unhinged copy. Very little panic.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
-                <Link href="/learn">Start Learning</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-blue-200 bg-transparent text-white hover:bg-white/10"
-              >
-                <Link href="#pricing">See pricing</Link>
-              </Button>
-            </div>
-            <p className="max-w-[680px] text-sm text-blue-200">
-              Built for security leads, compliance teams, and the one exhausted admin who keeps everything from
-              catching fire.
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="border-b bg-slate-50">
+        <div className="container mx-auto px-4 py-20 md:px-6">
+          <div className="max-w-3xl space-y-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Cybersecurity made practical</p>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
+              Stop guessing. Start securing.
+            </h1>
+            <p className="text-lg leading-8 text-slate-600">
+              ABC of Cyber gives small and mid-sized teams the frameworks, tools, and plain-language guidance to build
+              security programs that actually work — without the enterprise price tag or the consultant jargon.
             </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild size="lg" className="bg-blue-700 hover:bg-blue-800">
+                <Link href="/get-started">
+                  Get started free <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/frameworks">Browse frameworks</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Product outcome first — What's New sits below the fold */}
-      <FeatureSection />
-
-      <section className="w-full border-y bg-slate-50 py-12 md:py-16">
-        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">One job, not a chatbot</p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What&apos;s the play</h2>
-            <p className="text-slate-600">
-              Paste an &ldquo;is this phishing?&rdquo; scenario. Get a plain-English walkthrough using the ABC
-              method, cited from the lessons already on this site. Education only. No sirens.
-            </p>
+      {/* Stats bar */}
+      <section className="border-b bg-blue-700">
+        <div className="container mx-auto px-4 py-8 md:px-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-3xl font-bold text-white">{stat.value}</p>
+                <p className="mt-1 text-sm text-blue-100">{stat.label}</p>
+              </div>
+            ))}
           </div>
-          <Button asChild size="lg">
-            <Link href="/whats-the-play">Open the walkthrough</Link>
-          </Button>
         </div>
       </section>
 
-      <WhatsNew />
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
-          {reassurancePoints.map((point) => (
-            <Card key={point.title} className="border-slate-200">
+      {/* Features */}
+      <section className="container mx-auto px-4 py-16 md:px-6">
+        <div className="mb-10 max-w-2xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">Everything you need to build real security</h2>
+          <p className="mt-3 text-slate-600">Practical resources built for teams without a dedicated security department.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {features.map((feature) => (
+            <Card key={feature.title} className="group border-slate-200 transition-shadow hover:shadow-md">
               <CardHeader>
-                <CardTitle className="text-xl">{point.title}</CardTitle>
+                <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
+                  <feature.icon className="h-5 w-5 text-blue-700" />
+                </div>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-6 text-slate-600">{point.description}</p>
+              <CardContent className="space-y-3">
+                <p className="text-sm leading-6 text-slate-600">{feature.description}</p>
+                <Link
+                  href={feature.href}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-900"
+                >
+                  Explore <ChevronRight className="h-4 w-4" />
+                </Link>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Frameworks Section */}
-      <FrameworksSection />
-
-      {/* Pricing Section */}
-      <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Pricing Plans</h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Pick the level of protection your budget can emotionally process.
-              </p>
-            </div>
-            <PricingCards />
-            <p className="mx-auto max-w-[680px] pt-2 text-sm leading-6 text-slate-500">
-              Platform features (training, assessments, reporting) are product. Continuous monitoring and penetration
-              testing are delivered as managed services scoped with your team — not magic checkboxes that appear the
-              moment you click Start.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-slate-950 py-12 text-white md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">What people say after the panic subsides</h2>
-            <p className="text-slate-300">
-              A few representative reactions from teams who replaced vibes-based security with a plan.
-            </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.person} className="border-slate-800 bg-slate-900 text-white">
-                <CardContent className="space-y-4 p-6">
-                  <p className="text-lg leading-8 text-slate-100">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <p className="text-sm font-medium text-blue-200">{testimonial.person}</p>
-                </CardContent>
-              </Card>
+      {/* Trusted by */}
+      <section className="border-y bg-slate-50">
+        <div className="container mx-auto px-4 py-12 md:px-6">
+          <p className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+            Trusted by teams across industries
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {trustedBy.map((industry) => (
+              <span
+                key={industry}
+                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm"
+              >
+                {industry}
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Frequently asked, occasionally muttered</h2>
-            <p className="text-slate-600">
-              The practical questions usually arrive right after the phrase &ldquo;this actually looks useful.&rdquo;
+      {/* Testimonials */}
+      <section className="container mx-auto px-4 py-16 md:px-6">
+        <div className="mb-10 max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">What people are saying</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+            Real teams. Real security improvements.
+          </h2>
+          <p className="mt-3 text-slate-600">
+            We measure success by whether your security posture actually improves — not by how many PDFs you download.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <Card key={t.name} className="border-slate-200 bg-slate-50">
+              <CardContent className="pt-6">
+                <div className="mb-3 flex gap-0.5">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <Quote className="mb-2 h-5 w-5 text-blue-200" />
+                <p className="mb-4 text-sm leading-6 text-slate-700">{t.quote}</p>
+                <div className="border-t border-slate-200 pt-4">
+                  <p className="text-sm font-semibold text-slate-900">{t.name}</p>
+                  <p className="text-xs text-slate-500">{t.role}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t bg-slate-900">
+        <div className="container mx-auto px-4 py-16 md:px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white">Ready to build security that actually works?</h2>
+            <p className="mt-4 text-slate-400">
+              Join thousands of teams using ABC of Cyber to move from reactive to proactive security — without the
+              enterprise overhead.
             </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {faqs.map((faq) => (
-              <Card key={faq.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-6 text-slate-600">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Email Capture Section */}
-      <section className="w-full bg-gray-950 py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <EmailCapture
-            variant="hero"
-            theme="cyber"
-            heading="Join the Defense Force"
-            subheading="Weekly threat intel, framework guides you can actually use, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
-            source="homepage-cta"
-            showName
-          />
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-blue-900 text-white">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Ready to stop calling luck a strategy?
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
-                Start with a real plan, real controls, and reporting that does not read like it was assembled by a
-                malfunctioning printer.
-              </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <Link href="/get-started">
+                  Start for free <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800">
+                <Link href="/pricing">View pricing</Link>
+              </Button>
             </div>
-            <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-gray-200">
-              <Link href="/contact">Contact Us</Link>
-            </Button>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }
