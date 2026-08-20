@@ -23,21 +23,6 @@ const reassurancePoints = [
   },
 ]
 
-const testimonials = [
-  {
-    quote: "ABC of Cyber turned our security roadmap from a guilt document into an actual plan.",
-    person: "Priya, Head of Ops",
-  },
-  {
-    quote: "For the first time, the board report made sense and nobody asked if ransomware was a plugin.",
-    person: "Marcus, CIO",
-  },
-  {
-    quote: "They found three dumb risks in week one, which was humbling but also extremely useful.",
-    person: "Elena, IT Manager",
-  },
-]
-
 const faqs = [
   {
     question: "Do you help with compliance?",
@@ -157,27 +142,6 @@ export default function Home() {
               testing are delivered as managed services scoped with your team — not magic checkboxes that appear the
               moment you click Start.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-slate-950 py-12 text-white md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">What people say after the panic subsides</h2>
-            <p className="text-slate-300">
-              A few representative reactions from teams who replaced vibes-based security with a plan.
-            </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.person} className="border-slate-800 bg-slate-900 text-white">
-                <CardContent className="space-y-4 p-6">
-                  <p className="text-lg leading-8 text-slate-100">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <p className="text-sm font-medium text-blue-200">{testimonial.person}</p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
