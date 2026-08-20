@@ -4,6 +4,7 @@ import PricingCards from "@/components/pricing-cards"
 import { EmailCapture } from "@/components/email-capture"
 import FeatureSection from "@/components/feature-section"
 import FrameworksSection from "@/components/frameworks-section"
+import SecurityControlsSection from "@/components/security-controls-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const reassurancePoints = [
@@ -104,6 +105,8 @@ export default function Home() {
 
       {/* Features Section */}
       <FeatureSection />
+
+      <SecurityControlsSection />
 
       <section className="w-full bg-white py-12 md:py-20">
         <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
