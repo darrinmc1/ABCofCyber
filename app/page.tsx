@@ -6,6 +6,23 @@ import FeatureSection from "@/components/feature-section"
 import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import WhatsNew from "@/components/whats-new"
+import { JsonLd } from "@/components/json-ld"
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ABC of Cyber",
+  url: "https://abcofcyber.com",
+  description:
+    "Cybersecurity training and platform for teams — practical controls, compliance mapping across NIST, ISO 27001, and CIS, and security awareness training without the scare tactics.",
+}
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "ABC of Cyber",
+  url: "https://abcofcyber.com",
+}
 
 
 const reassurancePoints = [
@@ -50,6 +67,8 @@ const faqs = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={organizationSchema} />
+      <JsonLd data={websiteSchema} />
       {/* Hero Section */}
       <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden py-12 text-white md:py-24 lg:py-32">
         <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
