@@ -1,28 +1,109 @@
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Network } from "lucide-react"
+/* eslint-disable react/no-unescaped-entities */
+import Link from 'next/link'
+import { ArrowLeft, Shield, CheckCircle } from 'lucide-react'
 
-export default function TheArtOfTheDigitalGhostAdvancedAnonymityTechniquesBeyondVpnsLesson() {
+export default function DigitalGhostLesson() {
   return (
-    <main className="min-h-screen bg-white">
-      <section className="border-b bg-slate-50">
-        <div className="container mx-auto px-4 py-8">
-          <Link href="/learn" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"><span className="mr-2">←</span> Back to Lessons</Link>
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-100"><Network className="h-6 w-6 text-blue-700" /></div>
-              <Badge className="bg-red-100 text-red-700">Advanced</Badge>
-              <Badge variant="outline">15 min</Badge>
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs</h1>
-            <p className="text-lg text-slate-600 mb-6">Explore sophisticated methods for maintaining online anonymity, including multi-hop VPNs, decentralized networks, and privacy-focused operating systems for advanced digital invisibility.</p>
-            <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
+    <div className="min-h-screen bg-white">
+      <div className="border-b bg-slate-50">
+        <div className="mx-auto max-w-3xl px-4 md:px-6 py-8">
+          <Link href="/learn" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-900 mb-4">
+            <ArrowLeft className="h-4 w-4" /> Back to Lessons
+          </Link>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+              <Shield className="h-3 w-3" /> Privacy Basics
+            </span>
+            <span className="text-xs text-slate-500">8 min read</span>
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight md:text-4xl mb-3">
+            Controlling Your Business's Digital Footprint
+          </h1>
+          <p className="text-lg text-slate-600">
+            Practical steps small businesses can take to reduce unnecessary online exposure — without becoming invisible.
+          </p>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-3xl px-4 md:px-6 py-10">
+        <div className="prose prose-slate max-w-none">
+          <p className="lead text-lg text-slate-600 mb-8">
+            Every business leaves a digital footprint — domain registrations, employee LinkedIn profiles, public-facing servers, and more. Attackers routinely map this information before launching phishing campaigns or targeted attacks. The good news: a few straightforward habits dramatically reduce what they can find and use against you.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-10 mb-4">Why Your Digital Footprint Matters for SMBs</h2>
+          <p>
+            You don't need to be a Fortune 500 company to be a target. Attackers often prefer smaller businesses precisely because they assume security is lighter. Publicly available information — job postings, email formats, software versions in page headers — gives attackers a head start. Reducing that exposure is one of the cheapest risk-reduction moves available.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-10 mb-4">What Attackers Typically Look For</h2>
+          <ul className="space-y-2 my-4">
+            <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" /><span>Employee names and email addresses scraped from your website or LinkedIn</span></li>
+            <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" /><span>Software and platform versions exposed in page source or HTTP headers</span></li>
+            <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" /><span>Open ports and services visible via basic scanning tools</span></li>
+            <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" /><span>Domain registration details and historical DNS records</span></li>
+            <li className="flex items-start gap-2"><CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" /><span>Job postings that reveal internal tools and technology stack</span></li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-10 mb-4">Five Practical Steps to Reduce Exposure</h2>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3">1. Enable WHOIS Privacy on Your Domains</h3>
+          <p>
+            Most domain registrars offer free or low-cost privacy protection that replaces your personal or business contact details in public WHOIS records with generic registrar information. If you haven't enabled this, do it today — it takes about two minutes.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3">2. Audit What Your Website Reveals</h3>
+          <p>
+            View your site's page source and HTTP response headers. Look for version numbers in CMS tags, plugin references, or server software identifiers. Ask your developer or hosting provider to suppress these. They're not useful to visitors, but they are useful to attackers scanning for known vulnerabilities.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3">3. Standardise How You List Employee Contact Information</h3>
+          <p>
+            Publishing a predictable email format (firstname.lastname@yourdomain.com) alongside a full staff directory makes it trivial to construct a target list for phishing. Consider using a contact form instead of direct email addresses on public pages, and be thoughtful about how much organisational detail you expose.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3">4. Review Job Postings Before Publishing</h3>
+          <p>
+            Job ads are a goldmine for attackers. Listing every tool in your stack — "experience with Salesforce, AWS, Okta, and Slack required" — tells an attacker exactly what platforms to target. Include enough detail to attract good candidates, but avoid a complete inventory of your infrastructure.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3">5. Run a Free Exposure Check Periodically</h3>
+          <p>
+            Tools like Shodan (for internet-facing services) and Have I Been Pwned (for compromised credentials) let you see what's publicly visible about your business. Set a calendar reminder to check quarterly. It takes 15 minutes and occasionally surfaces something worth fixing before an attacker finds it first.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-10 mb-4">The Right Mindset: Reduce, Don't Disappear</h2>
+          <p>
+            The goal isn't to make your business invisible — it's to remove the low-hanging fruit that makes you an easy target. Most attackers are opportunistic. When your business requires more effort to profile than the next one, they move on. These steps don't require a security team or a big budget. They require about an afternoon and a checklist.
+          </p>
+
+          <div className="rounded-xl border border-blue-100 bg-blue-50 p-6 mt-10">
+            <h3 className="text-lg font-bold text-blue-900 mb-2">Quick-Start Checklist</h3>
+            <ul className="space-y-2 text-sm text-blue-800">
+              <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 shrink-0" /> Enable WHOIS privacy on all business domains</li>
+              <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 shrink-0" /> Remove or suppress version numbers from website headers and source</li>
+              <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 shrink-0" /> Replace public email addresses with a contact form where possible</li>
+              <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 shrink-0" /> Review current job postings for unnecessary technology detail</li>
+              <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 shrink-0" /> Run a Shodan and Have I Been Pwned check on your domain</li>
+            </ul>
+          </div>
+
+          <div className="mt-10 flex gap-4">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              <ArrowLeft className="h-4 w-4" /> All Lessons
+            </Link>
+            <Link
+              href="/learn/phishing-awareness"
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+            >
+              Next: Phishing Awareness
+            </Link>
           </div>
         </div>
-      </section>
-      <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto prose prose-slate max-w-none space-y-6 text-base leading-relaxed text-slate-700" dangerouslySetInnerHTML={{ __html: "<h2 className=\"text-xl font-bold mt-8 mb-4\">The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs</h2>\n<p>In the ever-evolving landscape of digital interaction, maintaining online anonymity has become a critical concern for individuals ranging from journalists and activists to security professionals and privacy-conscious citizens. While Virtual Private Networks (VPNs) offer a foundational layer of privacy, true digital invisibility requires delving into more sophisticated techniques. This lesson explores advanced anonymity methods that extend beyond the capabilities of standard VPN services, empowering users to achieve a higher level of digital ghosting.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Beyond Standard VPNs: The Need for Deeper Anonymity</h3>\n<p>Standard VPNs encrypt your internet traffic and mask your IP address by routing it through a single server. However, several vulnerabilities and limitations can compromise anonymity:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Single Point of Failure:</strong> If the VPN server is compromised or logs your activity, your anonymity is lost.</li><li><strong>Trust in the Provider:</strong> You must trust your VPN provider not to log your data or be compelled by authorities to reveal it.</li><li><strong>Metadata Leakage:</strong> Even with encryption, metadata (like connection times, bandwidth usage) can sometimes be inferred.</li><li><strong>IP Address Tracking:</strong> Advanced correlation techniques can potentially link your VPN IP back to your real identity.</li></ul>\n<p>To overcome these limitations, we must explore more robust strategies.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Multi-Hop VPNs: Layering Your Encryption</h3>\n<p>Multi-hop VPNs, also known as double VPNs or chained VPNs, route your internet traffic through two or more VPN servers instead of just one. The process works as follows:</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li>Your device connects to the first VPN server.</li><li>The traffic is then re-encrypted and sent from the first VPN server to a second VPN server.</li><li>Finally, the traffic exits to the internet from the second VPN server.</li></ol>\n<p>This chaining significantly enhances anonymity because:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Decentralized Trust:</strong> Even if one VPN server is compromised, the attacker only sees traffic from the previous server, not your original IP address.</li><li><strong>Obfuscation:</strong> It becomes exponentially harder to trace the connection back to its origin.</li></ul>\n<p>Many reputable VPN providers now offer multi-hop configurations as a built-in feature. When choosing a multi-hop VPN, consider the number of hops offered, the geographic distribution of servers, and the provider's no-logging policy.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Decentralized Networks: Embracing the Collective</h3>\n<p>Decentralized networks offer an alternative to centralized VPN services by distributing network infrastructure across a peer-to-peer (P2P) model. Instead of relying on a single company's servers, your traffic is routed through a network of volunteer nodes.</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Tor (The Onion Router):</strong> The most well-known decentralized anonymity network. Tor works by encrypting your traffic in multiple layers (like an onion) and bouncing it through a series of volunteer-operated relays. Each relay only knows the IP address of the previous and next node, making it extremely difficult to trace the origin.</li></ul>\n<p>    *   <strong>Pros:</strong> High level of anonymity, free to use, large global network.</p>\n<p>    *   <strong>Cons:</strong> Can be slow, not suitable for high-bandwidth activities like streaming or large downloads, potential for malicious exit nodes (though HTTPS mitigates this).</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>I2P (Invisible Internet Project):</strong> Another P2P anonymity network designed for robust, end-to-end anonymity. I2P focuses on providing a secure communication layer for applications, enabling anonymous communication and hosting of services.</li></ul>\n<p>    *   <strong>Pros:</strong> Strong anonymity, designed for low-latency communication, good for anonymous hosting.</p>\n<p>    *   <strong>Cons:</strong> Steeper learning curve, smaller user base than Tor, requires specific client software.</p>\n<p>When using decentralized networks, it's crucial to understand their architecture and potential risks. Always use HTTPS for encrypted communication, even when using Tor or I2P.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Privacy-Focused Operating Systems: A Secure Foundation</h3>\n<p>For those seeking the highest level of digital invisibility, operating systems designed with privacy and security at their core are essential. These systems often run from a live USB or DVD, leaving no trace on the host machine, and employ advanced networking and encryption techniques by default.</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Tails (The Amnesic Incognito Live System):</strong> Tails is a security-focused Linux distribution designed to be run from a live USB or DVD. It forces all internet connections through the Tor network and leaves no trace on the computer it's used on. It includes pre-installed privacy tools and aims to preserve privacy and anonymity.</li></ul>\n<p>    *   <strong>Key Features:</strong> Amnesic (forgets everything upon shutdown), routes all traffic through Tor, includes encryption tools, portablility.</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Qubes OS:</strong> Qubes OS takes a different approach by compartmentalizing your digital life into isolated virtual machines (Qubes). This means that if one Qube is compromised, it doesn't affect the others. It can integrate with Tor and other anonymity tools for enhanced security.</li></ul>\n<p>    *   <strong>Key Features:</strong> Security by isolation, compartmentalization, flexibility in integrating anonymity tools.</p>\n<p>Using these operating systems requires a certain level of technical proficiency but offers unparalleled control and protection for your online activities.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Best Practices for Advanced Anonymity</h3>\n<p>Regardless of the tools you employ, certain practices are paramount:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Use HTTPS Everywhere:</strong> Always ensure your connections are encrypted with HTTPS, even when using anonymity networks.</li><li><strong>Minimize Digital Footprint:</strong> Be mindful of the information you share online, including metadata from files and social media activity.</li><li><strong>Avoid Linking Identities:</strong> Do not use your real name, email address, or any identifying information when engaging in anonymous activities.</li><li><strong>Stay Updated:</strong> Keep all software, including operating systems, browsers, and VPN clients, up-to-date to patch security vulnerabilities.</li><li><strong>Understand Your Threat Model:</strong> The techniques you employ should align with the specific threats you are trying to mitigate.</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Conclusion</h3>\n<p>Achieving advanced online anonymity is not a single solution but a layered approach. By combining multi-hop VPNs, exploring decentralized networks like Tor and I2P, and utilizing privacy-focused operating systems such as Tails or Qubes OS, users can significantly enhance their digital invisibility. Remember that technology is only one part of the equation; vigilant practices and a thorough understanding of your threat model are equally crucial in the art of becoming a digital ghost.</p>" }} />
-      </section>
-    </main>
+      </div>
+    </div>
   )
 }
