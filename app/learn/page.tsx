@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 import { lessons } from "@/lib/lessons"
+import { getHumorEnabled } from "@/lib/humor"
 
 const iconMap: Record<string, ReactNode> = {
   BookOpen: <BookOpen className="h-8 w-8" />,
@@ -68,7 +69,9 @@ export default function LearnPage() {
               <CardDescription className="text-base">{summary}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col gap-4">
-              <p className="text-sm italic leading-6 text-slate-500">&ldquo;{quip}&rdquo;</p>
+              {getHumorEnabled() && quip ? (
+                <p className="text-sm italic leading-6 text-slate-500">&ldquo;{quip}&rdquo;</p>
+              ) : null}
               <div className="flex flex-wrap gap-2">
                 {topics.map((topic) => (
                   <span key={topic} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md">

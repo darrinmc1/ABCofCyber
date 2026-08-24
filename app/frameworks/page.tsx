@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ShieldCheck, Radar, Lock, ClipboardCheck, ArrowRight, AlertTriangle, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { getHumorEnabled } from "@/lib/humor"
 
 const frameworks = [
   {
@@ -112,9 +113,11 @@ export default function FrameworksPage() {
               <CardTitle>{name}</CardTitle>
               <CardDescription>{summary}</CardDescription>
             </CardHeader>
-            <CardContent>
-              <p className="text-sm leading-6 text-slate-600">{quip}</p>
-            </CardContent>
+            {getHumorEnabled() && quip ? (
+              <CardContent>
+                <p className="text-sm leading-6 text-slate-600">{quip}</p>
+              </CardContent>
+            ) : null}
           </Card>
         ))}
       </section>
