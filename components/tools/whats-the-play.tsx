@@ -49,8 +49,8 @@ function SubscribeWall() {
         </div>
         <CardTitle className="text-2xl">Paid plans include the rest</CardTitle>
         <CardDescription className="mt-2 text-base">
-          You used the free walkthrough. Early Adopter and Pro include unlimited What&apos;s the play
-          — same checkout as the rest of the site. No crypto rails.
+          You used the free walkthrough. Early Adopter ($5/mo) and Pro ($10/mo) include unlimited
+          What&apos;s the play when billing launches. Checkout is not live — join the waitlist.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2 text-sm text-slate-600">

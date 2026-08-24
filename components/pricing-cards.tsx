@@ -1,97 +1,95 @@
 import { Check } from "lucide-react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
+import {
+  CHECKOUT_LIVE,
+  PLANS,
+  WAITLIST_HREF,
+  WHATS_THE_PLAY_OFFER,
+  planCta,
+} from "@/lib/pricing"
 
 export default function PricingCards() {
-  const pricingPlans = [
-    {
-      name: "Basic",
-      description: "For small teams that would prefer not to be hacked on a budget",
-      price: "$99",
-      period: "per month",
-      features: [
-        "Vulnerability scanning",
-        "A security assessment with fewer buzzwords and more answers",
-        "Email security",
-        "Training people can survive awake",
-        "What's the play walkthroughs (education, not legal advice)",
-        "24/7 monitoring",
-      ],
-      cta: "Start Basic",
-      href: "/signup",
-      popular: false,
-    },
-    {
-      name: "Professional",
-      description: "For growing organizations that need control before the sprawl develops a personality",
-      price: "$299",
-      period: "per month",
-      features: [
-        "Everything in Basic",
-        "Compliance management",
-        "Advanced threat protection",
-        "Incident response planning with less improvisation",
-        "What's the play included on the paid plan",
-        "Risk assessment",
-        "Dedicated security advisor",
-      ],
-      cta: "Choose Professional",
-      href: "/signup",
-      popular: true,
-    },
-    {
-      name: "Enterprise",
-      description: "For large organizations with serious complexity and a healthy fear of headlines",
-      price: "Custom",
-      period: "contact for pricing",
-      features: [
-        "Everything in Professional",
-        "Custom security policies",
-        "Advanced compliance reporting",
-        "Penetration testing",
-        "Security architecture review",
-        "Executive reporting",
-        "24/7 dedicated support",
-      ],
-      cta: "Contact sales",
-      href: "/contact",
-      popular: false,
-    },
-  ]
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-      {pricingPlans.map((plan, index) => (
-        <Card key={index} className={`flex flex-col ${plan.popular ? "border-blue-500 shadow-lg" : ""}`}>
-          {plan.popular && (
-            <div className="bg-blue-500 text-white text-center py-1 text-sm font-medium">Most Popular, for good reason</div>
-          )}
-          <CardHeader>
-            <CardTitle>{plan.name}</CardTitle>
-            <CardDescription>{plan.description}</CardDescription>
-            <div className="mt-4">
-              <span className="text-3xl font-bold">{plan.price}</span>
-              <span className="text-gray-500 ml-2">{plan.period}</span>
-            </div>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <ul className="space-y-2">
-              {plan.features.map((feature, i) => (
-                <li key={i} className="flex items-center">
-                  <Check className="h-5 w-5 text-green-500 mr-2" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-          <CardFooter>
-            <Button asChild className={`w-full ${plan.popular ? "bg-blue-500 hover:bg-blue-600" : ""}`}>
-              <Link href={plan.href}>{plan.cta}</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
+    <div className="w-full">
+      {!CHECKOUT_LIVE && (
+        <p className="mx-auto mb-8 max-w-2xl text-sm leading-6 text-slate-600">
+          Checkout is not live. Free lessons are open now. Paid plans (
+          {PLANS.filter((plan) => (plan.priceUsd ?? 0) > 0)
+            .map((plan) => `${plan.name} ${plan.priceDisplay}${plan.periodLabel}`)
+            .join(" and ")}
+          ) are the planned training SKUs —{" "}
+          <Link href={WAITLIST_HREF} className="font-medium text-blue-700 underline-offset-2 hover:underline">
+            join the waitlist
+          </Link>{" "}
+          to get notified when billing launches.
+        </p>
+      )}
+
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {PLANS.map((plan) => {
+          const cta = planCta(plan)
+          return (
+            <Card
+              key={plan.id}
+              className={`flex flex-col text-left ${
+                plan.highlighted ? "border-blue-500 shadow-lg" : ""
+              }`}
+            >
+              {plan.highlighted && (
+                <div className="bg-blue-500 py-1 text-center text-sm font-medium text-white">
+                  Early adopter rate
+                </div>
+              )}
+              <CardHeader>
+                <CardTitle>{plan.name}</CardTitle>
+                <CardDescription>{plan.description}</CardDescription>
+                <div className="mt-4">
+                  <span className="text-3xl font-bold">{plan.priceDisplay}</span>
+                  <span className="ml-2 text-gray-500">{plan.periodLabel}</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start">
+                      <Check className="mr-2 mt-0.5 h-5 w-5 shrink-0 text-green-500" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  asChild
+                  className={`w-full ${plan.highlighted ? "bg-blue-500 hover:bg-blue-600" : ""}`}
+                >
+                  <Link href={cta.href}>{cta.label}</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          )
+        })}
+      </div>
+
+      <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 text-left">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">
+          {WHATS_THE_PLAY_OFFER.name}
+        </p>
+        <p className="mt-2 text-lg font-semibold text-slate-900">
+          Included on paid plans
+          {CHECKOUT_LIVE ? "" : " when billing launches"}
+          {". "}
+          ${WHATS_THE_PLAY_OFFER.priceUsd}/mo as a dedicated seat.
+        </p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{WHATS_THE_PLAY_OFFER.notes}</p>
+        <p className="mt-3">
+          <Link href="/whats-the-play" className="text-sm font-medium text-blue-700 hover:underline">
+            Open What&apos;s the play
+          </Link>
+        </p>
+      </div>
     </div>
   )
 }

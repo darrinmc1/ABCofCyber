@@ -17,6 +17,17 @@ export interface PricePlan {
   includesWhatsThePlay: boolean
 }
 
+/** Stripe checkout is not live. Paid CTAs must use waitlist framing. */
+export const CHECKOUT_LIVE = false
+export const WAITLIST_HREF = "/improvements"
+
+export function planCta(plan: PricePlan): { label: string; href: string } {
+  if (!CHECKOUT_LIVE && (plan.priceUsd ?? 0) > 0) {
+    return { label: "Join the waitlist", href: WAITLIST_HREF }
+  }
+  return { label: plan.cta, href: plan.href }
+}
+
 export const WHATS_THE_PLAY_OFFER = {
   id: "whats-the-play",
   name: "What's the play",
@@ -161,7 +172,8 @@ export function pricingJson() {
     currency: "USD",
     x402: false,
     checkout: WHATS_THE_PLAY_OFFER.checkout,
-    updated: "2026-08-13",
+    checkoutLive: CHECKOUT_LIVE,
+    updated: "2026-08-24",
     url: `${SITE_URL}/pricing`,
     plans: PLANS.map((plan) => ({
       id: plan.id,
