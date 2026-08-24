@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
-import HumorBreak from "@/components/humor-break"
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -84,8 +83,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <li>What specific improvements should we make to the IRP?</li>
           </ul>
           <p>Document these findings in a formal incident report and update your IRP accordingly. This feedback loop is how incident response matures from reactive scrambling to disciplined, repeatable process.</p>
-
-          <HumorBreak tag="general" />
 
         <h2 className="text-2xl font-bold mt-10 mb-4">Building Your IRP: Step by Step</h2>
           <p>Ready to build your plan? Here's the high-level process:</p>
