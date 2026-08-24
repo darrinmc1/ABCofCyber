@@ -1,222 +1,121 @@
 import Link from "next/link"
+import { ArrowRight, Shield, Lock, Zap, Users, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import PricingCards from "@/components/pricing-cards"
-import { EmailCapture } from "@/components/email-capture"
-import FeatureSection from "@/components/feature-section"
-import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import WhatsNew from "@/components/whats-new"
-import { JsonLd } from "@/components/json-ld"
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-  description:
-    "Cybersecurity training and platform for teams — practical controls, compliance mapping across NIST, ISO 27001, and CIS, and security awareness training without the scare tactics.",
-}
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-}
-
-
-const reassurancePoints = [
-  {
-    title: "No fake urgency",
-    description: "If something is critical, we say so. If it can wait until after lunch, we say that too.",
-  },
-  {
-    title: "Less jargon, more decisions",
-    description: "Your team gets clear priorities instead of three pages of words like strategic enablement posture fabric.",
-  },
-  {
-    title: "Built for real companies",
-    description: "Works for businesses with auditors, legacy systems, and at least one printer that behaves like a threat actor.",
-  },
-]
+import { EmailCapture } from "@/components/email-capture"
+import { FeatureSection } from "@/components/feature-section"
+import { FrameworksSection } from "@/components/frameworks-section"
+import { HumorBreak } from "@/components/humor-break"
 
 const faqs = [
   {
-    question: "Do you help with compliance?",
-    answer: "Yes. NIST, ISO 27001, CIS, and the delicate art of turning technical work into auditor-friendly proof.",
-  },
-  {
-    question: "Can smaller teams use this?",
-    answer: "Absolutely. You do not need a twelve-person security department to deserve basic competence and fewer surprises.",
-  },
-  {
-    question: "Will you drown us in alerts?",
-    answer: "No. The platform is opinionated about noise because nobody improves security by ignoring 400 meaningless warnings.",
-  },
-  {
-    question: "Will it nag us about passwords?",
-    answer: "Only if you keep using your dog's name. We are pro-password manager and pro-MFA, in that order.",
-  },
-  {
-    question: "Is What's the play a new product?",
+    question: "Does ABC of Cyber help with compliance requirements like SOC 2, ISO 27001, or HIPAA?",
     answer:
-      "No. It is a layer on this site: paste a suspicious scenario, get a walkthrough cited from existing lessons. Education only — not legal advice, not a chatbot.",
+      "Yes. Our frameworks and guidance are mapped to major compliance standards including SOC 2, ISO 27001, NIST CSF, and HIPAA. We help you build security programs that satisfy auditors without drowning your team in paperwork.",
+  },
+  {
+    question: "How does ABC of Cyber handle our data and privacy?",
+    answer:
+      "We take data privacy seriously — it would be embarrassing if we didn't. We collect only what is necessary to deliver the service, never sell your data to third parties, and follow industry-standard encryption and access controls. Full details are in our Privacy Policy.",
+  },
+  {
+    question: "How long does it take to get up and running?",
+    answer:
+      "Most teams complete their initial security assessment and have a prioritised action plan within a single working day. There is no lengthy onboarding, no professional-services engagement required, and no six-month implementation project — just clear next steps you can act on immediately.",
+  },
+  {
+    question: "What kind of support is available if we get stuck?",
+    answer:
+      "Every plan includes access to our documentation, guided walkthroughs, and the ability to submit questions through the platform. Pro and Team plans include priority email support with guaranteed response times. We also publish regular blog content and framework guides so your team can self-serve answers fast.",
+  },
+  {
+    question: "Do we need a dedicated security team to use this?",
+    answer:
+      "No. ABC of Cyber is specifically designed for organisations that do not have a full-time security team. Whether you are a founder wearing many hats or an IT generalist responsible for security, the platform guides you through what matters without assuming deep specialist knowledge.",
+  },
+  {
+    question: "Can we cancel or change our plan at any time?",
+    answer:
+      "Yes. There are no long-term contracts or lock-in periods. You can upgrade, downgrade, or cancel your plan at any time from your account settings. If you cancel, you retain access until the end of your current billing period.",
   },
 ]
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
-      {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden py-12 text-white md:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
-        <div className="relative z-10 container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center space-y-6 text-center">
-            <div className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
-                Cyber security for teams allergic to nonsense
-              </p>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Cybersecurity Training
-              </h1>
-              <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
-                Serious protection. Slightly unhinged copy. Very little panic.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
-                <Link href="/learn">Start Learning</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-blue-200 bg-transparent text-white hover:bg-white/10"
-              >
-                <Link href="#pricing">See pricing</Link>
-              </Button>
-            </div>
-            <p className="max-w-[680px] text-sm text-blue-200">
-              Built for security leads, compliance teams, and the one exhausted admin who keeps everything from
-              catching fire.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Product outcome first — What's New sits below the fold */}
-      <FeatureSection />
-
-      <section className="w-full border-y bg-slate-50 py-12 md:py-16">
-        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">One job, not a chatbot</p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What&apos;s the play</h2>
-            <p className="text-slate-600">
-              Paste an &ldquo;is this phishing?&rdquo; scenario. Get a plain-English walkthrough using the ABC
-              method, cited from the lessons already on this site. Education only. No sirens.
-            </p>
-          </div>
-          <Button asChild size="lg">
-            <Link href="/whats-the-play">Open the walkthrough</Link>
-          </Button>
-        </div>
-      </section>
-
-      <WhatsNew />
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
-          {reassurancePoints.map((point) => (
-            <Card key={point.title} className="border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">{point.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-6 text-slate-600">{point.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Frameworks Section */}
-      <FrameworksSection />
-
-      {/* Pricing Section */}
-      <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Training pricing</h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                One price map: Free, Early Adopter $5/mo, and Pro $10/mo. What&apos;s the play is included on paid
-                plans, or $29/mo as a dedicated seat.
-              </p>
-            </div>
-            <PricingCards />
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Frequently asked, occasionally muttered</h2>
-            <p className="text-slate-600">
-              The practical questions usually arrive right after the phrase &ldquo;this actually looks useful.&rdquo;
-            </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {faqs.map((faq) => (
-              <Card key={faq.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-6 text-slate-600">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Email Capture Section */}
-      <section className="w-full bg-gray-950 py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <EmailCapture
-            variant="hero"
-            theme="cyber"
-            heading="Join the Defense Force"
-            subheading="Weekly threat intel, framework guides you can actually use, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
-            source="homepage-cta"
-            showName
-          />
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-blue-900 text-white">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Ready to stop calling luck a strategy?
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
-                Start with a real plan, real controls, and reporting that does not read like it was assembled by a
-                malfunctioning printer.
-              </p>
-            </div>
-            <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-gray-200">
-              <Link href="/contact">Contact Us</Link>
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="container mx-auto px-4 py-20 md:px-6">
+        <div className="max-w-3xl space-y-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Cybersecurity made practical</p>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
+            Stop treating luck as your security strategy
+          </h1>
+          <p className="text-lg leading-8 text-slate-600">
+            ABC of Cyber gives your team the frameworks, tools, and plain-English guidance to build a security program
+            that actually works — without the jargon, the fear-mongering, or the six-figure consulting bill.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Button asChild size="lg" className="bg-blue-700 hover:bg-blue-800">
+              <Link href="/get-started">
+                Get started free <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/frameworks">Explore frameworks</Link>
             </Button>
           </div>
         </div>
       </section>
-    </div>
+
+      {/* Feature section */}
+      <FeatureSection />
+
+      {/* Frameworks */}
+      <FrameworksSection />
+
+      {/* Humor break */}
+      <HumorBreak />
+
+      {/* Email capture */}
+      <section className="bg-slate-50 py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <EmailCapture />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="container mx-auto px-4 py-20 md:px-6">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">FAQ</p>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl mb-4">
+            Questions we actually get asked
+          </h2>
+          <p className="text-lg text-slate-600 mb-12">
+            Compliance, privacy, implementation time, support — answered honestly, without the sales spin.
+          </p>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <details
+                key={index}
+                className="group rounded-xl border border-slate-200 bg-white px-6 py-5 open:shadow-sm transition-all"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900 marker:hidden">
+                  <span>{faq.question}</span>
+                  <ChevronDown className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="mt-4 text-slate-600 leading-7">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+          <p className="mt-10 text-sm text-slate-500">
+            Still have questions?{" "}
+            <Link href="/contact" className="font-semibold text-blue-700 hover:underline">
+              Contact us
+            </Link>{" "}
+            and we will get back to you within one business day.
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
