@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Illusion of Control: Recognizing and Countering Social Engineering Tactics",
+    slug: "the-illusion-of-control-recognizing-and-countering-social-engineering-tactics",
+    icon: "MailWarning",
+    summary: "Learn to identify common social engineering techniques, understand the psychology behind them, and develop strategies to resist manipulation and protect your digital assets.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "15 min",
+    topics: ["social engineering","cybersecurity","phishing","pretexting","human factor","security awareness"],
+  },
+  {
     title: "The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs",
     slug: "the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns",
     icon: "Network",
