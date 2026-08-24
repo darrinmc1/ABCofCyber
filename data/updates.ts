@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-illusion-of-control-recognizing-and-countering-social-engineering-tactics-new-2026-08-24",
+    "title": "The Illusion of Control: Recognizing and Countering Social Engineering Tactics",
+    "description": "New lesson: Learn to identify common social engineering techniques, understand the psychology behind them, and develop strategies to resist manipulation and protect your digital assets.",
+    "date": "2026-08-24",
+    "kind": "new",
+    "href": "/learn/the-illusion-of-control-recognizing-and-countering-social-engineering-tactics"
+  },
+  {
     "id": "the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns-new-2026-08-17",
     "title": "The Art of the Digital Ghost: Advanced Anonymity Techniques Beyond VPNs",
     "description": "New lesson: Explore sophisticated methods for maintaining online anonymity, including multi-hop VPNs, decentralized networks, and privacy-focused operating systems for advanced digital invisibility.",
