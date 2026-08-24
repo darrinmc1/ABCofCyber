@@ -1,6 +1,6 @@
 import { ABC_METHOD, WALKTHROUGH_DISCLAIMER } from "@/lib/disclaimer"
 import { ARCHIVE_CITATIONS } from "@/lib/archive"
-import { PLANS, WHATS_THE_PLAY_OFFER } from "@/lib/pricing"
+import { CHECKOUT_LIVE, PLANS, WHATS_THE_PLAY_OFFER } from "@/lib/pricing"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 function llmTxt(): string {
@@ -44,7 +44,7 @@ Machine-readable copy: ${SITE_URL}/pricing.json
 Human copy: ${SITE_URL}/pricing
 Currency: USD
 x402: false
-Checkout: existing-subscription (Early Adopter / Pro). No crypto rails.
+Checkout: existing-subscription (Early Adopter / Pro). ${CHECKOUT_LIVE ? "Checkout is live." : "Checkout is not live — join the waitlist."} No crypto rails.
 
 ${plans}
 
