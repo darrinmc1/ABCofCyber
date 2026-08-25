@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Shield, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import HumorToggle from "@/components/humor-toggle"
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -52,6 +53,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex gap-4">
+          <HumorToggle />
           <Button variant="outline" asChild>
             <Link href="/login">Login</Link>
           </Button>

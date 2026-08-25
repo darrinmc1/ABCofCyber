@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import HumorBreak from "@/components/humor-break"
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -32,6 +33,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
           <h3 className="text-xl font-semibold mt-6 mb-2">3. Assume Breach</h3>
           <p>Design your systems as if they are already compromised. Segment your network so that a breach in one area doesn't automatically grant access to everything. Encrypt data at rest and in transit. Monitor aggressively for signs of compromise. The goal isn't to prevent every attack — it's to limit the blast radius when one inevitably succeeds.</p>
+
+          <HumorBreak tag="general" />
 
         <h2 className="text-2xl font-bold mt-10 mb-4">The Three Pillars of Zero Trust Implementation</h2>
           <p>Translating these principles into practice involves three major workstreams:</p>
