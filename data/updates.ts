@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat-new-2026-08-31",
+    "title": "The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization",
+    "description": "New lesson: Explore the various types of insider threats, from accidental data leaks to malicious intent, and learn practical strategies for detection, prevention, and response.",
+    "date": "2026-08-31",
+    "kind": "new",
+    "href": "/learn/the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat"
+  },
+  {
     "id": "the-illusion-of-control-recognizing-and-countering-social-engineering-tactics-new-2026-08-24",
     "title": "The Illusion of Control: Recognizing and Countering Social Engineering Tactics",
     "description": "New lesson: Learn to identify common social engineering techniques, understand the psychology behind them, and develop strategies to resist manipulation and protect your digital assets.",
