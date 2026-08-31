@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization",
+    slug: "the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat",
+    icon: "Shield",
+    summary: "Explore the various types of insider threats, from accidental data leaks to malicious intent, and learn practical strategies for detection, prevention, and response.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "12 min",
+    topics: ["insider threats","cybersecurity","data protection","risk management","security awareness"],
+  },
+  {
     title: "The Illusion of Control: Recognizing and Countering Social Engineering Tactics",
     slug: "the-illusion-of-control-recognizing-and-countering-social-engineering-tactics",
     icon: "MailWarning",
