@@ -1,8 +1,10 @@
 import Link from "next/link"
 import { IBM_Plex_Mono, Source_Serif_4 } from "next/font/google"
+import { ArrowLeft, MailWarning } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import { lessons } from "@/lib/lessons"
 import { ABC_METHOD } from "@/lib/disclaimer"
-import { ARCHIVE_CITATIONS, PLAY_EXAMPLE } from "@/lib/archive"
+import { PLAY_EXAMPLE } from "@/lib/archive"
 import { WAITLIST_HREF } from "@/lib/pricing"
 import { getHumorEnabled } from "@/lib/humor"
 
@@ -20,8 +22,6 @@ const primerMono = IBM_Plex_Mono({
 
 const FIRST_LESSON_HREF = "/learn/phishing-awareness"
 const TOPICS_HREF = "/learn"
-
-const phishingCitation = ARCHIVE_CITATIONS.find((item) => item.id === "phishing-awareness")
 
 const lessonAnatomy = [
   {
@@ -61,35 +61,49 @@ const primer = [
 
 function HeroProductStill() {
   return (
-    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden border border-[#1c140e] bg-[#f7f1e4] md:h-[26rem]">
+    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden border border-[#1c140e] bg-slate-100 md:h-[26rem]">
       <div className="home-primer-still-pan origin-top-left" aria-hidden="true">
-        <div className="w-[34rem] bg-white p-5 text-left shadow-[8px_8px_0_#1c140e] md:w-[38rem]">
-          <p className={`${primerMono.className} text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8c2f12]`}>
-            Lesson excerpt · Phishing Awareness
-          </p>
-          <p className={`${primerSerif.className} mt-2 text-2xl font-semibold text-[#1c140e]`}>
-            Anatomy of a Phishing Email
-          </p>
-          <p className={`${primerSerif.className} mt-2 text-sm leading-6 text-[#3f3428]`}>
-            {phishingCitation?.excerpt}
-          </p>
-          <ol className="mt-4 space-y-2">
-            {lessonAnatomy.map((row) => (
-              <li key={row.n} className="border border-[#d7cbb4] bg-[#fffdf8] px-3 py-2">
-                <p className={`${primerMono.className} text-[11px] font-semibold text-[#8c2f12]`}>
-                  {row.n} · {row.title}
-                </p>
-                <p className={`${primerSerif.className} mt-1 text-sm leading-5 text-[#3f3428]`}>{row.body}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-5 border border-[#1c140e] bg-[#f7f1e4] p-3">
-            <p className={`${primerMono.className} text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1c140e]`}>
-              What&apos;s the play · paste the scenario
+        <div className="w-[36rem] bg-white text-left md:w-[40rem]">
+          <div className="border-b bg-slate-50 px-6 py-5">
+            <p className="mb-4 inline-flex items-center text-sm text-slate-600">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Lessons
             </p>
-            <pre className={`${primerMono.className} mt-2 whitespace-pre-wrap text-[11px] leading-5 text-[#1c140e]`}>
-              {PLAY_EXAMPLE}
-            </pre>
+            <div className="mb-3 flex items-center gap-3">
+              <div className="rounded-lg bg-red-100 p-2">
+                <MailWarning className="h-6 w-6 text-red-700" />
+              </div>
+              <Badge className="bg-green-100 text-green-700">Beginner</Badge>
+              <Badge variant="outline">15 min</Badge>
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Phishing Awareness</h2>
+            <p className="mt-3 text-base text-slate-600">
+              Phishing is the most common entry point for cyber attacks. This lesson teaches you how to spot the red
+              flags, inspect suspicious messages, and respond appropriately.
+            </p>
+          </div>
+          <div className="px-6 py-5">
+            <h3 className="mb-3 text-xl font-bold text-slate-900">Anatomy of a Phishing Email</h3>
+            <div className="border border-red-200 bg-red-50 p-4">
+              <div className="space-y-2 text-sm">
+                {lessonAnatomy.map((row) => (
+                  <div key={row.n} className="rounded bg-white p-2">
+                    <p className="font-medium text-slate-900">
+                      {row.n}. {row.title}
+                    </p>
+                    <p className="text-slate-600">{row.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-4 border border-slate-200 p-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                What&apos;s the play · paste the scenario
+              </p>
+              <pre className="mt-2 whitespace-pre-wrap font-mono text-[11px] leading-5 text-slate-800">
+                {PLAY_EXAMPLE}
+              </pre>
+            </div>
           </div>
         </div>
       </div>
