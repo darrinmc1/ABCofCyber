@@ -1,24 +1,12 @@
 import Link from "next/link"
-import { IBM_Plex_Mono, Source_Serif_4 } from "next/font/google"
 import { ArrowLeft, MailWarning } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { lessons } from "@/lib/lessons"
 import { ABC_METHOD } from "@/lib/disclaimer"
 import { PLAY_EXAMPLE } from "@/lib/archive"
 import { WAITLIST_HREF } from "@/lib/pricing"
 import { getHumorEnabled } from "@/lib/humor"
-
-const primerSerif = Source_Serif_4({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-})
-
-const primerMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  display: "swap",
-})
 
 const FIRST_LESSON_HREF = "/learn/phishing-awareness"
 const TOPICS_HREF = "/learn"
@@ -61,7 +49,7 @@ const primer = [
 
 function HeroProductStill() {
   return (
-    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden border border-[#1c140e] bg-slate-100 md:h-[26rem]">
+    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-lg md:h-[26rem]">
       <div className="home-primer-still-pan origin-top-left" aria-hidden="true">
         <div className="w-[36rem] bg-white text-left md:w-[40rem]">
           <div className="border-b bg-slate-50 px-6 py-5">
@@ -84,10 +72,10 @@ function HeroProductStill() {
           </div>
           <div className="px-6 py-5">
             <h3 className="mb-3 text-xl font-bold text-slate-900">Anatomy of a Phishing Email</h3>
-            <div className="border border-red-200 bg-red-50 p-4">
+            <div className="rounded-lg border border-red-200 bg-red-50 p-4">
               <div className="space-y-2 text-sm">
                 {lessonAnatomy.map((row) => (
-                  <div key={row.n} className="rounded bg-white p-2">
+                  <div key={row.n} className="rounded-md bg-white p-2">
                     <p className="font-medium text-slate-900">
                       {row.n}. {row.title}
                     </p>
@@ -96,7 +84,7 @@ function HeroProductStill() {
                 ))}
               </div>
             </div>
-            <div className="mt-4 border border-slate-200 p-3">
+            <div className="mt-4 rounded-lg border border-slate-200 p-3">
               <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
                 What&apos;s the play · paste the scenario
               </p>
@@ -116,63 +104,58 @@ export default function HomeHero() {
   const beginnerCount = lessons.filter((lesson) => lesson.difficulty === "Beginner").length
 
   return (
-    <section className={`${primerSerif.className} home-primer-hero flex min-h-[calc(100svh-4rem)] flex-col bg-[#efe6d2] text-[#1c140e]`}>
-      <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 gap-10 px-4 py-8 md:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
-        <div className="max-w-xl text-left">
-          <p className={`${primerMono.className} text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8c2f12]`}>
+    <section className="home-primer-hero flex min-h-[calc(100svh-4rem)] flex-col bg-slate-950 text-white">
+      <div className="container mx-auto grid w-full flex-1 grid-cols-1 items-center gap-10 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <div className="max-w-xl space-y-4 text-left">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
             Written awareness course
           </p>
-          <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
             Stop clicking the invoice PDF from a stranger.
           </h1>
-          <p className="mt-5 text-xl leading-8 text-[#3f3428]">
+          <p className="text-blue-100 md:text-xl">
             Here is the alphabet of how that scam works. You read the lesson. This page does not watch anyone&apos;s inbox.
           </p>
           {getHumorEnabled() ? (
-            <p className={`${primerMono.className} mt-4 text-sm leading-6 text-[#8c2f12]`}>
+            <p className="text-sm leading-6 text-blue-200">
               If you did not order the toner, the toner invoice can wait. Or forever.
             </p>
           ) : null}
-          <p className={`${primerMono.className} mt-6 text-xs leading-5 text-[#5a4d3d]`}>
+          <p className="text-sm text-blue-200">
             {lessonCount} written lessons on this site. {beginnerCount} marked beginner. Free to read. Checkout is not
             live.
           </p>
-          <div className="mt-6 flex flex-col items-stretch gap-2 sm:max-w-sm">
-            <Link
-              href={FIRST_LESSON_HREF}
-              className="inline-flex items-center justify-center bg-[#8c2f12] px-4 py-3 text-sm font-semibold text-[#f7f1e4] hover:bg-[#6f240e]"
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
+              <Link href={FIRST_LESSON_HREF}>Start the free written lesson</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-blue-200 bg-transparent text-white hover:bg-white/10"
             >
-              Start the free written lesson
-            </Link>
-            <Link
-              href={TOPICS_HREF}
-              className="inline-flex items-center justify-center border border-[#1c140e] bg-transparent px-4 py-3 text-sm font-semibold text-[#1c140e] hover:bg-[#e4d8bc]"
-            >
-              Browse topics
-            </Link>
-            <Link
-              href={WAITLIST_HREF}
-              className="inline-flex items-center justify-center px-4 py-3 text-sm font-semibold underline decoration-2 underline-offset-4 hover:text-[#8c2f12]"
-            >
-              Join the waitlist
-            </Link>
+              <Link href={TOPICS_HREF}>Browse topics</Link>
+            </Button>
+            <Button asChild variant="ghost" size="lg" className="text-blue-100 hover:bg-white/10 hover:text-white">
+              <Link href={WAITLIST_HREF}>Join the waitlist</Link>
+            </Button>
           </div>
         </div>
 
         <HeroProductStill />
       </div>
 
-      <div className="border-t border-[#1c140e] bg-[#1c140e] text-[#f7f1e4]">
-        <div className="mx-auto flex max-w-6xl flex-col md:flex-row">
+      <div className="border-t border-blue-900 bg-slate-900">
+        <div className="container mx-auto flex flex-col px-4 md:flex-row md:px-6">
           {primer.map((item, index) => (
             <p
               key={item.letter}
-              className={`flex-1 px-4 py-5 text-left text-[15px] leading-6 md:px-6 ${
-                index > 0 ? "border-t border-[#f7f1e4]/20 md:border-l md:border-t-0" : ""
-              }`}
+              className={`flex-1 py-5 text-left text-sm leading-6 text-blue-100 md:py-6 ${
+                index > 0 ? "border-t border-blue-900 md:border-l md:border-t-0 md:pl-6" : ""
+              } ${index < primer.length - 1 ? "md:pr-6" : ""}`}
             >
-              <span className={`${primerMono.className} mr-2 text-[#e8b298]`}>{item.letter}</span>
-              {" "}
+              <span className="mr-2 font-bold text-blue-400">{item.letter}</span>
               is for {item.phrase} — {item.rest}
             </p>
           ))}
