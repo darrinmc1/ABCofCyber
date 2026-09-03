@@ -12,6 +12,28 @@ body {
   }
 }
 
+/* Motion lock: still + slow pan only. No video, GIF, particles, or gradient loops. */
+@keyframes home-primer-pan {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(-1.6%, -1.2%, 0);
+  }
+}
+
+.home-primer-still-pan {
+  animation: home-primer-pan 36s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-primer-still-pan {
+    animation: none;
+    transform: none;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
