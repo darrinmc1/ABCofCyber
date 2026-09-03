@@ -61,7 +61,7 @@ const primer = [
 
 function HeroProductStill() {
   return (
-    <div className="home-primer-still-clip relative h-[28rem] overflow-hidden border border-[#1c140e] bg-[#f7f1e4] md:h-[34rem]">
+    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden border border-[#1c140e] bg-[#f7f1e4] md:h-[26rem]">
       <div className="home-primer-still-pan origin-top-left" aria-hidden="true">
         <div className="w-[34rem] bg-white p-5 text-left shadow-[8px_8px_0_#1c140e] md:w-[38rem]">
           <p className={`${primerMono.className} text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8c2f12]`}>
@@ -102,8 +102,8 @@ export default function HomeHero() {
   const beginnerCount = lessons.filter((lesson) => lesson.difficulty === "Beginner").length
 
   return (
-    <section className={`${primerSerif.className} home-primer-hero bg-[#efe6d2] text-[#1c140e]`}>
-      <div className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl grid-cols-1 gap-10 px-4 py-10 md:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-end">
+    <section className={`${primerSerif.className} home-primer-hero flex min-h-[calc(100svh-4rem)] flex-col bg-[#efe6d2] text-[#1c140e]`}>
+      <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 gap-10 px-4 py-8 md:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
         <div className="max-w-xl text-left">
           <p className={`${primerMono.className} text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8c2f12]`}>
             Written awareness course
@@ -158,6 +158,7 @@ export default function HomeHero() {
               }`}
             >
               <span className={`${primerMono.className} mr-2 text-[#e8b298]`}>{item.letter}</span>
+              {" "}
               is for {item.phrase} — {item.rest}
             </p>
           ))}
