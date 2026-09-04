@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Network, Shield, Wifi, Server, Lock, CheckCircle, AlertTriangle, HardDrive } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
 
 export default function NetworkSecurityLesson() {
   return (
@@ -343,6 +344,8 @@ export default function NetworkSecurityLesson() {
               </CardContent>
             </Card>
           </div>
+
+          <HumorBreak tag="general" />
 
           {/* Checklist */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
