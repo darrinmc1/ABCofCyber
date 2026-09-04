@@ -110,8 +110,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <p>Building an Incident Response Plan is one of the highest-leverage investments your organization can make in cybersecurity. The time to write the playbook is not when the stadium is on fire. Start today. Even a simple plan with basic procedures and contact lists puts you miles ahead of organizations with nothing. And as your capabilities grow, your IRP will evolve from a simple checklist into a sophisticated, battle-tested operational framework.</p>
 
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-6 mt-10 mb-6">
-            <h2 className="font-bold text-lg mb-2">IRP template — Coming Soon</h2>
-            <p className="text-sm text-slate-600 mb-3">The PDF is not published yet (the old download 404&apos;d). Read <Link href="/learn/incident-response-basics" className="text-indigo-600 hover:text-indigo-800 underline">Incident Response Basics</Link> now, or see the <Link href="/downloads" className="text-indigo-600 hover:text-indigo-800 underline">templates catalog</Link> for what is planned.</p>
+            <h2 className="font-bold text-lg mb-2">Download our IRP template</h2>
+            <p className="text-sm text-slate-600 mb-3">ABC of Cyber provides a free Incident Response Plan template to help you get started. <a href="/downloads#incident-response-plan-template-pdf" className="text-indigo-600 hover:text-indigo-800 underline">Download the template</a> and build your plan today.</p>
           </div>
 
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-6">
