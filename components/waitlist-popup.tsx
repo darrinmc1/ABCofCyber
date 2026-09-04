@@ -28,7 +28,10 @@ export function WaitlistPopup() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if (pathname === "/") return
+        if (pathname === "/") {
+            setIsOpen(false)
+            return
+        }
 
         const lastSeen = localStorage.getItem(POPUP_STORAGE_KEY)
         if (lastSeen) {
@@ -88,6 +91,8 @@ export function WaitlistPopup() {
             setLoading(false)
         }
     }
+
+    if (pathname === "/") return null
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
