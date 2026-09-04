@@ -47,9 +47,20 @@ const primer = [
   },
 ] as const
 
+const beginnerPeek = [
+  ...lessons.filter((lesson) => lesson.slug === "phishing-awareness"),
+  ...lessons.filter((lesson) => lesson.difficulty === "Beginner" && lesson.slug !== "phishing-awareness"),
+]
+  .slice(0, 4)
+  .map((lesson) => ({
+    title: lesson.title,
+    duration: lesson.duration,
+    start: lesson.slug === "phishing-awareness",
+  }))
+
 function HeroProductStill() {
   return (
-    <div className="home-primer-still-clip relative h-[22rem] overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-lg md:h-[26rem]">
+    <div className="home-still-frame home-primer-still-clip relative h-[22rem] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 md:h-[26rem]">
       <div className="home-primer-still-pan origin-top-left" aria-hidden="true">
         <div className="w-[36rem] bg-white text-left md:w-[40rem]">
           <div className="border-b bg-slate-50 px-6 py-5">
@@ -99,63 +110,105 @@ function HeroProductStill() {
   )
 }
 
+function BeginnerTrackPeek() {
+  if (beginnerPeek.length === 0) return null
+
+  return (
+    <div className="home-still-peek rounded-2xl border border-white/10 bg-[#121722] p-5 text-left shadow-xl">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-400">Beginner track</p>
+      <p className="mt-2 text-sm text-slate-400">Real lessons on this site. No invented completion bar.</p>
+      <ul className="mt-4 space-y-3">
+        {beginnerPeek.map((lesson) => (
+          <li key={lesson.title} className="flex items-start gap-3 text-sm leading-5">
+            <span
+              className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${lesson.start ? "bg-blue-400" : "bg-slate-600"}`}
+              aria-hidden="true"
+            />
+            <span className={lesson.start ? "text-white" : "text-slate-400"}>
+              {lesson.title}
+              <span className="block text-xs text-slate-500">{lesson.duration}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function HeroProductStack() {
+  return (
+    <div className="home-product-stack relative">
+      <div className="pointer-events-none absolute -right-4 top-10 hidden w-[72%] lg:block" aria-hidden="true">
+        <BeginnerTrackPeek />
+      </div>
+      <div className="relative z-10 lg:mr-8">
+        <HeroProductStill />
+      </div>
+    </div>
+  )
+}
+
 export default function HomeHero() {
   const lessonCount = lessons.length
   const beginnerCount = lessons.filter((lesson) => lesson.difficulty === "Beginner").length
 
   return (
-    <section className="home-primer-hero flex min-h-[calc(100svh-4rem)] flex-col bg-slate-950 text-white">
+    <section className="home-primer-hero flex min-h-[calc(100svh-4rem)] flex-col text-white">
       <div className="container mx-auto grid w-full flex-1 grid-cols-1 items-center gap-10 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-        <div className="max-w-xl space-y-4 text-left">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
+        <div className="max-w-xl space-y-5 text-left">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-400">
             Written awareness course
           </p>
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
             Stop clicking the invoice PDF from a stranger.
           </h1>
-          <p className="text-blue-100 md:text-xl">
+          <p className="text-slate-300 md:text-xl">
             Here is the alphabet of how that scam works. You read the lesson. This page does not watch anyone&apos;s inbox.
           </p>
           {getHumorEnabled() ? (
-            <p className="text-sm leading-6 text-blue-200">
+            <p className="text-sm leading-6 text-slate-400">
               If you did not order the toner, the toner invoice can wait. Or forever.
             </p>
           ) : null}
-          <p className="text-sm text-blue-200">
+          <p className="text-sm text-slate-400">
             {lessonCount} written lessons on this site. {beginnerCount} marked beginner. Free to read. Checkout is not
             live.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
-              <Link href={FIRST_LESSON_HREF}>Start the free written lesson</Link>
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full bg-blue-600 px-7 text-white hover:bg-blue-500"
+            >
+              <Link href={FIRST_LESSON_HREF}>Start free written lesson</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="border-blue-200 bg-transparent text-white hover:bg-white/10"
+              className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10"
             >
               <Link href={TOPICS_HREF}>Browse topics</Link>
             </Button>
-            <Button asChild variant="ghost" size="lg" className="text-blue-100 hover:bg-white/10 hover:text-white">
+            <Button asChild variant="ghost" size="lg" className="text-slate-300 hover:bg-white/10 hover:text-white">
               <Link href={WAITLIST_HREF}>Join the waitlist</Link>
             </Button>
           </div>
         </div>
 
-        <HeroProductStill />
+        <HeroProductStack />
       </div>
 
-      <div className="border-t border-blue-900 bg-slate-900">
+      <div className="border-t border-white/10 bg-black/20 backdrop-blur-sm">
         <div className="container mx-auto flex flex-col px-4 md:flex-row md:px-6">
           {primer.map((item, index) => (
             <p
               key={item.letter}
-              className={`flex-1 py-5 text-left text-sm leading-6 text-blue-100 md:py-6 ${
-                index > 0 ? "border-t border-blue-900 md:border-l md:border-t-0 md:pl-6" : ""
+              className={`flex-1 py-5 text-left text-sm leading-6 text-slate-300 md:py-6 ${
+                index > 0 ? "border-t border-white/10 md:border-l md:border-t-0 md:pl-6" : ""
               } ${index < primer.length - 1 ? "md:pr-6" : ""}`}
             >
-              <span className="mr-2 font-bold text-blue-400">{item.letter}</span>
+              <span className="mr-2 font-bold text-sky-400">{item.letter}</span>
               is for {item.phrase} — {item.rest}
             </p>
           ))}

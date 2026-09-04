@@ -8,6 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import WhatsNew from "@/components/whats-new"
 import { JsonLd } from "@/components/json-ld"
 import HomeHero from "@/components/home-hero"
+import HomeScrollStage from "@/components/home-scroll-stage"
+import HomeLessonRail from "@/components/home-lesson-rail"
+import HomeWhatYouGet from "@/components/home-what-you-get"
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -70,7 +73,11 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <JsonLd data={organizationSchema} />
       <JsonLd data={websiteSchema} />
-      <HomeHero />
+      <HomeScrollStage>
+        <HomeHero />
+        <HomeLessonRail />
+        <HomeWhatYouGet />
+      </HomeScrollStage>
 
       {/* Below the fold — existing homepage. Pricing untouched. */}
       <FeatureSection />
