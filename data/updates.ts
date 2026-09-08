@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-invisible-network-securing-your-smart-homes-iot-ecosystem-new-2026-09-08",
+    "title": "The Invisible Network: Securing Your Smart Home's IoT Ecosystem",
+    "description": "New lesson: Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home's IoT ecosystem.",
+    "date": "2026-09-08",
+    "kind": "new",
+    "href": "/learn/the-invisible-network-securing-your-smart-homes-iot-ecosystem"
+  },
+  {
     "id": "the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat-new-2026-08-31",
     "title": "The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization",
     "description": "New lesson: Explore the various types of insider threats, from accidental data leaks to malicious intent, and learn practical strategies for detection, prevention, and response.",
