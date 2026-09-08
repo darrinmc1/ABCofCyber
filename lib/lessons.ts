@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Invisible Network: Securing Your Smart Home's IoT Ecosystem",
+    slug: "the-invisible-network-securing-your-smart-homes-iot-ecosystem",
+    icon: "Network",
+    summary: "Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home's IoT ecosystem.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "15 min",
+    topics: ["iot security","smart home","cybersecurity","network security","privacy","connected devices"],
+  },
+  {
     title: "The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization",
     slug: "the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat",
     icon: "Shield",
