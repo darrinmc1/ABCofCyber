@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Shield, Users, Globe, Lightbulb } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Script from "next/script"
 
 const values = [
   {
@@ -45,9 +46,39 @@ const teamPrinciples = [
   },
 ]
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ABC of Cyber",
+  "url": "https://abcofcyber.com",
+  "logo": "https://abcofcyber.com/logo.png",
+  "description": "ABC of Cyber helps teams build practical cybersecurity programs with frameworks, tools, and best practices. We were built by practitioners who got tired of seeing security programs that looked impressive in decks and collapsed under real-world pressure.",
+  "foundingDate": "2023",
+  "knowsAbout": [
+    "Cybersecurity",
+    "Information Security",
+    "Security Frameworks",
+    "Incident Response",
+    "Risk Management",
+    "Zero Trust Architecture",
+    "NIST CSF",
+    "ISO 27001",
+    "CIS Controls"
+  ],
+  "sameAs": [
+    "https://twitter.com/abcofcyber",
+    "https://linkedin.com/company/abcofcyber"
+  ]
+}
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
+      <Script
+        id="schema-about-organization"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       <section className="container mx-auto px-4 py-16 md:px-6">
         <div className="max-w-3xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">About</p>
@@ -56,101 +87,81 @@ export default function AboutPage() {
           </h1>
           <p className="text-lg leading-8 text-slate-600">
             ABC of Cyber was built by practitioners who got tired of seeing security programs that looked impressive in
-            decks and collapsed the first time someone clicked a link in a Microsoft 365 lookalike. We focus on the
-            controls, assessment, and habits that actually reduce risk — without requiring a cult-like devotion to
-            process.
+            decks and collapsed under real-world pressure. We believe security should be understandable, actionable, and
+            actually used by the people it is meant to protect.
           </p>
           <p className="text-lg leading-8 text-slate-600">
-            The platform is designed for security leads, compliance teams, and the one exhausted admin who keeps
-            everything from catching fire while attending meetings about fire prevention.
+            Our tools, frameworks, and learning resources are designed for teams that do not have a dedicated security
+            department, a six-figure consulting budget, or the luxury of learning on the job after a breach.
           </p>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="mb-12 text-3xl font-bold tracking-tight text-slate-900">What we believe</h2>
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="space-y-8">
-              {values.map((value) => (
-                <div key={value.title} className="flex gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
-                    <value.icon className="h-6 w-6 text-blue-700" />
+      <section className="border-t bg-slate-50">
+        <div className="container mx-auto px-4 py-16 md:px-6">
+          <div className="max-w-3xl space-y-4 mb-12">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">What we believe</h2>
+            <p className="text-lg text-slate-600">
+              These are not values we put on a poster. They are the principles that shape every tool, lesson, and
+              recommendation we publish.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {values.map((value) => (
+              <Card key={value.title} className="border-slate-200">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-blue-50">
+                      <value.icon className="h-5 w-5 text-blue-700" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-slate-900">{value.title}</CardTitle>
                   </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-slate-900">{value.title}</h3>
-                    <p className="text-slate-600">{value.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Card className="border-slate-200 bg-slate-900 text-white">
-              <CardHeader>
-                <CardTitle className="text-2xl">The actual problem we solve</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-slate-300">
-                <p>
-                  Most organizations have security risks they can name and security risks they cannot. The dangerous ones are
-                  usually in the second category.
-                </p>
-                <p>
-                  ABC of Cyber helps teams move from vague anxiety about risk to structured assessment, practical controls,
-                  and reporting that helps decision-makers actually decide.
-                </p>
-                <p>
-                  We are not here to sell you a dashboard and disappear. We are here to help you build something that
-                  works when nobody is watching.
-                </p>
-                <div className="pt-4">
-                  <Link href="/get-started">
-                    <Button className="bg-white text-slate-900 hover:bg-blue-100">
-                      Work with us <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-600 text-sm leading-relaxed">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="container mx-auto py-16 px-4 md:px-6">
-        <h2 className="mb-12 text-3xl font-bold tracking-tight text-slate-900">How we work</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {teamPrinciples.map((principle) => (
-            <Card key={principle.name}>
-              <CardHeader>
-                <CardTitle className="text-lg">{principle.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-slate-600">{principle.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      <section className="border-t">
+        <div className="container mx-auto px-4 py-16 md:px-6">
+          <div className="max-w-3xl space-y-4 mb-12">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">How we work</h2>
+            <p className="text-lg text-slate-600">
+              Every piece of content and every tool we ship follows these principles. If something does not meet this
+              bar, it does not ship.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {teamPrinciples.map((principle) => (
+              <div key={principle.name} className="space-y-2">
+                <h3 className="font-semibold text-slate-900">{principle.name}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{principle.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="bg-slate-900 py-16 text-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight">
-              Still reading? You might be our kind of team.
-            </h2>
-            <p className="mb-8 text-lg text-slate-300">
-              We work with organizations that want to actually improve their security posture, not just collect badges
-              and hope for the best.
+      <section className="border-t bg-slate-50">
+        <div className="container mx-auto px-4 py-16 md:px-6">
+          <div className="max-w-2xl space-y-6">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Ready to build something that actually works?</h2>
+            <p className="text-lg text-slate-600">
+              Start with our free tools and learning modules. No sales call required.
             </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/get-started">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-blue-100">
-                  Start the conversation
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  Ask a question
-                </Button>
-              </Link>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Link href="/get-started">
+                  Get started <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100">
+                <Link href="/contact">Talk to us</Link>
+              </Button>
             </div>
           </div>
         </div>
