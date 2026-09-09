@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight } from "lucide-react"
+import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight, Shield, Eye } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +15,8 @@ const iconMap: Record<string, ReactNode> = {
   Network: <Network className="h-8 w-8" />,
   Users: <Users className="h-8 w-8" />,
   LifeBuoy: <LifeBuoy className="h-8 w-8" />,
+  Shield: <Shield className="h-8 w-8" />,
+  Eye: <Eye className="h-8 w-8" />,
 }
 
 const difficultyColors: Record<string, string> = {
@@ -34,8 +36,9 @@ export default function LearnPage() {
               Cybersecurity lessons that actually teach you something
             </h1>
             <p className="text-lg text-slate-600">
-              Practical, no-nonsense lessons covering the security basics every team member should know.
-              No jargon-for-jargon&apos;s-sake. No scare tactics. Just clear, actionable knowledge.
+              {lessons.length} written lessons. Practical, no-nonsense security basics every
+              team member should know. No jargon-for-jargon&apos;s-sake. No scare tactics.
+              No invented catalog size.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>

@@ -2,7 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, LifeBuoy, AlertTriangle, CheckCircle, Shield, ClipboardList, Users, Clock, RefreshCw } from "lucide-react"
+import { ArrowLeft, LifeBuoy, CheckCircle, Shield, ClipboardList, Users, RefreshCw } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
 
 export default function IncidentResponseBasicsLesson() {
   return (
@@ -322,6 +323,8 @@ export default function IncidentResponseBasicsLesson() {
               </Card>
             </div>
           </div>
+
+          <HumorBreak tag="incident response" />
 
           {/* Quick Reference */}
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">

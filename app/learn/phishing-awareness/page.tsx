@@ -2,7 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, MailWarning, AlertTriangle, CheckCircle, ExternalLink, Search, Shield } from "lucide-react"
+import { ArrowLeft, MailWarning, AlertTriangle, CheckCircle, Search, Shield } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
 
 export default function PhishingAwarenessLesson() {
   return (
@@ -333,6 +334,8 @@ export default function PhishingAwarenessLesson() {
               </Card>
             </div>
           </div>
+
+          <HumorBreak tag="phishing" />
 
           {/* Quick Knowledge Check */}
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">

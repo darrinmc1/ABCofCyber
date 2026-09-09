@@ -100,6 +100,50 @@ export const humorBank: Record<string, HumorItem[]> = {
       setup: "Zero trust is great until you have to approve your own password reset.",
     },
   ],
+  insider: [
+    {
+      setup: "We trust our people.",
+      punchline: "Good. Also revoke the shared admin password when they leave. Trust is a management style. Access is a list.",
+    },
+    {
+      setup: "The insider threat briefing used the word 'disgruntled' twelve times.",
+      punchline: "Meanwhile the actual incident was a spreadsheet emailed to a spouse 'so I can finish it on the laptop that works.'",
+    },
+    {
+      setup: "Least privilege sounds unfriendly.",
+      punchline: "So does explaining to a customer why their data left in a ZIP called final-final-USE-THIS.",
+    },
+  ],
+  footprints: [
+    {
+      setup: "I Googled myself. It was fine.",
+      punchline: "Page one is manners. Page three is your old forum posts and a PDF your intern uploaded in 2019.",
+    },
+    {
+      setup: "Our staff directory is 'good for culture.'",
+      punchline: "It is also a mail-merge for whoever is pretending to be Finance this week.",
+    },
+  ],
+  anonymity: [
+    {
+      setup: "I have a VPN, so I am anonymous.",
+      punchline: "You logged into the same accounts. The VPN hid you from the coffee shop. It introduced you to a company that now sees all your traffic.",
+    },
+    {
+      setup: "Job posting: must know Salesforce, AWS, Okta, Slack, and the alarm code.",
+      punchline: "We are hiring. We are also publishing a shopping list.",
+    },
+  ],
+  "social engineering": [
+    {
+      setup: "They knew my manager's name, so it had to be real.",
+      punchline: "Your manager's name is on the website. That is not a background check. That is reading.",
+    },
+    {
+      setup: "I didn't want to be rude.",
+      punchline: "Rudeness is optional. Callbacks are not. Hang up. The real help desk will still be there.",
+    },
+  ],
   "incident response": [
     {
       setup: "Our incident response plan is a binder.",
