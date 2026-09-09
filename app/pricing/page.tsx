@@ -1,172 +1,186 @@
 import Link from "next/link"
-import { Check, X } from "lucide-react"
-import { JsonLd } from "@/components/json-ld"
-import PricingCards from "@/components/pricing-cards"
-import { EmailCapture } from "@/components/email-capture"
+import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { CHECKOUT_LIVE, PLANS, WAITLIST_HREF, WHATS_THE_PLAY_OFFER, pricingDocument } from "@/lib/pricing"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import Script from "next/script"
 
-const comparisonRows = [
-  { label: "Courses and lessons", values: [true, true, true] },
-  { label: "What's the play walkthroughs", values: ["1", "Unlimited", "Unlimited"] },
-  { label: "Interactive tools", values: ["Basic", true, true] },
-  { label: "Pro template packs", values: [false, true, true] },
-  { label: "Price locked at $5/mo", values: [false, true, false] },
-  { label: "Advanced features and AI tools", values: [false, false, true] },
-  { label: "New content priority", values: [false, false, true] },
-  { label: "Priority support", values: [false, false, true] },
+const plans = [
+  {
+    name: "Free",
+    price: "0",
+    priceCurrency: "USD",
+    description: "Get started with the basics of cybersecurity.",
+    features: [
+      "Access to core learning modules",
+      "Basic security frameworks overview",
+      "Community forum access",
+      "Monthly security newsletter",
+    ],
+    cta: "Get started free",
+    href: "/sign-up",
+    highlighted: false,
+  },
+  {
+    name: "Pro",
+    price: "29",
+    priceCurrency: "USD",
+    description: "For individuals serious about building security skills.",
+    features: [
+      "Everything in Free",
+      "Full access to all learning modules",
+      "Advanced framework deep-dives",
+      "AI-powered security assistant",
+      "Downloadable templates and checklists",
+      "Priority support",
+    ],
+    cta: "Start Pro",
+    href: "/sign-up?plan=pro",
+    highlighted: true,
+  },
+  {
+    name: "Team",
+    price: "99",
+    priceCurrency: "USD",
+    description: "For teams building a security culture together.",
+    features: [
+      "Everything in Pro",
+      "Up to 10 team members",
+      "Team progress dashboard",
+      "Custom learning paths",
+      "Dedicated account manager",
+      "Quarterly security reviews",
+    ],
+    cta: "Start Team trial",
+    href: "/sign-up?plan=team",
+    highlighted: false,
+  },
 ]
 
-const faqs = [
-  {
-    q: "Can I pay today?",
-    a: CHECKOUT_LIVE
-      ? "Yes. Paid plans use the same existing-subscription checkout as the rest of the site."
-      : "Not yet. Checkout is not live. Join the waitlist and we will email you when billing launches. Free lessons are open now.",
-  },
-  {
-    q: "What are the training plans?",
-    a: "Free ($0), Early Adopter ($5/month, rate locked), and Pro ($10/month when it launches). Those are the only training SKUs.",
-  },
-  {
-    q: "Is What's the play a separate product?",
-    a: `No. It is a layer on this site. Paid plans include unlimited walkthroughs. If it is billed as a dedicated seat, the listed price is $${WHATS_THE_PLAY_OFFER.priceUsd}/month.`,
-  },
-  {
-    q: "Do you sell 24/7 monitoring or vulnerability scanning retainers?",
-    a: "No. This site is cybersecurity training. Those managed-service packages are not for sale here.",
-  },
-]
-
-function CellValue({ value }: { value: boolean | string }) {
-  if (value === true) {
-    return <Check className="mx-auto h-4 w-4 text-blue-600" />
-  }
-  if (value === false) {
-    return <X className="mx-auto h-4 w-4 text-slate-300" />
-  }
-  return <span className="text-slate-700">{value}</span>
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "ABC of Cyber Pricing Plans",
+  "description": "Cybersecurity training and tools pricing plans for individuals and teams.",
+  "itemListElement": plans.map((plan, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Product",
+      "name": `ABC of Cyber ${plan.name} Plan`,
+      "description": plan.description,
+      "url": `https://abcofcyber.com/pricing`,
+      "brand": {
+        "@type": "Brand",
+        "name": "ABC of Cyber"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": plan.price,
+        "priceCurrency": plan.priceCurrency,
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": plan.price,
+          "priceCurrency": plan.priceCurrency,
+          "unitCode": "MON",
+          "billingDuration": 1,
+          "billingIncrement": 1
+        },
+        "availability": "https://schema.org/InStock",
+        "url": `https://abcofcyber.com${plan.href}`
+      }
+    }
+  }))
 }
 
 export default function PricingPage() {
   return (
     <main className="min-h-screen bg-white">
-      <JsonLd data={pricingDocument()} />
-
-      <section className="border-b bg-slate-50">
-        <div className="container mx-auto px-4 py-16 text-center md:px-6">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pricing</p>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+      <Script
+        id="schema-pricing"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingSchema) }}
+      />
+      <section className="container mx-auto px-4 py-16 md:px-6">
+        <div className="mx-auto max-w-3xl text-center space-y-4 mb-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pricing</p>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
             Simple, transparent pricing
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            One training price map: Free, Early Adopter $5/mo, and Pro $10/mo. What&apos;s the play is included on
-            paid plans{CHECKOUT_LIVE ? "" : " when billing launches"}, or ${WHATS_THE_PLAY_OFFER.priceUsd}/mo as a
-            dedicated seat.
+          <p className="text-lg leading-8 text-slate-600">
+            No hidden fees, no surprise invoices. Pick the plan that fits your team and get to work.
           </p>
         </div>
-      </section>
 
-      <section className="container mx-auto px-4 py-16 md:px-6">
-        <PricingCards />
-      </section>
-
-      <section className="container mx-auto px-4 pb-16 md:px-6">
-        <div className="overflow-hidden rounded-2xl border border-slate-200">
-          <div className="border-b border-slate-200 bg-slate-50 px-6 py-4">
-            <h2 className="text-lg font-bold text-slate-900">Feature comparison</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-slate-200">
-                  <th className="w-1/2 px-6 py-3 text-left font-semibold text-slate-700">Feature</th>
-                  {PLANS.map((plan) => (
-                    <th
-                      key={plan.id}
-                      className={`px-4 py-3 text-center font-semibold ${
-                        plan.highlighted ? "bg-blue-50 text-blue-700" : "text-slate-700"
-                      }`}
-                    >
-                      {plan.name}
-                    </th>
+        <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+          {plans.map((plan) => (
+            <Card
+              key={plan.name}
+              className={`flex flex-col ${
+                plan.highlighted
+                  ? "border-blue-600 shadow-lg ring-2 ring-blue-600"
+                  : "border-slate-200"
+              }`}
+            >
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <CardTitle className="text-xl font-bold text-slate-900">{plan.name}</CardTitle>
+                  {plan.highlighted && (
+                    <Badge className="bg-blue-600 text-white text-xs">Most popular</Badge>
+                  )}
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-4xl font-bold text-slate-900">${plan.price}</span>
+                  <span className="text-slate-500 text-sm">/month</span>
+                </div>
+                <CardDescription className="text-slate-600 mt-2">{plan.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1">
+                <ul className="space-y-3">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-700">
+                      <Check className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
+                      {feature}
+                    </li>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row, i) => (
-                  <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                    <td className="px-6 py-3 font-medium text-slate-700">{row.label}</td>
-                    {row.values.map((value, index) => {
-                      const plan = PLANS[index]
-                      return (
-                        <td
-                          key={plan.id}
-                          className={`px-4 py-3 text-center ${plan.highlighted ? "bg-blue-50" : ""}`}
-                        >
-                          <CellValue value={value} />
-                        </td>
-                      )
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  asChild
+                  className={`w-full ${
+                    plan.highlighted
+                      ? "bg-blue-600 hover:bg-blue-700 text-white"
+                      : "bg-slate-900 hover:bg-slate-800 text-white"
+                  }`}
+                >
+                  <Link href={plan.href}>{plan.cta}</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
-      </section>
 
-      <section className="border-t border-slate-200 bg-slate-50">
-        <div className="container mx-auto px-4 py-16 md:px-6">
-          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900">Frequently asked questions</h2>
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-            {faqs.map((faq) => (
-              <Card key={faq.q} className="rounded-xl border border-slate-200 bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <p className="mb-2 font-semibold text-slate-900">{faq.q}</p>
-                  <p className="text-sm leading-6 text-slate-600">{faq.a}</p>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="mt-16 max-w-2xl mx-auto text-center space-y-4">
+          <h2 className="text-2xl font-bold text-slate-900">Frequently asked questions</h2>
+          <div className="grid gap-6 text-left mt-8">
+            <div className="space-y-2">
+              <h3 className="font-semibold text-slate-900">Can I switch plans later?</h3>
+              <p className="text-slate-600 text-sm">Yes. You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-slate-900">Is there a free trial for paid plans?</h3>
+              <p className="text-slate-600 text-sm">Team plans include a 14-day free trial. No credit card required to start.</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-slate-900">What payment methods do you accept?</h3>
+              <p className="text-slate-600 text-sm">We accept all major credit cards and can arrange invoicing for annual Team plans.</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-slate-900">Do you offer discounts for nonprofits or education?</h3>
+              <p className="text-slate-600 text-sm">Yes. Contact us through the <Link href="/contact" className="text-blue-600 hover:underline">contact page</Link> and we will work something out.</p>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section id="waitlist" className="container mx-auto px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-3xl">
-          <EmailCapture
-            variant="hero"
-            theme="dark"
-            heading={CHECKOUT_LIVE ? "Choose a plan" : "Join the waitlist"}
-            subheading={
-              CHECKOUT_LIVE
-                ? "Paid plans use the same checkout as the rest of the site."
-                : "Checkout is not live. Leave your email and we will tell you when Early Adopter ($5/mo) and Pro ($10/mo) can be billed."
-            }
-            source="pricing-waitlist"
-            showName
-          />
-        </div>
-        <p className="mt-8 text-center text-xs text-slate-500">
-          Machine-readable:{" "}
-          <Link href="/pricing.json" className="text-blue-700 hover:underline">
-            /pricing.json
-          </Link>
-          {" · "}
-          <Link href="/llm.txt" className="text-blue-700 hover:underline">
-            /llm.txt
-          </Link>
-        </p>
-        <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
-          <Button asChild className="rounded-xl bg-blue-600 px-8 font-semibold text-white hover:bg-blue-700">
-            <Link href="/learn">Start for free</Link>
-          </Button>
-          <Button asChild variant="outline" className="rounded-xl border-slate-300 px-8 font-semibold text-slate-700 hover:bg-slate-50">
-            <Link href={CHECKOUT_LIVE ? "/contact" : WAITLIST_HREF}>
-              {CHECKOUT_LIVE ? "Talk to us" : "Waitlist details"}
-            </Link>
-          </Button>
         </div>
       </section>
     </main>
