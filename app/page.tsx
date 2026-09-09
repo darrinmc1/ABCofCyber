@@ -1,219 +1,192 @@
 import Link from "next/link"
+import { ArrowRight, Shield, BookOpen, Wrench, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import PricingCards from "@/components/pricing-cards"
-import { EmailCapture } from "@/components/email-capture"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import EmailCapture from "@/components/email-capture"
 import FeatureSection from "@/components/feature-section"
 import FrameworksSection from "@/components/frameworks-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import WhatsNew from "@/components/whats-new"
-import { JsonLd } from "@/components/json-ld"
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-  description:
-    "Cybersecurity training and platform for teams — practical controls, compliance mapping across NIST, ISO 27001, and CIS, and security awareness training without the scare tactics.",
-}
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-}
-
-
-const reassurancePoints = [
+const testimonials = [
   {
-    title: "No fake urgency",
-    description: "If something is critical, we say so. If it can wait until after lunch, we say that too.",
+    quote: "ABC of Cyber helped us go from zero security posture to a real program in weeks, not months. The clarity is unmatched.",
+    name: "Sarah Chen",
+    role: "Head of Engineering",
+    company: "Stackline"
   },
   {
-    title: "Less jargon, more decisions",
-    description: "Your team gets clear priorities instead of three pages of words like strategic enablement posture fabric.",
+    quote: "Finally, a resource that explains compliance frameworks without the jargon. Our whole team uses it as a reference.",
+    name: "Marcus Rivera",
+    role: "CTO",
+    company: "Vaultworks"
   },
   {
-    title: "Built for real companies",
-    description: "Works for businesses with auditors, legacy systems, and at least one printer that behaves like a threat actor.",
-  },
+    quote: "We cut our audit prep time in half after adopting the playbooks from ABC of Cyber. Incredible ROI.",
+    name: "Priya Nair",
+    role: "VP of Security",
+    company: "Meridian Health Tech"
+  }
 ]
 
-const faqs = [
-  {
-    question: "Do you help with compliance?",
-    answer: "Yes. NIST, ISO 27001, CIS, and the delicate art of turning technical work into auditor-friendly proof.",
-  },
-  {
-    question: "Can smaller teams use this?",
-    answer: "Absolutely. You do not need a twelve-person security department to deserve basic competence and fewer surprises.",
-  },
-  {
-    question: "Will you drown us in alerts?",
-    answer: "No. The platform is opinionated about noise because nobody improves security by ignoring 400 meaningless warnings.",
-  },
-  {
-    question: "Will it nag us about passwords?",
-    answer: "Only if you keep using your dog's name. We are pro-password manager and pro-MFA, in that order.",
-  },
-  {
-    question: "Is What's the play a new product?",
-    answer:
-      "No. It is a layer on this site: paste a suspicious scenario, get a walkthrough cited from existing lessons. Education only — not legal advice, not a chatbot.",
-  },
-]
-
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden py-12 text-white md:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
-        <div className="relative z-10 container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center space-y-6 text-center">
-            <div className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
-                Cyber security for teams allergic to nonsense
-              </p>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Cybersecurity Training
-              </h1>
-              <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
-                Serious protection. Slightly unhinged copy. Very little panic.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
-                <Link href="/learn">Start Learning</Link>
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto">
+            <Badge className="mb-6 bg-blue-500/20 text-blue-300 border-blue-500/30 hover:bg-blue-500/30">
+              Cybersecurity Made Simple
+            </Badge>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              The ABC of{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                Cyber Security
+              </span>
+            </h1>
+            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Your complete guide to understanding cybersecurity frameworks, compliance requirements, and best practices — without the complexity.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8" asChild>
+                <Link href="/frameworks">
+                  Explore Frameworks <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-blue-200 bg-transparent text-white hover:bg-white/10"
-              >
-                <Link href="#pricing">See pricing</Link>
+              <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8" asChild>
+                <Link href="/glossary">
+                  Browse Glossary
+                </Link>
               </Button>
             </div>
-            <p className="max-w-[680px] text-sm text-blue-200">
-              Built for security leads, compliance teams, and the one exhausted admin who keeps everything from
-              catching fire.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Product outcome first — What's New sits below the fold */}
-      <FeatureSection />
-
-      <section className="w-full border-y bg-slate-50 py-12 md:py-16">
-        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">One job, not a chatbot</p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What&apos;s the play</h2>
-            <p className="text-slate-600">
-              Paste an &ldquo;is this phishing?&rdquo; scenario. Get a plain-English walkthrough using the ABC
-              method, cited from the lessons already on this site. Education only. No sirens.
-            </p>
-          </div>
-          <Button asChild size="lg">
-            <Link href="/whats-the-play">Open the walkthrough</Link>
-          </Button>
-        </div>
-      </section>
-
-      <WhatsNew />
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
-          {reassurancePoints.map((point) => (
-            <Card key={point.title} className="border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">{point.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-6 text-slate-600">{point.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Frameworks Section */}
-      <FrameworksSection />
-
-      {/* Pricing Section */}
-      <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Training pricing</h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                One price map: Free, Early Adopter $5/mo, and Pro $10/mo. What&apos;s the play is included on paid
-                plans, or $29/mo as a dedicated seat.
-              </p>
+            {/* Testimonials */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+              {testimonials.map((t, i) => (
+                <div
+                  key={i}
+                  className="bg-white/5 border border-white/10 rounded-xl p-5 text-left backdrop-blur-sm hover:bg-white/8 transition-colors"
+                >
+                  <div className="flex gap-0.5 mb-3">
+                    {[...Array(5)].map((_, s) => (
+                      <Star key={s} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+                  <div>
+                    <p className="text-white font-semibold text-sm">{t.name}</p>
+                    <p className="text-slate-400 text-xs">{t.role}, {t.company}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <PricingCards />
           </div>
         </div>
       </section>
 
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Frequently asked, occasionally muttered</h2>
-            <p className="text-slate-600">
-              The practical questions usually arrive right after the phrase &ldquo;this actually looks useful.&rdquo;
-            </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {faqs.map((faq) => (
-              <Card key={faq.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-6 text-slate-600">{faq.answer}</p>
-                </CardContent>
-              </Card>
+      {/* Stats Section */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-50 border-b">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "50+", label: "Security Frameworks" },
+              { value: "500+", label: "Glossary Terms" },
+              { value: "100+", label: "Practical Tools" },
+              { value: "10k+", label: "Security Professionals" }
+            ].map((stat, i) => (
+              <div key={i}>
+                <div className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>
+                <div className="text-slate-600 text-sm">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Email Capture Section */}
-      <section className="w-full bg-gray-950 py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <EmailCapture
-            variant="hero"
-            theme="cyber"
-            heading="Join the Defense Force"
-            subheading="Weekly threat intel, framework guides you can actually use, and early access to new modules. No fluff, no fear-mongering — just useful stuff."
-            source="homepage-cta"
-            showName
-          />
+      {/* Features Section */}
+      <FeatureSection />
+
+      {/* Frameworks Section */}
+      <FrameworksSection />
+
+      {/* Email Capture */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Stay Ahead of Cyber Threats</h2>
+          <p className="text-slate-300 mb-8">
+            Get weekly insights on cybersecurity frameworks, compliance updates, and practical security tips delivered to your inbox.
+          </p>
+          <EmailCapture />
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-blue-900 text-white">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Ready to stop calling luck a strategy?
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
-                Start with a real plan, real controls, and reporting that does not read like it was assembled by a
-                malfunctioning printer.
-              </p>
-            </div>
-            <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-gray-200">
-              <Link href="/contact">Contact Us</Link>
-            </Button>
+      {/* Quick Access Cards */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Everything You Need</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              From foundational concepts to advanced frameworks, we have resources for every stage of your security journey.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="hover:shadow-lg transition-shadow border-slate-200">
+              <CardHeader>
+                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-blue-600" />
+                </div>
+                <CardTitle className="text-xl">Security Frameworks</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Comprehensive guides to NIST, ISO 27001, SOC 2, and more. Understand what each framework requires and how to implement it.
+                </p>
+                <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0" asChild>
+                  <Link href="/frameworks">
+                    Explore Frameworks <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-slate-200">
+              <CardHeader>
+                <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <BookOpen className="h-6 w-6 text-green-600" />
+                </div>
+                <CardTitle className="text-xl">Glossary</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Plain-English definitions for hundreds of cybersecurity terms. From zero-day exploits to zero-trust architecture.
+                </p>
+                <Button variant="ghost" className="text-green-600 hover:text-green-700 p-0" asChild>
+                  <Link href="/glossary">
+                    Browse Terms <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-slate-200">
+              <CardHeader>
+                <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <Wrench className="h-6 w-6 text-purple-600" />
+                </div>
+                <CardTitle className="text-xl">Tools & Resources</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Practical checklists, templates, and tools to help you implement security controls and pass compliance audits.
+                </p>
+                <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0" asChild>
+                  <Link href="/tools">
+                    View Tools <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
