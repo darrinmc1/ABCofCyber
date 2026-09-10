@@ -1,92 +1,184 @@
 import Link from "next/link"
-import { Check, X } from "lucide-react"
-import { JsonLd } from "@/components/json-ld"
-import PricingCards from "@/components/pricing-cards"
-import { EmailCapture } from "@/components/email-capture"
+import { Check, X, Minus } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { CHECKOUT_LIVE, PLANS, WAITLIST_HREF, WHATS_THE_PLAY_OFFER, pricingDocument } from "@/lib/pricing"
+import { Badge } from "@/components/ui/badge"
 
-const comparisonRows = [
-  { label: "Courses and lessons", values: [true, true, true] },
-  { label: "What's the play walkthroughs", values: ["1", "Unlimited", "Unlimited"] },
-  { label: "Interactive tools", values: ["Basic", true, true] },
-  { label: "Pro template packs", values: [false, true, true] },
-  { label: "Price locked at $5/mo", values: [false, true, false] },
-  { label: "Advanced features and AI tools", values: [false, false, true] },
-  { label: "New content priority", values: [false, false, true] },
-  { label: "Priority support", values: [false, false, true] },
+const plans = [
+  {
+    name: "Free",
+    price: "$0",
+    period: "forever",
+    description: "For individuals exploring cybersecurity basics.",
+    cta: "Get Started",
+    ctaHref: "/sign-up",
+    highlight: false,
+    badge: null,
+  },
+  {
+    name: "Pro",
+    price: "$19",
+    period: "per month",
+    description: "For professionals who need deeper tools and guidance.",
+    cta: "Start Free Trial",
+    ctaHref: "/sign-up",
+    highlight: true,
+    badge: "Most Popular",
+  },
+  {
+    name: "Team",
+    price: "$49",
+    period: "per month",
+    description: "For small teams building a security program together.",
+    cta: "Contact Sales",
+    ctaHref: "/contact",
+    highlight: false,
+    badge: null,
+  },
 ]
 
-const faqs = [
+type FeatureValue = boolean | string
+
+const featureCategories: {
+  category: string
+  features: { label: string; free: FeatureValue; pro: FeatureValue; team: FeatureValue }[]
+}[] = [
   {
-    q: "Can I pay today?",
-    a: CHECKOUT_LIVE
-      ? "Yes. Paid plans use the same existing-subscription checkout as the rest of the site."
-      : "Not yet. Checkout is not live. Join the waitlist and we will email you when billing launches. Free lessons are open now.",
+    category: "Learning & Content",
+    features: [
+      { label: "Core security lessons", free: true, pro: true, team: true },
+      { label: "Beginner learning paths", free: true, pro: true, team: true },
+      { label: "Advanced learning paths", free: false, pro: true, team: true },
+      { label: "Downloadable resources & templates", free: false, pro: true, team: true },
+      { label: "Framework deep-dives (NIST, ISO, CIS)", free: "Limited", pro: true, team: true },
+    ],
   },
   {
-    q: "What are the training plans?",
-    a: "Free ($0), Early Adopter ($5/month, rate locked), and Pro ($10/month when it launches). Those are the only training SKUs.",
+    category: "Tools & Assessments",
+    features: [
+      { label: "Security posture self-assessment", free: true, pro: true, team: true },
+      { label: "AI-powered scenario tool (What's the Play)", free: "3/month", pro: "Unlimited", team: "Unlimited" },
+      { label: "Risk management toolkit", free: false, pro: true, team: true },
+      { label: "Incident response plan builder", free: false, pro: true, team: true },
+      { label: "Custom policy generator", free: false, pro: false, team: true },
+    ],
   },
   {
-    q: "Is What's the play a separate product?",
-    a: `No. It is a layer on this site. Paid plans include unlimited walkthroughs. If it is billed as a dedicated seat, the listed price is $${WHATS_THE_PLAY_OFFER.priceUsd}/month.`,
+    category: "Dashboard & Tracking",
+    features: [
+      { label: "Personal progress dashboard", free: false, pro: true, team: true },
+      { label: "Completion certificates", free: false, pro: true, team: true },
+      { label: "Team progress tracking", free: false, pro: false, team: true },
+      { label: "Admin management console", free: false, pro: false, team: true },
+    ],
   },
   {
-    q: "Do you sell 24/7 monitoring or vulnerability scanning retainers?",
-    a: "No. This site is cybersecurity training. Those managed-service packages are not for sale here.",
+    category: "Support",
+    features: [
+      { label: "Community access", free: true, pro: true, team: true },
+      { label: "Email support", free: false, pro: true, team: true },
+      { label: "Priority support", free: false, pro: false, team: true },
+      { label: "Onboarding call", free: false, pro: false, team: true },
+    ],
   },
 ]
 
-function CellValue({ value }: { value: boolean | string }) {
+function FeatureCell({ value }: { value: FeatureValue }) {
   if (value === true) {
-    return <Check className="mx-auto h-4 w-4 text-blue-600" />
+    return (
+      <span className="flex justify-center">
+        <Check className="h-5 w-5 text-green-600" aria-label="Included" />
+      </span>
+    )
   }
   if (value === false) {
-    return <X className="mx-auto h-4 w-4 text-slate-300" />
+    return (
+      <span className="flex justify-center">
+        <X className="h-5 w-5 text-slate-300" aria-label="Not included" />
+      </span>
+    )
   }
-  return <span className="text-slate-700">{value}</span>
+  return (
+    <span className="flex justify-center text-xs font-medium text-blue-700 bg-blue-50 rounded px-2 py-0.5">
+      {value}
+    </span>
+  )
 }
 
 export default function PricingPage() {
   return (
     <main className="min-h-screen bg-white">
-      <JsonLd data={pricingDocument()} />
-
+      {/* Hero */}
       <section className="border-b bg-slate-50">
-        <div className="container mx-auto px-4 py-16 text-center md:px-6">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pricing</p>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+        <div className="container mx-auto px-4 py-16 md:px-6 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">Pricing</p>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl mb-4">
             Simple, transparent pricing
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            One training price map: Free, Early Adopter $5/mo, and Pro $10/mo. What&apos;s the play is included on
-            paid plans{CHECKOUT_LIVE ? "" : " when billing launches"}, or ${WHATS_THE_PLAY_OFFER.priceUsd}/mo as a
-            dedicated seat.
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            No hidden fees. No surprise add-ons. Pick the plan that fits where you are today and upgrade when you need more.
           </p>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16 md:px-6">
-        <PricingCards />
+      {/* Plan Cards */}
+      <section className="container mx-auto px-4 py-12 md:px-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`relative rounded-xl border p-8 flex flex-col ${
+                plan.highlight
+                  ? "border-blue-600 bg-blue-50 shadow-lg"
+                  : "border-slate-200 bg-white"
+              }`}
+            >
+              {plan.badge && (
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs px-3 py-1">
+                  {plan.badge}
+                </Badge>
+              )}
+              <div className="mb-6">
+                <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-1">{plan.name}</p>
+                <div className="flex items-end gap-1 mb-2">
+                  <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                  <span className="text-slate-500 text-sm mb-1">{plan.period}</span>
+                </div>
+                <p className="text-sm text-slate-600">{plan.description}</p>
+              </div>
+              <div className="mt-auto">
+                <Link href={plan.ctaHref}>
+                  <Button
+                    className={`w-full ${
+                      plan.highlight
+                        ? "bg-blue-600 hover:bg-blue-700 text-white"
+                        : "bg-slate-900 hover:bg-slate-700 text-white"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="container mx-auto px-4 pb-16 md:px-6">
-        <div className="overflow-hidden rounded-2xl border border-slate-200">
-          <div className="border-b border-slate-200 bg-slate-50 px-6 py-4">
-            <h2 className="text-lg font-bold text-slate-900">Feature comparison</h2>
-          </div>
-          <div className="overflow-x-auto">
+      {/* Comparison Table */}
+      <section className="container mx-auto px-4 pb-20 md:px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2 text-center">Compare all features</h2>
+          <p className="text-slate-500 text-center mb-10 text-sm">See exactly what you get at each tier before you commit.</p>
+
+          <div className="overflow-x-auto rounded-xl border border-slate-200">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-200">
-                  <th className="w-1/2 px-6 py-3 text-left font-semibold text-slate-700">Feature</th>
-                  {PLANS.map((plan) => (
+                <tr className="border-b border-slate-200 bg-slate-50">
+                  <th className="text-left px-6 py-4 font-semibold text-slate-700 w-1/2">Feature</th>
+                  {plans.map((plan) => (
                     <th
-                      key={plan.id}
-                      className={`px-4 py-3 text-center font-semibold ${
-                        plan.highlighted ? "bg-blue-50 text-blue-700" : "text-slate-700"
+                      key={plan.name}
+                      className={`px-4 py-4 text-center font-semibold ${
+                        plan.highlight ? "text-blue-700" : "text-slate-700"
                       }`}
                     >
                       {plan.name}
@@ -95,78 +187,56 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                {comparisonRows.map((row, i) => (
-                  <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                    <td className="px-6 py-3 font-medium text-slate-700">{row.label}</td>
-                    {row.values.map((value, index) => {
-                      const plan = PLANS[index]
-                      return (
-                        <td
-                          key={plan.id}
-                          className={`px-4 py-3 text-center ${plan.highlighted ? "bg-blue-50" : ""}`}
-                        >
-                          <CellValue value={value} />
+                {featureCategories.map((cat, catIdx) => (
+                  <>
+                    <tr key={`cat-${catIdx}`} className="bg-slate-50 border-t border-slate-200">
+                      <td
+                        colSpan={4}
+                        className="px-6 py-3 text-xs font-bold uppercase tracking-widest text-slate-500"
+                      >
+                        {cat.category}
+                      </td>
+                    </tr>
+                    {cat.features.map((feature, fIdx) => (
+                      <tr
+                        key={`feat-${catIdx}-${fIdx}`}
+                        className={`border-t border-slate-100 ${
+                          fIdx % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+                        }`}
+                      >
+                        <td className="px-6 py-3 text-slate-700">{feature.label}</td>
+                        <td className="px-4 py-3 text-center">
+                          <FeatureCell value={feature.free} />
                         </td>
-                      )
-                    })}
-                  </tr>
+                        <td className="px-4 py-3 text-center bg-blue-50/40">
+                          <FeatureCell value={feature.pro} />
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <FeatureCell value={feature.team} />
+                        </td>
+                      </tr>
+                    ))}
+                  </>
                 ))}
               </tbody>
             </table>
           </div>
-        </div>
-      </section>
 
-      <section className="border-t border-slate-200 bg-slate-50">
-        <div className="container mx-auto px-4 py-16 md:px-6">
-          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900">Frequently asked questions</h2>
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-            {faqs.map((faq) => (
-              <Card key={faq.q} className="rounded-xl border border-slate-200 bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <p className="mb-2 font-semibold text-slate-900">{faq.q}</p>
-                  <p className="text-sm leading-6 text-slate-600">{faq.a}</p>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Bottom CTA */}
+          <div className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-8 text-center">
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Not sure which plan is right for you?</h3>
+            <p className="text-slate-600 mb-6 text-sm max-w-xl mx-auto">
+              Start free and upgrade at any time. If you have questions about Team pricing or need a custom arrangement, we're happy to talk.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/sign-up">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">Start for free</Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" className="px-6">Talk to us</Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section id="waitlist" className="container mx-auto px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-3xl">
-          <EmailCapture
-            variant="hero"
-            theme="dark"
-            heading={CHECKOUT_LIVE ? "Choose a plan" : "Join the waitlist"}
-            subheading={
-              CHECKOUT_LIVE
-                ? "Paid plans use the same checkout as the rest of the site."
-                : "Checkout is not live. Leave your email and we will tell you when Early Adopter ($5/mo) and Pro ($10/mo) can be billed."
-            }
-            source="pricing-waitlist"
-            showName
-          />
-        </div>
-        <p className="mt-8 text-center text-xs text-slate-500">
-          Machine-readable:{" "}
-          <Link href="/pricing.json" className="text-blue-700 hover:underline">
-            /pricing.json
-          </Link>
-          {" · "}
-          <Link href="/llm.txt" className="text-blue-700 hover:underline">
-            /llm.txt
-          </Link>
-        </p>
-        <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
-          <Button asChild className="rounded-xl bg-blue-600 px-8 font-semibold text-white hover:bg-blue-700">
-            <Link href="/learn">Start for free</Link>
-          </Button>
-          <Button asChild variant="outline" className="rounded-xl border-slate-300 px-8 font-semibold text-slate-700 hover:bg-slate-50">
-            <Link href={CHECKOUT_LIVE ? "/contact" : WAITLIST_HREF}>
-              {CHECKOUT_LIVE ? "Talk to us" : "Waitlist details"}
-            </Link>
-          </Button>
         </div>
       </section>
     </main>
