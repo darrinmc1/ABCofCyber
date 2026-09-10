@@ -1,84 +1,140 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs"
+import { Inter } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/navbar"
-import { Toaster } from "@/components/ui/toaster"
-import { FeedbackWidget } from "@/components/feedback-widget"
-import { WaitlistPopup } from "@/components/waitlist-popup"
+import { ClerkProvider } from "@clerk/nextjs"
+import { ThemeProvider } from "next-themes"
+import Script from "next/script"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ABC of Cyber | Security Without the Scare Tactics",
-  description: "A cyber-security platform with serious controls, sensible dashboards, and copy that does not read like it was approved by a committee of fax machines.",
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: { url: "/favicon.svg", type: "image/svg+xml" },
+  title: "ABC of Cyber | Practical Cybersecurity for Teams",
+  description: "ABC of Cyber helps teams build practical cybersecurity programs without the jargon. Learn frameworks, tools, and best practices that actually work.",
+  metadataBase: new URL("https://abcofcyber.com"),
+  openGraph: {
+    title: "ABC of Cyber | Practical Cybersecurity for Teams",
+    description: "ABC of Cyber helps teams build practical cybersecurity programs without the jargon.",
+    url: "https://abcofcyber.com",
+    siteName: "ABC of Cyber",
+    type: "website",
   },
 }
 
-const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ABC of Cyber",
+  "url": "https://abcofcyber.com",
+  "logo": "https://abcofcyber.com/logo.png",
+  "description": "ABC of Cyber helps teams build practical cybersecurity programs without the jargon. Learn frameworks, tools, and best practices that actually work.",
+  "sameAs": [
+    "https://twitter.com/abcofcyber",
+    "https://linkedin.com/company/abcofcyber"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://abcofcyber.com/contact"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free Plan",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Access core cybersecurity learning resources and tools at no cost."
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Plan",
+      "price": "29",
+      "priceCurrency": "USD",
+      "description": "Full access to all frameworks, tools, walkthroughs, and premium content."
+    }
+  ]
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is ABC of Cyber?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ABC of Cyber is a practical cybersecurity platform that helps teams and individuals build real security programs without the jargon. We provide frameworks, tools, lessons, and walkthroughs grounded in evidence and designed for everyday use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is ABC of Cyber for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ABC of Cyber is built for security practitioners, small business owners, IT teams, and anyone who wants to understand and improve their cybersecurity posture without wading through dense compliance documents or expensive consultants."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is ABC of Cyber free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, ABC of Cyber offers a free plan that includes access to core learning resources and tools. A Pro plan is also available for full access to all frameworks, walkthroughs, and premium content."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What cybersecurity frameworks does ABC of Cyber cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ABC of Cyber covers major cybersecurity frameworks including NIST CSF, ISO 27001, CIS Controls, Incident Response, Risk Management, and Threat Monitoring, with practical guidance on implementing each."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is ABC of Cyber different from other cybersecurity resources?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ABC of Cyber focuses on practical, actionable security over compliance theater. Our content is written by practitioners who prioritize clarity over jargon, evidence over assumptions, and progress over perfection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does ABC of Cyber offer tools for security assessments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, ABC of Cyber provides a suite of security tools including walkthroughs, scenario-based exercises like What's the Play, and downloadable resources to help teams assess and improve their security posture."
+      }
+    }
+  ]
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
-  const chrome = (
-    <>
-      {clerkEnabled && (
-        <header className="flex justify-end items-center gap-3 px-4 py-2 border-b bg-slate-50 text-sm">
-          <Show when="signed-out">
-            <SignInButton />
-            <SignUpButton />
-          </Show>
-          <Show when="signed-in">
-            <UserButton />
-          </Show>
-        </header>
-      )}
-      <Navbar />
-      {children}
-      <footer className="border-t border-gray-200 bg-gray-50 mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <Link href="/terms" className="text-gray-600 hover:text-blue-700">Terms</Link>
-            <Link href="/privacy" className="text-gray-600 hover:text-blue-700">Privacy</Link>
-            <Link href="/cookies" className="text-gray-600 hover:text-blue-700">Cookies</Link>
-            <Link href="/about" className="text-gray-600 hover:text-blue-700">About</Link>
-            <Link href="/whats-the-play" className="text-gray-600 hover:text-blue-700">What&apos;s the play</Link>
-            <Link href="/pricing" className="text-gray-600 hover:text-blue-700">Pricing</Link>
-            <Link href="/contact" className="text-gray-600 hover:text-blue-700">Contact</Link>
-            <Link href="/llm.txt" className="text-gray-600 hover:text-blue-700">llm.txt</Link>
-          </div>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3 text-xs text-slate-500">
-            <span className="font-semibold text-slate-700 mr-1">Empire-HQ:</span>
-            <a href="https://freelancepro.com" className="hover:text-blue-600">FreelancePro</a>
-            <a href="https://moneymastery.com" className="hover:text-blue-600">Money Mastery</a>
-            <a href="https://aiforsmb.com" className="hover:text-blue-600">AI for SMB</a>
-            <a href="https://devops101.com" className="hover:text-blue-600">DevOps 101</a>
-            <a href="https://landscapedesign.com" className="hover:text-blue-600">Landscape Design</a>
-            <a href="https://pilatesflow.com" className="hover:text-blue-600">PilatesFlow</a>
-            <a href="https://osint101.com" className="hover:text-blue-600">OSINT 101</a>
-            <a href="https://peelboss.com" className="hover:text-blue-600">Peel Boss</a>
-            <a href="https://ticu.tv" className="hover:text-blue-600">TICU.TV</a>
-            <a href="https://theintelanalystacademy.com" className="hover:text-blue-600">Intel Academy</a>
-          </div>
-          <p className="text-center text-gray-500 text-xs mt-4">
-            &copy; {new Date().getFullYear()} ABC of Cyber — An Empire-HQ Portfolio Project.
-          </p>
-        </div>
-      </footer>
-      <Toaster />
-      <FeedbackWidget />
-      <WaitlistPopup />
-    </>
-  )
-
+}) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {clerkEnabled ? <ClerkProvider>{chrome}</ClerkProvider> : chrome}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <Script
+            id="organization-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
+          <Script
+            id="faq-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+        </head>
+        <body className={inter.className}>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
