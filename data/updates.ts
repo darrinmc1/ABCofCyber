@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur-new-2026-09-14",
+    "title": "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
+    "description": "New lesson: Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.",
+    "date": "2026-09-14",
+    "kind": "new",
+    "href": "/learn/the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur"
+  },
+  {
     "id": "the-invisible-network-securing-your-smart-homes-iot-ecosystem-new-2026-09-08",
     "title": "The Invisible Network: Securing Your Smart Home's IoT Ecosystem",
     "description": "New lesson: Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home's IoT ecosystem.",
