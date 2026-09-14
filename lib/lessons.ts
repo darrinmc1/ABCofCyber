@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
+    slug: "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur",
+    icon: "Eye",
+    summary: "Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "15 min",
+    topics: ["decentralized identity","blockchain","self-sovereign identity","cybersecurity","privacy","digital identity"],
+  },
+  {
     title: "The Invisible Network: Securing Your Smart Home's IoT Ecosystem",
     slug: "the-invisible-network-securing-your-smart-homes-iot-ecosystem",
     icon: "Network",
