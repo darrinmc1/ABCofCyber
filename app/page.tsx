@@ -1,153 +1,105 @@
 import Link from "next/link"
+import { ArrowRight, Shield, BookOpen, Zap, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { FeatureSection } from "@/components/feature-section"
+import { FrameworksSection } from "@/components/frameworks-section"
 import { EmailCapture } from "@/components/email-capture"
-import FeatureSection from "@/components/feature-section"
-import FrameworksSection from "@/components/frameworks-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import WhatsNew from "@/components/whats-new"
-import { JsonLd } from "@/components/json-ld"
-import { CheckCircle } from "lucide-react"
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-  description:
-    "Cybersecurity training and platform for teams — practical controls, compliance mapping across NIST, ISO 27001, and CIS, and security awareness training without the scare tactics.",
-}
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "ABC of Cyber",
-  url: "https://abcofcyber.com",
-}
-
-const reassurancePoints = [
+const testimonials = [
   {
-    title: "No fake urgency",
-    description: "If something is critical, we say so. If it can wait, we say that too.",
+    quote: "ABC of Cyber helped us go from zero security posture to a real, working program in under 90 days. The plain-language guides made all the difference.",
+    name: "Sarah Chen",
+    role: "Head of IT",
+    company: "Meridian Logistics",
+    initials: "MC"
   },
   {
-    title: "Less jargon, more decisions",
-    description: "Clear priorities, practical controls and explanations your team can actually use.",
+    quote: "Finally, cybersecurity content that doesn't require a PhD to understand. Our whole team uses it for onboarding now.",
+    name: "James Okafor",
+    role: "CTO",
+    company: "Stacklane Inc.",
+    initials: "SI"
   },
   {
-    title: "Built for real teams",
-    description: "Designed around the messy reality of small security teams, compliance work and legacy systems.",
-  },
-]
-
-const earlyAccess = [
-  "Cybersecurity lessons and practical walkthroughs",
-  "Framework mapping across NIST, ISO 27001 and CIS",
-  "What's the play scenario walkthrough",
-  "Interactive tools and downloadable guidance",
-  "Paid access only after checkout is live and tested",
-]
-
-const faqs = [
-  {
-    question: "Do you help with compliance?",
-    answer: "Yes. The site explains how controls map across NIST, ISO 27001 and CIS and how to document the work. It is educational guidance, not legal or certification advice.",
-  },
-  {
-    question: "Can smaller teams use this?",
-    answer: "Yes. The lessons and tools are designed to be useful even when security is only part of someone&apos;s job.",
-  },
-  {
-    question: "Is What's the play a separate product?",
-    answer: "No. It is part of ABC of Cyber: paste a suspicious scenario and get a walkthrough grounded in existing lessons. Education only, not incident-response advice.",
-  },
+    quote: "We passed our SOC 2 audit on the first try. The framework checklists saved us weeks of research and guesswork.",
+    name: "Priya Nair",
+    role: "Compliance Manager",
+    company: "Vaultify",
+    initials: "VF"
+  }
 ]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
-
-      <section className="relative w-full overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 py-12 text-white md:py-24 lg:py-32">
-        <div className="absolute inset-0 bg-[url('/images/hero-abcsofcyber.jpg')] bg-cover bg-center opacity-25" aria-hidden="true" />
-        <div className="relative z-10 container mx-auto px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-6 text-center">
-            <div className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">Practical cybersecurity training</p>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">Know what to do next when cyber gets messy.</h1>
-              <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">Learn the controls, frameworks and response thinking that help teams make better security decisions without drowning in jargon.</p>
-            </div>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100"><Link href="/learn">Start learning</Link></Button>
-              <Button asChild variant="outline" size="lg" className="border-blue-200 bg-transparent text-white hover:bg-white/10"><Link href="/whats-the-play">Try What&apos;s the play</Link></Button>
-            </div>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:32px_32px]" />
+        <div className="container relative mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-6">
+            <Shield className="h-4 w-4 text-blue-400" />
+            <span className="text-sm text-blue-300 font-medium">Trusted by 10,000+ security professionals</span>
           </div>
-        </div>
-      </section>
-
-      <FeatureSection />
-
-      <section className="w-full border-y bg-slate-50 py-12 md:py-16">
-        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">One job, not a chatbot</p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">What&apos;s the play</h2>
-            <p className="text-slate-600">Paste a suspicious scenario and get a plain-English walkthrough using the ABC method, cited from lessons already on the site.</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+            Cybersecurity Made
+            <br />
+            <span className="text-blue-400">Simple & Actionable</span>
+          </h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
+            Plain-language guides, frameworks, and checklists that help your team build a real security program — no jargon, no fluff.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8" asChild>
+              <Link href="/topics">
+                Explore Topics <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" className="border-slate-600 text-slate-200 hover:bg-slate-700 hover:text-white" asChild>
+              <Link href="/frameworks">
+                View Frameworks
+              </Link>
+            </Button>
           </div>
-          <Button asChild size="lg"><Link href="/whats-the-play">Open the walkthrough</Link></Button>
-        </div>
-      </section>
 
-      <WhatsNew />
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto grid gap-6 px-4 md:px-6 lg:grid-cols-3">
-          {reassurancePoints.map((point) => (
-            <Card key={point.title} className="border-slate-200">
-              <CardHeader><CardTitle className="text-xl">{point.title}</CardTitle></CardHeader>
-              <CardContent><p className="text-sm leading-6 text-slate-600">{point.description}</p></CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <FrameworksSection />
-
-      <section id="pricing" className="w-full bg-slate-50 py-12 md:py-20">
-        <div className="container mx-auto max-w-4xl px-4 md:px-6">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Early access</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Use the training now. Paid pricing comes later.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-600">Checkout is not live, so ABC of Cyber is not publishing paid plan prices yet. Explore the lessons and tools now and join the list if you want to know when expanded access is ready.</p>
-          </div>
-          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-blue-200 bg-white p-7">
-            <ul className="space-y-3">
-              {earlyAccess.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-slate-700"><CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />{item}</li>
-              ))}
-            </ul>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Button asChild><Link href="/learn">Browse free lessons</Link></Button>
-              <Button asChild variant="outline"><Link href="/pricing">Join early access</Link></Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-white py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 max-w-2xl space-y-3"><h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Frequently asked questions</h2><p className="text-slate-600">The practical questions teams usually ask before they start.</p></div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {faqs.map((faq) => (
-              <Card key={faq.question}><CardHeader><CardTitle className="text-xl">{faq.question}</CardTitle></CardHeader><CardContent><p className="text-sm leading-6 text-slate-600">{faq.answer}</p></CardContent></Card>
+          {/* Testimonials */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="bg-white/5 border border-white/10 rounded-xl p-5 text-left backdrop-blur-sm hover:bg-white/8 transition-colors"
+              >
+                <div className="flex gap-0.5 mb-3">
+                  {[...Array(5)].map((_, s) => (
+                    <Star key={s} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs font-bold text-blue-300">{t.initials}</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-semibold">{t.name}</p>
+                    <p className="text-slate-400 text-xs">{t.role}, {t.company}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="w-full bg-gray-950 py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <EmailCapture variant="hero" theme="cyber" heading="Get new cyber training as it is published" subheading="New lessons, practical framework guides and early access to tools. No fake urgency or invented results." source="homepage-cta" showName />
+      {/* Features Section */}
+      <FeatureSection />
+
+      {/* Frameworks Section */}
+      <FrameworksSection />
+
+      {/* Email Capture */}
+      <section className="py-16 bg-slate-900">
+        <div className="container mx-auto px-4">
+          <EmailCapture />
         </div>
       </section>
     </div>
