@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Algorithmic Gatekeepers: How AI is Shaping Our Digital Access and Security",
+    slug: "the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security",
+    icon: "KeyRound",
+    summary: "Explore the growing influence of Artificial Intelligence in managing access to online services, personal data, and digital resources, and understand the critical security implications.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "12 min",
+    topics: ["artificial intelligence","cybersecurity","digital access","ai ethics","data privacy","authentication"],
+  },
+  {
     title: "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
     slug: "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur",
     icon: "Eye",
