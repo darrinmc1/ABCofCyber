@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security-new-2026-09-21",
+    "title": "The Algorithmic Gatekeepers: How AI is Shaping Our Digital Access and Security",
+    "description": "New lesson: Explore the growing influence of Artificial Intelligence in managing access to online services, personal data, and digital resources, and understand the critical security implications.",
+    "date": "2026-09-21",
+    "kind": "new",
+    "href": "/learn/the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security"
+  },
+  {
     "id": "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur-new-2026-09-14",
     "title": "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
     "description": "New lesson: Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.",
