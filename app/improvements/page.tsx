@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Construction, ArrowLeft } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
+import { MerchantOfRecordDisclosure } from "@/components/merchant-of-record-disclosure"
 
 export default function ImprovementsPage() {
   return (
@@ -26,6 +27,7 @@ export default function ImprovementsPage() {
               subheading="Same planned SKUs as /pricing. No new packages, and no checkout until billing is live."
               source="improvements-waitlist"
             />
+            <MerchantOfRecordDisclosure className="mt-4 text-center" />
           </div>
           <div className="flex items-center justify-center gap-4">
             <Link href="/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
