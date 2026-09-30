@@ -1,27 +1,302 @@
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield } from "lucide-react"
+import { ArrowLeft, Shield, CheckCircle, AlertTriangle, KeyRound, Laptop, Network } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
+import { LessonAside } from "@/components/lesson-aside"
 
 export default function ZeroTrustArchitectureForSmallBusinessesLesson() {
   return (
     <main className="min-h-screen bg-white">
       <section className="border-b bg-slate-50">
         <div className="container mx-auto px-4 py-8">
-          <Link href="/learn" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"><span className="mr-2">←</span> Back to Lessons</Link>
+          <Link
+            href="/learn"
+            className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Lessons
+          </Link>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-100"><Shield className="h-6 w-6 text-blue-700" /></div>
+              <div className="p-2 rounded-lg bg-blue-100">
+                <Shield className="h-6 w-6 text-blue-700" />
+              </div>
               <Badge className="bg-green-100 text-green-700">Beginner</Badge>
-              <Badge variant="outline">15 min</Badge>
+              <Badge variant="outline">18 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">Zero Trust Architecture for Small Businesses: What It Is and How to Start</h1>
-            <p className="text-lg text-slate-600 mb-6">An introductory guide to Zero Trust Architecture (ZTA) specifically tailored for small businesses, explaining its core principles and providing actionable steps for implementation.</p>
-            <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">
+              Zero Trust Architecture for Small Businesses: What It Is and How to Start
+            </h1>
+            <p className="text-lg text-slate-600 mb-6">
+              Never trust, always verify is a habit, not a SKU. This lesson translates Zero
+              Trust into MFA, least privilege, and assume-breach moves a small team can make
+              without a platform bake-off.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["zero trust", "MFA", "least privilege", "small business", "assume breach"].map((t) => (
+                <span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto prose prose-slate max-w-none space-y-6 text-base leading-relaxed text-slate-700" dangerouslySetInnerHTML={{ __html: "<h2 className=\"text-xl font-bold mt-8 mb-4\">Understanding Zero Trust Architecture for Small Businesses</h2>\n<p>In today's increasingly digital landscape, small businesses are often perceived as easier targets by cybercriminals. Traditional security models, which often rely on perimeter defenses, can be insufficient against sophisticated threats. This is where Zero Trust Architecture (ZTA) comes in. Unlike traditional security, which assumes everything inside the network perimeter can be trusted, Zero Trust operates on the principle of 'never trust, always verify.'</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">What is Zero Trust Architecture?</h3>\n<p>Zero Trust is a security framework that requires all users, whether inside or outside the organization's network, to be authenticated, authorized, and continuously validated before being granted access to applications and data. It's not a single product, but rather a strategic approach to cybersecurity that shifts defenses from static, network-based perimeters to focus on users, assets, and resources.</p>\n<p>The core tenets of Zero Trust include:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Verify Explicitly:</strong> Always authenticate and authorize based on all available data points, including user identity, location, device health, service or workload, data classification, and anomalies.</li><li><strong>Use Least Privilege Access:</strong> Limit user access with just-in-time and just-enough-access (JIT/JEA), risk-based adaptive policies, and data protection to secure both data and productivity.</li><li><strong>Assume Breach:</strong> Minimize the blast radius for breaches and prevent lateral movement by segmenting access by network, user, devices, and application. Verify all sessions are encrypted end-to-end.</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Why is Zero Trust Important for Small Businesses?</h3>\n<p>Small businesses often have limited IT resources and budgets, making them vulnerable. A breach can be devastating, leading to financial loss, reputational damage, and potential business closure. ZTA offers several benefits:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Enhanced Security:</strong> By assuming no implicit trust, ZTA significantly reduces the attack surface and the risk of unauthorized access.</li><li><strong>Improved Data Protection:</strong> Granular access controls ensure that sensitive data is only accessible to authorized personnel.</li><li><strong>Remote Work Enablement:</strong> As more employees work remotely, ZTA provides a secure way to grant access regardless of location.</li><li><strong>Compliance:</strong> Many regulatory frameworks are moving towards principles aligned with Zero Trust, helping businesses meet compliance requirements.</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">How Small Businesses Can Start with Zero Trust</h3>\n<p>Implementing a full-scale Zero Trust model can seem daunting for small businesses. However, it can be approached incrementally. Here are practical steps:</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Identify Your Protect Surface:</strong> Determine what critical data, applications, and services you need to protect. This is the foundation of your ZTA strategy.</li><li><strong>Map Transaction Flows:</strong> Understand how users and devices access your critical resources. This helps in defining access policies.</li><li><strong>Architect Your Zero Trust Environment:</strong> Start with foundational elements.</li></ol>\n<p>    *   <strong>Strong Identity Management:</strong> Implement multi-factor authentication (MFA) for all users. Use a centralized identity provider if possible. Ensure strong password policies are enforced.</p>\n<p>    *   <strong>Device Security:</strong> Ensure all devices accessing your network are healthy and compliant. This might involve endpoint detection and response (EDR) tools or basic device management.</p>\n<p>    *   <strong>Network Segmentation:</strong> Even simple segmentation, like separating guest Wi-Fi from your business network, can be a starting point. As you grow, consider micro-segmentation for critical applications.</p>\n<p>    *   <strong>Application Access Control:</strong> Implement granular access controls for your business applications. Ensure only necessary users have access to specific functionalities.</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Create Zero Trust Policies:</strong> Define policies that enforce the 'verify explicitly' and 'least privilege' principles. These policies should dictate who can access what, under what conditions, and from which devices.</li><li><strong>Monitor and Maintain:</strong> Continuously monitor network traffic, user behavior, and system logs for suspicious activities. Regularly review and update your ZTA policies based on evolving threats and business needs.</li></ol>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Getting Started - Practical Tips:</h3>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Leverage Cloud Services:</strong> Many cloud providers offer built-in security features that align with ZTA principles, such as identity and access management (IAM) and encryption.</li><li><strong>Educate Your Employees:</strong> User awareness is crucial. Train employees on security best practices, the importance of MFA, and how to report suspicious activities.</li><li><strong>Start Small:</strong> Focus on securing your most critical assets first. Gradually expand your ZTA implementation as you gain experience and resources.</li><li><strong>Seek Expert Advice:</strong> If resources are limited, consider consulting with cybersecurity professionals specializing in small business solutions.</li></ul>\n<p>Zero Trust Architecture is not a destination, but a journey. By adopting its principles and implementing it strategically, small businesses can significantly enhance their security posture against the ever-evolving threat landscape.</p>" }} />
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">The castle was a story</h2>
+            <p className="text-slate-600 mb-4">
+              Old model: strong door, trusted inside. People now work from kitchens, use
+              SaaS that does not live in your rack, and click invoices on phones. &ldquo;On
+              the VPN&rdquo; is not a personality test. A password-reset email is a
+              verification event, not a loyalty test.
+            </p>
+            <p className="text-slate-600 mb-4">
+              Zero Trust (see NIST SP 800-207 if you want the long form) means: authenticate
+              the user, the device, and the request. Give the least access that still lets
+              the job happen. Design as if someone is already in. You will not &ldquo;finish&rdquo;
+              Zero Trust. You can start this month.
+            </p>
+            <LessonAside>
+              If the plan starts with a vendor bake-off and no list of who can reset payroll,
+              you bought a slogan. Slogans do not revoke sessions.
+            </LessonAside>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Three sentences you can run the company on</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Card className="bg-blue-50 border-blue-200">
+                <CardHeader>
+                  <CardTitle className="text-lg">Verify explicitly</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-700">
+                    Identity plus device plus context. MFA on every account that can touch
+                    money, mail, or customer data. No shared logins that four people know
+                    &ldquo;because it is easier.&rdquo;
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="bg-green-50 border-green-200">
+                <CardHeader>
+                  <CardTitle className="text-lg">Least privilege</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-700">
+                    The intern does not need the production database. The contractor does
+                    not need last year&apos;s payroll. Access expires when the project does.
+                    Admin is a named person, not a group chat.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="bg-amber-50 border-amber-200">
+                <CardHeader>
+                  <CardTitle className="text-lg">Assume breach</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-700">
+                    Segment guest Wi-Fi from the bookkeeping laptop. If one mailbox is
+                    stolen, it should not be a skeleton key. Encrypt the laptop. Backups
+                    you have restored once beat backups you have never tried.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <HumorBreak tag="zero trust" />
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Start with identity, not a new religion</h2>
+            <p className="text-slate-600 mb-4">
+              For a shop of 5–50 people, the protect surface is usually: email, identity
+              (Microsoft 365 or Google), banking, the customer system, and the machines
+              people type on. Map who uses those. Then apply the three sentences.
+            </p>
+            <div className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <KeyRound className="h-5 w-5 text-blue-700" />
+                    <div>
+                      <CardTitle className="text-lg">MFA everywhere it will stick</CardTitle>
+                      <CardDescription>Authenticator app or hardware key. SMS if that is all the bank offers.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Email first. Then the identity provider. Then banking and the CRM.
+                    Password Security covers the how. Zero Trust is the why: a stolen
+                    password should not be a workday. Turn off legacy protocols that
+                    skip MFA because &ldquo;the old mail app needs it.&rdquo; The old
+                    mail app is a hole.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <Laptop className="h-5 w-5 text-green-700" />
+                    <div>
+                      <CardTitle className="text-lg">Devices you can stand behind</CardTitle>
+                      <CardDescription>Disk encryption, auto-lock, updates, and a way to wipe a lost laptop.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    You do not need an enterprise MDM on day one. You do need BitLocker or
+                    FileVault on, a screen lock, and a written rule that work mail does not
+                    live only on a personal phone you cannot erase. If you already have
+                    Intune or Google endpoint management, use it for the boring baseline
+                    before you buy another logo.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <Network className="h-5 w-5 text-purple-700" />
+                    <div>
+                      <CardTitle className="text-lg">Small segmentation still counts</CardTitle>
+                      <CardDescription>Guest Wi-Fi, printers, and the laptop that does payroll do not need to be friends.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Network Security covers VLANs and default-deny. Zero Trust adds:
+                    applications should not trust a connection just because it came from
+                    &ldquo;the office.&rdquo; Prefer SSO to each app over a flat network
+                    that treats the building as a password.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">A 30-day starter, not a transformation deck</h2>
+            <div className="space-y-3 text-sm text-slate-700">
+              <div className="flex items-start gap-3 p-3 rounded bg-slate-50">
+                <Badge className="bg-blue-100 text-blue-700 mt-0.5">Week 1</Badge>
+                <p>
+                  Inventory: email, identity, banking, CRM, file store, who is admin.
+                  Turn on MFA for those admins today. Write down the offboarding steps
+                  from the Insider Threats lesson.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded bg-slate-50">
+                <Badge className="bg-green-100 text-green-700 mt-0.5">Week 2</Badge>
+                <p>
+                  MFA for everyone who has a mailbox. Kill shared passwords or put them
+                  in a manager with named access. Disable mailbox forwarding you did not
+                  approve.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded bg-slate-50">
+                <Badge className="bg-yellow-100 text-yellow-700 mt-0.5">Week 3</Badge>
+                <p>
+                  Guest Wi-Fi isolated. Laptops encrypted. One restore test of the backup
+                  you claim to have. Admin accounts are not the accounts people use for
+                  mail.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded bg-slate-50">
+                <Badge className="bg-purple-100 text-purple-700 mt-0.5">Week 4</Badge>
+                <p>
+                  Access review: who still has last quarter&apos;s project. Conditional
+                  access if your suite offers it (block legacy auth, require MFA from
+                  new countries). Tabletop: one phish, one lost laptop. Use Incident
+                  Response Basics for the script.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+            <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-amber-900">What this is not</p>
+              <p className="text-sm text-amber-800">
+                It is not &ldquo;never open a PDF.&rdquo; It is not a replacement for
+                backups, patching, or teaching people not to type passwords into the
+                email. Framework pages (NIST CSF, CIS) go deeper on control catalogs.
+                This lesson is the posture: stop treating the office as a trusted country.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">Zero Trust starter checklist</h3>
+            <div className="space-y-2 text-sm text-slate-700">
+              {[
+                "Named admins only; daily work uses a non-admin account",
+                "MFA on email, identity provider, banking, and the customer system",
+                "Least privilege reviewed this quarter; leavers revoked the same day",
+                "Guest / IoT / work networks are not one happy family",
+                "Disk encryption and lock screens on laptops that hold work mail",
+                "Backup restored once on purpose, not only in a fantasy",
+                "Password-reset and vendor-pay requests get an out-of-band check",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <input type="checkbox" readOnly className="mt-1 h-4 w-4 rounded border-gray-300" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">Key takeaways</h3>
+            <ul className="space-y-2 text-sm text-slate-700">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Zero Trust is verify, least privilege, assume breach — not a product name.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Start with identity and the few systems that can ruin a quarter.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                A 30-day MFA and access pass beats a 90-page architecture that never ships.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Pair with Password Security, Network Security, Insider Threats, and IR.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Next Steps</h2>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild>
+                <Link href="/frameworks/nist-csf">
+                  NIST CSF framework
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/learn/password-security">Password Security Basics</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/learn">Back to All Lessons</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )

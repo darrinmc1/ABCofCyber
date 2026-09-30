@@ -1,27 +1,335 @@
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield } from "lucide-react"
+import { ArrowLeft, Shield, AlertTriangle, CheckCircle, UserX, UserMinus, KeyRound, ClipboardList } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
+import { LessonAside } from "@/components/lesson-aside"
 
 export default function TheSilentSabotageIdentifyingAndMitigatingInsiderThreatsInYourOrganizatLesson() {
   return (
     <main className="min-h-screen bg-white">
       <section className="border-b bg-slate-50">
         <div className="container mx-auto px-4 py-8">
-          <Link href="/learn" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"><span className="mr-2">←</span> Back to Lessons</Link>
+          <Link
+            href="/learn"
+            className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Lessons
+          </Link>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-100"><Shield className="h-6 w-6 text-blue-700" /></div>
+              <div className="p-2 rounded-lg bg-blue-100">
+                <Shield className="h-6 w-6 text-blue-700" />
+              </div>
               <Badge className="bg-yellow-100 text-yellow-700">Intermediate</Badge>
-              <Badge variant="outline">12 min</Badge>
+              <Badge variant="outline">18 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization</h1>
-            <p className="text-lg text-slate-600 mb-6">Explore the various types of insider threats, from accidental data leaks to malicious intent, and learn practical strategies for detection, prevention, and response.</p>
-            <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">
+              The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization
+            </h1>
+            <p className="text-lg text-slate-600 mb-6">
+              The person who can hurt you most already has a badge, a login, and a reason to finish the
+              spreadsheet before lunch. This lesson is about detection, least privilege, and offboarding —
+              not a hunt for villains in the break room.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["insider threats", "least privilege", "offboarding", "data handling", "security awareness"].map((t) => (
+                <span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto prose prose-slate max-w-none space-y-6 text-base leading-relaxed text-slate-700" dangerouslySetInnerHTML={{ __html: "<h2 className=\"text-xl font-bold mt-8 mb-4\">The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization</h2>\n<p>In the ever-evolving landscape of cybersecurity, organizations often focus their defenses on external threats – hackers, malware, and phishing attempts. While these are critical concerns, a more insidious and often overlooked danger lurks within: the insider threat. Insiders, by definition, have legitimate access to an organization's systems and data, making their actions potentially more damaging and harder to detect than those of external adversaries.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Understanding the Insider Threat Landscape</h3>\n<p>Insider threats can manifest in various forms, broadly categorized into three main types:</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Negligent Insiders:</strong> These individuals pose a threat not through malicious intent, but through carelessness or a lack of awareness. Examples include falling victim to phishing scams, mishandling sensitive data (e.g., leaving laptops unattended, misconfiguring cloud storage), or violating security policies due to ignorance.</li><li><strong>Compromised Insiders:</strong> In this scenario, an insider's account or credentials are hijacked by an external attacker. The attacker then uses the legitimate access of the compromised insider to breach the network, steal data, or cause disruption. This often occurs through phishing, malware, or social engineering targeting the employee.</li><li><strong>Malicious Insiders:</strong> These are individuals who intentionally misuse their authorized access to harm the organization. Their motives can range from financial gain (selling trade secrets, stealing customer data for personal profit) to revenge (sabotaging systems after being fired or disciplined), or even ideological reasons. These threats are often the most difficult to detect as they can carefully cover their tracks.</li></ol>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">The Impact of Insider Threats</h3>\n<p>The consequences of insider threats can be devastating, extending far beyond immediate financial losses. They can include:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Data Breaches:</strong> Theft or exposure of sensitive customer information, intellectual property, trade secrets, and financial records.</li><li><strong>Financial Losses:</strong> Direct theft, costs associated with incident response, legal fees, regulatory fines, and reputational damage.</li><li><strong>Operational Disruption:</strong> Sabotage of critical systems leading to downtime, loss of productivity, and service interruptions.</li><li><strong>Reputational Damage:</strong> Erosion of customer trust, damage to brand image, and difficulty attracting new business.</li><li><strong>Legal and Regulatory Penalties:</strong> Non-compliance with data protection laws (e.g., GDPR, CCPA) can result in significant fines.</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Strategies for Detection and Prevention</h3>\n<p>Mitigating insider threats requires a multi-layered approach that combines technological solutions with robust policies and a strong security culture.</p>\n<p>#### 1. Access Control and Least Privilege</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Role-Based Access Control (RBAC):</strong> Ensure employees only have access to the data and systems necessary for their job functions. Regularly review and revoke unnecessary privileges.</li><li><strong>Principle of Least Privilege:</strong> Grant the minimum level of access required for an individual or system to perform its intended function.</li></ul>\n<p>#### 2. Monitoring and Auditing</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>User and Entity Behavior Analytics (UEBA):</strong> Implement tools that monitor user activity for anomalies and deviations from normal behavior patterns. This can help detect suspicious actions indicative of malicious intent or compromised accounts.</li><li><strong>Security Information and Event Management (SIEM):</strong> Centralize and analyze security logs from various sources to identify potential threats and facilitate incident response.</li><li><strong>Data Loss Prevention (DLP):</strong> Deploy DLP solutions to monitor, detect, and block sensitive data from leaving the organization's network, whether intentionally or accidentally.</li></ul>\n<p>#### 3. Employee Training and Awareness</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Regular Security Awareness Training:</strong> Educate employees about the risks of insider threats, including phishing, social engineering, and the importance of data handling policies.</li><li><strong>Clear Policy Enforcement:</strong> Develop and clearly communicate acceptable use policies, data handling procedures, and consequences for violations.</li><li><strong>Promote a Security Culture:</strong> Encourage employees to report suspicious activities without fear of reprisal. Foster an environment where security is everyone's responsibility.</li></ul>\n<p>#### 4. Offboarding Procedures</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Timely Revocation of Access:</strong> Ensure all access privileges are immediately revoked for departing employees.</li><li><strong>Data Retrieval and Secure Disposal:</strong> Implement procedures for retrieving company data from departing employees and securely disposing of any company-owned devices.</li></ul>\n<p>#### 5. Technical Controls</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Endpoint Security:</strong> Deploy robust antivirus, anti-malware, and endpoint detection and response (EDR) solutions.</li><li><strong>Network Segmentation:</strong> Divide the network into smaller, isolated segments to limit the lateral movement of threats.</li><li><strong>Data Encryption:</strong> Encrypt sensitive data both at rest and in transit.</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Responding to Insider Threats</h3>\n<p>Despite best efforts, insider incidents can still occur. A well-defined incident response plan is crucial:</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Containment:</strong> Immediately isolate affected systems and accounts to prevent further damage.</li><li><strong>Investigation:</strong> Conduct a thorough forensic investigation to understand the scope, cause, and impact of the incident.</li><li><strong>Eradication:</strong> Remove the threat and remediate any vulnerabilities exploited.</li><li><strong>Recovery:</strong> Restore systems and data to normal operations.</li><li><strong>Lessons Learned:</strong> Analyze the incident to identify weaknesses in existing controls and update policies and procedures accordingly.</li></ol>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Conclusion</h3>\n<p>Insider threats represent a complex and persistent challenge for organizations. By understanding the different types of threats, implementing robust technical and administrative controls, fostering a strong security culture, and maintaining a prepared incident response plan, businesses can significantly reduce their vulnerability to the silent sabotage from within.</p>" }} />
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Start with the boring truth</h2>
+            <p className="text-slate-600 mb-4">
+              External attackers get the movie budget. Insiders get the keys. An insider is anyone with
+              legitimate access: employees, contractors, vendors, interns, the MSP who can RDP in, the
+              former colleague whose account is still in the shared mailbox. Most damage is not sabotage.
+              It is sloppiness that looks like sabotage after the fact.
+            </p>
+            <p className="text-slate-600 mb-4">
+              Treat this as a control problem, not a personality contest. You cannot interview your way
+              out of a shared admin password. You can revoke access on the last day, stop payroll from
+              living in everyone&apos;s Downloads folder, and notice when a quiet account suddenly
+              exports the CRM at 11 p.m.
+            </p>
+            <LessonAside>
+              If your insider-threat program is a poster that says &ldquo;see something, say something&rdquo;
+              and a shared Dropbox called CLIENTS-FINAL, you have a slogan and a leak. Pick one to keep.
+            </LessonAside>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Three kinds of insider — only one wears a cape</h2>
+            <div className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100">
+                      <AlertTriangle className="h-5 w-5 text-amber-700" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Negligent</CardTitle>
+                      <CardDescription>No malice. Plenty of blast radius.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600 mb-3">
+                    The most common type. Someone forwards a client list to a personal inbox so they can
+                    work from the kitchen. Someone leaves a laptop in a rideshare. Someone grants
+                    &ldquo;anyone with the link&rdquo; because the vendor asked nicely in Slack.
+                    Training and friction help here. Witch hunts do not.
+                  </p>
+                  <div className="bg-amber-50 rounded-lg p-3 text-sm text-amber-900">
+                    Tell: the person is trying to get work done. The path they chose is the problem,
+                    not their loyalty.
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-blue-100">
+                      <KeyRound className="h-5 w-5 text-blue-700" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Compromised</CardTitle>
+                      <CardDescription>The badge is real. The hands on the keyboard are not.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600 mb-3">
+                    Phishing, malware, or a reused password hands an outsider an insider session.
+                    From the logs, it looks like Priya in Accounting. Priya is at lunch. The session
+                    is in another country, or it is downloading three years of invoices for the first time.
+                  </p>
+                  <div className="bg-blue-50 rounded-lg p-3 text-sm text-blue-900">
+                    Tell: the account behaves unlike the human. New device, odd hours, bulk export,
+                    MFA fatigue, or a password reset the person does not remember requesting.
+                    Pair this with the Phishing Awareness and Password Security lessons.
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-red-100">
+                      <UserX className="h-5 w-5 text-red-700" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Malicious</CardTitle>
+                      <CardDescription>Intentional misuse. Rare. Expensive when it is real.</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600 mb-3">
+                    Someone uses authorized access to steal, sabotage, or sell. Motives are usually
+                    money, revenge, or a side hustle that thinks your customer list is their seed
+                    round. You do not diagnose this from vibes. You diagnose it from access that
+                    does not match the job, data leaving on a schedule, and a refusal to use the
+                    approved path.
+                  </p>
+                  <div className="bg-red-50 rounded-lg p-3 text-sm text-red-900">
+                    Tell: targeted collection, after-hours copies, access to systems they do not
+                    need, or a departing employee who suddenly &ldquo;needs one more export.&rdquo;
+                    HR and legal own the people part. Security owns the evidence and the lockout.
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <HumorBreak tag="insider" />
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">What actually reduces the damage</h2>
+            <p className="text-slate-600 mb-4">
+              You do not need a Hollywood UEBA suite on day one. You need fewer people who can
+              touch the crown jewels, a record of who did, and a last-day ritual that is faster
+              than a farewell Slack thread.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    Least privilege, on a calendar
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Role-based access. No shared &ldquo;admin&rdquo; account that four people know.
+                    Review quarterly: if they have not used a system in 90 days, they probably do
+                    not need it. Temporary access for projects should expire without a meeting.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    Watch the exits, not just the doors
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Data loss prevention can be a product. It can also be &ldquo;client files do not
+                    go to personal email&rdquo; enforced in the mail gateway, USB storage disabled
+                    on work laptops, and cloud sharing set to specific people — not the internet.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <UserMinus className="h-5 w-5 text-purple-600" />
+                    Offboarding that happens the same day
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Identity, email, VPN, SaaS, badges, shared passwords, and the contractor
+                    account in the billing tool. Collect devices. Do not wait for IT to &ldquo;get
+                    to it Monday.&rdquo; Monday is when the mailbox forwards to a Gmail you will
+                    find in October.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <ClipboardList className="h-5 w-5 text-blue-600" />
+                    Logs you will actually read
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-slate-600">
+                    Admin actions, bulk exports, new forwarding rules, after-hours logins from
+                    new countries. If you have a SIEM, use it for these. If you do not, the
+                    Microsoft 365 or Google Workspace audit log plus a weekly 20-minute review
+                    beats a dashboard nobody opens.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">A scenario that is not a thriller</h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 space-y-3 text-sm text-slate-700">
+              <p>
+                <strong>What happened:</strong> Alex in Operations emails a CSV of customer contacts
+                to a personal address &ldquo;so I can build the mail-merge at home.&rdquo; The laptop
+                is slow. The deadline is real. Alex is not selling the list.
+              </p>
+              <p>
+                <strong>Why it still counts:</strong> That file is now on a device you do not
+                manage, in an inbox you cannot wipe, possibly synced to a phone that will be
+                lost at a restaurant. Negligent insider. Same data as a breach. Worse story
+                because you will have to say &ldquo;we emailed it to ourselves.&rdquo;
+              </p>
+              <p>
+                <strong>The play:</strong> Do not humiliate Alex in the all-hands. Close the
+                personal-forward path. Give Alex an approved way to work remotely. Check whether
+                the file was forwarded again. If customers are in the file, follow your incident
+                process — see Incident Response Basics. Shame is not a control. A blocked
+                outbound rule is.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">When something already left the building</h2>
+            <p className="text-slate-600 mb-4">
+              Contain first. Isolate the account, revoke sessions, pull the forwarding rule,
+              disable the token. Preserve logs. Then decide if this is a people issue, a
+              phishing issue, or both. Do not start deleting evidence because you are embarrassed.
+              Pair with the Incident Response lesson for the lifecycle; this page is the
+              &ldquo;it was one of ours&rdquo; chapter.
+            </p>
+            <LessonAside>
+              The worst briefing is &ldquo;we think it was an insider&rdquo; with no timeline.
+              Write times. Name systems. Leave the novel for the post-mortem.
+            </LessonAside>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">Insider hygiene checklist</h3>
+            <div className="space-y-2 text-sm text-slate-700">
+              {[
+                "No shared admin passwords. Use a password manager and named accounts.",
+                "Joiner / mover / leaver list: access granted and revoked the same day as the role change.",
+                "Crown-jewel systems (payroll, banking, customer export) have a short access list and MFA.",
+                "Personal email and unsanctioned cloud drives cannot receive the client folder.",
+                "Audit log reviewed for exports, forwarding rules, and new admin roles — at least weekly.",
+                "Departing people: identity, SaaS, VPN, badge, devices, and mailbox forwarding — one checklist.",
+                "Reporting path that does not require accusing a colleague in Slack. Security inbox is enough.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <input type="checkbox" readOnly className="mt-1 h-4 w-4 rounded border-gray-300" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">Key takeaways</h3>
+            <ul className="space-y-2 text-sm text-slate-700">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Most insider harm is negligence or a stolen session, not a mastermind.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Least privilege and same-day offboarding beat a poster about loyalty.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                Watch bulk exports, new forwarding rules, and access that outlived the job.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                If data already left, contain and write a timeline. Then use the IR lesson.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Next Steps</h2>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild>
+                <Link href="/learn/zero-trust-architecture-for-small-businesses">
+                  Next: Zero Trust for Small Businesses
+                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/learn/incident-response-basics">Incident Response Basics</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/learn">Back to All Lessons</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
