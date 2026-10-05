@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing",
+    slug: "the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration",
+    icon: "Shield",
+    summary: "Explore the critical ethical considerations and legal frameworks that penetration testers must adhere to, ensuring responsible and lawful security assessments.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "12 min",
+    topics: ["ethical hacking","penetration testing","cybersecurity ethics","legal compliance","vulnerability assessment"],
+  },
+  {
     title: "The Algorithmic Gatekeepers: How AI is Shaping Our Digital Access and Security",
     slug: "the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security",
     icon: "KeyRound",
