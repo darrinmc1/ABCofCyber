@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration-new-2026-10-05",
+    "title": "The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing",
+    "description": "New lesson: Explore the critical ethical considerations and legal frameworks that penetration testers must adhere to, ensuring responsible and lawful security assessments.",
+    "date": "2026-10-05",
+    "kind": "new",
+    "href": "/learn/the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration"
+  },
+  {
     "id": "the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security-new-2026-09-21",
     "title": "The Algorithmic Gatekeepers: How AI is Shaping Our Digital Access and Security",
     "description": "New lesson: Explore the growing influence of Artificial Intelligence in managing access to online services, personal data, and digital resources, and understand the critical security implications.",
