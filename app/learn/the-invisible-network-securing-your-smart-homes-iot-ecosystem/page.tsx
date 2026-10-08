@@ -14,8 +14,8 @@ export default function TheInvisibleNetworkSecuringYourSmartHomesIotEcosystemLes
               <Badge className="bg-yellow-100 text-yellow-700">Intermediate</Badge>
               <Badge variant="outline">15 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Invisible Network: Securing Your Smart Home's IoT Ecosystem</h1>
-            <p className="text-lg text-slate-600 mb-6">Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home's IoT ecosystem.</p>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Invisible Network: Securing Your Smart Home&apos;s IoT Ecosystem</h1>
+            <p className="text-lg text-slate-600 mb-6">Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home&apos;s IoT ecosystem.</p>
             <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
           </div>
         </div>
