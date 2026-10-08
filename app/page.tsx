@@ -1,4 +1,6 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import PricingCards from "@/components/pricing-cards"
 import { EmailCapture } from "@/components/email-capture"
@@ -7,6 +9,13 @@ import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import WhatsNew from "@/components/whats-new"
 import { JsonLd } from "@/components/json-ld"
+
+export const metadata: Metadata = pageMeta({
+  title: "Cyber security for teams allergic to nonsense",
+  description:
+    "Practical cybersecurity training. Slightly unhinged copy. Very little panic. Lessons and plain-English walkthroughs for teams who have actual jobs.",
+  path: "/",
+})
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -76,10 +85,10 @@ export default function Home() {
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-3">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
-                Cyber security for teams allergic to nonsense
+                No scare tactics
               </p>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Cybersecurity Training
+                Cyber security for teams allergic to nonsense
               </h1>
               <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
                 Serious protection. Slightly unhinged copy. Very little panic.

@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, MailWarning, AlertTriangle, CheckCircle, ExternalLink, Search, Shield } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Phishing Awareness",
+  description: "Spot the email before it spots the credentials. Red flags, link inspection, and what to do when a message looks off.",
+  path: "/learn/phishing-awareness",
+})
 
 export default function PhishingAwarenessLesson() {
   return (

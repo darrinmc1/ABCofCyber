@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Radar, AlertTriangle, Shield, Monitor, Bell, Eye, Server, FileSearch, Activity } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Threat Monitoring",
+  description: "Assume something got through. Watch the logs and notice it before payroll does.",
+  path: "/frameworks/threat-monitoring",
+})
 
 const monitoringLayers = [
   {
@@ -150,9 +158,6 @@ export default function ThreatMonitoringPage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <Link href="/get-started">Design Your Monitoring Strategy</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/dashboard">View Security Dashboard</Link>
               </Button>
             </div>
           </div>

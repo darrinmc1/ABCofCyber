@@ -11,7 +11,7 @@ interface PrivacyPageProps {
 export function PrivacyPage({
   siteName,
   domain,
-  supportEmail = "admin@" + domain,
+  supportEmail,
   companyName = siteName,
   address = "",
 }: PrivacyPageProps) {
@@ -195,7 +195,13 @@ export function PrivacyPage({
               <li><strong>Withdrawal of consent</strong> — withdraw consent at any time where processing is based on consent</li>
             </ul>
             <p className="text-slate-700">
-              To exercise any of these rights, contact us at <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>.
+              To exercise any of these rights,{" "}
+              {supportEmail ? (
+                <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">contact us at {supportEmail}</a>
+              ) : (
+                <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>
+              )}
+              .
               We will respond within 30 days.
             </p>
           </section>
@@ -230,8 +236,10 @@ export function PrivacyPage({
               If you have questions about this Privacy Policy, please contact us:
             </p>
             <ul className="list-disc pl-6 text-slate-700 space-y-1">
-              <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
-              <li>Website: <Link href={`https://${domain}/contact`} className="text-blue-600 underline">{domain}/contact</Link></li>
+              {supportEmail ? (
+                <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
+              ) : null}
+              <li>Website: <Link href="/contact" className="text-blue-600 underline">{domain}/contact</Link></li>
               {address && <li>Address: {address}</li>}
             </ul>
           </section>

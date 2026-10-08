@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { MailWarning } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Social Engineering Tactics",
+  description: "Common social engineering plays, why people fall for them, and how to refuse the ask.",
+  path: "/learn/the-illusion-of-control-recognizing-and-countering-social-engineering-tactics",
+})
 
 export default function TheIllusionOfControlRecognizingAndCounteringSocialEngineeringTacticsLesson() {
   return (

@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import Link from 'next/link'
+import { pageMeta } from "@/lib/seo"
 import { Calendar, ArrowRight } from 'lucide-react'
 import posts from "@/lib/blog"
+
+export const metadata: Metadata = pageMeta({
+  title: "Blog",
+  description: "Notes on phishing, zero trust, and incident response for people who have to do the work.",
+  path: "/blog",
+})
 
 export default function BlogPage() {
   return (

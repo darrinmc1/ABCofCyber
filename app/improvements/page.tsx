@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Construction, ArrowLeft } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
+
+export const metadata: Metadata = pageMeta({
+  title: "Waitlist",
+  description: "Billing is not live yet. Leave your email and we will write when it is.",
+  path: "/improvements",
+})
 
 export default function ImprovementsPage() {
   return (

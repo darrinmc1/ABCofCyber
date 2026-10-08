@@ -1,28 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
-import { Mail, MessageSquare, Phone, AlarmClock, ShieldAlert } from "lucide-react"
+import { AlarmClock, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ContactForm } from "@/components/contact-form"
+import { pageMeta } from "@/lib/seo"
 
-const contactOptions = [
-  {
-    title: "Email",
-    detail: "security@abcofcyber.example",
-    note: "For thoughtful questions, urgent questions, and politely alarmed questions.",
-    icon: Mail,
-  },
-  {
-    title: "Call",
-    detail: "+61 7 5550 0137",
-    note: "Best for situations where the server made a noise no server should make.",
-    icon: Phone,
-  },
-  {
-    title: "Chat",
-    detail: "Live triage available during business hours",
-    note: "Fast answers, fewer hold songs, zero jazz flute.",
-    icon: MessageSquare,
-  },
-]
+export const metadata: Metadata = pageMeta({
+  title: "Contact",
+  description: "Send a message to ABC of Cyber. A person reads it. No hold music, and no jazz flute.",
+  path: "/contact",
+})
 
 const responsePromises = [
   {
@@ -58,21 +46,15 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="container mx-auto grid gap-6 px-4 pb-16 md:px-6 lg:grid-cols-3">
-        {contactOptions.map(({ title, detail, note, icon: Icon }) => (
-          <Card key={title} className="bg-white">
-            <CardHeader>
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                <Icon className="h-5 w-5 text-blue-700" />
-              </div>
-              <CardTitle>{title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <p className="font-medium text-slate-900">{detail}</p>
-              <p className="text-sm leading-6 text-slate-600">{note}</p>
-            </CardContent>
-          </Card>
-        ))}
+      <section className="container mx-auto px-4 pb-16 md:px-6">
+        <Card className="mx-auto max-w-2xl bg-white">
+          <CardHeader>
+            <CardTitle>Send a message</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ContactForm />
+          </CardContent>
+        </Card>
       </section>
 
       <section className="container mx-auto grid gap-6 px-4 pb-16 md:px-6 lg:grid-cols-2">
