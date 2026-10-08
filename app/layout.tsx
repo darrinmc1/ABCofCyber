@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
 import { FeedbackWidget } from "@/components/feedback-widget"
 import { WaitlistPopup } from "@/components/waitlist-popup"
+import { MerchantOfRecordDisclosure } from "@/components/merchant-of-record-disclosure"
 
 export const metadata: Metadata = {
   title: "ABC of Cyber | Security Without the Scare Tactics",
@@ -63,7 +64,8 @@ export default function RootLayout({
             <a href="https://ticu.tv" className="hover:text-blue-600">TICU.TV</a>
             <a href="https://theintelanalystacademy.com" className="hover:text-blue-600">Intel Academy</a>
           </div>
-          <p className="text-center text-gray-500 text-xs mt-4">
+          <MerchantOfRecordDisclosure className="mx-auto mt-4 max-w-2xl text-center" />
+          <p className="text-center text-gray-500 text-xs mt-3">
             &copy; {new Date().getFullYear()} ABC of Cyber — An Empire-HQ Portfolio Project.
           </p>
         </div>

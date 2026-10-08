@@ -9,6 +9,7 @@ import {
   WHATS_THE_PLAY_OFFER,
   planCta,
 } from "@/lib/pricing"
+import { MerchantOfRecordDisclosure } from "@/components/merchant-of-record-disclosure"
 
 export default function PricingCards() {
   return (
@@ -60,13 +61,16 @@ export default function PricingCards() {
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex flex-col gap-2">
                 <Button
                   asChild
                   className={`w-full ${plan.highlighted ? "bg-blue-500 hover:bg-blue-600" : ""}`}
                 >
                   <Link href={cta.href}>{cta.label}</Link>
                 </Button>
+                {(plan.priceUsd ?? 0) > 0 && (
+                  <MerchantOfRecordDisclosure className="text-center" />
+                )}
               </CardFooter>
             </Card>
           )

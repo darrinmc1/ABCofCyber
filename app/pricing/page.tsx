@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CheckCircle, ShieldCheck } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
+import { MerchantOfRecordDisclosure } from "@/components/merchant-of-record-disclosure"
 import { Button } from "@/components/ui/button"
 
 const availableNow = [
@@ -55,6 +56,7 @@ export default function PricingPage() {
       <section id="waitlist" className="border-t border-slate-200 bg-slate-50">
         <div className="container mx-auto max-w-3xl px-4 py-16 md:px-6">
           <EmailCapture variant="hero" theme="dark" heading="Join early access" subheading="Leave your email and we will tell you when expanded access and checkout are actually ready." source="pricing-waitlist" showName />
+          <MerchantOfRecordDisclosure className="mx-auto mt-6 max-w-xl text-center" />
         </div>
       </section>
     </main>
