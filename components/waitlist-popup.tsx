@@ -93,7 +93,7 @@ export function WaitlistPopup() {
                         🛡️ ABC of Cyber – get the early drop
                     </DialogTitle>
                     <DialogDescription className="text-base pt-2">
-                        Cyber security without the scare tactics. Drop your email to be notified when new lessons land, plus 50% off founder pricing on any paid tier we launch.
+                        Cyber security without the scare tactics. Drop your email to be notified when new lessons land.
                     </DialogDescription>
                 </DialogHeader>
 

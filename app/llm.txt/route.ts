@@ -1,14 +1,9 @@
 import { ABC_METHOD, WALKTHROUGH_DISCLAIMER } from "@/lib/disclaimer"
 import { ARCHIVE_CITATIONS } from "@/lib/archive"
-import { CHECKOUT_LIVE, PLANS, WHATS_THE_PLAY_OFFER } from "@/lib/pricing"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 function llmTxt(): string {
   const method = ABC_METHOD.steps.map((s) => `${s.letter} — ${s.title}: ${s.summary}`).join("\n")
-  const plans = PLANS.map(
-    (p) =>
-      `- ${p.name}: ${p.priceDisplay}${p.periodLabel} — ${p.description} Includes What's the play: ${p.includesWhatsThePlay ? "yes (unlimited)" : "1 free walkthrough"}.`,
-  ).join("\n")
   const citations = ARCHIVE_CITATIONS.map((c) => `- ${c.title} (${SITE_URL}${c.href}) [${c.kind}]`).join("\n")
 
   return `# ${SITE_NAME}
@@ -17,7 +12,7 @@ function llmTxt(): string {
 
 Site: ${SITE_URL}
 Product: ${SITE_NAME}
-Layer (not a brand): What's the play — ${WHATS_THE_PLAY_OFFER.url}
+Layer (not a brand): What's the play — ${SITE_URL}/whats-the-play
 
 ## One job
 
@@ -38,24 +33,10 @@ Anti-hype. No scare tactics. No "military-grade." Education only — not legal a
 
 ${WALKTHROUGH_DISCLAIMER}
 
-## Pricing (parseable)
+## Plans
 
-Machine-readable copy: ${SITE_URL}/pricing.json
-Human copy: ${SITE_URL}/pricing
-Currency: USD
-x402: false
-Checkout: existing-subscription (Early Adopter / Pro). ${CHECKOUT_LIVE ? "Checkout is live." : "Checkout is not live — join the waitlist."} No crypto rails.
-
-${plans}
-
-What's the play offer:
-- kind: ${WHATS_THE_PLAY_OFFER.kind}
-- priceUsd: ${WHATS_THE_PLAY_OFFER.priceUsd}
-- billing: ${WHATS_THE_PLAY_OFFER.billing}
-- includedIn: ${WHATS_THE_PLAY_OFFER.includedInPlanIds.join(", ")}
-- freeAllowance: ${WHATS_THE_PLAY_OFFER.freeAllowance}
-- x402: false
-- notes: ${WHATS_THE_PLAY_OFFER.notes}
+Paid plans are coming soon. Join the list: ${SITE_URL}/pricing
+Free lessons stay open.
 
 ## Citations the tool is allowed to use
 
@@ -76,7 +57,7 @@ Q: What if the AI key is missing?
 A: The archive walkthrough still runs from real lessons. No dead error page.
 
 Q: How do I pay?
-A: Paid-plan include on Early Adopter ($5/mo) and Pro ($10/mo), or $29/mo as a dedicated seat when billing is live. Same existing signup pattern. No x402.
+A: Payments are not set up yet. Join the list at ${SITE_URL}/pricing.
 
 ## Contact
 

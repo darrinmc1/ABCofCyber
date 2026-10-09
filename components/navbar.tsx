@@ -19,7 +19,7 @@ export default function Navbar() {
     { href: "/whats-the-play", label: "What's the play" },
     { href: "/frameworks", label: "Frameworks" },
     { href: "/get-started", label: "Get Started" },
-    { href: "/#pricing", label: "Pricing" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
   ]
 

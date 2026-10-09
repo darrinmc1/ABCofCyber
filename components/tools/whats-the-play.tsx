@@ -9,7 +9,6 @@ import {
   Check,
   Copy,
   Loader2,
-  Lock,
   Shield,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -23,6 +22,7 @@ import {
 } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
+import { ComingSoonList } from "@/components/coming-soon-list"
 import { ABC_METHOD, WALKTHROUGH_DISCLAIMER } from "@/lib/disclaimer"
 import type { WalkthroughResult } from "@/lib/archive"
 
@@ -42,29 +42,17 @@ type WalkthroughResponse = WalkthroughResult & {
 
 function SubscribeWall() {
   return (
-    <Card className="border-blue-200 shadow-lg">
-      <CardHeader className="text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-          <Lock className="h-8 w-8 text-blue-600" />
-        </div>
-        <CardTitle className="text-2xl">Paid plans include the rest</CardTitle>
-        <CardDescription className="mt-2 text-base">
-          You used the free walkthrough. Early Adopter ($5/mo) and Pro ($10/mo) include unlimited
-          What&apos;s the play when billing launches. Checkout is not live — join the waitlist.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2 text-sm text-slate-600">
-        <p>Free still has the lessons. The tool is a layer on top of that archive, not a new product.</p>
-      </CardContent>
-      <CardFooter className="flex flex-col gap-3">
-        <Button asChild className="w-full" size="lg">
-          <Link href="/pricing">See pricing</Link>
-        </Button>
-        <Button asChild variant="outline" className="w-full" size="sm">
+    <div className="space-y-4">
+      <ComingSoonList source="whats-the-play-coming-soon" variant="inline" />
+      <p className="text-center text-sm text-slate-600">
+        Free lessons stay open. The tool is a layer on that archive.
+      </p>
+      <div className="text-center">
+        <Button asChild variant="outline" size="sm">
           <Link href="/learn/phishing-awareness">Or just take the phishing lesson</Link>
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   )
 }
 

@@ -44,6 +44,7 @@ interface EmailCaptureProps {
   subheading?: string
   source?: string
   showName?: boolean
+  tone?: "brand" | "neutral"
 }
 
 export function EmailCapture({
@@ -54,6 +55,7 @@ export function EmailCapture({
   subheading,
   source = "website",
   showName = false,
+  tone = "brand",
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
@@ -77,17 +79,46 @@ export function EmailCapture({
 
       if (res.ok) {
         setStatus("success")
-        setMessage(data.message || "You're enlisted. We'll only email when there's something actually worth opening.")
+        setMessage(
+          tone === "neutral"
+            ? "You're on the list."
+            : data.message || "You're enlisted. We'll only email when there's something actually worth opening.",
+        )
         setEmail("")
         setName("")
       } else {
         setStatus("error")
-        setMessage(data.error || "That didn't work. The packets came back empty-handed.")
+        setMessage(
+          tone === "neutral"
+            ? "Something went wrong. Try again."
+            : data.error || "That didn't work. The packets came back empty-handed.",
+        )
       }
     } catch {
       setStatus("error")
-      setMessage("Network handshake failed. Try again, or blame the firewall — we usually do.")
+      setMessage(
+        tone === "neutral"
+          ? "Something went wrong. Try again."
+          : "Network handshake failed. Try again, or blame the firewall — we usually do.",
+      )
     }
+  }
+
+  const loadingLabel = tone === "neutral" ? "Sending..." : variant === "hero" ? "Enlisting..." : "Encrypting..."
+  const submitLabel =
+    tone === "neutral" ? "Join the list" : variant === "modal" ? "Claim Your Spot" : variant === "inline" ? "Join Free" : "Join the Force"
+
+  if (status === "success" && tone === "neutral") {
+    return (
+      <div
+        className={`${
+          variant === "hero" ? "py-12 px-8" : "py-8 px-6"
+        } ${colors.bg} rounded-2xl ${colors.border} border-2 text-center`}
+      >
+        <h3 className={`text-2xl font-semibold ${colors.text} mb-2`}>You&apos;re on the list.</h3>
+        <p className={`${colors.textMuted}`}>{message}</p>
+      </div>
+    )
   }
 
   // Success state
@@ -118,14 +149,16 @@ export function EmailCapture({
     return (
       <div className={`${colors.bg} rounded-2xl ${colors.border} border-2 p-8 md:p-12`}>
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-emerald-900/40 backdrop-blur-sm border border-emerald-500/30 rounded-full px-4 py-2 mb-6">
-            <svg className="h-5 w-5 text-[#00FF41]" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
-            </svg>
-            <span className="text-sm font-semibold text-[#00FF41] tracking-wide uppercase">
-              Join the Defense Force
-            </span>
-          </div>
+          {tone !== "neutral" && (
+            <div className="inline-flex items-center gap-2 bg-emerald-900/40 backdrop-blur-sm border border-emerald-500/30 rounded-full px-4 py-2 mb-6">
+              <svg className="h-5 w-5 text-[#00FF41]" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-semibold text-[#00FF41] tracking-wide uppercase">
+                Join the Defense Force
+              </span>
+            </div>
+          )}
 
           <h2 className={`text-3xl md:text-4xl font-extrabold ${colors.text} mb-4`}>
             {heading || "Get Threat Intel Updates"}
@@ -165,10 +198,10 @@ export function EmailCapture({
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Enlisting...
+                    {loadingLabel}
                   </span>
                 ) : (
-                  "Join the Force"
+                  submitLabel
                 )}
               </button>
             </div>
@@ -178,7 +211,9 @@ export function EmailCapture({
           </form>
 
           <p className="text-xs text-emerald-600/50 mt-4">
-            No spam, ever. Unsubscribe anytime. Your data is encrypted at rest because we practice what we preach.
+            {tone === "neutral"
+              ? "No spam. Unsubscribe anytime."
+              : "No spam, ever. Unsubscribe anytime. Your data is encrypted at rest because we practice what we preach."}
           </p>
         </div>
       </div>
@@ -224,7 +259,7 @@ export function EmailCapture({
             disabled={status === "loading"}
             className={`w-full ${colors.primary} ${colors.primaryHover} text-white font-bold py-3 rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed`}
           >
-            {status === "loading" ? "Encrypting..." : "Claim Your Spot"}
+            {status === "loading" ? loadingLabel : submitLabel}
           </button>
           {status === "error" && (
             <p className="text-red-400 text-xs font-medium text-center">{message}</p>
@@ -243,14 +278,16 @@ export function EmailCapture({
     <div className={`${colors.bg} rounded-2xl ${colors.border} border-2 p-6 md:p-8`}>
       <div className="flex flex-col md:flex-row md:items-center gap-6">
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <svg className="h-6 w-6 text-[#00FF41]" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
-            </svg>
-            <span className="text-xs font-bold text-[#00FF41] bg-emerald-900/40 rounded-full px-3 py-1 uppercase tracking-wide">
-              Threat Intel
-            </span>
-          </div>
+          {tone !== "neutral" && (
+            <div className="flex items-center gap-2 mb-2">
+              <svg className="h-6 w-6 text-[#00FF41]" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
+              </svg>
+              <span className="text-xs font-bold text-[#00FF41] bg-emerald-900/40 rounded-full px-3 py-1 uppercase tracking-wide">
+                Threat Intel
+              </span>
+            </div>
+          )}
           <h3 className={`text-xl md:text-2xl font-extrabold ${colors.text} mb-1`}>
             {heading || "Join the Defense Force"}
           </h3>
@@ -273,7 +310,7 @@ export function EmailCapture({
             disabled={status === "loading"}
             className={`${colors.primary} ${colors.primaryHover} text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-emerald-900/30 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap text-sm`}
           >
-            {status === "loading" ? "Encrypting..." : "Join Free"}
+            {status === "loading" ? loadingLabel : submitLabel}
           </button>
         </form>
       </div>

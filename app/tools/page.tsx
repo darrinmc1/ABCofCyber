@@ -83,7 +83,7 @@ export default function ToolsPage() {
             archive, not a new brand. Paste a scenario or answer a few questions.
           </p>
           <Badge variant="secondary" className="mt-4">
-            Free tier: 1 report — Unlimited with Pro
+            One free report
           </Badge>
         </div>
 
