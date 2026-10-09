@@ -1,12 +1,21 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
-import PricingCards from "@/components/pricing-cards"
+import { ComingSoonList } from "@/components/coming-soon-list"
 import { EmailCapture } from "@/components/email-capture"
 import FeatureSection from "@/components/feature-section"
 import FrameworksSection from "@/components/frameworks-section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import WhatsNew from "@/components/whats-new"
 import { JsonLd } from "@/components/json-ld"
+
+export const metadata: Metadata = pageMeta({
+  title: "Cyber security for teams allergic to nonsense",
+  description:
+    "Practical cybersecurity training. Slightly unhinged copy. Very little panic. Lessons and plain-English walkthroughs for teams who have actual jobs.",
+  path: "/",
+})
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -76,10 +85,10 @@ export default function Home() {
           <div className="flex flex-col items-center space-y-6 text-center">
             <div className="space-y-3">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
-                Cyber security for teams allergic to nonsense
+                No scare tactics
               </p>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Cybersecurity Training
+                Cyber security for teams allergic to nonsense
               </h1>
               <p className="mx-auto max-w-[760px] text-blue-100 md:text-xl">
                 Serious protection. Slightly unhinged copy. Very little panic.
@@ -95,7 +104,7 @@ export default function Home() {
                 size="lg"
                 className="border-blue-200 bg-transparent text-white hover:bg-white/10"
               >
-                <Link href="#pricing">See pricing</Link>
+                <Link href="#coming-soon">Join the list</Link>
               </Button>
             </div>
             <p className="max-w-[680px] text-sm text-blue-200">
@@ -145,19 +154,9 @@ export default function Home() {
       {/* Frameworks Section */}
       <FrameworksSection />
 
-      {/* Pricing Section */}
-      <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Training pricing</h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                One price map: Free, Early Adopter $5/mo, and Pro $10/mo. What&apos;s the play is included on paid
-                plans, or $29/mo as a dedicated seat.
-              </p>
-            </div>
-            <PricingCards />
-          </div>
+      <section id="coming-soon" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <div className="container px-4 md:px-6 mx-auto max-w-3xl">
+          <ComingSoonList source="pricing-coming-soon" />
         </div>
       </section>
 

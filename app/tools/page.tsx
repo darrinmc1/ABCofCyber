@@ -1,4 +1,6 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import {
   Card,
   CardContent,
@@ -10,6 +12,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { FileText, ShieldAlert, Siren, Sparkles, MessageSquareWarning, MailWarning } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Tools",
+  description: "Draft a security policy, a risk assessment, or an incident plan. Or paste a suspicious scenario into What's the play.",
+  path: "/tools",
+})
 
 const tools = [
   {
@@ -75,7 +83,7 @@ export default function ToolsPage() {
             archive, not a new brand. Paste a scenario or answer a few questions.
           </p>
           <Badge variant="secondary" className="mt-4">
-            Free tier: 1 report — Unlimited with Pro
+            One free report
           </Badge>
         </div>
 

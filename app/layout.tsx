@@ -6,10 +6,23 @@ import Navbar from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
 import { FeedbackWidget } from "@/components/feedback-widget"
 import { WaitlistPopup } from "@/components/waitlist-popup"
+import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "ABC of Cyber | Security Without the Scare Tactics",
-  description: "A cyber-security platform with serious controls, sensible dashboards, and copy that does not read like it was approved by a committee of fax machines.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description:
+    "Cybersecurity training for teams allergic to nonsense. Practical lessons, plain-English walkthroughs, and very little panic.",
+  openGraph: {
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: { url: "/favicon.svg", type: "image/svg+xml" },
@@ -52,12 +65,12 @@ export default function RootLayout({
           </div>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3 text-xs text-slate-500">
             <span className="font-semibold text-slate-700 mr-1">Empire-HQ:</span>
-            <a href="https://freelancepro.com" className="hover:text-blue-600">FreelancePro</a>
-            <a href="https://moneymastery.com" className="hover:text-blue-600">Money Mastery</a>
-            <a href="https://aiforsmb.com" className="hover:text-blue-600">AI for SMB</a>
-            <a href="https://devops101.com" className="hover:text-blue-600">DevOps 101</a>
-            <a href="https://landscapedesign.com" className="hover:text-blue-600">Landscape Design</a>
-            <a href="https://pilatesflow.com" className="hover:text-blue-600">PilatesFlow</a>
+            <a href="https://freelancepro-teal.vercel.app" className="hover:text-blue-600">FreelancePro</a>
+            <a href="https://moneymastery.vercel.app" className="hover:text-blue-600">Money Mastery</a>
+            <a href="https://aiforsmb.vercel.app" className="hover:text-blue-600">AI for SMB</a>
+            <a href="https://devops101-six.vercel.app" className="hover:text-blue-600">DevOps 101</a>
+            <a href="https://landscapedesign-orcin.vercel.app" className="hover:text-blue-600">Landscape Design</a>
+            <a href="https://pilatesbuffet.com" className="hover:text-blue-600">PilatesFlow</a>
             <a href="https://osint101.com" className="hover:text-blue-600">OSINT 101</a>
             <a href="https://peelboss.com" className="hover:text-blue-600">Peel Boss</a>
             <a href="https://ticu.tv" className="hover:text-blue-600">TICU.TV</a>

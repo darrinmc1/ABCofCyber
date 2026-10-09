@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const AEO_ALLOW = ["/llm.txt", "/llms.txt", "/pricing.json", "/whats-the-play", "/pricing", "/learn", "/frameworks"]
+const AEO_ALLOW = ["/llm.txt", "/llms.txt", "/whats-the-play", "/pricing", "/learn", "/frameworks"]
 
 export default function robots(): MetadataRoute.Robots {
   return {

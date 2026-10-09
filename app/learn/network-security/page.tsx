@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Network, Shield, Wifi, Server, Lock, CheckCircle, AlertTriangle, HardDrive } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Network Security Fundamentals",
+  description: "Firewalls, segmentation, patching, and the office printer that behaves like a threat actor.",
+  path: "/learn/network-security",
+})
 
 export default function NetworkSecurityLesson() {
   return (

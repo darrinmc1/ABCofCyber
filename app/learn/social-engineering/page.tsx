@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Users, Phone, AlertTriangle, CheckCircle, Shield, UserX, DoorOpen, MessageSquare } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Social Engineering Defense",
+  description: "Pretexting, baiting, and tailgating. The human side of security, taught without a scare deck.",
+  path: "/learn/social-engineering",
+})
 
 export default function SocialEngineeringLesson() {
   return (

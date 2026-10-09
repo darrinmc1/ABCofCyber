@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { ArrowRight, ClipboardList, Shield, Siren, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = pageMeta({
+  title: "Get Started",
+  description: "Find the obvious holes, rank the chaos, and leave with a plan the rest of the company can read.",
+  path: "/get-started",
+})
 
 const steps = [
   {

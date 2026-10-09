@@ -1,6 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
+
+import type { Metadata } from "next"
 import Link from 'next/link'
+import { pageMeta } from "@/lib/seo"
 import { ArrowLeft, Shield, CheckCircle } from 'lucide-react'
+
+export const metadata: Metadata = pageMeta({
+  title: "Anonymity Beyond VPNs",
+  description: "What a VPN does not hide, and the next steps people mean when they talk about going quiet online.",
+  path: "/learn/the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns",
+})
 
 export default function DigitalGhostLesson() {
   return (

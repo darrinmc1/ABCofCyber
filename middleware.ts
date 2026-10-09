@@ -20,10 +20,10 @@ const isPublicRoute = createRouteMatcher([
   "/", "/sign-in(.*)", "/sign-up(.*)", "/login(.*)", "/signup(.*)",
   "/sitemap.xml", "/robots.txt",
   "/llm.txt", "/llms.txt", "/pricing.json",
-  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/walkthrough",
+  "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/contact", "/api/walkthrough",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
-  "/get-started", "/downloads", "/tools(.*)", "/whats-the-play",
+  "/get-started", "/downloads", "/tools(.*)", "/whats-the-play", "/improvements",
   "/terms", "/privacy", "/cookies",
 ])
 
@@ -43,7 +43,6 @@ function isAeoPath(url: string) {
   return (
     url === "/llm.txt" ||
     url === "/llms.txt" ||
-    url === "/pricing.json" ||
     url === "/whats-the-play" ||
     url === "/pricing" ||
     url.startsWith("/learn") ||

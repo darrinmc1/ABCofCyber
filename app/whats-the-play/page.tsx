@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { ArrowRight, Shield, AlertTriangle, Users, Lock, Globe, Briefcase, Code, HeartPulse, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = pageMeta({
+  title: "What's the play",
+  description: "Real situations and a concrete next step. The suspicious invoice, the Friday CVE, the account that stayed open.",
+  path: "/whats-the-play",
+})
 
 const useCases = [
   {

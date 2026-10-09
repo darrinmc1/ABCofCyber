@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Shield, AlertTriangle, CheckCircle, Clock, Target, TrendingDown, TrendingUp, Users, FileCheck } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Risk Management",
+  description: "Cyber risk in business terms: what to reduce, what to accept, and what to hand to someone else.",
+  path: "/frameworks/risk-management",
+})
 
 const riskManagementProcess = [
   {
@@ -239,9 +247,6 @@ export default function RiskManagementPage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <Link href="/get-started">Assess Your Risk Posture</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/dashboard">View Risk Dashboard</Link>
               </Button>
             </div>
           </div>
