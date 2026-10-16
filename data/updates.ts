@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding-new-2026-10-16",
+    "title": "The Cryptographic Canvas: Visualizing Encryption for Everyday Understanding",
+    "description": "New lesson: Demystify complex encryption algorithms using visual analogies and interactive examples to explain concepts like symmetric vs. asymmetric encryption, hashing, and digital signatures for a non-technical audience.",
+    "date": "2026-10-16",
+    "kind": "new",
+    "href": "/learn/the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding"
+  },
+  {
     "id": "the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration-new-2026-10-05",
     "title": "The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing",
     "description": "New lesson: Explore the critical ethical considerations and legal frameworks that penetration testers must adhere to, ensuring responsible and lawful security assessments.",
