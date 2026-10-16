@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Cryptographic Canvas: Visualizing Encryption for Everyday Understanding",
+    slug: "the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding",
+    icon: "Eye",
+    summary: "Demystify complex encryption algorithms using visual analogies and interactive examples to explain concepts like symmetric vs. asymmetric encryption, hashing, and digital signatures for a non-technical audience.",
+    quip: "",
+    difficulty: "Beginner",
+    duration: "15 min",
+    topics: ["encryption","cryptography","cybersecurity","beginner","digital security","privacy"],
+  },
+  {
     title: "The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing",
     slug: "the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration",
     icon: "Shield",
