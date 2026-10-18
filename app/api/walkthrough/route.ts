@@ -35,6 +35,17 @@ JSON shape:
   "citationIds": ["phishing-awareness"]
 }`
 
+function geminiText(data: {
+  candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }>
+}): string {
+  const parts = data?.candidates?.[0]?.content?.parts ?? []
+  const visible = parts.filter((part) => part?.thought !== true && typeof part?.text === "string")
+  return (visible.length ? visible : parts)
+    .map((part) => part?.text ?? "")
+    .join("\n")
+    .trim()
+}
+
 function extractJson(text: string): Record<string, unknown> | null {
   const trimmed = text.trim()
   const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/)
@@ -86,17 +97,23 @@ Write the walkthrough JSON now.`
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 0.35,
-        maxOutputTokens: 2048,
+        maxOutputTokens: 4096,
         topP: 0.9,
         responseMimeType: "application/json",
+        // 2.5 Flash spends the output budget on thoughts unless this is off,
+        // which was truncating the JSON draft.
+        thinkingConfig: { thinkingBudget: 0 },
       },
     }),
   })
 
-  if (!geminiResponse.ok) return null
+  if (!geminiResponse.ok) {
+    console.error("Walkthrough Gemini error", geminiResponse.status)
+    return null
+  }
   const geminiData = await geminiResponse.json()
-  const generatedText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text
-  if (typeof generatedText !== "string") return null
+  const generatedText = geminiText(geminiData)
+  if (!generatedText) return null
   const parsed = extractJson(generatedText)
   return parsed ? mergeModelWalkthrough(archive, parsed) : null
 }
