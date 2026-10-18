@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 
-const GEMINI_API_KEY = process.env.GOOGLE_API_KEY
+const GEMINI_API_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY
 const N8N_WEBHOOK = process.env.N8N_AI_WEBHOOK_URL
+const GEMINI_MODEL = process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash"
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+  `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`
 
 interface GenerateRequest {
   tool: string
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
   try {
     if (!GEMINI_API_KEY) {
       return NextResponse.json(
-        { error: "GOOGLE_API_KEY not configured on the server." },
+        { error: "Gemini API key not configured on the server." },
         { status: 500 },
       )
     }
