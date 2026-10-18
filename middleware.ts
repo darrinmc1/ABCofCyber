@@ -105,9 +105,39 @@ function applyEdgeRules(request: NextRequest) {
   return response
 }
 
+// Real Clerk sign-in page (app/sign-in). /login is a separate demo form.
+const SIGN_IN_PATH = "/sign-in"
+
+// AI routes that spend the model budget. A route only gets the 401 when it is
+// not public — /api/walkthrough stays public and is left alone.
+function isAiApiPath(pathname: string) {
+  return (
+    pathname === "/api/generate" ||
+    pathname.startsWith("/api/generate/") ||
+    pathname === "/api/walkthrough" ||
+    pathname.startsWith("/api/walkthrough/")
+  )
+}
+
+function signInRequiredResponse() {
+  return NextResponse.json(
+    { error: "Please sign in to use this tool", signIn: SIGN_IN_PATH },
+    { status: 401 },
+  )
+}
+
 const clerkHandler = hasClerkKeys
   ? clerkMiddleware(async (auth, request: NextRequest) => {
       if (!isPublicRoute(request)) {
+        // auth.protect() returns 404 for unauthenticated Route Handlers.
+        // Check the session and return JSON 401 instead, per
+        // https://clerk.com/docs/reference/nextjs/app-router/route-handlers
+        if (isAiApiPath(request.nextUrl.pathname)) {
+          const { isAuthenticated } = await auth()
+          if (!isAuthenticated) {
+            return signInRequiredResponse()
+          }
+        }
         await auth.protect()
       }
       return applyEdgeRules(request)
