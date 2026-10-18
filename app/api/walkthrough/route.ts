@@ -7,10 +7,11 @@ import {
   type WalkthroughResult,
 } from "@/lib/archive"
 
-const GEMINI_API_KEY = process.env.GOOGLE_API_KEY
+const GEMINI_API_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY
 const N8N_WEBHOOK = process.env.N8N_AI_WEBHOOK_URL
+const GEMINI_MODEL = process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash"
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+  `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`
 
 const SYSTEM_PROMPT = `You are the ABC of Cyber walkthrough writer. One job: take a pasted "is this phishing / what's the play" scenario and write a calm, plain-English walkthrough using the ABC method (Assess the ask, Break down the play, Choose the next move).
 
@@ -33,6 +34,17 @@ JSON shape:
   "doInstead": ["..."],
   "citationIds": ["phishing-awareness"]
 }`
+
+function geminiText(data: {
+  candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }>
+}): string {
+  const parts = data?.candidates?.[0]?.content?.parts ?? []
+  const visible = parts.filter((part) => part?.thought !== true && typeof part?.text === "string")
+  return (visible.length ? visible : parts)
+    .map((part) => part?.text ?? "")
+    .join("\n")
+    .trim()
+}
 
 function extractJson(text: string): Record<string, unknown> | null {
   const trimmed = text.trim()
@@ -85,17 +97,23 @@ Write the walkthrough JSON now.`
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 0.35,
-        maxOutputTokens: 2048,
+        maxOutputTokens: 4096,
         topP: 0.9,
         responseMimeType: "application/json",
+        // 2.5 Flash spends the output budget on thoughts unless this is off,
+        // which was truncating the JSON draft.
+        thinkingConfig: { thinkingBudget: 0 },
       },
     }),
   })
 
-  if (!geminiResponse.ok) return null
+  if (!geminiResponse.ok) {
+    console.error("Walkthrough Gemini error", geminiResponse.status)
+    return null
+  }
   const geminiData = await geminiResponse.json()
-  const generatedText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text
-  if (typeof generatedText !== "string") return null
+  const generatedText = geminiText(geminiData)
+  if (!generatedText) return null
   const parsed = extractJson(generatedText)
   return parsed ? mergeModelWalkthrough(archive, parsed) : null
 }

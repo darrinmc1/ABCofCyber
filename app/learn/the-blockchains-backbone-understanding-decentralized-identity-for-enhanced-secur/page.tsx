@@ -14,7 +14,7 @@ export default function TheBlockchainsBackboneUnderstandingDecentralizedIdentity
               <Badge className="bg-yellow-100 text-yellow-700">Intermediate</Badge>
               <Badge variant="outline">15 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security</h1>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Blockchain&apos;s Backbone: Understanding Decentralized Identity for Enhanced Security</h1>
             <p className="text-lg text-slate-600 mb-6">Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.</p>
             <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
           </div>
