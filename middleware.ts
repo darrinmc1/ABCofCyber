@@ -21,6 +21,7 @@ const isPublicRoute = createRouteMatcher([
   "/sitemap.xml", "/robots.txt",
   "/llm.txt", "/llms.txt", "/pricing.json",
   "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/walkthrough",
+  "/api/checkout", "/api/stripe/webhook",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
   "/get-started", "/downloads", "/tools(.*)", "/whats-the-play",
@@ -145,6 +146,12 @@ const clerkHandler = hasClerkKeys
   : null
 
 export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  // Stripe must reach the webhook with the raw body. Do not run Clerk or the
+  // rate limiter on this path — both have blocked signature verification.
+  // /api/generate is unchanged: signed-out calls still get the JSON 401.
+  if (request.nextUrl.pathname === "/api/stripe/webhook") {
+    return NextResponse.next()
+  }
   if (clerkHandler) {
     return clerkHandler(request, event)
   }

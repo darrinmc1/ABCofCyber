@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CheckCircle, ShieldCheck } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
+import PricingCards from "@/components/pricing-cards"
 import { Button } from "@/components/ui/button"
 
 const availableNow = [
@@ -26,7 +27,7 @@ export default function PricingPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-100 text-blue-700"><ShieldCheck className="h-6 w-6" /></div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Early access</p>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">Use ABC of Cyber free while we finish the paid layer.</h1>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">Checkout is not live, so there are no public paid plan prices yet. Explore the training and tools now, then join early access if you want to know when expanded access is ready.</p>
+          <p className="mx-auto max-w-2xl text-lg text-slate-600">Checkout is not open. The amounts below are the current plan prices. Buy stays closed until payments are switched on.</p>
         </div>
       </section>
 
@@ -49,6 +50,12 @@ export default function PricingPage() {
             </ul>
             <Button asChild variant="outline" className="mt-8 w-full"><Link href="/whats-the-play">Try What&apos;s the play</Link></Button>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="container mx-auto max-w-6xl px-4 py-16 md:px-6">
+          <PricingCards />
         </div>
       </section>
 

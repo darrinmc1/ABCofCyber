@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useEffect } from "react"
+import { LegalNotice } from "@/components/legal-notice"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -456,6 +457,7 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
         <Badge variant="secondary" className="mt-3">
           Free tier: 1 report
         </Badge>
+        <LegalNotice className="mt-4 text-xs leading-5 text-slate-600" />
       </div>
 
       {step === "signin" && <SignInPrompt href={signInHref} />}

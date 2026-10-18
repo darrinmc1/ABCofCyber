@@ -56,14 +56,16 @@ export async function sendWelcome(args: { email: string; name?: string }) {
 }
 
 export async function sendAdminNotification(args: {
-  kind: "subscribe" | "feedback";
+  kind: "subscribe" | "feedback" | "purchase";
   payload: Record<string, unknown>;
 }) {
   if (!NOTIFY) return { ok: false as const, reason: "notify_email_not_set" };
   const subject =
     args.kind === "subscribe"
       ? `[${SITE_NAME}] New subscriber`
-      : `[${SITE_NAME}] New feedback`;
+      : args.kind === "purchase"
+        ? `[${SITE_NAME}] New subscription`
+        : `[${SITE_NAME}] New feedback`;
   const rows = Object.entries(args.payload)
     .map(
       ([k, v]) =>
