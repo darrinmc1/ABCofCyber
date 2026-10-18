@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { headers } from "next/headers"
 import Link from "next/link"
 import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs"
 import "./globals.css"
@@ -16,16 +17,22 @@ export const metadata: Metadata = {
   },
 }
 
-const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
+const clerkConfigured = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Show calls auth(). That throws on renders clerkMiddleware did not cover,
+  // which is how missing static files surface as /_not-found errors.
+  const clerkActive = clerkConfigured
+    ? Boolean((await headers()).get("x-clerk-auth-status"))
+    : false
+
   const chrome = (
     <>
-      {clerkEnabled && (
+      {clerkActive && (
         <header className="flex justify-end items-center gap-3 px-4 py-2 border-b bg-slate-50 text-sm">
           <Show when="signed-out">
             <SignInButton />
@@ -77,7 +84,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {clerkEnabled ? <ClerkProvider>{chrome}</ClerkProvider> : chrome}
+        {clerkConfigured ? <ClerkProvider>{chrome}</ClerkProvider> : chrome}
       </body>
     </html>
   )

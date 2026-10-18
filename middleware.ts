@@ -124,5 +124,7 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
 export const config = {
   matcher: [
     "/((?!_next/static|_next/image|images/|favicon).*)",
+    // Missing pages render as /_not-found. Keep clerkMiddleware on that route.
+    "/_not-found",
   ],
 }

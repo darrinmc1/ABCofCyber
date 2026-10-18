@@ -14,7 +14,7 @@ export default function TheEthicalHackersCompassNavigatingLegalAndMoralBoundarie
               <Badge className="bg-yellow-100 text-yellow-700">Intermediate</Badge>
               <Badge variant="outline">12 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing</h1>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Ethical Hacker&apos;s Compass: Navigating Legal and Moral Boundaries in Penetration Testing</h1>
             <p className="text-lg text-slate-600 mb-6">Explore the critical ethical considerations and legal frameworks that penetration testers must adhere to, ensuring responsible and lawful security assessments.</p>
             <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
           </div>
