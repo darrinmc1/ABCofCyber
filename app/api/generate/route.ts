@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
+import { LEGAL_NOTICE } from "@/lib/legal-notice"
+
+function withLegalNotice(text: string): string {
+  if (text.includes(LEGAL_NOTICE)) return text
+  return `${LEGAL_NOTICE}\n\n${text}\n\n${LEGAL_NOTICE}`
+}
 
 const GEMINI_API_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY
 const N8N_WEBHOOK = process.env.N8N_AI_WEBHOOK_URL
@@ -91,7 +97,7 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      return NextResponse.json({ draft: text })
+      return NextResponse.json({ draft: withLegalNotice(text) })
     }
 
     // Fallback: call Gemini directly
@@ -155,7 +161,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ content: generatedText })
+    return NextResponse.json({ content: withLegalNotice(generatedText) })
   } catch (error) {
     console.error("Generate API error:", error)
     return NextResponse.json(

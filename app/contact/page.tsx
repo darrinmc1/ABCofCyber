@@ -2,14 +2,9 @@ import Link from "next/link"
 import { Mail, MessageSquare, Phone, AlarmClock, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { getSupportEmail } from "@/lib/support-email"
 
 const contactOptions = [
-  {
-    title: "Email",
-    detail: "security@abcofcyber.example",
-    note: "For thoughtful questions, urgent questions, and politely alarmed questions.",
-    icon: Mail,
-  },
   {
     title: "Call",
     detail: "+61 7 5550 0137",
@@ -40,6 +35,21 @@ const responsePromises = [
 ]
 
 export default function ContactPage() {
+  const supportEmail = getSupportEmail()
+  const visibleOptions = [
+    ...(supportEmail
+      ? [
+          {
+            title: "Email",
+            detail: supportEmail,
+            note: "For thoughtful questions, urgent questions, and politely alarmed questions.",
+            icon: Mail,
+          },
+        ]
+      : []),
+    ...contactOptions,
+  ]
+
   return (
     <main className="min-h-screen bg-slate-50">
       <section className="container mx-auto px-4 py-16 md:px-6">
@@ -59,7 +69,7 @@ export default function ContactPage() {
       </section>
 
       <section className="container mx-auto grid gap-6 px-4 pb-16 md:px-6 lg:grid-cols-3">
-        {contactOptions.map(({ title, detail, note, icon: Icon }) => (
+        {visibleOptions.map(({ title, detail, note, icon: Icon }) => (
           <Card key={title} className="bg-white">
             <CardHeader>
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">

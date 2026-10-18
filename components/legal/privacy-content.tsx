@@ -11,8 +11,8 @@ interface PrivacyPageProps {
 export function PrivacyPage({
   siteName,
   domain,
-  supportEmail = "admin@" + domain,
-  companyName = siteName,
+  supportEmail,
+  companyName = "TTPN Pty Ltd",
   address = "",
 }: PrivacyPageProps) {
   const lastUpdated = "July 29, 2026"
@@ -195,8 +195,15 @@ export function PrivacyPage({
               <li><strong>Withdrawal of consent</strong> — withdraw consent at any time where processing is based on consent</li>
             </ul>
             <p className="text-slate-700">
-              To exercise any of these rights, contact us at <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>.
-              We will respond within 30 days.
+              To exercise any of these rights, contact us
+              {supportEmail ? (
+                <>
+                  {" "}at <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>
+                </>
+              ) : (
+                <> via the website</>
+              )}
+              . We will respond within 30 days.
             </p>
           </section>
 
@@ -230,7 +237,9 @@ export function PrivacyPage({
               If you have questions about this Privacy Policy, please contact us:
             </p>
             <ul className="list-disc pl-6 text-slate-700 space-y-1">
-              <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
+              {supportEmail ? (
+                <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
+              ) : null}
               <li>Website: <Link href={`https://${domain}/contact`} className="text-blue-600 underline">{domain}/contact</Link></li>
               {address && <li>Address: {address}</li>}
             </ul>
