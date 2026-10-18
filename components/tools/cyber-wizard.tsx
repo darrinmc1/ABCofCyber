@@ -201,6 +201,30 @@ const TOOL_CONFIGS: Record<string, ToolConfig> = {
   },
 }
 
+function SignInPrompt({ href }: { href: string }) {
+  return (
+    <Card className="border-blue-200 shadow-lg">
+      <CardHeader className="text-center">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+          <Lock className="h-8 w-8 text-blue-600" />
+        </div>
+        <CardTitle className="text-2xl">Sign in to generate your document</CardTitle>
+        <CardDescription className="mt-2 text-base">
+          Document generation is available after you sign in.
+        </CardDescription>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-3">
+        <Button asChild className="w-full" size="lg">
+          <Link href={href}>Sign in</Link>
+        </Button>
+        <Button asChild variant="outline" size="sm" className="w-full">
+          <Link href="/tools">Back to Tools</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
 function SubscribeWall() {
   return (
     <div className="flex items-center justify-center py-12">
@@ -260,13 +284,14 @@ interface CyberWizardProps {
 
 export default function CyberWizard({ toolSlug }: CyberWizardProps) {
   const config = TOOL_CONFIGS[toolSlug]
-  const [step, setStep] = useState<"form" | "generating" | "result" | "wall">(
+  const [step, setStep] = useState<"form" | "generating" | "result" | "wall" | "signin">(
     "form",
   )
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [result, setResult] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [signInHref, setSignInHref] = useState("/sign-in")
   const [copied, setCopied] = useState(false)
 
   // Check free trial on mount
@@ -315,6 +340,17 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
           answers,
         }),
       })
+
+      if (response.status === 401) {
+        const errData = await response.json().catch(() => null)
+        const nextSignIn =
+          errData && typeof errData.signIn === "string" && errData.signIn.startsWith("/")
+            ? errData.signIn
+            : "/sign-in"
+        setSignInHref(nextSignIn)
+        setStep("signin")
+        return
+      }
 
       if (!response.ok) {
         const errData = await response.json().catch(() => null)
@@ -421,6 +457,8 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
           Free tier: 1 report
         </Badge>
       </div>
+
+      {step === "signin" && <SignInPrompt href={signInHref} />}
 
       {/* Generating State */}
       {step === "generating" && (
