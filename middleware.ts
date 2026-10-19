@@ -43,6 +43,7 @@ function isAeoPath(url: string) {
   return (
     url === "/llm.txt" ||
     url === "/llms.txt" ||
+    url === "/pricing.json" ||
     url === "/whats-the-play" ||
     url === "/pricing" ||
     url.startsWith("/learn") ||

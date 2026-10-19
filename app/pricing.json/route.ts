@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server"
-import { SITE_URL } from "@/lib/site"
+import { pricingJson } from "@/lib/pricing"
 
 export function GET() {
-  return NextResponse.json(
-    {
-      product: "ABC of Cyber",
-      status: "coming-soon",
-      signup: `${SITE_URL}/pricing`,
+  return NextResponse.json(pricingJson(), {
+    headers: {
+      "Cache-Control": "public, max-age=3600",
     },
-    {
-      headers: {
-        "Cache-Control": "public, max-age=3600",
-      },
-    },
-  )
+  })
 }
