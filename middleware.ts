@@ -21,9 +21,10 @@ const isPublicRoute = createRouteMatcher([
   "/sitemap.xml", "/robots.txt",
   "/llm.txt", "/llms.txt", "/pricing.json",
   "/api/webhooks(.*)", "/api/send-email", "/api/subscribe", "/api/contact", "/api/walkthrough",
+  "/api/checkout", "/api/stripe/webhook",
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
-  "/get-started", "/downloads", "/tools(.*)", "/whats-the-play", "/improvements",
+  "/get-started", "/downloads", "/improvements", "/tools(.*)", "/whats-the-play",
   "/terms", "/privacy", "/cookies",
 ])
 
@@ -105,9 +106,39 @@ function applyEdgeRules(request: NextRequest) {
   return response
 }
 
+// Real Clerk sign-in page (app/sign-in). /login is a separate demo form.
+const SIGN_IN_PATH = "/sign-in"
+
+// AI routes that spend the model budget. A route only gets the 401 when it is
+// not public — /api/walkthrough stays public and is left alone.
+function isAiApiPath(pathname: string) {
+  return (
+    pathname === "/api/generate" ||
+    pathname.startsWith("/api/generate/") ||
+    pathname === "/api/walkthrough" ||
+    pathname.startsWith("/api/walkthrough/")
+  )
+}
+
+function signInRequiredResponse() {
+  return NextResponse.json(
+    { error: "Please sign in to use this tool", signIn: SIGN_IN_PATH },
+    { status: 401 },
+  )
+}
+
 const clerkHandler = hasClerkKeys
   ? clerkMiddleware(async (auth, request: NextRequest) => {
       if (!isPublicRoute(request)) {
+        // auth.protect() returns 404 for unauthenticated Route Handlers.
+        // Check the session and return JSON 401 instead, per
+        // https://clerk.com/docs/reference/nextjs/app-router/route-handlers
+        if (isAiApiPath(request.nextUrl.pathname)) {
+          const { isAuthenticated } = await auth()
+          if (!isAuthenticated) {
+            return signInRequiredResponse()
+          }
+        }
         await auth.protect()
       }
       return applyEdgeRules(request)
@@ -115,6 +146,12 @@ const clerkHandler = hasClerkKeys
   : null
 
 export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  // Stripe must reach the webhook with the raw body. Do not run Clerk or the
+  // rate limiter on this path — both have blocked signature verification.
+  // /api/generate is unchanged: signed-out calls still get the JSON 401.
+  if (request.nextUrl.pathname === "/api/stripe/webhook") {
+    return NextResponse.next()
+  }
   if (clerkHandler) {
     return clerkHandler(request, event)
   }
@@ -124,5 +161,7 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
 export const config = {
   matcher: [
     "/((?!_next/static|_next/image|images/|favicon).*)",
+    // Missing pages render as /_not-found. Keep clerkMiddleware on that route.
+    "/_not-found",
   ],
 }

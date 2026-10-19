@@ -1,7 +1,12 @@
 import { ABC_METHOD, WALKTHROUGH_DISCLAIMER } from "@/lib/disclaimer"
 import { ARCHIVE_CITATIONS } from "@/lib/archive"
+import { launchOfferLabel } from "@/lib/launch-offer"
+import { MERCHANT_OF_RECORD_DISCLOSURE } from "@/lib/merchant-of-record"
 import { CHECKOUT_LIVE, PLANS, WHATS_THE_PLAY_OFFER } from "@/lib/pricing"
+import { REFUND_POLICY } from "@/lib/refund-policy"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
+import { stripePaymentsEnabled } from "@/lib/stripe"
+import { getSupportEmail } from "@/lib/support-email"
 
 function llmTxt(): string {
   const method = ABC_METHOD.steps.map((s) => `${s.letter} — ${s.title}: ${s.summary}`).join("\n")
@@ -10,6 +15,9 @@ function llmTxt(): string {
       `- ${p.name}: ${p.priceDisplay}${p.periodLabel} — ${p.description} Includes What's the play: ${p.includesWhatsThePlay ? "yes (unlimited)" : "1 free walkthrough"}.`,
   ).join("\n")
   const citations = ARCHIVE_CITATIONS.map((c) => `- ${c.title} (${SITE_URL}${c.href}) [${c.kind}]`).join("\n")
+  const paymentsOn = stripePaymentsEnabled()
+  const launch = paymentsOn ? launchOfferLabel() : null
+  const supportEmail = getSupportEmail()
 
   return `# ${SITE_NAME}
 
@@ -44,7 +52,11 @@ Machine-readable copy: ${SITE_URL}/pricing.json
 Human copy: ${SITE_URL}/pricing
 Currency: USD
 x402: false
-Checkout: existing-subscription (Early Adopter / Pro). ${CHECKOUT_LIVE ? "Checkout is live." : "Checkout is not live — join the waitlist."} No crypto rails.
+Checkout: existing-subscription (Early Adopter / Pro). ${CHECKOUT_LIVE || paymentsOn ? "Checkout is live." : "Checkout is not live — join the waitlist."} No crypto rails.
+Payments: ${MERCHANT_OF_RECORD_DISCLOSURE}
+Refunds: ${REFUND_POLICY}
+Governing law: Queensland, Australia. The courts of Queensland have exclusive jurisdiction. The Service is operated by TTPN Pty Ltd.
+${launch ? `Launch offer: ${launch}. Coupon duration is once (first billing period only).` : ""}
 
 ${plans}
 
@@ -80,7 +92,7 @@ A: Paid-plan include on Early Adopter ($5/mo) and Pro ($10/mo), or $29/mo as a d
 
 ## Contact
 
-${SITE_URL}/contact
+${supportEmail ? `Email: ${supportEmail}\n` : ""}${SITE_URL}/contact
 `
 }
 

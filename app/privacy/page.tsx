@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { PrivacyPage } from "@/components/legal/privacy-content"
 import { pageMeta } from "@/lib/seo"
+import { getSupportEmail } from "@/lib/support-email"
 
 export const metadata: Metadata = pageMeta({
   title: "Privacy Policy",
@@ -13,6 +14,8 @@ export default function Page() {
     <PrivacyPage
       siteName="ABC of Cyber"
       domain="abcofcyber.com"
+      companyName="TTPN Pty Ltd"
+      supportEmail={getSupportEmail() ?? undefined}
     />
   )
 }

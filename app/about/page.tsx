@@ -25,7 +25,7 @@ const values = [
   {
     icon: Globe,
     title: "Practical over perfect",
-    description: "A good security program that exists beats a perfect one that lives in a planning document forever.",
+    description: "A good security program that exists beats a perfect one that stays in a planning document.",
   },
   {
     icon: Lightbulb,

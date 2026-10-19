@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { MERCHANT_OF_RECORD_DISCLOSURE } from "@/lib/merchant-of-record"
+import { REFUND_POLICY } from "@/lib/refund-policy"
 
 interface TermsPageProps {
   siteName: string
@@ -7,7 +9,7 @@ interface TermsPageProps {
   companyName?: string
 }
 
-export function TermsPage({ siteName, domain, supportEmail, companyName = siteName }: TermsPageProps) {
+export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN Pty Ltd" }: TermsPageProps) {
   const lastUpdated = "July 29, 2026"
 
   return (
@@ -85,6 +87,7 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = siteNa
               full credit card numbers on our servers. By providing payment information, you represent that you are
               authorized to use the payment method and authorize us to charge the applicable fees.
             </p>
+            <p className="text-slate-700 mb-3">{MERCHANT_OF_RECORD_DISCLOSURE}</p>
             <p className="text-slate-700 mb-3">
               <strong>Subscription billing:</strong> Your subscription will auto-renew at the end of each billing cycle
               unless you cancel before the renewal date. You may cancel at any time from your account dashboard. Upon
@@ -98,23 +101,7 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = siteNa
           {/* Section 4 */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-4">4. Refund Policy</h2>
-            <p className="text-slate-700 mb-3">
-              We want you to be satisfied with your purchase. Our refund policy is as follows:
-            </p>
-            <ul className="list-disc pl-6 mb-4 text-slate-700 space-y-1">
-              <li><strong>Digital courses &amp; templates:</strong> Due to the digital nature of our products, all sales are final. If you experience technical issues preventing access, contact us and we will resolve the issue or issue a refund at our discretion.</li>
-              <li><strong>Subscription plans:</strong> You may cancel at any time. Refunds are provided on a case-by-case basis. If you cancel within 14 days of signing up and have consumed minimal content, we may issue a prorated refund.</li>
-              <li><strong>Billing errors:</strong> Duplicate or incorrect charges will be refunded in full upon verification.</li>
-            </ul>
-            <p className="text-slate-700">
-              To request a refund,{" "}
-              {supportEmail ? (
-                <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">contact {supportEmail}</a>
-              ) : (
-                <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>
-              )}
-              .
-            </p>
+            <p className="text-slate-700">{REFUND_POLICY}</p>
           </section>
 
           {/* Section 5 */}
@@ -233,8 +220,8 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = siteNa
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-4">11. Governing Law</h2>
             <p className="text-slate-700">
-              These Terms shall be governed and construed in accordance with the laws of the State of Delaware, United
-              States, without regard to its conflict of law provisions. Our failure to enforce any right or provision
+              The Service is operated by TTPN Pty Ltd. These Terms are governed by the laws of Queensland, Australia,
+              and the courts of Queensland have exclusive jurisdiction. Our failure to enforce any right or provision
               of these Terms will not be considered a waiver of those rights.
             </p>
           </section>

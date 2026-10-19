@@ -12,7 +12,7 @@ export function PrivacyPage({
   siteName,
   domain,
   supportEmail,
-  companyName = siteName,
+  companyName = "TTPN Pty Ltd",
   address = "",
 }: PrivacyPageProps) {
   const lastUpdated = "July 29, 2026"

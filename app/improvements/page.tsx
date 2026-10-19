@@ -3,6 +3,7 @@ import Link from "next/link"
 import { pageMeta } from "@/lib/seo"
 import { Construction, ArrowLeft } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
+import { PlanBuy } from "@/components/plan-buy"
 
 export const metadata: Metadata = pageMeta({
   title: "Waitlist",
@@ -23,7 +24,7 @@ export default function ImprovementsPage() {
           <h1 className="text-3xl font-bold tracking-tight mb-3">We&apos;re Building Something Better</h1>
           <p className="text-slate-600 max-w-lg mx-auto mb-8 text-lg">
             Checkout is not live. The training price map is Free, Early Adopter{" "}
-            <strong className="text-blue-600">$5/month locked forever</strong>, and Pro $10/month.
+            <strong className="text-blue-600">$5/month</strong>, and Pro $10/month.
             Join the waitlist and we will email you when billing launches.
           </p>
           <div className="mx-auto mb-8 max-w-xl text-left">
@@ -34,6 +35,10 @@ export default function ImprovementsPage() {
               subheading="Same planned SKUs as /pricing. No new packages, and no checkout until billing is live."
               source="improvements-waitlist"
             />
+          </div>
+          <div className="mx-auto mb-8 grid max-w-3xl gap-6 text-left md:grid-cols-2">
+            <PlanBuy sku="early_adopter" />
+            <PlanBuy sku="pro" />
           </div>
           <div className="flex items-center justify-center gap-4">
             <Link href="/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">

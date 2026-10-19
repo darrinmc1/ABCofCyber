@@ -16,6 +16,54 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "phishing-by-the-numbers-email-headers-new-2026-10-19",
+    "title": "Phishing by the Numbers: Dissecting Real Email Headers to Catch the Fakes",
+    "description": "New lesson: Learn to analyze raw email headers, including SPF, DKIM, DMARC, routing paths, and spoofed display names, to identify and avoid phishing attempts.",
+    "date": "2026-10-19",
+    "kind": "new",
+    "href": "/learn/phishing-by-the-numbers-email-headers"
+  },
+  {
+    "id": "the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding-new-2026-10-16",
+    "title": "The Cryptographic Canvas: Visualizing Encryption for Everyday Understanding",
+    "description": "New lesson: Demystify complex encryption algorithms using visual analogies and interactive examples to explain concepts like symmetric vs. asymmetric encryption, hashing, and digital signatures for a non-technical audience.",
+    "date": "2026-10-16",
+    "kind": "new",
+    "href": "/learn/the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding"
+  },
+  {
+    "id": "the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration-new-2026-10-05",
+    "title": "The Ethical Hacker's Compass: Navigating Legal and Moral Boundaries in Penetration Testing",
+    "description": "New lesson: Explore the critical ethical considerations and legal frameworks that penetration testers must adhere to, ensuring responsible and lawful security assessments.",
+    "date": "2026-10-05",
+    "kind": "new",
+    "href": "/learn/the-ethical-hackers-compass-navigating-legal-and-moral-boundaries-in-penetration"
+  },
+  {
+    "id": "the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security-new-2026-09-21",
+    "title": "The Algorithmic Gatekeepers: How AI is Shaping Our Digital Access and Security",
+    "description": "New lesson: Explore the growing influence of Artificial Intelligence in managing access to online services, personal data, and digital resources, and understand the critical security implications.",
+    "date": "2026-09-21",
+    "kind": "new",
+    "href": "/learn/the-algorithmic-gatekeepers-how-ai-is-shaping-our-digital-access-and-security"
+  },
+  {
+    "id": "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur-new-2026-09-14",
+    "title": "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
+    "description": "New lesson: Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.",
+    "date": "2026-09-14",
+    "kind": "new",
+    "href": "/learn/the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur"
+  },
+  {
+    "id": "the-invisible-network-securing-your-smart-homes-iot-ecosystem-new-2026-09-08",
+    "title": "The Invisible Network: Securing Your Smart Home's IoT Ecosystem",
+    "description": "New lesson: Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home's IoT ecosystem.",
+    "date": "2026-09-08",
+    "kind": "new",
+    "href": "/learn/the-invisible-network-securing-your-smart-homes-iot-ecosystem"
+  },
+  {
     "id": "the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat-new-2026-08-31",
     "title": "The Silent Sabotage: Identifying and Mitigating Insider Threats in Your Organization",
     "description": "New lesson: Explore the various types of insider threats, from accidental data leaks to malicious intent, and learn practical strategies for detection, prevention, and response.",
