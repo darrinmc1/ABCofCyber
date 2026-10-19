@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "Phishing by the Numbers: Dissecting Real Email Headers to Catch the Fakes",
+    slug: "phishing-by-the-numbers-email-headers",
+    icon: "MailWarning",
+    summary: "Learn to analyze raw email headers, including SPF, DKIM, DMARC, routing paths, and spoofed display names, to identify and avoid phishing attempts.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "10 min",
+    topics: ["phishing","email security","spf","dkim","dmarc","header analysis"],
+  },
+  {
     title: "The Cryptographic Canvas: Visualizing Encryption for Everyday Understanding",
     slug: "the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding",
     icon: "Eye",
