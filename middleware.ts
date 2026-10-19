@@ -106,6 +106,12 @@ function applyEdgeRules(request: NextRequest) {
   return response
 }
 
+// Signed-out visitors can submit the feedback widget (POST only). Bot filter
+// and edge rate limit in applyEdgeRules still run; the route validates input.
+function isPublicFeedbackPost(request: NextRequest) {
+  return request.method === "POST" && request.nextUrl.pathname === "/api/feedback"
+}
+
 // Real Clerk sign-in page (app/sign-in). /login is a separate demo form.
 const SIGN_IN_PATH = "/sign-in"
 
@@ -129,7 +135,7 @@ function signInRequiredResponse() {
 
 const clerkHandler = hasClerkKeys
   ? clerkMiddleware(async (auth, request: NextRequest) => {
-      if (!isPublicRoute(request)) {
+      if (!isPublicRoute(request) && !isPublicFeedbackPost(request)) {
         // auth.protect() returns 404 for unauthenticated Route Handlers.
         // Check the session and return JSON 401 instead, per
         // https://clerk.com/docs/reference/nextjs/app-router/route-handlers
