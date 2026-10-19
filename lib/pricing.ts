@@ -1,6 +1,6 @@
 import { SITE_URL } from "./site"
 
-export type BillingPeriod = "month" | "forever"
+export type BillingPeriod = "month" | "none"
 
 export interface PricePlan {
   id: string
@@ -53,8 +53,8 @@ export const PLANS: PricePlan[] = [
     name: "Free",
     priceUsd: 0,
     priceDisplay: "$0",
-    period: "forever",
-    periodLabel: "forever",
+    period: "none",
+    periodLabel: "",
     description: "Get started with courses and one educational walkthrough. No credit card needed.",
     features: [
       "All courses & lessons",
@@ -74,16 +74,14 @@ export const PLANS: PricePlan[] = [
     priceDisplay: "$5",
     period: "month",
     periodLabel: "/month",
-    description: "Lock in early adopter pricing forever — never pay more.",
+    description: "Early adopter rate at the amount shown on this card.",
     features: [
       "Everything in Free",
       "Unlimited What's the play walkthroughs",
       "All Pro template packs",
       "All interactive tools",
-      "30-day refund guarantee",
-      "Price locked forever",
     ],
-    cta: "Lock in $5/mo",
+    cta: "Coming soon",
     href: "/improvements",
     highlighted: true,
     includesWhatsThePlay: true,

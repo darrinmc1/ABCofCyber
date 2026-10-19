@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { ArrowRight, Shield, Users, Globe, Lightbulb } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = pageMeta({
+  title: "About",
+  description: "ABC of Cyber helps teams build security that works on a Tuesday, not just in the demo where every server behaves.",
+  path: "/about",
+})
 
 const values = [
   {
@@ -17,7 +25,7 @@ const values = [
   {
     icon: Globe,
     title: "Practical over perfect",
-    description: "A good security program that exists beats a perfect one that lives in a planning document forever.",
+    description: "A good security program that exists beats a perfect one that stays in a planning document.",
   },
   {
     icon: Lightbulb,

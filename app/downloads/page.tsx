@@ -1,6 +1,15 @@
+import type { Metadata } from "next"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { LegalNotice } from "@/components/legal-notice"
 import Link from "next/link"
+
+export const metadata: Metadata = pageMeta({
+  title: "Templates",
+  description: "Security policy, risk register, and incident-plan templates you can download and then actually fill in.",
+  path: "/downloads",
+})
 
 const downloads = [
   {
@@ -221,7 +230,8 @@ export default function DownloadsPage() {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="border-t border-indigo-900/30 pt-4">
+              <CardFooter className="flex flex-col items-start gap-3 border-t border-indigo-900/30 pt-4">
+                <LegalNotice className="text-xs leading-5 text-indigo-100" />
                 <Button
                   asChild
                   className="bg-violet-600 text-white hover:bg-violet-700"

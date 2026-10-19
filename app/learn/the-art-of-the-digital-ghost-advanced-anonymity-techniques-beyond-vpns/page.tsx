@@ -1,10 +1,20 @@
+/* eslint-disable react/no-unescaped-entities */
+
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Network, CheckCircle, AlertTriangle, Shield, Eye, Wifi } from "lucide-react"
 import HumorBreak from "@/components/humor-break"
 import { LessonAside } from "@/components/lesson-aside"
+
+export const metadata: Metadata = pageMeta({
+  title: "Anonymity Beyond VPNs",
+  description: "What a VPN does not hide, and the next steps people mean when they talk about going quiet online.",
+  path: "/learn/the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns",
+})
 
 export default function DigitalGhostLesson() {
   return (

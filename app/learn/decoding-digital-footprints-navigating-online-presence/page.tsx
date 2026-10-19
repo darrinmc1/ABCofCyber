@@ -1,10 +1,18 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Eye, CheckCircle, AlertTriangle, Search, Smartphone, Lock } from "lucide-react"
 import HumorBreak from "@/components/humor-break"
 import { LessonAside } from "@/components/lesson-aside"
+
+export const metadata: Metadata = pageMeta({
+  title: "Digital Footprints",
+  description: "The data you leave online, and how to see it before someone else uses it as a biography.",
+  path: "/learn/decoding-digital-footprints-navigating-online-presence",
+})
 
 export default function DecodingDigitalFootprintsNavigatingOnlinePresenceLesson() {
   return (

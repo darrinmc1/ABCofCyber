@@ -1,12 +1,20 @@
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import { pageMeta } from "@/lib/seo"
 import Link from "next/link"
 import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight, Shield, Eye } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-
 import { lessons } from "@/lib/lessons"
 import { getHumorEnabled } from "@/lib/humor"
+
+export const metadata: Metadata = pageMeta({
+  title: "Lessons",
+  description: "Cybersecurity lessons for the basics: phishing, passwords, networks, social engineering, and what to do when something breaks.",
+  path: "/learn",
+})
+
 
 const iconMap: Record<string, ReactNode> = {
   BookOpen: <BookOpen className="h-8 w-8" />,
@@ -38,7 +46,6 @@ export default function LearnPage() {
             <p className="text-lg text-slate-600">
               {lessons.length} written lessons. Practical, no-nonsense security basics every
               team member should know. No jargon-for-jargon&apos;s-sake. No scare tactics.
-              No invented catalog size.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>

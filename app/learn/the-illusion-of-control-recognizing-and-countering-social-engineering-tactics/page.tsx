@@ -1,10 +1,18 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, MailWarning, AlertTriangle, CheckCircle, Phone, MessageSquare, Shield } from "lucide-react"
 import HumorBreak from "@/components/humor-break"
 import { LessonAside } from "@/components/lesson-aside"
+
+export const metadata: Metadata = pageMeta({
+  title: "Social Engineering Tactics",
+  description: "Common social engineering plays, why people fall for them, and how to refuse the ask.",
+  path: "/learn/the-illusion-of-control-recognizing-and-countering-social-engineering-tactics",
+})
 
 export default function TheIllusionOfControlRecognizingAndCounteringSocialEngineeringTacticsLesson() {
   return (

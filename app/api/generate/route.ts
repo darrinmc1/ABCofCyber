@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server"
+import { LEGAL_NOTICE } from "@/lib/legal-notice"
 
-const GEMINI_API_KEY = process.env.GOOGLE_API_KEY
+function withLegalNotice(text: string): string {
+  if (text.includes(LEGAL_NOTICE)) return text
+  return `${LEGAL_NOTICE}\n\n${text}\n\n${LEGAL_NOTICE}`
+}
+
+const GEMINI_API_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY
 const N8N_WEBHOOK = process.env.N8N_AI_WEBHOOK_URL
+const GEMINI_MODEL = process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash"
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+  `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`
 
 interface GenerateRequest {
   tool: string
@@ -33,7 +40,7 @@ export async function POST(request: NextRequest) {
   try {
     if (!GEMINI_API_KEY) {
       return NextResponse.json(
-        { error: "GOOGLE_API_KEY not configured on the server." },
+        { error: "Gemini API key not configured on the server." },
         { status: 500 },
       )
     }
@@ -90,7 +97,7 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      return NextResponse.json({ draft: text })
+      return NextResponse.json({ draft: withLegalNotice(text) })
     }
 
     // Fallback: call Gemini directly
@@ -154,7 +161,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ content: generatedText })
+    return NextResponse.json({ content: withLegalNotice(generatedText) })
   } catch (error) {
     console.error("Generate API error:", error)
     return NextResponse.json(

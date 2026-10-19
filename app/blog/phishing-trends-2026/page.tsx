@@ -1,7 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import type { Metadata } from "next"
 import HumorBreak from "@/components/humor-break"
+import { pageMeta } from "@/lib/seo"
+
+export const metadata: Metadata = pageMeta({
+  title: "Phishing Trends in 2026",
+  description: "Current phishing tactics, and how to train a team to spot them before the click.",
+  path: "/blog/phishing-trends-2026",
+})
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

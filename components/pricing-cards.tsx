@@ -1,5 +1,6 @@
 import { Check } from "lucide-react"
 import Link from "next/link"
+import { PlanBuy } from "@/components/plan-buy"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -9,6 +10,12 @@ import {
   WHATS_THE_PLAY_OFFER,
   planCta,
 } from "@/lib/pricing"
+import type { CheckoutSku } from "@/lib/offers"
+
+const PAID_SKU: Record<string, CheckoutSku> = {
+  "early-adopter": "early_adopter",
+  pro: "pro",
+}
 
 export default function PricingCards() {
   return (
@@ -30,6 +37,7 @@ export default function PricingCards() {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {PLANS.map((plan) => {
           const cta = planCta(plan)
+          const sku = PAID_SKU[plan.id]
           return (
             <Card
               key={plan.id}
@@ -60,13 +68,17 @@ export default function PricingCards() {
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter>
-                <Button
-                  asChild
-                  className={`w-full ${plan.highlighted ? "bg-blue-500 hover:bg-blue-600" : ""}`}
-                >
-                  <Link href={cta.href}>{cta.label}</Link>
-                </Button>
+              <CardFooter className="flex flex-col items-stretch">
+                {sku ? (
+                  <PlanBuy sku={sku} />
+                ) : (
+                  <Button
+                    asChild
+                    className={`w-full ${plan.highlighted ? "bg-blue-500 hover:bg-blue-600" : ""}`}
+                  >
+                    <Link href={cta.href}>{cta.label}</Link>
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           )
@@ -84,6 +96,9 @@ export default function PricingCards() {
           ${WHATS_THE_PLAY_OFFER.priceUsd}/mo as a dedicated seat.
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">{WHATS_THE_PLAY_OFFER.notes}</p>
+        <div className="mt-4 max-w-sm">
+          <PlanBuy sku="whats_the_play" />
+        </div>
         <p className="mt-3">
           <Link href="/whats-the-play" className="text-sm font-medium text-blue-700 hover:underline">
             Open What&apos;s the play

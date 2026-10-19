@@ -1,10 +1,18 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Shield, AlertTriangle, CheckCircle, UserX, UserMinus, KeyRound, ClipboardList } from "lucide-react"
 import HumorBreak from "@/components/humor-break"
 import { LessonAside } from "@/components/lesson-aside"
+
+export const metadata: Metadata = pageMeta({
+  title: "Insider Threats",
+  description: "Accidental leaks and the colleague with more access than the job needs. How to notice it and what to do next.",
+  path: "/learn/the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat",
+})
 
 export default function TheSilentSabotageIdentifyingAndMitigatingInsiderThreatsInYourOrganizatLesson() {
   return (

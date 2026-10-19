@@ -1,9 +1,17 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, LifeBuoy, CheckCircle, Shield, ClipboardList, Users, RefreshCw } from "lucide-react"
 import HumorBreak from "@/components/humor-break"
+
+export const metadata: Metadata = pageMeta({
+  title: "Incident Response Basics",
+  description: "Detect, contain, and recover from a security incident without adding a second crisis on top.",
+  path: "/learn/incident-response-basics",
+})
 
 export default function IncidentResponseBasicsLesson() {
   return (

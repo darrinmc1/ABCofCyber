@@ -9,7 +9,7 @@ interface CookiesPageProps {
 export function CookiesPage({
   siteName,
   domain,
-  supportEmail = "admin@" + domain,
+  supportEmail,
 }: CookiesPageProps) {
   const lastUpdated = "July 29, 2026"
 
@@ -168,7 +168,11 @@ export function CookiesPage({
               For questions about our use of cookies:
             </p>
             <ul className="list-disc pl-6 mt-2 text-slate-700 space-y-1">
-              <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
+              {supportEmail ? (
+                <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
+              ) : (
+                <li>Questions: <Link href="/contact" className="text-blue-600 underline">Contact form</Link></li>
+              )}
               <li>Privacy Policy: <Link href="/privacy" className="text-blue-600 underline">{domain}/privacy</Link></li>
             </ul>
           </section>
