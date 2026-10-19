@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { CheckCircle, ShieldCheck } from "lucide-react"
 import { EmailCapture } from "@/components/email-capture"
 import PricingCards from "@/components/pricing-cards"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = pageMeta({
+  title: "Pricing",
+  description: "Use ABC of Cyber free while the paid layer is finished. Checkout is not open yet.",
+  path: "/pricing",
+})
 
 const availableNow = [
   "Cybersecurity lessons and framework explainers",

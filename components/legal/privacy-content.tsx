@@ -195,15 +195,14 @@ export function PrivacyPage({
               <li><strong>Withdrawal of consent</strong> — withdraw consent at any time where processing is based on consent</li>
             </ul>
             <p className="text-slate-700">
-              To exercise any of these rights, contact us
+              To exercise any of these rights,{" "}
               {supportEmail ? (
-                <>
-                  {" "}at <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>
-                </>
+                <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">contact us at {supportEmail}</a>
               ) : (
-                <> via the website</>
+                <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>
               )}
-              . We will respond within 30 days.
+              .
+              We will respond within 30 days.
             </p>
           </section>
 
@@ -240,7 +239,7 @@ export function PrivacyPage({
               {supportEmail ? (
                 <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
               ) : null}
-              <li>Website: <Link href={`https://${domain}/contact`} className="text-blue-600 underline">{domain}/contact</Link></li>
+              <li>Website: <Link href="/contact" className="text-blue-600 underline">{domain}/contact</Link></li>
               {address && <li>Address: {address}</li>}
             </ul>
           </section>

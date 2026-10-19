@@ -1,7 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import type { Metadata } from "next"
 import HumorBreak from "@/components/humor-break"
+import { pageMeta } from "@/lib/seo"
+
+export const metadata: Metadata = pageMeta({
+  title: "Incident Response Plan",
+  description: "Stop scrambling when something breaks. A step-by-step incident response plan.",
+  path: "/blog/incident-response-plan",
+})
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

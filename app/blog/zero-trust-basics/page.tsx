@@ -1,7 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import type { Metadata } from "next"
 import HumorBreak from "@/components/humor-break"
+import { pageMeta } from "@/lib/seo"
+
+export const metadata: Metadata = pageMeta({
+  title: "Zero Trust Basics",
+  description: "Trust nothing, verify everything. A practical guide to zero trust without the poster.",
+  path: "/blog/zero-trust-basics",
+})
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

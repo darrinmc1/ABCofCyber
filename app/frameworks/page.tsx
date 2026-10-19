@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { ShieldCheck, Radar, Lock, ClipboardCheck, ArrowRight, AlertTriangle, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { getHumorEnabled } from "@/lib/humor"
+
+export const metadata: Metadata = pageMeta({
+  title: "Frameworks",
+  description: "NIST, ISO 27001, and CIS, explained like a human wrote them. A workflow a team can follow.",
+  path: "/frameworks",
+})
 
 const frameworks = [
   {
@@ -94,9 +102,6 @@ export default function FrameworksPage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <Link href="/get-started">Start with the least painful path</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/dashboard">See the dashboard</Link>
               </Button>
             </div>
           </div>

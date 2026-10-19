@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { LegalNotice } from "@/components/legal-notice"
 import Link from "next/link"
+
+export const metadata: Metadata = pageMeta({
+  title: "Templates",
+  description: "Security policy, risk register, and incident-plan templates you can download and then actually fill in.",
+  path: "/downloads",
+})
 
 const downloads = [
   {

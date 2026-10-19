@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import CyberWizard from "@/components/tools/cyber-wizard"
+import { pageMeta } from "@/lib/seo"
 
 const VALID_TOOLS = ["security-policy", "risk-assessment", "incident-response"]
 
@@ -30,13 +31,18 @@ export async function generateMetadata({ params }: ToolPageProps) {
 
   const info = meta[tool]
   if (!info) {
-    return { title: "Tool Not Found | ABC of Cyber" }
+    return pageMeta({
+      title: "Tool not found",
+      description: "That tool is not on ABC of Cyber.",
+      path: "/tools",
+    })
   }
 
-  return {
-    title: info.title,
+  return pageMeta({
+    title: info.title.replace(/ \| ABC of Cyber$/, ""),
     description: info.description,
-  }
+    path: `/tools/${tool}`,
+  })
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {

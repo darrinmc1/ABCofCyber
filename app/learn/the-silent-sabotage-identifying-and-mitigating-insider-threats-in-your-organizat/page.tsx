@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { Shield } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Insider Threats",
+  description: "Accidental leaks and the colleague with more access than the job needs. How to notice it and what to do next.",
+  path: "/learn/the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat",
+})
 
 export default function TheSilentSabotageIdentifyingAndMitigatingInsiderThreatsInYourOrganizatLesson() {
   return (

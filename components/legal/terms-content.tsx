@@ -130,15 +130,17 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
               <li>Use our content to train AI models or for similar machine-learning purposes</li>
             </ul>
             <p className="text-slate-700">
-              If you believe your intellectual property has been infringed, contact us
+              If you believe your intellectual property has been infringed,{" "}
               {supportEmail ? (
                 <>
-                  {" "}at <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>
+                  contact us at{" "}
+                  <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>.
                 </>
               ) : (
-                <> via the website</>
+                <>
+                  <Link href="/contact" className="text-blue-600 underline">contact us</Link>.
+                </>
               )}
-              .
             </p>
           </section>
 
@@ -234,7 +236,7 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
               {supportEmail ? (
                 <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
               ) : null}
-              <li>Website: <Link href={`https://${domain}/contact`} className="text-blue-600 underline">{domain}/contact</Link></li>
+              <li>Website: <Link href="/contact" className="text-blue-600 underline">{domain}/contact</Link></li>
             </ul>
           </section>
         </div>

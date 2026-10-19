@@ -20,7 +20,6 @@ export default function Navbar() {
     { href: "/frameworks", label: "Frameworks" },
     { href: "/get-started", label: "Get Started" },
     { href: "/#pricing", label: "Pricing" },
-    { href: "/dashboard", label: "Dashboard" },
     { href: "/contact", label: "Contact" },
   ]
 

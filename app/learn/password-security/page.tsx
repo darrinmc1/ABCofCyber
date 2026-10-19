@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, KeyRound, CheckCircle, AlertTriangle, Shield, Lock, Smartphone, Copy } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Password Security Basics",
+  description: "Password managers, passphrases, and MFA. A lesson on not reusing the dog's name across every login you own.",
+  path: "/learn/password-security",
+})
 
 export default function PasswordSecurityLesson() {
   return (

@@ -1,6 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
 import { Shield } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Zero Trust for Small Businesses",
+  description: "What zero trust means for a small team, and a sane place to start instead of a slogan.",
+  path: "/learn/zero-trust-architecture-for-small-businesses",
+})
 
 export default function ZeroTrustArchitectureForSmallBusinessesLesson() {
   return (

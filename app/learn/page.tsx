@@ -1,12 +1,20 @@
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import { pageMeta } from "@/lib/seo"
 import Link from "next/link"
 import { BookOpen, MailWarning, KeyRound, Network, Users, LifeBuoy, ArrowRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-
 import { lessons } from "@/lib/lessons"
 import { getHumorEnabled } from "@/lib/humor"
+
+export const metadata: Metadata = pageMeta({
+  title: "Lessons",
+  description: "Cybersecurity lessons for the basics: phishing, passwords, networks, social engineering, and what to do when something breaks.",
+  path: "/learn",
+})
+
 
 const iconMap: Record<string, ReactNode> = {
   BookOpen: <BookOpen className="h-8 w-8" />,

@@ -1,4 +1,6 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { EmailCapture } from "@/components/email-capture"
 import FeatureSection from "@/components/feature-section"
@@ -7,6 +9,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import WhatsNew from "@/components/whats-new"
 import { JsonLd } from "@/components/json-ld"
 import { CheckCircle } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Practical cybersecurity training",
+  description:
+    "Learn the controls, frameworks and response thinking that help teams make better security decisions without drowning in jargon.",
+  path: "/",
+})
 
 const organizationSchema = {
   "@context": "https://schema.org",

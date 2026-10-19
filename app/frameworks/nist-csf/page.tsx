@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, CheckCircle, AlertTriangle, Shield, Activity, Lock, Eye, Server, Users, FileCheck, RefreshCw } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "NIST Cybersecurity Framework",
+  description: "Identify, Protect, Detect, Respond, Recover. The NIST CSF, written for people who have to use it.",
+  path: "/frameworks/nist-csf",
+})
 
 const nistFunctions = [
   {
@@ -162,9 +170,6 @@ export default function NISTCSFFramework() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <Link href="/get-started">Start Assessment</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/dashboard">View Dashboard</Link>
               </Button>
             </div>
           </div>

@@ -1,8 +1,16 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, AlertTriangle, Shield, Clock, Users, FileCheck, Server, Bell, CheckCircle } from "lucide-react"
+
+export const metadata: Metadata = pageMeta({
+  title: "Incident Response",
+  description: "Build the response before the SIEM is on fire. Preparation, handling, and the review afterward.",
+  path: "/frameworks/incident-response",
+})
 
 const incidentLifecycle = [
   {
@@ -183,9 +191,6 @@ export default function IncidentResponsePage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <Link href="/get-started">Build Response Capability</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/dashboard">View Dashboard</Link>
               </Button>
             </div>
           </div>
