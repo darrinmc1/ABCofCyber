@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Users, Phone, AlertTriangle, CheckCircle, Shield, UserX, DoorOpen, MessageSquare } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
 
 export const metadata: Metadata = pageMeta({
   title: "Social Engineering Defense",
@@ -351,6 +352,8 @@ export default function SocialEngineeringLesson() {
               </Card>
             </div>
           </div>
+
+          <HumorBreak tag="social engineering" />
 
           {/* Real-World Scenario */}
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">

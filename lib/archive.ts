@@ -137,7 +137,7 @@ export const ARCHIVE_CITATIONS: ArchiveCitation[] = [
     href: "/learn/zero-trust-architecture-for-small-businesses",
     kind: "lesson",
     excerpt:
-      "Never trust, always verify: authenticate the user, the device, and the request. MFA, least privilege, and 'assume breach' beat a decorative perimeter. A password-reset email is a verification event, not a loyalty test.",
+      "Never trust, always verify: authenticate the user, the device, and the request. MFA, least privilege, and assume-breach beat a decorative perimeter. Start with email and payroll admins this month — Zero Trust is a habit, not a Q4 platform.",
     keywords: ["access", "vpn", "remote", "mfa", "privilege", "verify", "sso", "okta", "microsoft 365"],
   },
   {
@@ -146,8 +146,35 @@ export const ARCHIVE_CITATIONS: ArchiveCitation[] = [
     href: "/learn/decoding-digital-footprints-navigating-online-presence",
     kind: "lesson",
     excerpt:
-      "Spear-phishing works because public posts, org charts, and travel updates are free reconnaissance. If a message cites a project, a trip, or a colleague with uncomfortable accuracy, that is not proof it is real — it is proof someone can use a search engine.",
+      "Your LinkedIn is a briefing book. Active posts and passive logs both feed spear-phishing. Search yourself past page one, hide travel and recovery-answer trivia, then treat an 'accurate' stranger as a phish until a second channel says otherwise.",
     keywords: ["linkedin", "spear", "personal", "project", "travel", "recon", "osint", "profile"],
+  },
+  {
+    id: "insider-threats",
+    title: "The Silent Sabotage: Insider Threats",
+    href: "/learn/the-silent-sabotage-identifying-and-mitigating-insider-threats-in-your-organizat",
+    kind: "lesson",
+    excerpt:
+      "Most insider harm is negligence or a stolen session, not a mastermind. Least privilege, same-day offboarding, and watching bulk exports beat a poster about loyalty. If data already left, contain and write a timeline.",
+    keywords: ["insider", "offboarding", "export", "forwarding", "leaver", "contractor", "shared admin", "payroll spreadsheet"],
+  },
+  {
+    id: "illusion-of-control",
+    title: "The Illusion of Control",
+    href: "/learn/the-illusion-of-control-recognizing-and-countering-social-engineering-tactics",
+    kind: "lesson",
+    excerpt:
+      "The attacker needs you competent, helpful, and slightly late. Name the ask, leave their channel, use a number you already have. Familiar facts and familiar voices are not verification.",
+    keywords: ["teams", "slack", "bec", "wire", "callback", "just this once", "ceo", "gift card", "remote support"],
+  },
+  {
+    id: "digital-ghost",
+    title: "The Art of the Digital Ghost",
+    href: "/learn/the-art-of-the-digital-ghost-advanced-anonymity-techniques-beyond-vpns",
+    kind: "lesson",
+    excerpt:
+      "A VPN hides you from the café, not from the site you logged into. WHOIS privacy, role inboxes, and job ads that do not inventory the stack remove the snack food. Vanishing is not the goal.",
+    keywords: ["whois", "job posting", "vpn", "staff directory", "exposure", "shodan", "domain privacy"],
   },
   {
     id: "nist-csf",

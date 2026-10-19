@@ -4,7 +4,8 @@ import { pageMeta } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, KeyRound, CheckCircle, AlertTriangle, Shield, Lock, Smartphone, Copy } from "lucide-react"
+import { ArrowLeft, KeyRound, CheckCircle, AlertTriangle, Shield, Smartphone, Copy } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
 
 export const metadata: Metadata = pageMeta({
   title: "Password Security Basics",
@@ -271,6 +272,8 @@ export default function PasswordSecurityLesson() {
               </Card>
             </div>
           </div>
+
+          <HumorBreak tag="general" />
 
           {/* Password Hygiene Checklist */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
