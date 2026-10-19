@@ -11,6 +11,9 @@ const VALID_CATEGORIES = ["Bug", "Suggestion", "Content Request", "Other"];
 const rateLimit = new Map<string, { count: number; reset: number }>();
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 10;
+const MAX_MESSAGE = 5000;
+const MAX_PAGE = 2000;
+const MAX_EMAIL = 320;
 function rateLimited(ip: string) {
   const now = Date.now();
   const e = rateLimit.get(ip);
@@ -44,6 +47,14 @@ export async function POST(req: NextRequest) {
   }
   if (!VALID_CATEGORIES.includes(category)) {
     return NextResponse.json({ error: "Invalid category" }, { status: 400 });
+  }
+  if (
+    typeof message !== "string" ||
+    message.length > MAX_MESSAGE ||
+    (page != null && (typeof page !== "string" || page.length > MAX_PAGE)) ||
+    (email != null && (typeof email !== "string" || email.length > MAX_EMAIL))
+  ) {
+    return NextResponse.json({ error: "Field too long" }, { status: 400 });
   }
 
   // 1. Persist to Supabase
