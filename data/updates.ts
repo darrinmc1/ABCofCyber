@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "phishing-by-the-numbers-email-headers-new-2026-10-19",
+    "title": "Phishing by the Numbers: Dissecting Real Email Headers to Catch the Fakes",
+    "description": "New lesson: Learn to analyze raw email headers, including SPF, DKIM, DMARC, routing paths, and spoofed display names, to identify and avoid phishing attempts.",
+    "date": "2026-10-19",
+    "kind": "new",
+    "href": "/learn/phishing-by-the-numbers-email-headers"
+  },
+  {
     "id": "the-cryptographic-canvas-visualizing-encryption-for-everyday-understanding-new-2026-10-16",
     "title": "The Cryptographic Canvas: Visualizing Encryption for Everyday Understanding",
     "description": "New lesson: Demystify complex encryption algorithms using visual analogies and interactive examples to explain concepts like symmetric vs. asymmetric encryption, hashing, and digital signatures for a non-technical audience.",
