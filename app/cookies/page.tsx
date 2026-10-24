@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { CookiesPage } from "@/components/legal/cookies-content"
 import { pageMeta } from "@/lib/seo"
-import { getSupportEmail } from "@/lib/support-email"
 
 export const metadata: Metadata = pageMeta({
   title: "Cookie Policy",
@@ -14,7 +13,6 @@ export default function Page() {
     <CookiesPage
       siteName="ABC of Cyber"
       domain="abcofcyber.com"
-      supportEmail={getSupportEmail() ?? undefined}
     />
   )
 }

@@ -1,36 +1,36 @@
-import { Shield, Lock, Database, Server, Users, CheckCircle } from "lucide-react"
+import { BookOpen, FileText, Library, MailWarning, ScrollText, PenLine } from "lucide-react"
 
 export default function FeatureSection() {
   const features = [
     {
-      icon: <Shield className="h-10 w-10 text-blue-600" />,
-      title: "Protection That Covers More Than Hope",
-      description: "Layered defenses for endpoints, identities, and infrastructure, because positive thinking is not a control.",
+      icon: <BookOpen className="h-10 w-10 text-blue-600" />,
+      title: "Lessons",
+      description: "Short pages on phishing, headers, encryption, identity, and the rest of the catalogue.",
     },
     {
-      icon: <Lock className="h-10 w-10 text-blue-600" />,
-      title: "Compliance Without the Ritual Suffering",
-      description: "Map your work to NIST, ISO 27001, and CIS without sacrificing a quarter to formatting evidence.",
+      icon: <Library className="h-10 w-10 text-blue-600" />,
+      title: "Framework notes",
+      description: "NIST CSF, ISO 27001, and CIS written as notes you can read. Not a gap assessment.",
     },
     {
-      icon: <Database className="h-10 w-10 text-blue-600" />,
-      title: "Data Security",
-      description: "Lock down sensitive data with encryption, permissions, and the radical concept of knowing where it lives.",
+      icon: <ScrollText className="h-10 w-10 text-blue-600" />,
+      title: "Templates",
+      description: "PDF templates for a policy, a risk register, an incident plan, and seven other forms.",
     },
     {
-      icon: <Server className="h-10 w-10 text-blue-600" />,
-      title: "Infrastructure Security",
-      description: "Harden the stack before a mystery port and a stale VM become the stars of your next incident review.",
+      icon: <MailWarning className="h-10 w-10 text-blue-600" />,
+      title: "What's the play",
+      description: "Paste a suspicious email or request. Get a walkthrough cited from lessons already on the site.",
     },
     {
-      icon: <Users className="h-10 w-10 text-blue-600" />,
-      title: "Training People Genuinely Remember",
-      description: "Awareness programs that teach safer behavior without subjecting everyone to lifeless compliance theater.",
+      icon: <PenLine className="h-10 w-10 text-blue-600" />,
+      title: "Signed-in drafts",
+      description: "After you sign in, draft a policy, a risk assessment, or an incident plan as markdown.",
     },
     {
-      icon: <CheckCircle className="h-10 w-10 text-blue-600" />,
-      title: "Reporting Executives Might Actually Read",
-      description: "Turn technical progress into clear reports that make sense to leadership, auditors, and tired humans.",
+      icon: <FileText className="h-10 w-10 text-blue-600" />,
+      title: "A contact form",
+      description: "Questions go through the form on the contact page. There is no public mailbox on the site.",
     },
   ]
 
@@ -40,16 +40,16 @@ export default function FeatureSection() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Clear priorities. Fewer surprises.
+              What is actually on the site
             </h2>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-              Useful controls, practical workflows, and zero claims about &ldquo;military-grade encryption&rdquo; from a vendor who can&apos;t spell AES.
+              Lessons, notes, templates, a scenario walkthrough, and signed-in document drafts.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
-                key={index}
+                key={feature.title}
                 className="flex flex-col items-center space-y-2 border p-6 rounded-lg hover:shadow-md transition-shadow"
               >
                 {feature.icon}

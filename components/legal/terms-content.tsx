@@ -1,16 +1,13 @@
 import Link from "next/link"
-import { MERCHANT_OF_RECORD_DISCLOSURE } from "@/lib/merchant-of-record"
-import { REFUND_POLICY } from "@/lib/refund-policy"
 
 interface TermsPageProps {
   siteName: string
   domain: string
-  supportEmail?: string
   companyName?: string
 }
 
-export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN Pty Ltd" }: TermsPageProps) {
-  const lastUpdated = "July 29, 2026"
+export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: TermsPageProps) {
+  const lastUpdated = "October 24, 2026"
 
   return (
     <div className="min-h-screen bg-white">
@@ -38,7 +35,6 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
 
           <hr className="my-8" />
 
-          {/* Section 1 */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-4">1. Accounts</h2>
             <p className="text-slate-700 mb-3">
@@ -51,62 +47,23 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
               You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
             </p>
             <p className="text-slate-700">
-              We reserve the right to refuse service, terminate accounts, remove or edit content, or cancel orders at our
-              sole discretion.
+              We reserve the right to refuse service, terminate accounts, or remove or edit content at our sole discretion.
             </p>
           </section>
 
-          {/* Section 2 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">2. Free vs. Paid Content</h2>
-            <h3 className="text-lg font-semibold mb-2">2.1 Free Content</h3>
+            <h2 className="text-2xl font-bold mb-4">2. What the site provides</h2>
             <p className="text-slate-700 mb-3">
-              {siteName} offers a selection of free courses, tools, templates, and resources. Free content is provided
-              &ldquo;as is&rdquo; without warranty, and we may modify or discontinue any free offering at any time without notice.
-            </p>
-            <h3 className="text-lg font-semibold mb-2">2.2 Paid Content &amp; Subscriptions</h3>
-            <p className="text-slate-700 mb-3">
-              Certain content, features, courses, and tools require payment. Paid offerings include:
-            </p>
-            <ul className="list-disc pl-6 mb-4 text-slate-700 space-y-1">
-              <li><strong>One-time purchases</strong> — individual courses, templates, or tools</li>
-              <li><strong>Subscription plans</strong> — recurring access to premium content, billed monthly or annually</li>
-              <li><strong>Professional services</strong> — consulting, coaching, or custom work (governed by separate agreement)</li>
-            </ul>
-            <p className="text-slate-700">
-              All prices are listed in US Dollars (USD) unless otherwise stated. We reserve the right to change prices
-              at any time, but changes will not affect active subscriptions until the next billing period.
-            </p>
-          </section>
-
-          {/* Section 3 */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">3. Payments &amp; Billing</h2>
-            <p className="text-slate-700 mb-3">
-              Payments are processed securely through third-party payment processors (e.g., Stripe). We do not store
-              full credit card numbers on our servers. By providing payment information, you represent that you are
-              authorized to use the payment method and authorize us to charge the applicable fees.
-            </p>
-            <p className="text-slate-700 mb-3">{MERCHANT_OF_RECORD_DISCLOSURE}</p>
-            <p className="text-slate-700 mb-3">
-              <strong>Subscription billing:</strong> Your subscription will auto-renew at the end of each billing cycle
-              unless you cancel before the renewal date. You may cancel at any time from your account dashboard. Upon
-              cancellation, you retain access to paid content until the end of the current billing period.
+              {siteName} publishes lessons, framework notes, downloadable templates, and tools. You may use them for
+              your own personal or internal work. We may change or remove a free page at any time.
             </p>
             <p className="text-slate-700">
-              We reserve the right to suspend or terminate access if payment is not received on time.
+              The material is educational. It is not legal advice, an audit, a certification, or a monitoring service.
             </p>
           </section>
 
-          {/* Section 4 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">4. Refund Policy</h2>
-            <p className="text-slate-700">{REFUND_POLICY}</p>
-          </section>
-
-          {/* Section 5 */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">5. Intellectual Property</h2>
+            <h2 className="text-2xl font-bold mb-4">3. Intellectual Property</h2>
             <p className="text-slate-700 mb-3">
               All content on {siteName} — including courses, lessons, templates, tools, articles, graphics, logos,
               and code — is the property of {companyName} or its content creators and is protected by applicable
@@ -131,22 +88,12 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
             </ul>
             <p className="text-slate-700">
               If you believe your intellectual property has been infringed,{" "}
-              {supportEmail ? (
-                <>
-                  contact us at{" "}
-                  <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>.
-                </>
-              ) : (
-                <>
-                  <Link href="/contact" className="text-blue-600 underline">contact us</Link>.
-                </>
-              )}
+              <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>.
             </p>
           </section>
 
-          {/* Section 6 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">6. User Conduct</h2>
+            <h2 className="text-2xl font-bold mb-4">4. User Conduct</h2>
             <p className="text-slate-700 mb-3">
               You agree not to use the Service for any unlawful purpose or in violation of these Terms. Prohibited
               behavior includes:
@@ -160,23 +107,21 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
             </ul>
           </section>
 
-          {/* Section 7 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">7. Third-Party Services</h2>
+            <h2 className="text-2xl font-bold mb-4">5. Third-Party Services</h2>
             <p className="text-slate-700 mb-3">
               The Service may contain links to third-party websites or services that are not owned or controlled by us.
               We have no control over and assume no responsibility for the content, privacy policies, or practices of
               any third-party websites.
             </p>
             <p className="text-slate-700">
-              We use third-party services for payment processing (Stripe), authentication (Clerk), analytics (Vercel),
-              and email delivery. These services have their own terms and privacy policies governing their use of your data.
+              Sign-in is provided by Clerk. The site is hosted on Vercel. Those services have their own terms and
+              privacy policies.
             </p>
           </section>
 
-          {/* Section 8 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">8. Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold mb-4">6. Limitation of Liability</h2>
             <p className="text-slate-700 mb-3">
               To the fullest extent permitted by applicable law, {companyName} shall not be liable for any indirect,
               incidental, special, consequential, or punitive damages arising out of or related to your use of the
@@ -188,27 +133,24 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
             </p>
           </section>
 
-          {/* Section 9 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">9. Termination</h2>
+            <h2 className="text-2xl font-bold mb-4">7. Termination</h2>
             <p className="text-slate-700 mb-3">
               We may terminate or suspend your account immediately, without prior notice or liability, for any reason,
               including breach of these Terms. Upon termination, your right to use the Service ceases immediately.
             </p>
             <p className="text-slate-700">
               If you wish to terminate your account, you may simply discontinue using the Service or delete your account
-              from your account settings. Sections 5 (Intellectual Property), 8 (Limitation of Liability), and 11
+              from your account settings. Sections 3 (Intellectual Property), 6 (Limitation of Liability), and 9
               (Governing Law) survive termination.
             </p>
           </section>
 
-          {/* Section 10 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">10. Changes to Terms</h2>
+            <h2 className="text-2xl font-bold mb-4">8. Changes to Terms</h2>
             <p className="text-slate-700 mb-3">
-              We reserve the right to modify or replace these Terms at any time. Material changes will be notified
-              via email (if you have an account) or by posting a notice on the Service. Your continued use of the
-              Service after any changes constitutes acceptance of the new Terms.
+              We reserve the right to modify or replace these Terms at any time. Material changes will be posted on
+              this page. Your continued use of the Service after any changes constitutes acceptance of the new Terms.
             </p>
             <p className="text-slate-700">
               It is your responsibility to review these Terms periodically. The &ldquo;Last updated&rdquo; date at the
@@ -216,9 +158,8 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
             </p>
           </section>
 
-          {/* Section 11 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">11. Governing Law</h2>
+            <h2 className="text-2xl font-bold mb-4">9. Governing Law</h2>
             <p className="text-slate-700">
               The Service is operated by TTPN Pty Ltd. These Terms are governed by the laws of Queensland, Australia,
               and the courts of Queensland have exclusive jurisdiction. Our failure to enforce any right or provision
@@ -226,18 +167,12 @@ export function TermsPage({ siteName, domain, supportEmail, companyName = "TTPN 
             </p>
           </section>
 
-          {/* Section 12 */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">12. Contact</h2>
+            <h2 className="text-2xl font-bold mb-4">10. Contact</h2>
             <p className="text-slate-700">
-              If you have any questions about these Terms, please contact us:
+              If you have any questions about these Terms, use the{" "}
+              <Link href="/contact" className="text-blue-600 underline">contact form</Link> at {domain}/contact.
             </p>
-            <ul className="list-disc pl-6 mt-2 text-slate-700 space-y-1">
-              {supportEmail ? (
-                <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
-              ) : null}
-              <li>Website: <Link href="/contact" className="text-blue-600 underline">{domain}/contact</Link></li>
-            </ul>
           </section>
         </div>
       </div>

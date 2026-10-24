@@ -237,7 +237,7 @@ export default function ISO27001Framework() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
-                <Link href="/get-started">Start Readiness Assessment</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
             </div>
           </div>
@@ -382,17 +382,17 @@ export default function ISO27001Framework() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to begin your ISO 27001 journey?</h3>
+              <h3 className="text-2xl font-bold mb-2">Read the ISO 27001 notes before you hire an auditor</h3>
               <p className="text-green-200">
-                ABC of Cyber helps you assess readiness, plan implementation, and track progress toward certification.
+                This page explains the standard. It does not run a readiness assessment or track certification.
               </p>
             </div>
             <div className="flex gap-3">
               <Button asChild size="lg" className="bg-white text-green-900 hover:bg-green-100">
-                <Link href="/get-started">Start Readiness Assessment</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact">Talk to Analyst</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </div>
           </div>

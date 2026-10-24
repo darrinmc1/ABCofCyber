@@ -144,6 +144,66 @@ export const humorBank: Record<string, HumorItem[]> = {
       punchline: "Rudeness is optional. Callbacks are not. Hang up. The real help desk will still be there.",
     },
   ],
+  headers: [
+    {
+      setup: "SPF passed, so the email is real.",
+      punchline: "SPF passed for the domain that sent it. The display name can still say 'Payroll' while the domain is a cousin you have never employed.",
+    },
+    {
+      setup: "I don't read headers. I read the vibe.",
+      punchline: "The vibe is a font. The header is the postmark. Read the postmark.",
+    },
+  ],
+  encryption: [
+    {
+      setup: "We encrypted it, so we are done.",
+      punchline: "You also emailed the password in the next message, subject line 'password for the zip'. The zip feels very protected.",
+    },
+    {
+      setup: "A hash is just encryption you can reverse if you try hard.",
+      punchline: "No. A hash is a fingerprint. You do not un-fingerprint a person by staring at the ink.",
+    },
+  ],
+  ethics: [
+    {
+      setup: "I have a certification, so the test is legal.",
+      punchline: "A certificate is not a permission slip. The permission slip is the signed scope, and it names the systems.",
+    },
+    {
+      setup: "We were only looking.",
+      punchline: "Looking inside someone else's system without a yes is still looking inside someone else's system.",
+    },
+  ],
+  "ai access": [
+    {
+      setup: "The model said the login was fine.",
+      punchline: "Good. MFA still runs. A confident model is not a second factor.",
+    },
+    {
+      setup: "Our access policy is an AI now.",
+      punchline: "Then someone needs to know how to let a locked-out finance lead in on payday. The model will not take that call.",
+    },
+  ],
+  identity: [
+    {
+      setup: "Decentralised identity means I don't need a password reset.",
+      punchline: "It means there may be nobody to call when the private key is in a screenshot named final-keys.",
+    },
+    {
+      setup: "Put it on a blockchain and it is secure.",
+      punchline: "The chain remembers what you published. It does not stop you publishing your tax file number.",
+    },
+  ],
+  iot: [
+    {
+      setup: "The lightbulb needs the Wi-Fi password.",
+      punchline: "Fine. The lightbulb does not need the laptop that does payroll on the same flat network.",
+    },
+    {
+      setup: "The camera still has the password 'admin'.",
+      punchline: "So does every other camera that shipped that year. They form clubs. The clubs are called botnets.",
+    },
+  ],
   "incident response": [
     {
       setup: "Our incident response plan is a binder.",

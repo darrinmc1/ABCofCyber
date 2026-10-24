@@ -466,10 +466,10 @@ export default function IncidentResponsePage() {
             </div>
             <div className="flex gap-3">
               <Button asChild size="lg" className="bg-white text-red-900 hover:bg-red-100">
-                <Link href="/get-started">Build Your Plan</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact">Talk to Analyst</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </div>
           </div>

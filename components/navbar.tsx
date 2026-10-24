@@ -54,10 +54,10 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4">
           <HumorToggle />
           <Button variant="outline" asChild>
-            <Link href="/login">Login</Link>
+            <Link href="/sign-in">Login</Link>
           </Button>
           <Button asChild>
-            <Link href="/signup">Sign Up</Link>
+            <Link href="/sign-up">Sign Up</Link>
           </Button>
         </div>
 
@@ -86,12 +86,12 @@ export default function Navbar() {
                 ))}
                 <div className="h-px bg-border my-2" />
                 <Button variant="outline" asChild className="w-full">
-                  <Link href="/login" onClick={() => setIsOpen(false)}>
+                  <Link href="/sign-in" onClick={() => setIsOpen(false)}>
                     Login
                   </Link>
                 </Button>
                 <Button asChild className="w-full">
-                  <Link href="/signup" onClick={() => setIsOpen(false)}>
+                  <Link href="/sign-up" onClick={() => setIsOpen(false)}>
                     Sign Up
                   </Link>
                 </Button>

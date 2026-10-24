@@ -342,17 +342,17 @@ export default function NISTCSFFramework() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to assess your NIST CSF posture?</h3>
+              <h3 className="text-2xl font-bold mb-2">Read the NIST CSF notes</h3>
               <p className="text-blue-200">
-                ABC of Cyber maps your current controls to the framework and identifies gaps worth addressing first.
+                This page explains the functions. It does not map your controls or score your posture.
               </p>
             </div>
             <div className="flex gap-3">
               <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-100">
-                <Link href="/get-started">Start Assessment</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact">Talk to Analyst</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </div>
           </div>

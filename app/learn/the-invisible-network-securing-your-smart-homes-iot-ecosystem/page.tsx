@@ -1,27 +1,154 @@
+import type { Metadata } from "next"
 import Link from "next/link"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { pageMeta } from "@/lib/seo"
 import { Badge } from "@/components/ui/badge"
-import { Network } from "lucide-react"
+import { ArrowLeft, Network, Router, Camera, RefreshCw } from "lucide-react"
+import HumorBreak from "@/components/humor-break"
+import { LessonAside } from "@/components/lesson-aside"
 
-export default function TheInvisibleNetworkSecuringYourSmartHomesIotEcosystemLesson() {
+export const metadata: Metadata = pageMeta({
+  title: "Smart-home devices that stay in their lane",
+  description: "Default passwords, updates, and a guest network. The camera does not need to sit next to payroll.",
+  path: "/learn/the-invisible-network-securing-your-smart-homes-iot-ecosystem",
+})
+
+export default function SmartHomeIotLesson() {
   return (
     <main className="min-h-screen bg-white">
       <section className="border-b bg-slate-50">
         <div className="container mx-auto px-4 py-8">
-          <Link href="/learn" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6"><span className="mr-2">←</span> Back to Lessons</Link>
+          <Link href="/learn" className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Lessons
+          </Link>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-100"><Network className="h-6 w-6 text-blue-700" /></div>
+              <div className="p-2 rounded-lg bg-blue-100">
+                <Network className="h-6 w-6 text-blue-700" />
+              </div>
               <Badge className="bg-yellow-100 text-yellow-700">Intermediate</Badge>
-              <Badge variant="outline">15 min</Badge>
+              <Badge variant="outline">14 min</Badge>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">The Invisible Network: Securing Your Smart Home&apos;s IoT Ecosystem</h1>
-            <p className="text-lg text-slate-600 mb-6">Explore the unique security challenges of interconnected smart devices and learn best practices for protecting your smart home&apos;s IoT ecosystem.</p>
-            <div className="flex flex-wrap gap-2">{[ "Core concepts" ].map(t => (<span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>))}</div>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">
+              The Invisible Network: Securing Your Smart Home&apos;s IoT Ecosystem
+            </h1>
+            <p className="text-lg text-slate-600 mb-6">
+              Every bulb, lock, and camera is another computer with a default password
+              and a shaky update habit. The fix is boring, and it works.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["iot", "smart home", "default passwords", "guest network", "updates"].map((t) => (
+                <span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto prose prose-slate max-w-none space-y-6 text-base leading-relaxed text-slate-700" dangerouslySetInnerHTML={{ __html: "<h2 className=\"text-xl font-bold mt-8 mb-4\">The Invisible Network: Securing Your Smart Home's IoT Ecosystem</h2>\n<p>In today's increasingly connected world, our homes are becoming smarter, more automated, and undeniably more vulnerable. The Internet of Things (IoT) has revolutionized convenience, bringing us smart thermostats, voice assistants, security cameras, and even smart refrigerators. However, this interconnectedness creates an 'invisible network' within our homes, often with security protocols that lag behind the rapid pace of innovation. This lesson delves into the unique security challenges posed by smart home IoT devices and outlines essential best practices to safeguard your digital sanctuary.</p>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">The Unique Threat Landscape of Smart Homes</h3>\n<p>Traditional cybersecurity often focuses on protecting personal computers and mobile devices. Smart homes, however, present a different set of vulnerabilities:</p>\n<ul className=\"list-disc pl-6 space-y-2 my-4\"><li><strong>Increased Attack Surface:</strong> Every connected device – from your smart lightbulb to your smart lock – represents a potential entry point for attackers. The more devices you have, the larger your attack surface becomes.</li><li><strong>Weak Default Security:</strong> Many IoT devices ship with weak or non-existent default passwords, making them easy targets for automated attacks. Users often neglect to change these defaults.</li><li><strong>Limited Update Capabilities:</strong> Unlike your smartphone or laptop, many IoT devices receive infrequent or no security updates. This leaves them permanently vulnerable to newly discovered exploits.</li><li><strong>Data Privacy Concerns:</strong> Smart devices collect vast amounts of personal data – your daily routines, your voice commands, even video feeds of your home. A breach can expose this sensitive information.</li><li><strong>Botnet Recruitment:</strong> Compromised IoT devices are frequently recruited into botnets, used to launch Distributed Denial of Service (DDoS) attacks or send spam, often without the owner's knowledge.</li><li><strong>Lateral Movement:</strong> A successful intrusion into one vulnerable IoT device can allow attackers to move laterally within your home network, potentially accessing more sensitive devices like computers or network-attached storage (NAS).</li></ul>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Best Practices for Securing Your Smart Home IoT Ecosystem</h3>\n<p>Protecting your smart home doesn't require becoming a cybersecurity expert, but it does demand proactive measures and a mindful approach to device management.</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Secure Your Wi-Fi Network:</strong> Your Wi-Fi router is the gateway to your entire smart home.</li></ol>\n<p>    *   <strong>Change Default Credentials:</strong> Immediately change the default username and password for your router. Use a strong, unique password.</p>\n<p>    *   <strong>Enable WPA3 Encryption:</strong> If your router supports it, enable WPA3 encryption for the strongest security. WPA2 is a minimum. Avoid WEP.</p>\n<p>    *   <strong>Guest Network:</strong> Set up a separate guest Wi-Fi network for your IoT devices. This isolates them from your primary network where your computers and phones reside, limiting potential damage if an IoT device is compromised.</p>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Change Default Passwords on All Devices:</strong> This is arguably the most critical step. Every single IoT device that requires a login should have its default password changed to a strong, unique password. Consider using a password manager to keep track.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Keep Firmware Updated:</strong> Regularly check for and install firmware updates for your router and all connected IoT devices. Manufacturers release updates to patch security vulnerabilities. Enable automatic updates if available.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Research Before You Buy:</strong> Before purchasing a smart device, research its security features and the manufacturer's track record for security updates and privacy policies. Opt for reputable brands known for better security practices.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Disable Unnecessary Features:</strong> If a smart device has features you don't use (e.g., remote access, UPnP), disable them. Each enabled feature is a potential vulnerability.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Network Segmentation (Advanced):</strong> For those comfortable with networking, consider creating a separate VLAN (Virtual Local Area Network) for your IoT devices. This provides an even stronger layer of isolation than a guest network.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Use Strong Authentication:</strong> If a device supports two-factor authentication (2FA), enable it. While less common for basic IoT devices, it's crucial for any smart home hub or security system.</li></ol>\n<ol className=\"list-decimal pl-6 space-y-2 my-4\"><li><strong>Be Mindful of Permissions:</strong> When setting up apps for your smart devices, review the permissions they request. Grant only the necessary permissions.</li></ol>\n<h3 className=\"text-lg font-bold mt-6 mb-3\">Conclusion</h3>\n<p>The convenience of a smart home is undeniable, but it comes with the responsibility of securing the invisible network that powers it. By understanding the unique risks and implementing these best practices, you can significantly enhance the security and privacy of your connected living space, enjoying the benefits of smart technology without compromising your safety.</p>" }} />
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">The fridge is not the problem. The flat network is.</h2>
+            <p className="text-slate-600 mb-4">
+              A laptop gets patches. A lightbulb often does not. Many devices ship with
+              a password printed on a sticker, or the word admin, and they are happy to
+              talk to anything else on the Wi-Fi. The Mirai botnet (2016) was the loud
+              version of this: cameras and recorders with factory passwords, borrowed
+              into attacks their owners never saw.
+            </p>
+            <p className="text-slate-600">
+              You do not need a home SOC. You need the device off the open internet, off
+              the machine that does payroll, and off the password it shipped with.
+            </p>
+            <LessonAside>
+              A smart lock is only as careful as the app account and the email that can
+              reset it. The metal is fine. The inbox is the lock.
+            </LessonAside>
+          </div>
+
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Router className="h-5 w-5 text-blue-700" />
+                  <div>
+                    <CardTitle className="text-lg">Router first</CardTitle>
+                    <CardDescription>The gateway is the one device that sees everyone.</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="text-sm text-slate-600 space-y-2">
+                <p>Change the router admin password. Leave WPS off. Use WPA2 or WPA3, not an open network and not WEP.</p>
+                <p>
+                  Put bulbs, speakers, and cameras on a guest SSID or a separate VLAN if
+                  the router can do it. The payroll laptop stays on the other network.
+                  Guest isolation, where the router offers it, stops devices chatting to
+                  each other.
+                </p>
+                <p>
+                  Turn off UPnP if you do not know which ports it has opened. It exists
+                  to punch holes. Cameras do not need a hole from the internet to your house.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Camera className="h-5 w-5 text-green-700" />
+                  <div>
+                    <CardTitle className="text-lg">Each device</CardTitle>
+                    <CardDescription>Unique password. No port forward. Updates on.</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="text-sm text-slate-600">
+                Change the default before the device joins anything. Do not reuse the
+                Wi-Fi password. Do not forward a port so you can &ldquo;check the camera
+                from anywhere&rdquo; unless the vendor&apos;s own relay is the path, and
+                that account has MFA. If a device cannot be updated and cannot change
+                its password, it does not belong on the same network as your files.
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <RefreshCw className="h-5 w-5 text-amber-700" />
+                  <div>
+                    <CardTitle className="text-lg">Apps and accounts</CardTitle>
+                    <CardDescription>The phone app is a key. Treat the account like one.</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="text-sm text-slate-600">
+                MFA on the vendor account when it exists. Review the permissions the app
+                asked for. When you sell or bin a device, remove it from the account and
+                factory-reset it. A camera you gave away with your login still in it is
+                still your camera.
+              </CardContent>
+            </Card>
+          </div>
+
+          <HumorBreak tag="iot" />
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">A Saturday list</h2>
+            <ol className="list-decimal pl-6 space-y-2 text-slate-600">
+              <li>Router admin password, WPS off, firmware current.</li>
+              <li>Guest network for the gadgets. Main network for laptops and phones.</li>
+              <li>Every device off its factory password. MFA on the accounts that have it.</li>
+              <li>No manual port forwards to cameras or drives.</li>
+              <li>One device you cannot update: unplug it, or isolate it and accept the risk in writing.</li>
+            </ol>
+            <p className="text-slate-600 mt-4">
+              Network Security covers segmentation at work. At home the same idea is a
+              second Wi-Fi name. The bulb can still turn on. It just cannot browse the
+              laptop.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
   )
