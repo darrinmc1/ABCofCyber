@@ -6,8 +6,6 @@ import { CHECKOUT_LIVE, PLANS, WHATS_THE_PLAY_OFFER } from "@/lib/pricing"
 import { REFUND_POLICY } from "@/lib/refund-policy"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 import { stripePaymentsEnabled } from "@/lib/stripe"
-import { getSupportEmail } from "@/lib/support-email"
-
 function llmTxt(): string {
   const method = ABC_METHOD.steps.map((s) => `${s.letter} — ${s.title}: ${s.summary}`).join("\n")
   const plans = PLANS.map(
@@ -17,7 +15,6 @@ function llmTxt(): string {
   const citations = ARCHIVE_CITATIONS.map((c) => `- ${c.title} (${SITE_URL}${c.href}) [${c.kind}]`).join("\n")
   const paymentsOn = stripePaymentsEnabled()
   const launch = paymentsOn ? launchOfferLabel() : null
-  const supportEmail = getSupportEmail()
 
   return `# ${SITE_NAME}
 
@@ -92,7 +89,7 @@ A: Paid-plan include on Early Adopter ($5/mo) and Pro ($10/mo), or $29/mo as a d
 
 ## Contact
 
-${supportEmail ? `Email: ${supportEmail}\n` : ""}${SITE_URL}/contact
+${SITE_URL}/contact
 `
 }
 

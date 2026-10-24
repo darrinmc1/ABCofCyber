@@ -6,7 +6,6 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 import { Toaster } from "@/components/ui/toaster"
 import { FeedbackWidget } from "@/components/feedback-widget"
-import { MerchantOfRecordDisclosure } from "@/components/merchant-of-record-disclosure"
 import { WaitlistPopup } from "@/components/waitlist-popup"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
@@ -84,7 +83,9 @@ export default async function RootLayout({
             <a href="https://ticu.tv" className="hover:text-blue-600">TICU.TV</a>
             <a href="https://theintelanalystacademy.com" className="hover:text-blue-600">Intel Academy</a>
           </div>
-          <MerchantOfRecordDisclosure className="mx-auto mt-4 max-w-xl text-center text-xs leading-5 text-slate-500" />
+          <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-5 text-slate-500">
+            Operated by TTPN Pty Ltd. Part of the Empire HQ network.
+          </p>
           <p className="text-center text-gray-500 text-xs mt-4">
             &copy; {new Date().getFullYear()} ABC of Cyber — An Empire-HQ Portfolio Project.
           </p>

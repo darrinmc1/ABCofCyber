@@ -112,7 +112,7 @@ function isPublicFeedbackPost(request: NextRequest) {
   return request.method === "POST" && request.nextUrl.pathname === "/api/feedback"
 }
 
-// Real Clerk sign-in page (app/sign-in). /login is a separate demo form.
+// Real Clerk sign-in page. /login redirects here.
 const SIGN_IN_PATH = "/sign-in"
 
 // AI routes that spend the model budget. A route only gets the 401 when it is

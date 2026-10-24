@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, ShieldAlert, Siren, Sparkles, MessageSquareWarning, MailWarning } from "lucide-react"
+import { FileText, ShieldAlert, Siren, Sparkles, MailWarning } from "lucide-react"
 
 export const metadata: Metadata = pageMeta({
   title: "Tools",
@@ -40,7 +40,7 @@ const tools = [
     icon: FileText,
     color: "text-blue-600",
     bgColor: "bg-blue-100",
-    badge: "Popular",
+    badge: null,
   },
   {
     slug: "risk-assessment",
@@ -76,15 +76,13 @@ export default function ToolsPage() {
             <Sparkles className="h-8 w-8 text-blue-600" />
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            AI Security Tools
+            Drafts and one walkthrough
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-            Document generators plus What&apos;s the play — a layer on the lesson
-            archive, not a new brand. Paste a scenario or answer a few questions.
+            Paste a scenario into What&apos;s the play, or sign in and draft a
+            policy, a risk assessment, or an incident plan. The drafts are
+            markdown from your answers. They are not finished legal documents.
           </p>
-          <Badge variant="secondary" className="mt-4">
-            Free tier: 1 report — Unlimited with Pro
-          </Badge>
         </div>
 
         {/* Tools Grid */}

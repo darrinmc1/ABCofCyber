@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { LegalNotice } from "@/components/legal-notice"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,12 +12,10 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import {
   Loader2,
-  Sparkles,
   FileText,
   ShieldAlert,
   Siren,
@@ -226,66 +224,13 @@ function SignInPrompt({ href }: { href: string }) {
   )
 }
 
-function SubscribeWall() {
-  return (
-    <div className="flex items-center justify-center py-12">
-      <Card className="w-full max-w-lg border-blue-200 shadow-lg">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-            <Lock className="h-8 w-8 text-blue-600" />
-          </div>
-          <CardTitle className="text-2xl">Unlock Unlimited Access</CardTitle>
-          <CardDescription className="text-base mt-2">
-            You&apos;ve used your free AI-generated security document. Upgrade
-            to continue.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-start gap-2">
-              <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
-              <span>
-                <strong>Unlimited</strong> AI security document generation
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
-              <span>
-                <strong>Advanced models</strong> with deeper security analysis
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
-              <span>
-                <strong>Pro subscription</strong> unlocks compliance-ready
-                templates
-              </span>
-            </li>
-          </ul>
-          <p className="text-xs text-muted-foreground text-center">
-            Free tier included one report with Gemini Flash.
-          </p>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-3">
-          <Button asChild className="w-full" size="lg">
-            <Link href="/pricing">View Pricing Plans</Link>
-          </Button>
-          <Button asChild variant="outline" size="sm" className="w-full">
-            <Link href="/tools">Back to Tools</Link>
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
-  )
-}
-
 interface CyberWizardProps {
   toolSlug: string
 }
 
 export default function CyberWizard({ toolSlug }: CyberWizardProps) {
   const config = TOOL_CONFIGS[toolSlug]
-  const [step, setStep] = useState<"form" | "generating" | "result" | "wall" | "signin">(
+  const [step, setStep] = useState<"form" | "generating" | "result" | "signin">(
     "form",
   )
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -294,16 +239,6 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
   const [error, setError] = useState<string | null>(null)
   const [signInHref, setSignInHref] = useState("/sign-in")
   const [copied, setCopied] = useState(false)
-
-  // Check free trial on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const used = localStorage.getItem("abccyber_free_uses")
-      if (used && parseInt(used, 10) >= 1) {
-        setStep("wall")
-      }
-    }
-  }, [])
 
   const updateAnswer = useCallback(
     (id: string, value: string) => {
@@ -362,11 +297,6 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
 
       const data = await response.json()
 
-      // Mark the free use
-      if (typeof window !== "undefined") {
-        localStorage.setItem("abccyber_free_uses", "1")
-      }
-
       setResult(data.content)
       setStep("result")
     } catch (err) {
@@ -405,10 +335,6 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
     setError(null)
     setCopied(false)
   }, [])
-
-  if (step === "wall") {
-    return <SubscribeWall />
-  }
 
   if (!config) {
     return (
@@ -454,9 +380,6 @@ export default function CyberWizard({ toolSlug }: CyberWizardProps) {
             </p>
           </div>
         </div>
-        <Badge variant="secondary" className="mt-3">
-          Free tier: 1 report
-        </Badge>
         <LegalNotice className="mt-4 text-xs leading-5 text-slate-600" />
       </div>
 

@@ -275,18 +275,17 @@ export default function ThreatMonitoringPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to improve your threat monitoring?</h3>
+              <h3 className="text-2xl font-bold mb-2">Read the monitoring notes</h3>
               <p className="text-red-200">
-                ABC of Cyber helps you design monitoring coverage, triage alerts, and build detection rules that catch the threats
-                that matter.
+                This page explains coverage and triage. It does not design your detections or watch your alerts.
               </p>
             </div>
             <div className="flex gap-3">
               <Button asChild size="lg" className="bg-white text-red-900 hover:bg-red-100">
-                <Link href="/get-started">Start Assessment</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact">Talk to Analyst</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </div>
           </div>

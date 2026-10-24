@@ -96,12 +96,12 @@ export default function FrameworksPage() {
               Serious frameworks, explained like a human wrote them
             </h1>
             <p className="text-lg text-slate-600">
-              ABC of Cyber maps the big-name standards into a workflow your team can actually follow, without requiring
-              a shrine to spreadsheet suffering.
+              Notes on NIST CSF, ISO 27001, CIS, incident response, risk, and monitoring. Read them yourself.
+              This is not a compliance service.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
-                <Link href="/get-started">Start with the least painful path</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
             </div>
           </div>

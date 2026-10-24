@@ -50,7 +50,7 @@ export const ALL_UPDATES: SiteUpdate[] = [
   {
     "id": "the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur-new-2026-09-14",
     "title": "The Blockchain's Backbone: Understanding Decentralized Identity for Enhanced Security",
-    "description": "New lesson: Explore how blockchain-based decentralized identity solutions empower individuals with data control and enhance online security.",
+    "description": "New lesson: How decentralized identifiers and verifiable credentials work, and what a lost private key does not fix.",
     "date": "2026-09-14",
     "kind": "new",
     "href": "/learn/the-blockchains-backbone-understanding-decentralized-identity-for-enhanced-secur"
@@ -98,7 +98,7 @@ export const ALL_UPDATES: SiteUpdate[] = [
   {
     "id": "decoding-digital-footprints-navigating-online-presence-new-2026-08-12",
     "title": "Decoding Digital Footprints: Navigating Your Online Presence",
-    "description": "New lesson: Learn to identify, understand, and manage the personal data you leave online, empowering you to protect your digital identity.",
+    "description": "New lesson: How to find the personal data you leave online, and which of it you can actually change.",
     "date": "2026-08-12",
     "kind": "new",
     "href": "/learn/decoding-digital-footprints-navigating-online-presence"

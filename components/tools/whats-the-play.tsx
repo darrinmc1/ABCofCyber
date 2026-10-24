@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import Link from "next/link"
 import {
   AlertTriangle,
@@ -9,7 +9,6 @@ import {
   Check,
   Copy,
   Loader2,
-  Lock,
   Shield,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -26,7 +25,6 @@ import { Badge } from "@/components/ui/badge"
 import { ABC_METHOD, WALKTHROUGH_DISCLAIMER } from "@/lib/disclaimer"
 import type { WalkthroughResult } from "@/lib/archive"
 
-const FREE_USE_KEY = "abccyber_play_uses"
 const EXAMPLE = `From: IT Support <it-help@secure-update-g43f.top>
 Subject: Action Required: Your Email Password Will Expire Today
 
@@ -40,48 +38,12 @@ type WalkthroughResponse = WalkthroughResult & {
   error?: string
 }
 
-function SubscribeWall() {
-  return (
-    <Card className="border-blue-200 shadow-lg">
-      <CardHeader className="text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-          <Lock className="h-8 w-8 text-blue-600" />
-        </div>
-        <CardTitle className="text-2xl">Paid plans include the rest</CardTitle>
-        <CardDescription className="mt-2 text-base">
-          You used the free walkthrough. Early Adopter ($5/mo) and Pro ($10/mo) include unlimited
-          What&apos;s the play when billing launches. Checkout is not live — join the waitlist.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2 text-sm text-slate-600">
-        <p>Free still has the lessons. The tool is a layer on top of that archive, not a new product.</p>
-      </CardContent>
-      <CardFooter className="flex flex-col gap-3">
-        <Button asChild className="w-full" size="lg">
-          <Link href="/pricing">See pricing</Link>
-        </Button>
-        <Button asChild variant="outline" className="w-full" size="sm">
-          <Link href="/learn/phishing-awareness">Or just take the phishing lesson</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  )
-}
-
 export default function WhatsThePlayTool() {
   const [scenario, setScenario] = useState("")
-  const [step, setStep] = useState<"form" | "loading" | "result" | "wall">("form")
+  const [step, setStep] = useState<"form" | "loading" | "result">("form")
   const [result, setResult] = useState<WalkthroughResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    const used = localStorage.getItem(FREE_USE_KEY)
-    if (used && parseInt(used, 10) >= 1) {
-      setStep("wall")
-    }
-  }, [])
 
   const run = useCallback(async () => {
     setError(null)
@@ -95,9 +57,6 @@ export default function WhatsThePlayTool() {
       const data = (await response.json()) as WalkthroughResponse
       if (!response.ok) {
         throw new Error(data.error || `Server returned ${response.status}`)
-      }
-      if (typeof window !== "undefined") {
-        localStorage.setItem(FREE_USE_KEY, "1")
       }
       setResult(data)
       setStep("result")
@@ -125,10 +84,6 @@ export default function WhatsThePlayTool() {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [result])
-
-  if (step === "wall") {
-    return <SubscribeWall />
-  }
 
   return (
     <div className="space-y-8">
@@ -160,7 +115,6 @@ export default function WhatsThePlayTool() {
               >
                 Use the lesson example
               </Button>
-              <Badge variant="secondary">Free: 1 walkthrough</Badge>
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
           </CardContent>

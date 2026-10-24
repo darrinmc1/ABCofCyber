@@ -318,17 +318,17 @@ export default function CISControlsFramework() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to assess your CIS Controls implementation?</h3>
+              <h3 className="text-2xl font-bold mb-2">Use these CIS notes on your own list</h3>
               <p className="text-slate-300">
-                ABC of Cyber maps your current controls to the CIS framework and identifies the gaps most likely to hurt you.
+                The page explains the controls. It does not assess your environment or produce a gap report.
               </p>
             </div>
             <div className="flex gap-3">
               <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-200">
-                <Link href="/get-started">Start Assessment</Link>
+                <Link href="/get-started">How to start</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact">Talk to Analyst</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </div>
           </div>

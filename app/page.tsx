@@ -23,7 +23,7 @@ const organizationSchema = {
   name: "ABC of Cyber",
   url: "https://abcofcyber.com",
   description:
-    "Cybersecurity training and platform for teams — practical controls, compliance mapping across NIST, ISO 27001, and CIS, and security awareness training without the scare tactics.",
+    "Cybersecurity lessons, framework notes, downloadable templates, and a scenario walkthrough. Educational material, not a monitoring service.",
 }
 
 const websiteSchema = {

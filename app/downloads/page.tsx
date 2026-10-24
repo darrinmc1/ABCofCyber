@@ -165,16 +165,16 @@ const downloads = [
 ]
 
 const fileSizes: Record<string, string> = {
-  "security-policy-template.pdf": "4.4 KB",
-  "risk-assessment-template.pdf": "3.4 KB",
-  "incident-response-plan-template.pdf": "4.7 KB",
-  "vulnerability-tracker-template.pdf": "3.6 KB",
-  "compliance-checklist-template.pdf": "4.0 KB",
-  "password-policy-template.pdf": "3.9 KB",
-  "security-awareness-log.pdf": "3.7 KB",
-  "access-control-matrix.pdf": "2.9 KB",
-  "vendor-security-assessment.pdf": "3.4 KB",
-  "business-continuity-plan.pdf": "5.4 KB",
+  "security-policy-template.pdf": "10.1 KB",
+  "risk-assessment-template.pdf": "11.3 KB",
+  "incident-response-plan-template.pdf": "14.7 KB",
+  "vulnerability-tracker-template.pdf": "12.5 KB",
+  "compliance-checklist-template.pdf": "14.6 KB",
+  "password-policy-template.pdf": "9.7 KB",
+  "security-awareness-log.pdf": "12.2 KB",
+  "access-control-matrix.pdf": "10.7 KB",
+  "vendor-security-assessment.pdf": "11.6 KB",
+  "business-continuity-plan.pdf": "15.4 KB",
 }
 
 export default function DownloadsPage() {
