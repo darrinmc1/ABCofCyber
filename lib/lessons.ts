@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "MFA Fatigue Attacks: When Push Notifications Become a Weapon",
+    slug: "mfa-fatigue-attacks-when-push-notifications-become-a-weapon",
+    icon: "KeyRound",
+    summary: "Explores how attackers abuse multi-factor authentication push prompts to trick users into granting access, and practical strategies to mitigate this growing threat.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "10 min",
+    topics: ["mfa","cybersecurity","authentication","fatigue attack","prompt bombing","security awareness"],
+  },
+  {
     title: "Phishing by the Numbers: Dissecting Real Email Headers to Catch the Fakes",
     slug: "phishing-by-the-numbers-email-headers",
     icon: "MailWarning",
