@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "mfa-fatigue-attacks-when-push-notifications-become-a-weapon-new-2026-10-26",
+    "title": "MFA Fatigue Attacks: When Push Notifications Become a Weapon",
+    "description": "New lesson: Explores how attackers abuse multi-factor authentication push prompts to trick users into granting access, and practical strategies to mitigate this growing threat.",
+    "date": "2026-10-26",
+    "kind": "new",
+    "href": "/learn/mfa-fatigue-attacks-when-push-notifications-become-a-weapon"
+  },
+  {
     "id": "phishing-by-the-numbers-email-headers-new-2026-10-19",
     "title": "Phishing by the Numbers: Dissecting Real Email Headers to Catch the Fakes",
     "description": "New lesson: Learn to analyze raw email headers, including SPF, DKIM, DMARC, routing paths, and spoofed display names, to identify and avoid phishing attempts.",
