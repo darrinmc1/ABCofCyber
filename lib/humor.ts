@@ -82,6 +82,40 @@ export const humorBank: Record<string, HumorItem[]> = {
       setup: "The scammer asked for my password.",
       punchline: "I asked for theirs. We're now both locked out of everything. Awkward.",
     },
+    {
+      setup: "The email gave me 24 hours or the ATO would be very disappointed.",
+      punchline: "The ATO does not run countdown timers in your inbox. The countdown is the tell.",
+    },
+  ],
+  bec: [
+    {
+      setup: "They were already in the email thread, so the new bank details were fine.",
+      punchline: "Hijacked threads are the product. The phone number on last month's invoice is the control.",
+    },
+    {
+      setup: "The boss said there was no time to call.",
+      punchline: "There is no time is the whole trick. Call the number you already had. Write down who answered.",
+    },
+  ],
+  dmarc: [
+    {
+      setup: "We published p=none years ago. We are compliant.",
+      punchline: "You are taking notes at the door. The bouncer has not turned anyone away. RFC 9989 still wants a policy.",
+    },
+    {
+      setup: "Our SPF record includes every tool we have ever paid for.",
+      punchline: "Ten DNS lookups is the limit. The eleventh is how payroll finds out on a Friday.",
+    },
+  ],
+  laptop: [
+    {
+      setup: "I'll restart after the long weekend.",
+      punchline: "Remind me tomorrow is not a patching strategy. The café in Fortitude Valley is also not a private office.",
+    },
+    {
+      setup: "The backup is the drive that sits plugged in next to the laptop.",
+      punchline: "Ransomware can see that drive too. A copy you have actually restored is the one that counts.",
+    },
   ],
   "zero trust": [
     {
@@ -219,6 +253,10 @@ export const humorBank: Record<string, HumorItem[]> = {
     {
       setup: "The first step of any incident is 'don't panic.'",
       punchline: "The second step is 'everyone panic quietly so the CEO doesn't see.'",
+    },
+    {
+      setup: "Our incident plan is in a folder called Important, on the laptop.",
+      punchline: "If ransomware can read it, so can you — until you can't. Print the page. 1300 CYBER1 is not your nephew.",
     },
   ],
 }

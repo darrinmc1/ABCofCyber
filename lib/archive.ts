@@ -177,6 +177,51 @@ export const ARCHIVE_CITATIONS: ArchiveCitation[] = [
     keywords: ["whois", "job posting", "vpn", "staff directory", "exposure", "shodan", "domain privacy"],
   },
   {
+    id: "spot-the-phish",
+    title: "Spot the Phish Before It Spots You",
+    href: "/learn/spot-the-phish",
+    kind: "lesson",
+    excerpt:
+      "Two tells together mean slow down: urgency, a sender that is almost right, a link that does not match, an unexpected attachment, or a request for a password or gift cards. Hover and read the domain from the right. Fake parking-meter QR stickers are a known scam trick. If you already typed a password, close the page, change it from a device you trust, and tell IT.",
+    keywords: ["hover", "qr", "quishing", "display name", "enable content", "report phishing", "gift card"],
+  },
+  {
+    id: "business-email-compromise",
+    title: "The Invoice That Wasn't: Business Email Compromise",
+    href: "/learn/business-email-compromise",
+    kind: "lesson",
+    excerpt:
+      "BEC is a payment or bank-detail change, often with no malware. The FBI IC3 2025 report logged 24,768 complaints and about US$3.05 billion in losses; ASD's 2024–25 report found loss-making BEC was 15% of business cybercrime reports. Confirm on a number you already had. Check mailbox rules and external forwarding.",
+    keywords: ["bec", "bank details", "new account", "supplier", "forwarding", "invoice", "call back", "callback"],
+  },
+  {
+    id: "spf-dkim-dmarc-basics",
+    title: "SPF, DKIM, DMARC: The Bouncers for Your Domain",
+    href: "/learn/spf-dkim-dmarc-basics",
+    kind: "lesson",
+    excerpt:
+      "SPF is the guest list (10 DNS lookups max), DKIM is the signature (Google: one TXT; Microsoft 365: two CNAME selectors), and DMARC under RFC 9989 is the policy. The pct= tag was removed; use t=y while testing. Roll from p=none to quarantine to reject. Do not start at p=reject.",
+    keywords: ["spf", "dkim", "dmarc", "p=none", "p=reject", "p=quarantine", "rfc 9989", "t=y"],
+  },
+  {
+    id: "harden-your-laptop",
+    title: "Harden Your Laptop (Without Becoming a Sysadmin)",
+    href: "/learn/harden-your-laptop",
+    kind: "lesson",
+    excerpt:
+      "CIS Level 1 is the safe baseline. Updates, full-disk encryption, firewall, a short screen lock, a non-admin daily account, MFA, tested offline backups, and a tidy browser cover seven of the Essential Eight. Application control is the one left for business IT. Maturity levels measure how thoroughly each strategy is done; they are not a ninth strategy.",
+    keywords: ["bitlocker", "filevault", "essential eight", "screen lock", "laptop", "encryption", "macro"],
+  },
+  {
+    id: "small-business-incident-plan",
+    title: "When It Goes Wrong: A One-Page Incident Plan",
+    href: "/learn/small-business-incident-plan",
+    kind: "lesson",
+    excerpt:
+      "PICERL: prepare, identify, contain, eradicate, recover, lessons learned. Print the contacts: bank, insurer, ACSC ReportCyber and 1300 CYBER1 (1300 292 371), IDCARE. Disconnect a ransom device and leave it on. Do not wipe first. Notifiable Data Breaches may apply; many businesses under A$3 million turnover are exempt, with stated exceptions. Get advice if unsure.",
+    keywords: ["reportcyber", "1300", "picerl", "oaic", "ransom", "incident plan", "lessons learned", "idcare"],
+  },
+  {
     id: "nist-csf",
     title: "NIST CSF",
     href: "/frameworks/nist-csf",
@@ -256,7 +301,7 @@ const PLAYS: PlayTemplate[] = [
       "reset",
       "click here",
     ],
-    citationIds: ["phishing-awareness", "password-security", "zero-trust"],
+    citationIds: ["phishing-awareness", "spot-the-phish", "password-security", "zero-trust"],
     assess:
       "Someone wants you to open a login page or 'confirm' a password on their timetable. Treat the message as an ask for credentials, not as IT being helpful.",
     breakDown:
@@ -301,7 +346,7 @@ const PLAYS: PlayTemplate[] = [
       "cfo",
       "vendor",
     ],
-    citationIds: ["phishing-awareness", "social-engineering", "phishing-trends-2026"],
+    citationIds: ["business-email-compromise", "phishing-awareness", "social-engineering", "phishing-trends-2026"],
     assess:
       "The ask is money or a change to where money goes. That is a finance control problem, not a 'be a team player' problem.",
     breakDown:
@@ -402,7 +447,7 @@ const PLAYS: PlayTemplate[] = [
     id: "attachment-bait",
     play: "Payload bait: an unexpected attachment or 'enable macros' document",
     keywords: ["attachment", "zip", "exe", "docm", "macro", "invoice.pdf", "js", "iso", "html attachment"],
-    citationIds: ["phishing-awareness", "network-security", "incident-response-basics"],
+    citationIds: ["phishing-awareness", "spot-the-phish", "harden-your-laptop", "network-security", "incident-response-basics"],
     assess:
       "The ask is to open a file you were not expecting, often an invoice, resume, or 'secure document.'",
     breakDown:
@@ -431,7 +476,7 @@ const PLAYS: PlayTemplate[] = [
     id: "quishing",
     play: "Quishing: a QR code meant to move you off a channel that gets scanned",
     keywords: ["qr", "qr code", "scan this", "parking", "poster"],
-    citationIds: ["phishing-trends-2026", "phishing-awareness", "zero-trust"],
+    citationIds: ["spot-the-phish", "phishing-trends-2026", "phishing-awareness", "zero-trust"],
     assess:
       "A picture wants your phone's camera to finish the attack. Email filters often never see the URL.",
     breakDown:
@@ -456,7 +501,7 @@ const PLAYS: PlayTemplate[] = [
     id: "already-clicked",
     play: "Something already happened: a click, a password typed, a file opened, or money sent",
     keywords: ["i clicked", "i already", "i entered", "i sent", "i paid", "i downloaded", "opened it", "typed my"],
-    citationIds: ["incident-response-basics", "incident-response-framework", "password-security", "nist-csf"],
+    citationIds: ["incident-response-basics", "small-business-incident-plan", "incident-response-framework", "password-security", "nist-csf"],
     assess:
       "The educational part can wait five minutes. Containment first: what was entered, on what device, and who needs to know.",
     breakDown:

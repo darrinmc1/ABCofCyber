@@ -16,6 +16,46 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "spot-the-phish-new-2026-10-27",
+    "title": "Spot the Phish Before It Spots You",
+    "description": "New lesson: Five phishing tells, how to read a link without clicking, QR-code phishing, and how to report a suspicious message before anyone else clicks it.",
+    "date": "2026-10-27",
+    "kind": "new",
+    "href": "/learn/spot-the-phish"
+  },
+  {
+    "id": "business-email-compromise-new-2026-10-27",
+    "title": "The Invoice That Wasn't: Business Email Compromise",
+    "description": "New lesson: How BEC differs from bulk phishing, the call-back rule for any bank-detail change, signs a mailbox has been taken over, and three cheap controls.",
+    "date": "2026-10-27",
+    "kind": "new",
+    "href": "/learn/business-email-compromise"
+  },
+  {
+    "id": "spf-dkim-dmarc-basics-new-2026-10-27",
+    "title": "SPF, DKIM, DMARC: The Bouncers for Your Domain",
+    "description": "New lesson: SPF lists who may send, DKIM proves the message, and DMARC (RFC 9989) tells receivers what to do. Roll out from monitoring to reject without breaking payroll.",
+    "date": "2026-10-27",
+    "kind": "new",
+    "href": "/learn/spf-dkim-dmarc-basics"
+  },
+  {
+    "id": "harden-your-laptop-new-2026-10-27",
+    "title": "Harden Your Laptop (Without Becoming a Sysadmin)",
+    "description": "New lesson: Eight high-value settings for Windows, macOS, or Linux, mapped to CIS Level 1 and seven of the ACSC Essential Eight.",
+    "date": "2026-10-27",
+    "kind": "new",
+    "href": "/learn/harden-your-laptop"
+  },
+  {
+    "id": "small-business-incident-plan-new-2026-10-27",
+    "title": "When It Goes Wrong: A One-Page Incident Plan",
+    "description": "New lesson: PICERL in plain language, the contacts that belong on one printed page, when Australian data-breach notification may apply, and a blameless review.",
+    "date": "2026-10-27",
+    "kind": "new",
+    "href": "/learn/small-business-incident-plan"
+  },
+  {
     "id": "mfa-fatigue-attacks-when-push-notifications-become-a-weapon-new-2026-10-26",
     "title": "MFA Fatigue Attacks: When Push Notifications Become a Weapon",
     "description": "New lesson: Explores how attackers abuse multi-factor authentication push prompts to trick users into granting access, and practical strategies to mitigate this growing threat.",
