@@ -16,6 +16,14 @@ export interface SiteUpdate {
 
 export const ALL_UPDATES: SiteUpdate[] = [
   {
+    "id": "the-art-of-the-digital-honeypot-setting-traps-for-cybercriminals-new-2026-11-02",
+    "title": "The Art of the Digital Honeypot: Setting Traps for Cybercriminals",
+    "description": "New lesson: Explore the concept of digital honeypots, their purpose, types, and practical applications for detecting and deterring cyberattacks.",
+    "date": "2026-11-02",
+    "kind": "new",
+    "href": "/learn/the-art-of-the-digital-honeypot-setting-traps-for-cybercriminals"
+  },
+  {
     "id": "spot-the-phish-new-2026-10-27",
     "title": "Spot the Phish Before It Spots You",
     "description": "New lesson: Five phishing tells, how to read a link without clicking, QR-code phishing, and how to report a suspicious message before anyone else clicks it.",
