@@ -14,6 +14,16 @@ export interface LessonMeta {
 
 export const lessons: LessonMeta[] = [
   {
+    title: "The Art of the Digital Honeypot: Setting Traps for Cybercriminals",
+    slug: "the-art-of-the-digital-honeypot-setting-traps-for-cybercriminals",
+    icon: "Network",
+    summary: "Explore the concept of digital honeypots, their purpose, types, and practical applications for detecting and deterring cyberattacks.",
+    quip: "",
+    difficulty: "Intermediate",
+    duration: "10 min",
+    topics: ["honeypot","cybersecurity","threat intelligence","network security","decoy","cybercrime"],
+  },
+  {
     title: "Spot the Phish Before It Spots You",
     slug: "spot-the-phish",
     icon: "MailWarning",
