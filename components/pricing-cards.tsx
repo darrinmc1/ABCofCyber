@@ -10,12 +10,6 @@ import {
   WHATS_THE_PLAY_OFFER,
   planCta,
 } from "@/lib/pricing"
-import type { CheckoutSku } from "@/lib/offers"
-
-const PAID_SKU: Record<string, CheckoutSku> = {
-  "early-adopter": "early_adopter",
-  pro: "pro",
-}
 
 export default function PricingCards() {
   return (
@@ -37,7 +31,7 @@ export default function PricingCards() {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {PLANS.map((plan) => {
           const cta = planCta(plan)
-          const sku = PAID_SKU[plan.id]
+          const paid = (plan.priceUsd ?? 0) > 0
           return (
             <Card
               key={plan.id}
@@ -69,8 +63,8 @@ export default function PricingCards() {
                 </ul>
               </CardContent>
               <CardFooter className="flex flex-col items-stretch">
-                {sku ? (
-                  <PlanBuy sku={sku} />
+                {paid ? (
+                  <PlanBuy />
                 ) : (
                   <Button
                     asChild
@@ -97,7 +91,7 @@ export default function PricingCards() {
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">{WHATS_THE_PLAY_OFFER.notes}</p>
         <div className="mt-4 max-w-sm">
-          <PlanBuy sku="whats_the_play" />
+          <PlanBuy />
         </div>
         <p className="mt-3">
           <Link href="/whats-the-play" className="text-sm font-medium text-blue-700 hover:underline">

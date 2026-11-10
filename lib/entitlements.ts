@@ -1,6 +1,8 @@
 import { supabaseAdmin } from "@/lib/supabase"
-import { stripeSiteKey } from "./offers"
 import { scopeToSite, siteProductIdPattern, toStoredProductId } from "./entitlement-keys"
+
+/** Prefix for this site's rows in the shared entitlements table. */
+const SITE_KEY = "abcofcyber"
 
 export interface Entitlement {
   id: string
@@ -12,7 +14,7 @@ export interface Entitlement {
 
 export async function getUserEntitlements(userId: string): Promise<Entitlement[]> {
   if (!supabaseAdmin) return []
-  const site = stripeSiteKey()
+  const site = SITE_KEY
   const { data, error } = await supabaseAdmin
     .from("entitlements")
     .select("*")
@@ -35,7 +37,7 @@ export async function revokeEntitlement(userId: string, productId: string): Prom
     .from("entitlements")
     .delete()
     .eq("user_id", userId)
-    .eq("product_id", toStoredProductId(productId, stripeSiteKey()))
+    .eq("product_id", toStoredProductId(productId, SITE_KEY))
   if (error) {
     console.error("[entitlements] revoke failed", error)
     return false
@@ -48,7 +50,7 @@ export async function grantEntitlement(userId: string, productId: string): Promi
   const { error } = await supabaseAdmin.from("entitlements").upsert(
     {
       user_id: userId,
-      product_id: toStoredProductId(productId, stripeSiteKey()),
+      product_id: toStoredProductId(productId, SITE_KEY),
       granted_at: new Date().toISOString(),
     },
     { onConflict: "user_id,product_id" }

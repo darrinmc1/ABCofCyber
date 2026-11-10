@@ -1,6 +1,6 @@
 /**
  * Empire HQ sites share one Supabase `public.entitlements` table, so every
- * stored product_id is namespaced as `<STRIPE_SITE_KEY>:<sku>`
+ * stored product_id is namespaced as `<site>:<sku>`
  * (for example `abcofcyber:pro`). Writes always store the prefixed id and
  * reads only return this site's rows, with product_id mapped back to the
  * bare sku so the rest of the app keeps comparing plain skus.

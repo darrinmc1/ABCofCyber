@@ -37,8 +37,8 @@ export default function ImprovementsPage() {
             />
           </div>
           <div className="mx-auto mb-8 grid max-w-3xl gap-6 text-left md:grid-cols-2">
-            <PlanBuy sku="early_adopter" />
-            <PlanBuy sku="pro" />
+            <PlanBuy />
+            <PlanBuy />
           </div>
           <div className="flex items-center justify-center gap-4">
             <Link href="/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
