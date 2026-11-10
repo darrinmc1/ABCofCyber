@@ -17,7 +17,7 @@ export interface PricePlan {
   includesWhatsThePlay: boolean
 }
 
-/** Stripe checkout is not live. Paid CTAs must use waitlist framing. */
+/** Paid checkout is not live. Paid CTAs must use waitlist framing. */
 export const CHECKOUT_LIVE = false
 export const WAITLIST_HREF = "/improvements"
 
