@@ -1,17 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Shield, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import HumorToggle from "@/components/humor-toggle"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    try {
+      window.localStorage.removeItem("humor-enabled")
+    } catch {
+      // Storage can be blocked. Nothing reads this preference anymore.
+    }
+  }, [])
 
   const routes = [
     { href: "/", label: "Home" },
@@ -53,7 +60,6 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex gap-4">
-          <HumorToggle />
           <Button variant="outline" asChild>
             <Link href="/sign-in">Login</Link>
           </Button>

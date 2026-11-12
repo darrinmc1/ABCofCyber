@@ -7,7 +7,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { lessons } from "@/lib/lessons"
-import { getHumorEnabled } from "@/lib/humor"
 
 export const metadata: Metadata = pageMeta({
   title: "Lessons",
@@ -79,7 +78,7 @@ export default function LearnPage() {
               <CardDescription className="text-base">{summary}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col gap-4">
-              {getHumorEnabled() && quip ? (
+              {quip ? (
                 <p className="text-sm italic leading-6 text-slate-500">&ldquo;{quip}&rdquo;</p>
               ) : null}
               <div className="flex flex-wrap gap-2">
