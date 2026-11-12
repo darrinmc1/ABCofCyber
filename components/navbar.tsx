@@ -16,6 +16,7 @@ export default function Navbar() {
   const routes = [
     { href: "/", label: "Home" },
     { href: "/learn", label: "Learn" },
+    { href: "/essential-eight", label: "Essential Eight" },
     { href: "/whats-the-play", label: "What's the play" },
     { href: "/frameworks", label: "Frameworks" },
     { href: "/get-started", label: "Get Started" },

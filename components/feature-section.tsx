@@ -1,4 +1,5 @@
-import { BookOpen, FileText, Library, MailWarning, ScrollText, PenLine } from "lucide-react"
+import Link from "next/link"
+import { BookOpen, Library, MailWarning, ScrollText, PenLine, ListChecks } from "lucide-react"
 
 export default function FeatureSection() {
   const features = [
@@ -28,9 +29,11 @@ export default function FeatureSection() {
       description: "After you sign in, draft a policy, a risk assessment, or an incident plan as markdown.",
     },
     {
-      icon: <FileText className="h-10 w-10 text-blue-600" />,
-      title: "A contact form",
-      description: "Questions go through the form on the contact page. There is no public mailbox on the site.",
+      icon: <ListChecks className="h-10 w-10 text-blue-600" />,
+      title: "Template preview: Incident Response Plan",
+      description: "Six IR phases — Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned — plus team roles, a 4-level escalation tree, and a post-incident review workflow.",
+      href: "/downloads",
+      linkLabel: "See all templates",
     },
   ]
 
@@ -55,6 +58,11 @@ export default function FeatureSection() {
                 {feature.icon}
                 <h3 className="text-xl font-bold">{feature.title}</h3>
                 <p className="text-gray-500 text-center">{feature.description}</p>
+                {feature.href ? (
+                  <Link href={feature.href} className="text-sm font-semibold text-blue-700 hover:underline">
+                    {feature.linkLabel}
+                  </Link>
+                ) : null}
               </div>
             ))}
           </div>

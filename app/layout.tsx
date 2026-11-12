@@ -70,21 +70,8 @@ export default async function RootLayout({
             <Link href="/contact" className="text-gray-600 hover:text-blue-700">Contact</Link>
             <Link href="/llm.txt" className="text-gray-600 hover:text-blue-700">llm.txt</Link>
           </div>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3 text-xs text-slate-500">
-            <span className="font-semibold text-slate-700 mr-1">Empire-HQ:</span>
-            <a href="https://freelancepro-teal.vercel.app" className="hover:text-blue-600">FreelancePro</a>
-            <a href="https://moneymastery.vercel.app" className="hover:text-blue-600">Money Mastery</a>
-            <a href="https://aiforsmb.vercel.app" className="hover:text-blue-600">AI for SMB</a>
-            <a href="https://devops101-six.vercel.app" className="hover:text-blue-600">DevOps 101</a>
-            <a href="https://landscapedesign-orcin.vercel.app" className="hover:text-blue-600">Landscape Design</a>
-            <a href="https://pilatesbuffet.com" className="hover:text-blue-600">PilatesFlow</a>
-            <a href="https://osint101.com" className="hover:text-blue-600">OSINT 101</a>
-            <a href="https://peelboss.com" className="hover:text-blue-600">Peel Boss</a>
-            <a href="https://ticu.tv" className="hover:text-blue-600">TICU.TV</a>
-            <a href="https://theintelanalystacademy.com" className="hover:text-blue-600">Intel Academy</a>
-          </div>
           <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-5 text-slate-500">
-            Operated by TTPN Pty Ltd. Part of the Empire HQ network.
+            Operated by TTPN Pty Ltd.
           </p>
           <p className="text-center text-gray-500 text-xs mt-4">
             &copy; {new Date().getFullYear()} ABC of Cyber — An Empire-HQ Portfolio Project.

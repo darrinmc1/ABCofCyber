@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     question: "Can smaller teams use this?",
-    answer: "Yes. The lessons and tools are designed to be useful even when security is only part of someone&apos;s job.",
+    answer: "Yes. The lessons and tools are designed to be useful even when security is only part of someone's job.",
   },
   {
     question: "Is What's the play a separate product?",
@@ -95,6 +95,22 @@ export default function Home() {
       </section>
 
       <FeatureSection />
+
+      <section className="w-full border-y border-blue-900 bg-gradient-to-r from-blue-950 to-slate-900 py-12 text-white md:py-16">
+        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
+          <div className="max-w-2xl space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Start here</p>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">The Essential Eight starter path</h2>
+            <p className="text-blue-100">
+              Eight practical steps, in order, built for the person who owns security as part of a bigger job. Each
+              step links straight to the lesson that covers it.
+            </p>
+          </div>
+          <Button asChild size="lg" className="bg-white text-slate-950 hover:bg-blue-100">
+            <Link href="/essential-eight">Start the path</Link>
+          </Button>
+        </div>
+      </section>
 
       <section className="w-full border-y bg-slate-50 py-12 md:py-16">
         <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
