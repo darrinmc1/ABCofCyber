@@ -4,6 +4,7 @@ import { pageMeta } from "@/lib/seo"
 import { ArrowRight, Shield, AlertTriangle, Users, Lock, Globe, Briefcase, Code, HeartPulse, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { EmailCapture } from "@/components/email-capture"
 
 export const metadata: Metadata = pageMeta({
   title: "What's the play",
@@ -104,6 +105,18 @@ export default function WhatsThePlayPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-8 md:px-6">
+        <div className="max-w-3xl">
+          <EmailCapture
+            variant="inline"
+            theme="cyber"
+            heading="Get this week's play by email"
+            subheading="One new scenario a week — the situation, the risk, and the concrete next step. No daily noise, no vendor pitch."
+            source="whats-the-play-weekly"
+          />
         </div>
       </section>
 
