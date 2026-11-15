@@ -4,7 +4,6 @@ import { pageMeta } from "@/lib/seo"
 import { ShieldCheck, Radar, Lock, ClipboardCheck, ArrowRight, AlertTriangle, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { getHumorEnabled } from "@/lib/humor"
 
 export const metadata: Metadata = pageMeta({
   title: "Frameworks",
@@ -118,7 +117,7 @@ export default function FrameworksPage() {
               <CardTitle>{name}</CardTitle>
               <CardDescription>{summary}</CardDescription>
             </CardHeader>
-            {getHumorEnabled() && quip ? (
+            {quip ? (
               <CardContent>
                 <p className="text-sm leading-6 text-slate-600">{quip}</p>
               </CardContent>

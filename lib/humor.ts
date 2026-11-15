@@ -1,14 +1,3 @@
-/** Site-wide humor default. Visitors can still hide inserts via HumorToggle. */
-export const HUMOR_ENABLED = true
-
-export function getHumorEnabled(): boolean {
-  return HUMOR_ENABLED
-}
-
-export function humorEnabled(): boolean {
-  return getHumorEnabled()
-}
-
 export interface HumorItem {
   setup: string
   punchline?: string
@@ -26,7 +15,6 @@ export interface HumorTheme {
   eyebrowColor: string
   label?: string
   punchColor: string
-  buttonBg: string
   footerNote?: string
   shuffleLabel?: string
 }
@@ -42,7 +30,6 @@ export const humorTheme: HumorTheme = {
   eyebrowColor: "text-blue-700",
   label: "Patch break",
   punchColor: "text-blue-800",
-  buttonBg: "bg-blue-600",
   footerNote: "Even firewalls need a laugh",
   shuffleLabel: "Another one",
 }
