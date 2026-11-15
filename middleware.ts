@@ -25,6 +25,7 @@ const isPublicRoute = createRouteMatcher([
   "/pricing", "/learn(.*)", "/frameworks(.*)",
   "/blog(.*)", "/about", "/contact",
   "/get-started", "/downloads", "/improvements", "/tools(.*)", "/whats-the-play",
+  "/info/global-hack-map",
   "/terms", "/privacy", "/cookies",
 ])
 

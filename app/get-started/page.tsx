@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { pageMeta } from "@/lib/seo"
-import { ArrowRight, BookOpen, Library, MailWarning, ScrollText } from "lucide-react"
+import { ArrowRight, BookOpen, Globe, Library, MailWarning, ScrollText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -105,6 +105,29 @@ export default function GetStartedPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+
+      <section className="border-t bg-white py-12">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-3xl space-y-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white">
+              <Globe className="h-5 w-5" />
+            </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">For information</p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">An outside map of what was just reported</h2>
+            <p className="max-w-2xl leading-7 text-slate-600">
+              Global Hack Map is not ours. It is an open-source globe of newly reported exploits and breaches, with a
+              link from each point to its source. The note explains what it shows and where the data comes from. It
+              does not embed the map.
+            </p>
+            <Button asChild variant="outline">
+              <Link href="/info/global-hack-map">
+                Read the note
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
