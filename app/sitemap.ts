@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/whats-the-play`,                lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE_URL}/tools`,                         lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/get-started`,                   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/info/global-hack-map`,          lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/learn`,                         lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
     ...lessonUrls,
     { url: `${BASE_URL}/frameworks`,                    lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
