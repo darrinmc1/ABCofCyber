@@ -27,10 +27,10 @@ const steps = [
     icon: Library,
   },
   {
-    title: "Download a template",
-    description: "Policy, risk, incident, and other PDFs. Fill them in yourself.",
+    title: "See the template packs",
+    description: "Policy, risk, and incident collections. About A$9–19 once. The page does not check out.",
     href: "/downloads",
-    label: "Open templates",
+    label: "Open the packs",
     icon: ScrollText,
   },
   {

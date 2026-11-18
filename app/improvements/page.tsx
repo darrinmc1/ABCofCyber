@@ -1,13 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { pageMeta } from "@/lib/seo"
-import { Construction, ArrowLeft } from "lucide-react"
-import { EmailCapture } from "@/components/email-capture"
-import { PlanBuy } from "@/components/plan-buy"
+import { ArrowLeft } from "lucide-react"
+import { FREE_ACCOUNT_CTA, INTRO_PRICE_NOTE } from "@/lib/pricing"
 
 export const metadata: Metadata = pageMeta({
-  title: "Waitlist",
-  description: "Billing is not live yet. Leave your email and we will write when it is.",
+  title: "Pricing note",
+  description: "The ABC of Cyber price map. A$9/month inc GST, A$5 first month, collections about A$9–19.",
   path: "/improvements",
 })
 
@@ -15,36 +14,21 @@ export default function ImprovementsPage() {
   return (
     <div className="min-h-screen bg-white">
       <section className="border-b bg-white py-16 text-center">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-blue-100 p-4">
-              <Construction className="h-12 w-12 text-blue-600" />
-            </div>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight mb-3">We&apos;re Building Something Better</h1>
-          <p className="text-slate-600 max-w-lg mx-auto mb-8 text-lg">
-            Checkout is not live. The training price map is Free, Early Adopter{" "}
-            <strong className="text-blue-600">$5/month</strong>, and Pro $10/month.
-            Join the waitlist and we will email you when billing launches.
+        <div className="mx-auto max-w-3xl px-4 md:px-6">
+          <h1 className="mb-3 text-3xl font-bold tracking-tight">Same price as the pricing page</h1>
+          <p className="mx-auto mb-4 max-w-lg text-lg text-slate-600">
+            The plan is A$9/month inc GST. The first month is A$5 when you create a free account with your email.
+            Collections are about A$9–19, once.
           </p>
-          <div className="mx-auto mb-8 max-w-xl text-left">
-            <EmailCapture
-              variant="inline"
-              theme="dark"
-              heading="Join the waitlist"
-              subheading="Same planned SKUs as /pricing. No new packages, and no checkout until billing is live."
-              source="improvements-waitlist"
-            />
-          </div>
-          <div className="mx-auto mb-8 grid max-w-3xl gap-6 text-left md:grid-cols-2">
-            <PlanBuy />
-            <PlanBuy />
-          </div>
-          <div className="flex items-center justify-center gap-4">
+          <p className="mx-auto mb-8 max-w-lg text-slate-600">{INTRO_PRICE_NOTE} There is no checkout on this page.</p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
               <ArrowLeft className="h-4 w-4" /> Back to Home
             </Link>
-            <Link href="/pricing" className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+            <Link href={FREE_ACCOUNT_CTA.href} className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+              {FREE_ACCOUNT_CTA.label}
+            </Link>
+            <Link href="/pricing" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
               See the price map
             </Link>
           </div>

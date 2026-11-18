@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import { headers } from "next/headers"
 import Link from "next/link"
-import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 import Navbar from "@/components/navbar"
+import { PageViewRecorder } from "@/components/page-view-recorder"
 import { Toaster } from "@/components/ui/toaster"
 import { FeedbackWidget } from "@/components/feedback-widget"
 import { WaitlistPopup } from "@/components/waitlist-popup"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
+import { MERCHANT_OF_RECORD_DISCLOSURE } from "@/lib/merchant-of-record"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -45,24 +47,15 @@ export default async function RootLayout({
 
   const chrome = (
     <>
-      {clerkActive && (
-        <header className="flex justify-end items-center gap-3 px-4 py-2 border-b bg-slate-50 text-sm">
-          <Show when="signed-out">
-            <SignInButton />
-            <SignUpButton />
-          </Show>
-          <Show when="signed-in">
-            <UserButton />
-          </Show>
-        </header>
-      )}
-      <Navbar />
+      {clerkActive && <PageViewRecorder />}
+      <Navbar clerkActive={clerkActive} />
       {children}
       <footer className="border-t border-gray-200 bg-gray-50 mt-16">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <Link href="/terms" className="text-gray-600 hover:text-blue-700">Terms</Link>
             <Link href="/privacy" className="text-gray-600 hover:text-blue-700">Privacy</Link>
+            <Link href="/refunds" className="text-gray-600 hover:text-blue-700">Refunds</Link>
             <Link href="/cookies" className="text-gray-600 hover:text-blue-700">Cookies</Link>
             <Link href="/about" className="text-gray-600 hover:text-blue-700">About</Link>
             <Link href="/whats-the-play" className="text-gray-600 hover:text-blue-700">What&apos;s the play</Link>
@@ -71,7 +64,7 @@ export default async function RootLayout({
             <Link href="/llm.txt" className="text-gray-600 hover:text-blue-700">llm.txt</Link>
           </div>
           <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-5 text-slate-500">
-            Operated by TTPN Pty Ltd.
+            {MERCHANT_OF_RECORD_DISCLOSURE}
           </p>
           <p className="text-center text-gray-500 text-xs mt-4">
             &copy; {new Date().getFullYear()} ABC of Cyber — An Empire-HQ Portfolio Project.

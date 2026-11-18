@@ -1,188 +1,173 @@
 import { SITE_URL } from "./site"
 
-export type BillingPeriod = "month" | "none"
+export const CURRENCY = "AUD"
+export const CHECKOUT_LIVE = false
 
-export interface PricePlan {
+/** Every commercial control uses this. There is no payment URL. */
+export const FREE_ACCOUNT_CTA = {
+  label: "Create a free account",
+  href: "/sign-up",
+} as const
+
+export const INTRO_PRICE_NOTE =
+  "The intro price applies to the first month only, then renews at A$9/month. Cancel anytime."
+
+export interface FreeItem {
   id: string
   name: string
-  priceUsd: number | null
-  priceDisplay: string
-  period: BillingPeriod
-  periodLabel: string
   description: string
-  features: string[]
   href: string
-  highlighted: boolean
-  cta: string
-  includesWhatsThePlay: boolean
 }
 
-/** Paid checkout is not live. Paid CTAs must use waitlist framing. */
-export const CHECKOUT_LIVE = false
-export const WAITLIST_HREF = "/improvements"
-
-export function planCta(plan: PricePlan): { label: string; href: string } {
-  if (!CHECKOUT_LIVE && (plan.priceUsd ?? 0) > 0) {
-    return { label: "Join the waitlist", href: WAITLIST_HREF }
-  }
-  return { label: plan.cta, href: plan.href }
-}
-
-export const WHATS_THE_PLAY_OFFER = {
-  id: "whats-the-play",
-  name: "What's the play",
-  product: "ABC of Cyber",
-  kind: "paid-plan-include" as const,
-  priceUsd: 29,
-  currency: "USD",
-  billing: "month" as const,
-  billingInterval: "P1M",
-  priceRangeUsd: { min: 19, max: 50 },
-  checkout: "existing-subscription",
-  x402: false,
-  includedInPlanIds: ["early-adopter", "pro"] as const,
-  freeAllowance: "1 walkthrough",
-  url: `${SITE_URL}/whats-the-play`,
-  notes:
-    "Included on paid ABC of Cyber plans. Listed at $29/month if billed as a dedicated seat. Same signup pattern as Early Adopter / Pro. No x402 or crypto checkout.",
-}
-
-export const PLANS: PricePlan[] = [
+/** The two or three strongest things on the site. They stay free. */
+export const FREE_ITEMS: FreeItem[] = [
   {
-    id: "free",
-    name: "Free",
-    priceUsd: 0,
-    priceDisplay: "$0",
-    period: "none",
-    periodLabel: "",
-    description: "Get started with courses and one educational walkthrough. No credit card needed.",
-    features: [
-      "All courses & lessons",
-      "1 What's the play walkthrough",
-      "Basic tools access",
-      "Community access",
-    ],
-    cta: "Get Started Free",
-    href: "/learn",
-    highlighted: false,
-    includesWhatsThePlay: false,
+    id: "essential-eight",
+    name: "Essential Eight starter path",
+    description: "Eight practical steps, in order, each linked to the lesson that covers it.",
+    href: "/essential-eight",
   },
   {
-    id: "early-adopter",
-    name: "Early Adopter",
-    priceUsd: 5,
-    priceDisplay: "$5",
-    period: "month",
-    periodLabel: "/month",
-    description: "Early adopter rate at the amount shown on this card.",
-    features: [
-      "Everything in Free",
-      "Unlimited What's the play walkthroughs",
-      "All Pro template packs",
-      "All interactive tools",
-    ],
-    cta: "Coming soon",
-    href: "/improvements",
-    highlighted: true,
-    includesWhatsThePlay: true,
+    id: "whats-the-play",
+    name: "What's the play",
+    description: "Paste a suspicious scenario. Get a walkthrough cited from lessons already on the site.",
+    href: "/whats-the-play",
   },
   {
-    id: "pro",
-    name: "Pro",
-    priceUsd: 10,
-    priceDisplay: "$10",
-    period: "month",
-    periodLabel: "/month",
-    description: "Full access when it launches. More features coming.",
-    features: [
-      "Everything in Early Adopter",
-      "Advanced features & AI tools",
-      "New content priority",
-      "Priority support",
-    ],
-    cta: "Coming Soon",
-    href: "/improvements",
-    highlighted: false,
-    includesWhatsThePlay: true,
+    id: "frameworks",
+    name: "Framework explainers",
+    description: "NIST CSF, ISO 27001, CIS, risk, monitoring, and incident response, written as notes.",
+    href: "/frameworks",
   },
 ]
+
+export const PLAN = {
+  id: "plan",
+  name: "Plan",
+  priceAud: 9,
+  priceDisplay: "A$9",
+  periodLabel: "/month",
+  taxLabel: "inc GST",
+  introPriceAud: 5,
+  introDisplay: "A$5",
+  introLabel: "first month",
+  description:
+    "Limited-time A$5 first month for people who create a free account with their email. Then A$9/month inc GST.",
+  note: INTRO_PRICE_NOTE,
+  cta: FREE_ACCOUNT_CTA.label,
+  href: FREE_ACCOUNT_CTA.href,
+}
+
+export const COLLECTIONS = {
+  id: "collections",
+  name: "Collections",
+  priceDisplay: "A$9–19",
+  periodLabel: "one-off",
+  description: "Download packs of the templates. About A$9–19 each, paid once. Not a subscription.",
+  cta: FREE_ACCOUNT_CTA.label,
+  href: FREE_ACCOUNT_CTA.href,
+  packs: [
+    "Security policy, password policy, and access-control matrix",
+    "Risk register, vulnerability tracker, and vendor assessment",
+    "Incident plan, continuity plan, compliance checklist, and training log",
+  ],
+}
 
 export function pricingDocument() {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${WHATS_THE_PLAY_OFFER.product} pricing`,
+    name: "ABC of Cyber pricing",
     url: `${SITE_URL}/pricing`,
     description:
-      "Parseable subscription pricing for ABC of Cyber. What's the play is a paid-plan include, not a separate brand.",
-    numberOfItems: PLANS.length,
-    itemListElement: PLANS.map((plan, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Offer",
-        "@id": `${SITE_URL}/pricing#${plan.id}`,
-        name: plan.name,
-        url: `${SITE_URL}${plan.href}`,
-        price: plan.priceUsd ?? undefined,
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        description: plan.description,
-        category: "Subscription",
-        additionalProperty: [
-          {
-            "@type": "PropertyValue",
-            name: "includesWhatsThePlay",
-            value: String(plan.includesWhatsThePlay),
-          },
-          {
-            "@type": "PropertyValue",
-            name: "x402",
-            value: "false",
-          },
-        ],
-      },
-    })),
-    additionalProperty: {
-      "@type": "Offer",
-      "@id": `${SITE_URL}/pricing#whats-the-play`,
-      name: WHATS_THE_PLAY_OFFER.name,
-      url: WHATS_THE_PLAY_OFFER.url,
-      price: WHATS_THE_PLAY_OFFER.priceUsd,
-      priceCurrency: WHATS_THE_PLAY_OFFER.currency,
-      description: WHATS_THE_PLAY_OFFER.notes,
-      additionalProperty: [
-        { "@type": "PropertyValue", name: "kind", value: WHATS_THE_PLAY_OFFER.kind },
-        { "@type": "PropertyValue", name: "x402", value: "false" },
-        {
-          "@type": "PropertyValue",
-          name: "includedIn",
-          value: WHATS_THE_PLAY_OFFER.includedInPlanIds.join(", "),
+      "One price map. Free lessons, the walkthrough, and framework notes. Plan A$9/month inc GST with an A$5 first month. Collections about A$9–19 one-off. No checkout on this site.",
+    numberOfItems: 1 + FREE_ITEMS.length + 1,
+    itemListElement: [
+      ...FREE_ITEMS.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Offer",
+          "@id": `${SITE_URL}/pricing#${item.id}`,
+          name: item.name,
+          url: `${SITE_URL}${item.href}`,
+          price: 0,
+          priceCurrency: CURRENCY,
+          description: `${item.description} Free.`,
         },
-      ],
-    },
+      })),
+      {
+        "@type": "ListItem",
+        position: FREE_ITEMS.length + 1,
+        item: {
+          "@type": "Offer",
+          "@id": `${SITE_URL}/pricing#${PLAN.id}`,
+          name: PLAN.name,
+          url: `${SITE_URL}${PLAN.href}`,
+          price: PLAN.priceAud,
+          priceCurrency: CURRENCY,
+          description: `${PLAN.description} ${PLAN.note}`,
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: FREE_ITEMS.length + 2,
+        item: {
+          "@type": "Offer",
+          "@id": `${SITE_URL}/pricing#${COLLECTIONS.id}`,
+          name: COLLECTIONS.name,
+          url: `${SITE_URL}${COLLECTIONS.href}`,
+          lowPrice: 9,
+          highPrice: 19,
+          priceCurrency: CURRENCY,
+          description: COLLECTIONS.description,
+        },
+      },
+    ],
   }
 }
 
 export function pricingJson() {
   return {
-    product: WHATS_THE_PLAY_OFFER.product,
-    currency: "USD",
+    product: "ABC of Cyber",
+    currency: CURRENCY,
+    gst: "included",
     x402: false,
-    checkout: WHATS_THE_PLAY_OFFER.checkout,
+    checkout: "none",
     checkoutLive: CHECKOUT_LIVE,
-    updated: "2026-08-24",
+    updated: "2026-11-18",
     url: `${SITE_URL}/pricing`,
-    plans: PLANS.map((plan) => ({
-      id: plan.id,
-      name: plan.name,
-      priceUsd: plan.priceUsd,
-      period: plan.period,
-      description: plan.description,
-      features: plan.features,
-      href: `${SITE_URL}${plan.href}`,
-      includesWhatsThePlay: plan.includesWhatsThePlay,
+    commercialCta: FREE_ACCOUNT_CTA,
+    free: FREE_ITEMS.map((item) => ({
+      id: item.id,
+      name: item.name,
+      priceAud: 0,
+      label: "Free",
+      description: item.description,
+      href: `${SITE_URL}${item.href}`,
     })),
-    offers: [WHATS_THE_PLAY_OFFER],
+    plan: {
+      id: PLAN.id,
+      name: PLAN.name,
+      priceAud: PLAN.priceAud,
+      period: "month",
+      tax: PLAN.taxLabel,
+      introPriceAud: PLAN.introPriceAud,
+      introAppliesTo: "first month only",
+      then: "A$9/month",
+      cancel: "anytime",
+      description: PLAN.description,
+      note: PLAN.note,
+      href: `${SITE_URL}${PLAN.href}`,
+    },
+    collections: {
+      id: COLLECTIONS.id,
+      name: COLLECTIONS.name,
+      priceAud: { min: 9, max: 19 },
+      period: "one-off",
+      description: COLLECTIONS.description,
+      packs: COLLECTIONS.packs,
+      href: `${SITE_URL}${COLLECTIONS.href}`,
+    },
   }
 }

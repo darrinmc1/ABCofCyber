@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Shield, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { NavAuth } from "@/components/nav-auth"
 
-export default function Navbar() {
+export default function Navbar({ clerkActive = false }: { clerkActive?: boolean }) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -27,7 +28,7 @@ export default function Navbar() {
     { href: "/whats-the-play", label: "What's the play" },
     { href: "/frameworks", label: "Frameworks" },
     { href: "/get-started", label: "Get Started" },
-    { href: "/#pricing", label: "Pricing" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
   ]
 
@@ -60,12 +61,18 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex gap-4">
-          <Button variant="outline" asChild>
-            <Link href="/sign-in">Login</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/sign-up">Sign Up</Link>
-          </Button>
+          {clerkActive ? (
+            <NavAuth />
+          ) : (
+            <>
+              <Button variant="outline" asChild>
+                <Link href="/sign-in">Login</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/sign-up">Sign Up</Link>
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Navigation */}
@@ -92,16 +99,22 @@ export default function Navbar() {
                   </Button>
                 ))}
                 <div className="h-px bg-border my-2" />
-                <Button variant="outline" asChild className="w-full">
-                  <Link href="/sign-in" onClick={() => setIsOpen(false)}>
-                    Login
-                  </Link>
-                </Button>
-                <Button asChild className="w-full">
-                  <Link href="/sign-up" onClick={() => setIsOpen(false)}>
-                    Sign Up
-                  </Link>
-                </Button>
+                {clerkActive ? (
+                  <NavAuth fullWidth onNavigate={() => setIsOpen(false)} />
+                ) : (
+                  <>
+                    <Button variant="outline" asChild className="w-full">
+                      <Link href="/sign-in" onClick={() => setIsOpen(false)}>
+                        Login
+                      </Link>
+                    </Button>
+                    <Button asChild className="w-full">
+                      <Link href="/sign-up" onClick={() => setIsOpen(false)}>
+                        Sign Up
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </SheetContent>
           </Sheet>

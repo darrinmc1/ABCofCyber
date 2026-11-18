@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { LegalNotice } from "@/components/legal-notice"
 import Link from "next/link"
+import { COLLECTIONS, FREE_ACCOUNT_CTA } from "@/lib/pricing"
 
 export const metadata: Metadata = pageMeta({
   title: "Templates",
@@ -185,14 +186,14 @@ export default function DownloadsPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
-              Free Resources
+              Collections
             </p>
             <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl">
-              Downloadable Templates
+              Download packs
             </h1>
             <p className="max-w-[680px] text-indigo-200 md:text-lg">
-              Professional cybersecurity templates built from real-world frameworks.
-              No fluff, no gatekeeping — just instruments that work.
+              Template collections, about {COLLECTIONS.priceDisplay} {COLLECTIONS.periodLabel}.
+              Billing is not open here, so the button creates a free account. It does not check out.
             </p>
           </div>
         </div>
@@ -231,27 +232,13 @@ export default function DownloadsPage() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col items-start gap-3 border-t border-indigo-900/30 pt-4">
+                <p className="text-sm text-indigo-100">{COLLECTIONS.priceDisplay} {COLLECTIONS.periodLabel}</p>
                 <LegalNotice className="text-xs leading-5 text-indigo-100" />
                 <Button
                   asChild
                   className="bg-violet-600 text-white hover:bg-violet-700"
                 >
-                  <Link href={`/downloads/${item.filename}`} download>
-                    <svg
-                      className="mr-2 h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                    Download PDF
-                  </Link>
+                  <Link href={FREE_ACCOUNT_CTA.href}>{FREE_ACCOUNT_CTA.label}</Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -274,7 +261,7 @@ export default function DownloadsPage() {
             variant="outline"
             className="mt-6 border-violet-700 text-violet-300 hover:bg-violet-950 hover:text-violet-200"
           >
-            <Link href="/contact">Get in Touch</Link>
+            <Link href={FREE_ACCOUNT_CTA.href}>{FREE_ACCOUNT_CTA.label}</Link>
           </Button>
         </div>
       </section>

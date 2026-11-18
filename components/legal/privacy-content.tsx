@@ -4,16 +4,16 @@ interface PrivacyPageProps {
   siteName: string
   domain: string
   companyName?: string
-  address?: string
+  supportEmail: string
 }
 
 export function PrivacyPage({
   siteName,
   domain,
   companyName = "TTPN Pty Ltd",
-  address = "",
+  supportEmail,
 }: PrivacyPageProps) {
-  const lastUpdated = "October 24, 2026"
+  const lastUpdated = "18 November 2026"
 
   return (
     <div className="min-h-screen bg-white">
@@ -31,8 +31,9 @@ export function PrivacyPage({
             {companyName} (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the {siteName} website
             (the &ldquo;Service&rdquo;). This page explains how we collect, use, and protect your personal information.
           </p>
-          <p className="text-sm text-slate-500 mt-2">
+            <p className="text-sm text-slate-500 mt-2">
             By using the Service, you agree to the collection and use of information in accordance with this policy.
+            {companyName} handles personal information under the Privacy Act 1988 (Cth). We do not publish an ABN or a street address on this site.
           </p>
 
           <hr className="my-8" />
@@ -58,6 +59,7 @@ export function PrivacyPage({
             <ul className="list-disc pl-6 mb-4 text-slate-700 space-y-1">
               <li>IP address, browser type, device information</li>
               <li>Pages visited, time spent, and navigation patterns</li>
+              <li>When you are signed in, the path of pages you open, stored against your account id so the operator can see usage</li>
               <li>Referral source (how you found the site)</li>
             </ul>
           </section>
@@ -183,8 +185,9 @@ export function PrivacyPage({
               <li><strong>Withdrawal of consent</strong> — withdraw consent at any time where processing is based on consent</li>
             </ul>
             <p className="text-slate-700">
-              To exercise any of these rights,{" "}
-              <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>
+              To exercise any of these rights, email{" "}
+              <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>{" "}
+              or <Link href="/contact" className="text-blue-600 underline">use the contact form</Link>
               .
               We will respond within 30 days.
             </p>
@@ -220,8 +223,8 @@ export function PrivacyPage({
               If you have questions about this Privacy Policy, please contact us:
             </p>
             <ul className="list-disc pl-6 text-slate-700 space-y-1">
+              <li>Email: <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a></li>
               <li>Website: <Link href="/contact" className="text-blue-600 underline">{domain}/contact</Link></li>
-              {address && <li>Address: {address}</li>}
             </ul>
           </section>
         </div>
