@@ -16,7 +16,7 @@ export default function FeatureSection() {
     {
       icon: <ScrollText className="h-10 w-10 text-blue-600" />,
       title: "Templates",
-      description: "PDF templates for a policy, a risk register, an incident plan, and seven other forms.",
+      description: "Policy, risk, and incident packs. About A$9–19 once. The page does not take payment.",
     },
     {
       icon: <MailWarning className="h-10 w-10 text-blue-600" />,

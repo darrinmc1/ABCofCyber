@@ -26,7 +26,7 @@ const isPublicRoute = createRouteMatcher([
   "/blog(.*)", "/about", "/contact",
   "/get-started", "/downloads", "/improvements", "/tools(.*)", "/whats-the-play",
   "/essential-eight",
-  "/terms", "/privacy", "/cookies",
+  "/terms", "/privacy", "/cookies", "/refunds",
 ])
 
 // Graceful fallback: allow all requests if Clerk isn't configured

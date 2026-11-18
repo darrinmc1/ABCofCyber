@@ -1,13 +1,22 @@
 import Link from "next/link"
+import { INTRO_PRICE_NOTE } from "@/lib/pricing"
+import { REFUND_POLICY } from "@/lib/refund-policy"
+import { MERCHANT_OF_RECORD_DISCLOSURE } from "@/lib/merchant-of-record"
 
 interface TermsPageProps {
   siteName: string
   domain: string
   companyName?: string
+  supportEmail: string
 }
 
-export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: TermsPageProps) {
-  const lastUpdated = "October 24, 2026"
+export function TermsPage({
+  siteName,
+  domain,
+  companyName = "TTPN Pty Ltd",
+  supportEmail,
+}: TermsPageProps) {
+  const lastUpdated = "18 November 2026"
 
   return (
     <div className="min-h-screen bg-white">
@@ -59,11 +68,37 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
             </p>
             <p className="text-slate-700">
               The material is educational. It is not legal advice, an audit, a certification, or a monitoring service.
+              There is no lifetime deal and no unlimited plan.
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">3. Intellectual Property</h2>
+            <h2 className="text-2xl font-bold mb-4">3. Price</h2>
+            <p className="text-slate-700 mb-3">
+              The plan is A$9 per month, including GST. A limited-time intro price of A$5 applies to the first
+              month only, for a person who creates a free account with their email. {INTRO_PRICE_NOTE}
+            </p>
+            <p className="text-slate-700 mb-3">
+              Template collections are one-off purchases, about A$9 to A$19 each. A one-off purchase is not a
+              subscription and does not renew.
+            </p>
+            <p className="text-slate-700">
+              {MERCHANT_OF_RECORD_DISCLOSURE} This website does not take payment. Creating a free account does
+              not charge a card.
+            </p>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">4. Refunds and cancellation</h2>
+            <p className="text-slate-700 mb-3">{REFUND_POLICY}</p>
+            <p className="text-slate-700">
+              The refund wording is also on the{" "}
+              <Link href="/refunds" className="text-blue-600 underline">refunds page</Link>.
+            </p>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">5. Intellectual Property</h2>
             <p className="text-slate-700 mb-3">
               All content on {siteName} — including courses, lessons, templates, tools, articles, graphics, logos,
               and code — is the property of {companyName} or its content creators and is protected by applicable
@@ -93,7 +128,7 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">4. User Conduct</h2>
+            <h2 className="text-2xl font-bold mb-4">6. User Conduct</h2>
             <p className="text-slate-700 mb-3">
               You agree not to use the Service for any unlawful purpose or in violation of these Terms. Prohibited
               behavior includes:
@@ -108,7 +143,7 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">5. Third-Party Services</h2>
+            <h2 className="text-2xl font-bold mb-4">7. Third-Party Services</h2>
             <p className="text-slate-700 mb-3">
               The Service may contain links to third-party websites or services that are not owned or controlled by us.
               We have no control over and assume no responsibility for the content, privacy policies, or practices of
@@ -121,7 +156,7 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">6. Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold mb-4">8. Limitation of Liability</h2>
             <p className="text-slate-700 mb-3">
               To the fullest extent permitted by applicable law, {companyName} shall not be liable for any indirect,
               incidental, special, consequential, or punitive damages arising out of or related to your use of the
@@ -134,20 +169,20 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">7. Termination</h2>
+            <h2 className="text-2xl font-bold mb-4">9. Termination</h2>
             <p className="text-slate-700 mb-3">
               We may terminate or suspend your account immediately, without prior notice or liability, for any reason,
               including breach of these Terms. Upon termination, your right to use the Service ceases immediately.
             </p>
             <p className="text-slate-700">
               If you wish to terminate your account, you may simply discontinue using the Service or delete your account
-              from your account settings. Sections 3 (Intellectual Property), 6 (Limitation of Liability), and 9
+              from your account settings. Sections 5 (Intellectual Property), 8 (Limitation of Liability), and 11
               (Governing Law) survive termination.
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">8. Changes to Terms</h2>
+            <h2 className="text-2xl font-bold mb-4">10. Changes to Terms</h2>
             <p className="text-slate-700 mb-3">
               We reserve the right to modify or replace these Terms at any time. Material changes will be posted on
               this page. Your continued use of the Service after any changes constitutes acceptance of the new Terms.
@@ -159,19 +194,21 @@ export function TermsPage({ siteName, domain, companyName = "TTPN Pty Ltd" }: Te
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">9. Governing Law</h2>
+            <h2 className="text-2xl font-bold mb-4">11. Governing Law</h2>
             <p className="text-slate-700">
-              The Service is operated by TTPN Pty Ltd. These Terms are governed by the laws of Queensland, Australia,
-              and the courts of Queensland have exclusive jurisdiction. Our failure to enforce any right or provision
-              of these Terms will not be considered a waiver of those rights.
+              The Service is operated by TTPN Pty Ltd. These Terms are governed by the laws of Queensland and the
+              Commonwealth of Australia, and the courts of Queensland have exclusive jurisdiction. Nothing in these
+              Terms limits rights that cannot be limited under the Australian Consumer Law. Our failure to enforce
+              any right or provision of these Terms will not be considered a waiver of those rights.
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">10. Contact</h2>
+            <h2 className="text-2xl font-bold mb-4">12. Contact</h2>
             <p className="text-slate-700">
-              If you have any questions about these Terms, use the{" "}
-              <Link href="/contact" className="text-blue-600 underline">contact form</Link> at {domain}/contact.
+              If you have any questions about these Terms, email{" "}
+              <a href={`mailto:${supportEmail}`} className="text-blue-600 underline">{supportEmail}</a>{" "}
+              or use the <Link href="/contact" className="text-blue-600 underline">contact form</Link> at {domain}/contact.
             </p>
           </section>
         </div>

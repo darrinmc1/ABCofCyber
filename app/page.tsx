@@ -52,8 +52,8 @@ const earlyAccess = [
   "Cybersecurity lessons and practical walkthroughs",
   "Framework mapping across NIST, ISO 27001 and CIS",
   "What's the play scenario walkthrough",
-  "Interactive tools and downloadable guidance",
-  "Paid access only after checkout is live and tested",
+  "Interactive tools. Template packs are a separate one-off",
+  "Plan A$9/month inc GST, A$5 for the first month",
 ]
 
 const faqs = [
@@ -141,9 +141,9 @@ export default function Home() {
       <section id="pricing" className="w-full bg-slate-50 py-12 md:py-20">
         <div className="container mx-auto max-w-4xl px-4 md:px-6">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Early access</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Use the training now. Paid pricing comes later.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-600">Checkout is not live, so ABC of Cyber is not publishing paid plan prices yet. Explore the lessons and tools now and join the list if you want to know when expanded access is ready.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pricing</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Free to start. A$9/month when you want the plan.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-slate-600">The Essential Eight path, What&apos;s the play, and the framework notes are free. The plan is A$9/month inc GST, with an A$5 first month if you create a free account with your email. Collections are about A$9–19, once. Cancel anytime. No checkout on this site.</p>
           </div>
           <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-blue-200 bg-white p-7">
             <ul className="space-y-3">
@@ -153,7 +153,7 @@ export default function Home() {
             </ul>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Button asChild><Link href="/learn">Browse free lessons</Link></Button>
-              <Button asChild variant="outline"><Link href="/pricing">Join early access</Link></Button>
+              <Button asChild variant="outline"><Link href="/sign-up">Create a free account</Link></Button>
             </div>
           </div>
         </div>

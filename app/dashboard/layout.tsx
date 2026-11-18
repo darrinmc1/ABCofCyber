@@ -3,7 +3,7 @@ import { pageMeta } from "@/lib/seo"
 
 export const metadata: Metadata = pageMeta({
   title: "Dashboard",
-  description: "The signed-in ABC of Cyber dashboard. It stays behind sign-in, where a half-built view belongs.",
+  description: "The signed-in ABC of Cyber account page.",
   path: "/dashboard",
 })
 
