@@ -7,8 +7,14 @@ import { fileURLToPath } from "node:url"
 import { PGlite } from "@electric-sql/pglite"
 import { PGLiteSocketServer } from "@electric-sql/pglite-socket"
 import { getUserEntitlements, grantEntitlement, revokeEntitlement } from "../lib/entitlements"
+import {
+  FEEDBACK_SAVE_ERROR,
+  SUBSCRIBE_SAVE_ERROR,
+  saveFeedback,
+  saveSubscriber,
+} from "../lib/intake"
 import { recordPageView, readUsage } from "../lib/page-views"
-import { closeUsageDatabase, usageDatabaseUrl } from "../lib/usage-db"
+import { closeUsageDatabase, getUsageSql, usageDatabaseUrl } from "../lib/usage-db"
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..")
 const BLOCKED_REF = "radlwbqfzrzmgdldyifi"
@@ -45,7 +51,7 @@ before(async () => {
   })
   await server.start()
   databaseUrl = `postgres://postgres:postgres@127.0.0.1:${port}/postgres`
-  const migration = ["0001_entitlements.sql", "0002_page_views.sql"]
+  const migration = ["0001_entitlements.sql", "0002_page_views.sql", "0003_feedback_subscribers.sql"]
     .map((name) => readFileSync(join(root, "supabase/migrations", name), "utf8"))
     .join("\n")
   await db.exec(migration)
@@ -123,4 +129,171 @@ test("page-view write and admin count use the local database", { timeout: 60_000
   assert.equal(await getUserEntitlements("user_b").then((rows) => rows.length), 0)
   assert.equal(await revokeEntitlement("user_a", "pro"), true)
   assert.deepEqual(await getUserEntitlements("user_a"), [])
+})
+
+test("feedback and subscriber writes use Neon and fail closed", { timeout: 60_000 }, async () => {
+  assert.equal(FEEDBACK_SAVE_ERROR.includes(BLOCKED_REF), false)
+  assert.equal(SUBSCRIBE_SAVE_ERROR.includes(BLOCKED_REF), false)
+  assert.match(FEEDBACK_SAVE_ERROR, /try again/i)
+  assert.match(SUBSCRIBE_SAVE_ERROR, /try again/i)
+
+  process.env.USAGE_DATABASE_URL = databaseUrl
+  const sql = getUsageSql()
+  assert.ok(sql)
+
+  const attack = "'); delete from public.feedback; --"
+  const saved = await saveFeedback({
+    site: "abcofcyber",
+    category: "Bug",
+    rating: 2,
+    message: attack,
+    page: "/learn",
+    pageUrl: "https://abcofcyber.com/learn",
+    email: null,
+    ipAddress: "203.0.113.5",
+    feedbackType: "bug",
+  })
+  assert.deepEqual(saved, { ok: true })
+
+  const feedback = await sql<
+    {
+      site: string
+      category: string
+      rating: number
+      message: string
+      page: string | null
+      page_url: string | null
+      email: string | null
+      ip_address: string | null
+      feedback_type: string
+      status: string
+    }[]
+  >`
+    select site, category, rating, message, page, page_url, email, ip_address, feedback_type, status
+    from public.feedback
+    where message = ${attack}
+  `
+  assert.equal(feedback.length, 1)
+  assert.equal(feedback[0]?.site, "abcofcyber")
+  assert.equal(feedback[0]?.category, "Bug")
+  assert.equal(Number(feedback[0]?.rating), 2)
+  assert.equal(feedback[0]?.message, attack)
+  assert.equal(feedback[0]?.page, "/learn")
+  assert.equal(feedback[0]?.page_url, "https://abcofcyber.com/learn")
+  assert.equal(feedback[0]?.email, null)
+  assert.equal(feedback[0]?.ip_address, "203.0.113.5")
+  assert.equal(feedback[0]?.feedback_type, "bug")
+  assert.equal(feedback[0]?.status, "new")
+
+  const first = await saveSubscriber({
+    site: "abcofcyber",
+    email: "ada@example.com",
+    name: "Ada",
+    source: "footer",
+  })
+  const second = await saveSubscriber({
+    site: "abcofcyber",
+    email: "ada@example.com",
+    name: "Ada Lovelace",
+    source: "hero",
+  })
+  const quotedEmail = `ada@example.com${attack}`
+  const quoted = await saveSubscriber({
+    site: "abcofcyber",
+    email: quotedEmail,
+    name: null,
+    source: "website",
+  })
+  assert.deepEqual(first, { ok: true })
+  assert.deepEqual(second, { ok: true })
+  assert.deepEqual(quoted, { ok: true })
+
+  const subscribers = await sql<{ email: string; name: string | null; source: string | null }[]>`
+    select email, name, source
+    from public.subscribers
+    where site = ${"abcofcyber"}
+    order by email
+  `
+  assert.equal(subscribers.length, 2)
+  const ada = subscribers.find((row) => row.email === "ada@example.com")
+  assert.equal(ada?.name, "Ada Lovelace")
+  assert.equal(ada?.source, "hero")
+  assert.ok(subscribers.some((row) => row.email === quotedEmail))
+
+  const counts = await sql<{ feedback_count: number; subscriber_count: number }[]>`
+    select
+      (select count(*)::int from public.feedback) as feedback_count,
+      (select count(*)::int from public.subscribers) as subscriber_count
+  `
+  assert.equal(Number(counts[0]?.feedback_count), 1)
+  assert.equal(Number(counts[0]?.subscriber_count), 2)
+
+  const blockedUrl = `${databaseUrl}?application_name=${BLOCKED_REF}`
+  process.env.USAGE_DATABASE_URL = blockedUrl
+  assert.equal(usageDatabaseUrl(), null)
+  assert.deepEqual(
+    await saveFeedback({
+      site: "abcofcyber",
+      category: "Other",
+      rating: 1,
+      message: "should-not-store",
+      page: null,
+      pageUrl: null,
+      email: null,
+      ipAddress: "198.51.100.8",
+      feedbackType: "general",
+    }),
+    { ok: false, reason: "no-database" },
+  )
+  assert.deepEqual(
+    await saveSubscriber({
+      site: "abcofcyber",
+      email: "blocked@example.com",
+      name: "Blocked",
+      source: "website",
+    }),
+    { ok: false, reason: "no-database" },
+  )
+
+  delete process.env.USAGE_DATABASE_URL
+  assert.equal(usageDatabaseUrl(), null)
+  assert.deepEqual(
+    await saveSubscriber({
+      site: "abcofcyber",
+      email: "unset@example.com",
+      name: null,
+      source: null,
+    }),
+    { ok: false, reason: "no-database" },
+  )
+
+  process.env.USAGE_DATABASE_URL = `https://${BLOCKED_REF}.supabase.co`
+  assert.equal(usageDatabaseUrl(), null)
+  assert.deepEqual(
+    await saveFeedback({
+      site: "abcofcyber",
+      category: "Suggestion",
+      rating: 5,
+      message: "https-should-not-store",
+      page: null,
+      pageUrl: null,
+      email: "person@example.com",
+      ipAddress: "192.0.2.9",
+      feedbackType: "suggestion",
+    }),
+    { ok: false, reason: "no-database" },
+  )
+
+  process.env.USAGE_DATABASE_URL = databaseUrl
+  const afterRejects = await sql<{ feedback_count: number; subscriber_count: number }[]>`
+    select
+      (select count(*)::int from public.feedback) as feedback_count,
+      (select count(*)::int from public.subscribers) as subscriber_count
+  `
+  assert.equal(Number(afterRejects[0]?.feedback_count), 1)
+  assert.equal(Number(afterRejects[0]?.subscriber_count), 2)
+  const leaked = await sql<{ message: string }[]>`
+    select message from public.feedback where message = ${"should-not-store"}
+  `
+  assert.equal(leaked.length, 0)
 })

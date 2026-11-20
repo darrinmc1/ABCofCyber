@@ -1,9 +1,6 @@
-// lib/supabase.ts — shared Supabase server client
-// Install: npm i @supabase/supabase-js
-//
-// Usage from a server route:
-//   import { supabaseAdmin } from "@/lib/supabase";
-//   const { error } = await supabaseAdmin.from("subscribers").insert({ ... });
+// lib/supabase.ts — legacy Supabase server client.
+// New feedback and subscriber rows are written to Neon (lib/intake.ts).
+// Do not use this client to read, copy, or delete existing Supabase rows.
 
 import { createClient } from "@supabase/supabase-js";
 
