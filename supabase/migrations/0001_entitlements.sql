@@ -1,5 +1,5 @@
--- Clerk user id → paid product. Service-role writes from the Stripe webhook.
--- user_id is the Clerk user id (text), not the Supabase auth uuid.
+-- Clerk user id → product on the Neon database in USAGE_DATABASE_URL.
+-- user_id is the Clerk user id (text). Auth stays on Clerk.
 -- Additive. Does not alter existing tables.
 
 create table if not exists public.entitlements (

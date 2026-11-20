@@ -1,8 +1,8 @@
 -- Signed-in page views for the operator usage view.
--- user_id is the Clerk user id (text), not a Supabase auth uuid.
+-- user_id is the Clerk user id (text). Auth stays on Clerk.
 -- Additive. Does not alter existing tables.
--- Run this in the Supabase project that NEXT_PUBLIC_SUPABASE_URL points at.
--- Preview and Production use that same project. Do not create a second database.
+-- Apply this to the Neon database in USAGE_DATABASE_URL.
+-- Do not apply it to the empire-hq Supabase project.
 
 create table if not exists public.page_views (
   id uuid primary key default gen_random_uuid(),

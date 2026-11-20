@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { auth, clerkClient, currentUser } from "@clerk/nextjs/server"
-import { PAGE_VIEWS_SQL, readUsage } from "@/lib/page-views"
+import { readUsage } from "@/lib/page-views"
 
 export const dynamic = "force-dynamic"
 
@@ -66,8 +66,8 @@ async function OperatorView() {
     <div className="mt-6 space-y-8">
       <p className="text-sm text-slate-600">
         Account count comes from the Clerk application already configured for this site.
-        Page history is people who opened a page while signed in. Preview writes to the same
-        database as Production, so this is live data.
+        Page history is people who opened a page while signed in. Those rows live in the
+        Neon database named by USAGE_DATABASE_URL.
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-slate-200 p-5">
@@ -76,7 +76,9 @@ async function OperatorView() {
         </div>
         <div className="rounded-xl border border-slate-200 p-5">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">People with a recorded page</p>
-          <p className="mt-2 text-3xl font-bold text-slate-900">{usage.ok ? usage.userCount : "—"}</p>
+          <p className="mt-2 text-3xl font-bold text-slate-900">
+            {usage.ok ? usage.userCount : usage.reason === "no-database" ? "not connected" : "—"}
+          </p>
         </div>
       </div>
 
@@ -102,22 +104,16 @@ async function OperatorView() {
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-slate-800">
           {usage.reason === "no-database" && (
             <p>
-              This deployment has no working Supabase client. The project already has{" "}
-              <code className="rounded bg-white px-1">NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
-              <code className="rounded bg-white px-1">SUPABASE_SERVICE_ROLE_KEY</code> on Production and Preview.
-              If this message shows in Production, those values are missing or not a URL.
+              not connected. Set <code className="rounded bg-white px-1">USAGE_DATABASE_URL</code> to the
+              Neon Postgres connection string for page views and entitlements. Writes are skipped until it is set.
             </p>
           )}
           {usage.reason === "missing-table" && (
-            <div className="space-y-3">
-              <p>
-                The <code className="rounded bg-white px-1">page_views</code> table is not in the database yet.
-                In the Supabase project this site already uses (the one in{" "}
-                <code className="rounded bg-white px-1">NEXT_PUBLIC_SUPABASE_URL</code>), open the SQL editor and run:
-              </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-100">{PAGE_VIEWS_SQL}</pre>
-              <p>That is the same statement as <code className="rounded bg-white px-1">supabase/migrations/0002_page_views.sql</code>. Do not create a new Supabase project.</p>
-            </div>
+            <p>
+              The <code className="rounded bg-white px-1">page_views</code> table is not in the usage database yet.
+              Apply <code className="rounded bg-white px-1">supabase/migrations/0002_page_views.sql</code> to the
+              Neon database in <code className="rounded bg-white px-1">USAGE_DATABASE_URL</code>.
+            </p>
           )}
           {usage.reason === "query-failed" && (
             <p>The usage read failed. {usage.detail ? "The database said the query could not run." : ""}</p>

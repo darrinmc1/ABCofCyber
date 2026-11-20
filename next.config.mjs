@@ -16,6 +16,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  serverExternalPackages: ["postgres"],
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
