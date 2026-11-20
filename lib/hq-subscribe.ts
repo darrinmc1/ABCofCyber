@@ -1,8 +1,8 @@
 // Shared Empire signup sink.
 // Every email signup is also sent to the HQ subscriber webhook
-// (n8n.peelboss.com -> Supabase `subscribers` table, one row per site + email),
-// so signups land in one place even when this site's own Supabase, Mailchimp
-// or Resend settings are missing. Returns true only when HQ confirms the save.
+// (n8n.peelboss.com -> Supabase `subscribers` table, one row per site + email).
+// That post is unchanged. This site's own new rows are written to Neon.
+// Returns true only when HQ confirms the save.
 const HQ_SUBSCRIBE_URL =
   process.env.HQ_SUBSCRIBE_URL || "https://n8n.peelboss.com/webhook/hq-subscribe"
 

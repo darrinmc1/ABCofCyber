@@ -1,10 +1,10 @@
 // app/api/feedback/route.ts — unified feedback endpoint
-// Writes to Supabase, sends admin notification via Resend.
+// Writes to Neon, sends admin notification via Resend.
 
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
 import { sendAdminNotification } from "@/lib/email";
 import { notifyFeedbackWebhook } from "@/lib/feedback-webhook";
+import { FEEDBACK_SAVE_ERROR, saveFeedback } from "@/lib/intake";
 
 const SITE_KEY = process.env.SITE_KEY ?? "abcofcyber";
 const VALID_CATEGORIES = ["Bug", "Suggestion", "Content Request", "Other"];
@@ -58,8 +58,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Field too long" }, { status: 400 });
   }
 
-  // 1. Persist to Supabase
-  let dbWrote = false;
+  // 1. Persist to Neon. Fail closed when the usage database cannot be used.
   const _origin =
     req.headers.get("origin") ??
     (req.headers.get("host") ? `https://${req.headers.get("host")}` : null);
@@ -75,13 +74,18 @@ export async function POST(req: NextRequest) {
       : category === "Content Request" ? "content_request"
       : "general";
 
-  if (supabaseAdmin) {
-    const { error } = await supabaseAdmin
-      .from("feedback")
-      .insert({ site: SITE_KEY, category, rating, message, page: page ?? null, page_url: pageUrl, email: email ?? null, ip_address: ip, feedback_type: feedbackType, status: "new" });
-    if (error) console.error("[feedback] supabase error", error);
-    else dbWrote = true;
-  }
+  const saved = await saveFeedback({
+    site: SITE_KEY,
+    category,
+    rating,
+    message,
+    page: page ?? null,
+    pageUrl,
+    email: email ?? null,
+    ipAddress: ip,
+    feedbackType,
+  });
+  const dbWrote = saved.ok;
 
   // Kick n8n only after the row is saved. The helper never throws, so the
   // response below stays the same when the webhook fails.
@@ -94,6 +98,10 @@ export async function POST(req: NextRequest) {
     kind: "feedback",
     payload: { site: SITE_KEY, rating, category, message, page, email, ip, dbWrote },
   });
+
+  if (!dbWrote) {
+    return NextResponse.json({ error: FEEDBACK_SAVE_ERROR }, { status: 503 });
+  }
 
   return NextResponse.json({ ok: true });
 }

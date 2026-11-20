@@ -1,4 +1,5 @@
-// Neon Postgres for public.page_views and public.entitlements.
+// Neon Postgres for public.page_views, public.entitlements,
+// public.feedback, and public.subscribers.
 // Callers must use the tagged-template form so values stay parameters.
 // A missing URL, a non-Postgres URL, or the empire-hq Supabase project ref
 // fail closed: no client is created and nothing is written.

@@ -1,12 +1,12 @@
 // app/api/subscribe/route.ts – unified subscribe endpoint
 // Replaces the old nodemailer+JSON-file pattern.
-// Writes to Supabase, upserts into Mailchimp, sends welcome via Resend.
+// Writes to Neon, upserts into Mailchimp, sends welcome via Resend.
 
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
 import { addToMailchimp } from "@/lib/mailchimp";
 import { sendWelcome, sendAdminNotification } from "@/lib/email";
 import { saveToHq } from "@/lib/hq-subscribe"
+import { SUBSCRIBE_SAVE_ERROR, saveSubscriber } from "@/lib/intake";
 
 const SITE_KEY = process.env.SITE_KEY || "abcofcyber";
 
@@ -60,18 +60,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // 1. Persist to Supabase (source of truth)
-  let dbWrote = false;
-  if (supabaseAdmin) {
-    const { error } = await supabaseAdmin
-      .from("subscribers")
-      .upsert(
-        { site: SITE_KEY, email, name: name ?? null, source: source ?? null },
-        { onConflict: "site,email" }
-      );
-    if (error) console.error("[subscribe] supabase error", error);
-    else dbWrote = true;
-  }
+  // 1. Persist to Neon (source of truth for new rows).
+  const saved = await saveSubscriber({
+    site: SITE_KEY,
+    email,
+    name: name ?? null,
+    source: source ?? null,
+  });
+  const dbWrote = saved.ok;
 
   // 2. Push to Mailchimp (best-effort – don't fail the request if this errors)
   // Always copy the signup to the shared HQ subscribers list.
@@ -88,11 +84,8 @@ export async function POST(req: NextRequest) {
     }),
   ]);
 
-  if (!dbWrote && !hqSaved && !mc.ok) {
-    return NextResponse.json(
-      { error: "We couldn't save your email just now. Please try again." },
-      { status: 502 },
-    )
+  if (!dbWrote) {
+    return NextResponse.json({ error: SUBSCRIBE_SAVE_ERROR }, { status: 503 });
   }
 
   return NextResponse.json({
